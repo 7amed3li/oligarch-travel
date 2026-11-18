@@ -1,0 +1,55 @@
+{
+ "depositPercent": 25,
+ "tours": [
+  {
+   "currency": "EUR",
+   "id": "hs-ticket",
+   "maxGuests": 40,
+   "minGuests": 1,
+   "perGroup": 0,
+   "perPerson": 29
+  },
+  {
+   "currency": "EUR",
+   "id": "hs-guided",
+   "maxGuests": 20,
+   "minGuests": 3,
+   "perGroup": 0,
+   "perPerson": 54
+  },
+  {
+   "currency": "EUR",
+   "id": "hs-private",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 80,
+   "perPerson": 28
+  },
+  {
+   "currency": "USD",
+   "id": "topkapi-private",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 162.01,
+   "perPerson": 0
+  },
+  {
+   "currency": "EUR",
+   "id": "topkapi-night",
+   "maxGuests": 46,
+   "minGuests": 2,
+   "perGroup": 0,
+   "perPerson": 65
+  },
+  {
+   "currency": "EUR",
+   "id": "istanbul-day",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 275,
+   "perPerson": 0
+  }
+ ],
+ "version": 1,
+ "whatsapp": "905553255565"
+}
