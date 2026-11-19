@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from './CartProvider';
-import { cartTotals, fmtMoney, lineTotal } from '@/lib/cart';
+import { cartTotals, fmtMoney, lineComponents, ticketPerPersonDisplay } from '@/lib/cart';
 import type { PriceConfig } from '@/lib/prices';
 import { TOURS, type Locale } from '@/data/tours';
 
@@ -17,9 +17,12 @@ export default function BookingClient({
   prices: PriceConfig;
   byId: Record<string, import('@/lib/prices').TourPrice>;
 }) {
-  const { items, remove, update, clear } = useCart();
+  const { items: rawItems, remove, update, clear } = useCart();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+
+  // Drop lines whose tour no longer exists (stale carts from older versions).
+  const items = rawItems.filter((it) => byId[it.tourId] && TOURS[it.tourId]);
 
   const totals = useMemo(
     () => cartTotals(items, byId, prices.depositPercent),
@@ -27,16 +30,26 @@ export default function BookingClient({
   );
   const currencies = Object.keys(totals);
 
+  function lineText(tp: import('@/lib/prices').TourPrice, it: (typeof items)[number]): string {
+    const comp = lineComponents(tp, it);
+    const curs = Object.keys(comp);
+    if (curs.length === 0) return u.free_word || 'Free';
+    return curs.map((c) => fmtMoney(c, comp[c])).join(' + ');
+  }
+
   function confirm() {
     const L: string[] = ['New booking — Oligarch Travel website', ''];
     items.forEach((it, i) => {
-      const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
-      const en = (TOURS[it.tourId] || TOURS['bosphorus-yacht'])?.content.en;
+      const tp = byId[it.tourId];
+      const en = TOURS[it.tourId]?.content.en;
       if (!tp || !en) return;
-      const isFree = tp.perGroup === 0 && tp.perPerson === 0;
       L.push(`${i + 1}. ${en.name}`);
+      if (it.tier) L.push(`   Yacht: ${it.tier === 'luxury' ? 'Luxury (drinks included)' : 'Standard'}`);
       L.push(`   Date: ${it.date || '—'} · Guests: ${it.people}`);
-      L.push(`   Price: ${isFree ? 'Free' : fmtMoney(tp.currency, lineTotal(tp, it.people))}`);
+      if (tp.ticket && it.ticket) {
+        L.push(`   Entrance tickets: YES — skip-the-line, ${ticketPerPersonDisplay(tp)} / person × ${it.people}`);
+      }
+      L.push(`   Price: ${lineText(tp, it)}`);
     });
     currencies.forEach((cur) => {
       const t = totals[cur];
@@ -70,11 +83,10 @@ export default function BookingClient({
     <div className="grid2">
       <div>
         {items.map((it, idx) => {
-          const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
-          const tourDef = TOURS[it.tourId] || TOURS['bosphorus-yacht'];
+          const tp = byId[it.tourId];
+          const tourDef = TOURS[it.tourId];
           if (!tp || !tourDef) return null;
           const c = tourDef.content[locale];
-          const isFree = tp.perGroup === 0 && tp.perPerson === 0;
           return (
             <div className="cart-item" key={idx}>
               <img src={`/img/${tourDef.img}`} alt={c.name} />
@@ -109,11 +121,43 @@ export default function BookingClient({
                     />
                   </label>
                 </div>
+                {tp.luxuryGroup && (
+                  <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 8 }}>
+                    <label className="small">
+                      <input
+                        type="radio"
+                        name={`tier-${idx}`}
+                        checked={it.tier !== 'luxury'}
+                        onChange={() => update(idx, { tier: 'standard' })}
+                      />{' '}
+                      {u.tier_standard}
+                    </label>
+                    <label className="small">
+                      <input
+                        type="radio"
+                        name={`tier-${idx}`}
+                        checked={it.tier === 'luxury'}
+                        onChange={() => update(idx, { tier: 'luxury' })}
+                      />{' '}
+                      {u.tier_luxury}
+                    </label>
+                  </div>
+                )}
+                {tp.ticket && (
+                  <label className="small" style={{ display: 'block', marginTop: 8 }}>
+                    <input
+                      type="checkbox"
+                      checked={!!it.ticket}
+                      onChange={(e) => update(idx, { ticket: e.target.checked })}
+                    />{' '}
+                    {u.add_ticket} — {ticketPerPersonDisplay(tp)} {u.per_person}
+                  </label>
+                )}
                 <button className="remove" onClick={() => remove(idx)} style={{ marginTop: 8 }}>
                   {u.remove}
                 </button>
               </div>
-              <div className="line-total">{isFree ? (u.free || 'Free') : fmtMoney(tp.currency, lineTotal(tp, it.people))}</div>
+              <div className="line-total">{lineText(tp, it)}</div>
             </div>
           );
         })}
