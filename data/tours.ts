@@ -377,7 +377,7 @@ export const UI: Record<Locale, any> = {
   "see_tours": "See the tours",
   "hero_kicker": "Oligarch Travel · Istanbul Old City",
   "hero_title": "Hagia Sophia & Topkapi Palace, with a guide who knows them best.",
-  "hero_sub": "Licensed guide Ergin Karakoyun — more than 25 years in Sultanahmet. Book direct here, meet at the Hagia Sophia ticket office, and get your confirmation personally on WhatsApp.",
+  "hero_sub": "Licensed guide Ergin Karakoyun — 32 years in Sultanahmet. Book direct here, meet at the Hagia Sophia ticket office, and get your confirmation personally on WhatsApp.",
   "tours_title": "Tours & tickets",
   "tours_sub": "Real tours, real prices. Add one — or several — to a single booking.",
   "why_title": "Why book direct",
@@ -397,11 +397,11 @@ export const UI: Record<Locale, any> = {
   ],
   "about_title": "Your guide: Ergin Karakoyun",
   "about_paras": [
-   "Ergin Karakoyun is a licensed professional tourist guide who has worked in Istanbul’s Old City for more than 25 years. He is a founding delegate of the Chamber of Turkey Guides and specialises in Byzantine and Ottoman heritage — Hagia Sophia, Topkapi Palace and the Sultanahmet district.",
+   "Ergin Karakoyun is a licensed professional tourist guide who has worked in Istanbul’s Old City for 32 years. He is a founding delegate of the Chamber of Turkey Guides and specialises in Byzantine and Ottoman heritage — Hagia Sophia, Topkapi Palace and the Sultanahmet district.",
    "Ergin guides personally in English, German and Chinese. His fellow freelance guides cover nine languages in total, and every tour is led by a licensed guide."
   ],
   "about_facts": [
-   "25+ years guiding",
+   "32 years guiding",
    "Licensed professional guide",
    "Guides in English · Deutsch · 中文",
    "Founding delegate, Chamber of Turkey Guides"
@@ -430,6 +430,7 @@ export const UI: Record<Locale, any> = {
   "email_label": "Email",
   "instagram_label": "Instagram",
   "footer_line": "Oligarch Travel — Byzantine & Ottoman tours in Istanbul. Operated by Oligarch Tour, TÜRSAB licence No. 14988.",
+    "legal_line": "Tours are organised by Oligarch Tour — TÜRSAB Travel Agency Licence No: 14988.",
   "per_person": "/ person",
   "per_group": "/ group",
   "plus_per_person": "+ {p} / person",
@@ -474,7 +475,7 @@ export const UI: Record<Locale, any> = {
   "see_tours": "Touren ansehen",
   "hero_kicker": "Oligarch Travel · Istanbuls Altstadt",
   "hero_title": "Hagia Sophia & Topkapi-Palast — mit einem Guide, der sie am besten kennt.",
-  "hero_sub": "Lizenzierter Guide Ergin Karakoyun — seit über 25 Jahren in Sultanahmet. Buchen Sie hier direkt, Treffpunkt an der Kasse der Hagia Sophia, und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
+  "hero_sub": "Lizenzierter Guide Ergin Karakoyun — seit 32 Jahren in Sultanahmet. Buchen Sie hier direkt, Treffpunkt an der Kasse der Hagia Sophia, und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
   "tours_title": "Touren & Tickets",
   "tours_sub": "Echte Touren, echte Preise. Fügen Sie eine — oder mehrere — zu einer Buchung hinzu.",
   "why_title": "Warum direkt buchen",
@@ -494,11 +495,11 @@ export const UI: Record<Locale, any> = {
   ],
   "about_title": "Ihr Guide: Ergin Karakoyun",
   "about_paras": [
-   "Ergin Karakoyun ist ein lizenzierter professioneller Touristenguide, der seit über 25 Jahren in Istanbuls Altstadt arbeitet. Er ist Gründungsdelegierter der Kammer der türkischen Touristenguides und auf byzantinisches und osmanisches Erbe spezialisiert — Hagia Sophia, Topkapi-Palast und das Sultanahmet-Viertel.",
+   "Ergin Karakoyun ist ein lizenzierter professioneller Touristenguide, der seit 32 Jahren in Istanbuls Altstadt arbeitet. Er ist Gründungsdelegierter der Kammer der türkischen Touristenguides und auf byzantinisches und osmanisches Erbe spezialisiert — Hagia Sophia, Topkapi-Palast und das Sultanahmet-Viertel.",
    "Ergin führt persönlich auf Englisch, Deutsch und Chinesisch. Seine freiberuflichen Guide-Kollegen decken insgesamt neun Sprachen ab, und jede Tour wird von einem lizenzierten Guide geleitet."
   ],
   "about_facts": [
-   "Über 25 Jahre Erfahrung",
+   "Über 32 Jahre Erfahrung",
    "Lizenzierter professioneller Guide",
    "Führungen auf English · Deutsch · 中文",
    "Gründungsdelegierter der Guides-Kammer"
@@ -527,6 +528,7 @@ export const UI: Record<Locale, any> = {
   "email_label": "E-Mail",
   "instagram_label": "Instagram",
   "footer_line": "Oligarch Travel — Byzanz- und Osmanen-Touren in Istanbul. Betrieben von Oligarch Tour, TÜRSAB-Lizenz Nr. 14988.",
+    "legal_line": "Die Touren werden von Oligarch Tour veranstaltet — TÜRSAB-Reisebürolizenz Nr. 14988.",
   "per_person": "/ Person",
   "per_group": "/ Gruppe",
   "plus_per_person": "+ {p} / Person",
@@ -571,7 +573,7 @@ export const UI: Record<Locale, any> = {
   "see_tours": "查看导览",
   "hero_kicker": "Oligarch Travel · 伊斯坦布尔老城",
   "hero_title": "圣索菲亚与托普卡珀皇宫——由最了解它们的导游为您讲解。",
-  "hero_sub": "持证导游 Ergin Karakoyun——在苏丹艾哈迈德区执业 25 多年。在此直接预订，在圣索菲亚售票处会合，并通过 WhatsApp 获得他本人确认。",
+  "hero_sub": "持证导游 Ergin Karakoyun——在苏丹艾哈迈德区执业 32 年。在此直接预订，在圣索菲亚售票处会合，并通过 WhatsApp 获得他本人确认。",
   "tours_title": "导览与门票",
   "tours_sub": "真实的导览，真实的价格。可将一项——或多项——加入同一次预订。",
   "why_title": "为什么直接预订",
@@ -591,11 +593,11 @@ export const UI: Record<Locale, any> = {
   ],
   "about_title": "您的导游：Ergin Karakoyun",
   "about_paras": [
-   "Ergin Karakoyun 是一位持证专业旅游导游，在伊斯坦布尔老城工作了 25 多年。他是土耳其导游协会的创始代表，专精拜占庭与奥斯曼文化遗产——圣索菲亚大教堂、托普卡珀皇宫和苏丹艾哈迈德区。",
+   "Ergin Karakoyun 是一位持证专业旅游导游，在伊斯坦布尔老城工作了 32 年。他是土耳其导游协会的创始代表，专精拜占庭与奥斯曼文化遗产——圣索菲亚大教堂、托普卡珀皇宫和苏丹艾哈迈德区。",
    "Ergin 本人以英语、德语和中文进行导览。他的自由导游团队共涵盖九种语言，每一次导览都由持证导游带领。"
   ],
   "about_facts": [
-   "25 多年导览经验",
+   "32 年导览经验",
    "持证专业导游",
    "以英语 · 德语 · 中文导览",
    "导游协会创始代表"
@@ -624,6 +626,7 @@ export const UI: Record<Locale, any> = {
   "email_label": "电子邮箱",
   "instagram_label": "Instagram",
   "footer_line": "Oligarch Travel——伊斯坦布尔拜占庭与奥斯曼主题导览。由 Oligarch Tour 运营，TÜRSAB 许可证编号 14988。",
+    "legal_line": "所有行程由 Oligarch Tour 组织举办 — TÜRSAB 旅行社许可证号：14988。",
   "per_person": "/ 人",
   "per_group": "/ 组",
   "plus_per_person": "+ {p} / 人",
@@ -659,7 +662,7 @@ export const UI: Record<Locale, any> = {
   "badge": "卓越徽章"
  }
 };
-export const TRUST: Record<Locale, [string, string][]> = {"en": [["4.7 / 5", "TripAdvisor · 58 reviews"], ["Badge of Excellence", "Viator"], ["4.86", "Airbnb · 36 reviews"], ["Licensed", "Professional tourist guide"], ["Founding Delegate", "Chamber of Turkey Guides"], ["25+ years", "Guiding in Istanbul"]], "de": [["4,7 / 5", "TripAdvisor · 58 Bewertungen"], ["Badge of Excellence", "Viator"], ["4,86", "Airbnb · 36 Bewertungen"], ["Lizenziert", "Professioneller Touristenguide"], ["Gründungsdelegierter", "Kammer der türkischen Guides"], ["25+ Jahre", "Führungen in Istanbul"]], "zh": [["4.7 / 5", "TripAdvisor · 58 条评价"], ["卓越徽章", "Viator"], ["4.86", "Airbnb · 36 条评价"], ["持证导游", "专业旅游导游"], ["创始代表", "土耳其导游协会"], ["25 多年", "伊斯坦布尔导览经验"]]};
+export const TRUST: Record<Locale, [string, string][]> = {"en": [["4.7 / 5", "TripAdvisor · 58 reviews"], ["Badge of Excellence", "Viator"], ["4.86", "Airbnb · 36 reviews"], ["Licensed", "Professional tourist guide"], ["Founding Delegate", "Chamber of Turkey Guides"], ["32 years", "Guiding in Istanbul"]], "de": [["4,7 / 5", "TripAdvisor · 58 Bewertungen"], ["Badge of Excellence", "Viator"], ["4,86", "Airbnb · 36 Bewertungen"], ["Lizenziert", "Professioneller Touristenguide"], ["Gründungsdelegierter", "Kammer der türkischen Guides"], ["32 Jahre", "Führungen in Istanbul"]], "zh": [["4.7 / 5", "TripAdvisor · 58 条评价"], ["卓越徽章", "Viator"], ["4.86", "Airbnb · 36 条评价"], ["持证导游", "专业旅游导游"], ["创始代表", "土耳其导游协会"], ["32 年", "伊斯坦布尔导览经验"]]};
 export const RATINGS: Record<string, any> = {
  "hs-ticket": {
   "en": "4.7 (58 reviews) · TripAdvisor",
