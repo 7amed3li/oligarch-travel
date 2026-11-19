@@ -1,86 +1,18 @@
 {
- "depositPercent": 25,
- "tours": [
-  {
-   "currency": "EUR",
-   "id": "hs-ticket",
-   "maxGuests": 40,
-   "minGuests": 1,
-   "perGroup": 0,
-   "perPerson": 29
-  },
-  {
-   "currency": "EUR",
-   "id": "hs-guided",
-   "maxGuests": 20,
-   "minGuests": 3,
-   "perGroup": 0,
-   "perPerson": 54
-  },
-  {
-   "currency": "EUR",
-   "id": "hs-private",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 80,
-   "perPerson": 28
-  },
-  {
-   "currency": "USD",
-   "id": "topkapi-private",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 162.01,
-   "perPerson": 0
-  },
-  {
-   "currency": "EUR",
-   "id": "topkapi-night",
-   "maxGuests": 46,
-   "minGuests": 2,
-   "perGroup": 0,
-   "perPerson": 65
-  },
-  {
-   "currency": "EUR",
-   "id": "istanbul-day",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 275,
-   "perPerson": 0
-  },
-  {
-   "currency": "EUR",
-   "id": "bazaars-tour",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 80,
-   "perPerson": 0
-  },
-  {
-   "currency": "EUR",
-   "id": "traditional-handicrafts",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 0,
-   "perPerson": 0
-  },
-  {
-   "currency": "EUR",
-   "id": "bosphorus-yacht-standard",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 400,
-   "perPerson": 0
-  },
-  {
-   "currency": "EUR",
-   "id": "bosphorus-yacht-luxury",
-   "maxGuests": 8,
-   "minGuests": 1,
-   "perGroup": 600,
-   "perPerson": 0
-  }
- ],
- "whatsapp": "905553255565"
+  "version": 2,
+  "depositPercent": 25,
+  "whatsapp": "905553255565",
+  "tours": [
+    { "id": "hagia-sophia", "currency": "EUR", "perPerson": 0, "perGroup": 75, "minGuests": 1, "maxGuests": 8,
+      "ticket": { "amount": 25, "currency": "EUR", "premium": 2.5 } },
+    { "id": "topkapi-palace", "currency": "EUR", "perPerson": 0, "perGroup": 135, "minGuests": 1, "maxGuests": 8,
+      "ticket": { "amount": 2750, "currency": "TRY", "premium": 2.5 } },
+    { "id": "basilica-cistern", "currency": "EUR", "perPerson": 0, "perGroup": 50, "minGuests": 1, "maxGuests": 8,
+      "ticket": { "amount": 2250, "currency": "TRY", "premium": 2.5 } },
+    { "id": "sultanahmet-hippodrome", "currency": "EUR", "perPerson": 0, "perGroup": 50, "minGuests": 1, "maxGuests": 8 },
+    { "id": "full-day-istanbul", "currency": "EUR", "perPerson": 0, "perGroup": 235, "minGuests": 1, "maxGuests": 8 },
+    { "id": "bazaars-tour", "currency": "EUR", "perPerson": 0, "perGroup": 80, "minGuests": 1, "maxGuests": 8 },
+    { "id": "bosphorus-yacht", "currency": "EUR", "perPerson": 0, "perGroup": 400, "luxuryGroup": 600, "minGuests": 1, "maxGuests": 8 },
+    { "id": "traditional-handicrafts", "currency": "EUR", "perPerson": 0, "perGroup": 0, "minGuests": 1, "maxGuests": 8 }
+  ]
 }
