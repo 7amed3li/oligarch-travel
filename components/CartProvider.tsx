@@ -5,7 +5,7 @@ import type { CartItem } from '@/lib/cart';
 interface CartCtx {
   items: CartItem[];
   count: number;
-  add: (tourId: string, date: string, people: number) => void;
+  add: (tourId: string, date: string, people: number, opts?: { ticket?: boolean; tier?: 'standard' | 'luxury' }) => void;
   remove: (idx: number) => void;
   update: (idx: number, patch: Partial<CartItem>) => void;
   clear: () => void;
@@ -20,7 +20,7 @@ const Ctx = createContext<CartCtx>({
 });
 export const useCart = () => useContext(Ctx);
 
-const KEY = 'oligarch_cart_v1';
+const KEY = 'oligarch_cart_v2';
 
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -42,8 +42,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items, loaded]);
 
-  const add = (tourId: string, date: string, people: number) =>
-    setItems((prev) => [...prev, { tourId, date, people }]);
+  const add = (tourId: string, date: string, people: number, opts?: { ticket?: boolean; tier?: 'standard' | 'luxury' }) =>
+    setItems((prev) => [...prev, { tourId, date, people, ticket: opts?.ticket, tier: opts?.tier }]);
   const remove = (idx: number) => setItems((prev) => prev.filter((_, i) => i !== idx));
   const update = (idx: number, patch: Partial<CartItem>) =>
     setItems((prev) => prev.map((it, i) => (i === idx ? { ...it, ...patch } : it)));
