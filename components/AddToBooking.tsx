@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
+import { ticketPerPersonDisplay } from '@/lib/cart';
 import type { TourPrice } from '@/lib/prices';
 import type { Locale } from '@/data/tours';
 
@@ -18,20 +19,24 @@ export default function AddToBooking({
 }) {
   const { add } = useCart();
   const router = useRouter();
-  const isYacht = tourId === 'bosphorus-yacht' || tourId.startsWith('bosphorus-yacht');
+  const isYacht = tourId === 'bosphorus-yacht';
   const [tier, setTier] = useState<'standard' | 'luxury'>('standard');
+  const [ticket, setTicket] = useState(false);
   const [date, setDate] = useState('');
   const [people, setPeople] = useState(Math.max(2, price.minGuests));
   const [added, setAdded] = useState(false);
 
   const clamp = (n: number) => Math.min(price.maxGuests, Math.max(price.minGuests, n || price.minGuests));
-  const getSelectedTourId = () => (isYacht ? `bosphorus-yacht-${tier}` : tourId);
+  const opts = () => ({
+    ticket: price.ticket ? ticket : undefined,
+    tier: isYacht ? tier : undefined,
+  });
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        add(getSelectedTourId(), date, clamp(people));
+        add(tourId, date, clamp(people), opts());
         setAdded(true);
         setTimeout(() => setAdded(false), 2600);
       }}
@@ -48,6 +53,20 @@ export default function AddToBooking({
             <option value="standard">{u.tier_standard || 'Standard Yacht — €400'}</option>
             <option value="luxury">{u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}</option>
           </select>
+        </div>
+      )}
+      {price.ticket && (
+        <div className="ticketbox">
+          <label className="tb-row">
+            <input type="checkbox" checked={ticket} onChange={(e) => setTicket(e.target.checked)} />
+            <span>
+              {u.add_ticket || 'Add entrance tickets too'} —{' '}
+              <strong>
+                {ticketPerPersonDisplay(price)} {u.per_person}
+              </strong>
+            </span>
+          </label>
+          <p className="tb-note">{u.skip_note}</p>
         </div>
       )}
       <div className="field">
@@ -71,7 +90,7 @@ export default function AddToBooking({
         className="btn ghost"
         style={{ marginTop: 10 }}
         onClick={() => {
-          add(getSelectedTourId(), date, clamp(people));
+          add(tourId, date, clamp(people), opts());
           router.push(`/${locale}/booking`);
         }}
       >
