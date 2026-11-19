@@ -4,6 +4,11 @@ import path from 'path';
 // Prices live in ONE file — data/prices.json — read/written by the server.
 // The /admin page edits it through /api/prices; edits persist across restarts
 // and are reflected site-wide (pages are rendered dynamically).
+export interface TicketPrice {
+  amount: number; // museum's normal ticket price, in `currency`
+  currency: string; // 'EUR' | 'TRY'
+  premium: number; // skip-the-line premium per ticket, always EUR
+}
 export interface TourPrice {
   id: string;
   currency: string; // 'EUR' | 'USD'
@@ -11,6 +16,8 @@ export interface TourPrice {
   perGroup: number;
   minGuests: number;
   maxGuests: number;
+  ticket?: TicketPrice; // optional per-person entrance ticket add-on
+  luxuryGroup?: number; // yacht only: luxury tier group price (same currency)
 }
 export interface PriceConfig {
   depositPercent: number;
