@@ -140,8 +140,8 @@ export default function DesignBoard() {
             </div>
           </div>
           <p style={{ color: '#5D6B82', fontSize: 14 }}>
-            A single line-mark: the Hagia Sophia dome. One colour, works at any size, on light or
-            dark.
+            The Open Arch: a solid dome-profile block with a doorway cut through it. One colour,
+            works at any size, on light or dark.
           </p>
         </div>
       </section>
