@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import './globals.css';
 import CartProvider from '@/components/CartProvider';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import SmoothScroll from '@/components/SmoothScroll';
 
 export const metadata = {
   title: 'Istanbul Tours — Oligarch Travel',
@@ -20,7 +22,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          <SmoothScroll>
+            {children}
+            <FloatingWhatsApp />
+          </SmoothScroll>
+        </CartProvider>
       </body>
     </html>
   );

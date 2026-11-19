@@ -1259,11 +1259,12 @@ export const RATINGS: Record<string, any> = {
   "en": "5.0 (25 reviews) · Viator",
   "de": "5,0 (25 Bewertungen) · Viator",
   "zh": "5.0（25 条评价）· Viator",
+  "tr": "5,0 (25 yorum) · Viator",
   "badge": {
    "en": "Badge of Excellence",
    "de": "Badge of Excellence",
    "zh": "卓越徽章",
-  "tr": "4,7 (58 yorum) · TripAdvisor"
+   "tr": "Mükemmellik Rozeti"
   }
  },
  "topkapi-private": {
@@ -1306,16 +1307,19 @@ export const RATINGS: Record<string, any> = {
  "bosphorus-yacht-standard": {
   "en": "5.0 (38 reviews) · TripAdvisor",
   "de": "5,0 (38 Bewertungen) · TripAdvisor",
-  "zh": "5.0（38 条评价）· TripAdvisor"
+  "zh": "5.0（38 条评价）· TripAdvisor",
+  "tr": "5,0 (38 yorum) · TripAdvisor"
  },
  "bosphorus-yacht-luxury": {
   "en": "5.0 (38 reviews) · TripAdvisor",
   "de": "5,0 (38 Bewertungen) · TripAdvisor",
   "zh": "5.0（38 条评价）· TripAdvisor",
+  "tr": "5,0 (38 yorum) · TripAdvisor",
   "badge": {
    "en": "Badge of Excellence",
    "de": "Badge of Excellence",
-   "zh": "卓越徽章"
+   "zh": "卓越徽章",
+   "tr": "Mükemmellik Rozeti"
   }
  }
 };
