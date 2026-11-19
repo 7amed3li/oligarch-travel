@@ -34,13 +34,25 @@ export async function PUT(req: NextRequest) {
     const tours = current.tours.map((t) => {
       const inc = body.tours.find((x: any) => x.id === t.id);
       if (!inc) return t;
-      return {
+      const out: any = {
         ...t,
         perPerson: num(inc.perPerson, t.id + '.perPerson'),
         perGroup: num(inc.perGroup, t.id + '.perGroup'),
         minGuests: Math.max(1, Math.round(num(inc.minGuests, t.id + '.minGuests'))),
         maxGuests: Math.max(1, Math.round(num(inc.maxGuests, t.id + '.maxGuests'))),
       };
+      if (inc.luxuryGroup !== undefined && inc.luxuryGroup !== null) {
+        out.luxuryGroup = num(inc.luxuryGroup, t.id + '.luxuryGroup');
+      }
+      if (t.ticket) {
+        const it: any = inc.ticket || {};
+        out.ticket = {
+          amount: num(it.amount ?? t.ticket.amount, t.id + '.ticket.amount'),
+          currency: t.ticket.currency,
+          premium: num(it.premium ?? t.ticket.premium, t.id + '.ticket.premium'),
+        };
+      }
+      return out;
     });
     const depositPercent = Math.min(
       100,
