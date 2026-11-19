@@ -5,635 +5,456 @@ export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
-export const TOUR_ORDER: string[] = ["hs-ticket", "hs-guided", "hs-private", "topkapi-private", "topkapi-night", "istanbul-day", "bazaars-tour", "bosphorus-yacht", "traditional-handicrafts"];
+export const TOUR_ORDER: string[] = ["hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "full-day-istanbul", "bazaars-tour", "bosphorus-yacht", "traditional-handicrafts"];
 export const TOURS: Record<string, TourDef> = {
- "hs-ticket": {
-  "img": "tour-hs-ticket.webp",
-  "content": {
-   "en": {
-    "name": "Hagia Sophia Skip-the-Line Ticket",
-    "tagline": "Upper Gallery entry with a QR ticket on your phone — no ticket line.",
-    "duration": "Flexible entry, 09:00–18:00",
-    "group": "Individual entry",
-    "desc": "Entry to the Hagia Sophia Upper Gallery with an official digital ticket. Your QR ticket is delivered to your smartphone, so you walk past the ticket line and enter at any time between 09:00 and 18:00. The ticket stays valid for 7 days from the date you choose, and a multilingual audio guide is included for your visit.",
-    "included": [
-     "Hagia Sophia Upper Gallery admission ticket",
-     "QR ticket delivered to your smartphone",
-     "Multilingual audio guide",
-     "Valid 7 days from your chosen date",
-     "One-time entry — stay inside until closing time"
-    ],
-    "not_included": [
-     "Live guide (available on our guided tours)"
-    ],
-    "note": "Price per person, ages 8+."
-   },
-   "de": {
-    "name": "Hagia Sophia Ticket ohne Anstehen",
-    "tagline": "Eintritt zur Oberen Galerie mit QR-Ticket auf Ihrem Handy — ohne Warteschlange an der Kasse.",
-    "duration": "Flexibler Eintritt, 09:00–18:00 Uhr",
-    "group": "Individueller Eintritt",
-    "desc": "Eintritt in die Obere Galerie der Hagia Sophia mit einem offiziellen digitalen Ticket. Ihr QR-Ticket wird auf Ihr Smartphone gesendet, sodass Sie an der Kassenschlange vorbeigehen und jederzeit zwischen 09:00 und 18:00 Uhr eintreten können. Das Ticket bleibt ab dem gewählten Datum 7 Tage gültig, und ein mehrsprachiger Audioguide ist für Ihren Besuch inbegriffen.",
-    "included": [
-     "Eintrittsticket Obere Galerie der Hagia Sophia",
-     "QR-Ticket auf Ihr Smartphone",
-     "Mehrsprachiger Audioguide",
-     "7 Tage ab gewähltem Datum gültig",
-     "Einmaliger Eintritt — bleiben Sie bis zur Schließung"
-    ],
-    "not_included": [
-     "Live-Führung (bei unseren geführten Touren verfügbar)"
-    ],
-    "note": "Preis pro Person, ab 8 Jahren."
-   },
-   "zh": {
-    "name": "圣索菲亚大教堂免排队门票",
-    "tagline": "凭手机二维码门票进入上层画廊——无需在售票处排队。",
-    "duration": "灵活入场，09:00–18:00",
-    "group": "个人入场",
-    "desc": "凭官方电子门票进入圣索菲亚大教堂上层画廊。二维码门票将发送到您的手机，您可以绕过售票队伍，在 09:00 至 18:00 之间任意时间入场。门票自所选日期起 7 天内有效，并包含多语言语音导览。",
-    "included": [
-     "圣索菲亚大教堂上层画廊门票",
-     "二维码门票发送至您的手机",
-     "多语言语音导览",
-     "自所选日期起 7 天内有效",
-     "单次入场——可停留至闭馆"
-    ],
-    "not_included": [
-     "真人导游（可参加我们的导览团）"
-    ],
-    "note": "价格为每人，8 岁以上。"
-   },
-    "tr": {
-        "name": "Ayasofya Hızlı Giriş Bileti",
-        "tagline": "Telefonunuza gelen karekod bilet ile Üst Galeri girişi — bilet kuyruğu beklemeden.",
-        "duration": "Esnek giriş, 09:00–18:00",
-        "group": "Bireysel giriş",
-        "desc": "Resmi dijital bilet ile Ayasofya Üst Galerisi'ne giriş. Karekod biletiniz akıllı telefonunuza iletilir; böylece bilet kuyruğunu atlayarak 09:00 ile 18:00 saatleri arasında dilediğiniz an giriş yapabilirsiniz. Biletiniz seçtiğiniz tarihten itibaren 7 gün boyunca geçerlidir ve ziyaretiniz için çok dilli sesli rehber dahildir.",
-        "included": [
-            "Ayasofya Üst Galeri giriş bileti",
-            "Akıllı telefonunuza iletilen karekod bilet",
-            "Çok dilli sesli rehber (Audio guide)",
-            "Seçtiğiniz tarihten itibaren 7 gün geçerlilik",
-            "Tek seferlik giriş — kapanış saatine kadar içeride kalabilme"
-        ],
-        "not_included": [
-            "Canlı rehberlik (rehberli turlarımızda mevcuttur)"
-        ],
-        "note": "Kişi başı fiyattır, 8 yaş ve üzeri için geçerlidir."
-    }
-  }
- },
- "hs-guided": {
+ "hagia-sophia": {
   "img": "tour-hs-guided.webp",
   "content": {
    "en": {
-    "name": "Hagia Sophia Guided Tour",
-    "tagline": "One hour with a licensed expert guide, in a small group.",
+    "name": "Hagia Sophia Tour",
+    "tagline": "One hour inside the great church-mosque, with the guide who knows it best.",
     "duration": "1 hour",
-    "group": "Small group, max 20 · min 3 guests",
-    "desc": "A one-hour guided tour of Hagia Sophia with a licensed expert guide. You meet your guide at the Harem Souvenir Shop near the ticket office, enter together past the ticket line, and explore the Upper Gallery mosaics and the great dome with live commentary and time for your questions. After the tour you are free to stay inside until closing time.",
+    "group": "Private group, up to 8 guests",
+    "desc": "Hagia Sophia with a private licensed guide for your party only — the great dome, the Upper Gallery mosaics and the Deësis, explained by a Byzantine and Ottoman specialist with 32 years in Sultanahmet. Add the skip-the-line entrance ticket below with one click, or bring your own. After the tour you are free to stay inside until closing time.",
     "included": [
-     "Licensed expert live guide",
-     "Hagia Sophia Upper Gallery admission ticket",
-     "Guided sessions at 09:15, 10:30 and 15:15",
+     "Private licensed guide for your party only",
+     "Flexible start time, arranged with your guide",
      "Stay inside after the tour until closing time"
     ],
     "not_included": [
+     "Entrance ticket — add it below, or buy your own",
      "Hotel pickup and drop-off",
      "Gratuities"
     ],
-    "note": "Children aged 0–6 enter free — please bring a valid passport for them."
+    "note": "One price per group of up to 8 guests. Children aged 0–6 enter free — please bring a valid passport for them."
    },
    "de": {
-    "name": "Geführte Tour durch die Hagia Sophia",
-    "tagline": "Eine Stunde mit einem lizenzierten Expertenführer in einer kleinen Gruppe.",
+    "name": "Hagia-Sophia-Tour",
+    "tagline": "Eine Stunde in der großen Kirchenmoschee — mit dem Guide, der sie am besten kennt.",
     "duration": "1 Stunde",
-    "group": "Kleine Gruppe, max. 20 · mind. 3 Gäste",
-    "desc": "Eine einstündige Führung durch die Hagia Sophia mit einem lizenzierten Expertenführer. Sie treffen Ihren Guide am Harem Souvenir Shop nahe der Kasse, betreten die Hagia Sophia gemeinsam ohne Kassenschlange und erkunden die Mosaiken der Oberen Galerie und die große Kuppel mit Live-Kommentar und Zeit für Ihre Fragen. Nach der Tour können Sie bis zur Schließung im Inneren bleiben.",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Die Hagia Sophia mit einem privaten, lizenzierten Guide nur für Ihre Gruppe — die große Kuppel, die Mosaiken der Oberen Galerie und die Deësis, erklärt von einem Byzanz- und Osmanen-Spezialisten mit 32 Jahren Erfahrung in Sultanahmet. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit. Nach der Tour können Sie bis zur Schließung im Inneren bleiben.",
     "included": [
-     "Lizenzierter Expertenführer (live)",
-     "Eintrittsticket Obere Galerie der Hagia Sophia",
-     "Führungen um 09:15, 10:30 und 15:15 Uhr",
+     "Privater lizenzierter Guide nur für Ihre Gruppe",
+     "Flexibler Beginn, mit Ihrem Guide abgestimmt",
      "Nach der Tour bis zur Schließung bleiben"
     ],
     "not_included": [
+     "Eintrittsticket — unten hinzufügen oder selbst kaufen",
      "Hotelabholung und Rücktransfer",
      "Trinkgelder"
     ],
-    "note": "Kinder von 0–6 Jahren haben freien Eintritt — bitte bringen Sie einen gültigen Reisepass für sie mit."
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen. Kinder von 0–6 Jahren haben freien Eintritt — bitte bringen Sie einen gültigen Reisepass für sie mit."
    },
    "zh": {
-    "name": "圣索菲亚大教堂导览团",
-    "tagline": "由持证专业导游带领的小团一小时导览。",
+    "name": "圣索菲亚大教堂之旅",
+    "tagline": "在这座伟大的教堂-清真寺内参观一小时，由最了解它的导游为您讲解。",
     "duration": "1 小时",
-    "group": "小团，最多 20 人 · 最少 3 人",
-    "desc": "由持证专业导游带领的一小时圣索菲亚大教堂导览。您将在售票处附近的 Harem 纪念品店与导游会合，一同免排队入场，在现场讲解中参观上层画廊的镶嵌画与宏伟穹顶，并有充足时间提问。导览结束后，您可以继续停留在馆内直至闭馆。",
+    "group": "私人团，最多 8 人",
+    "desc": "由私人持证导游专为您的团队讲解圣索菲亚大教堂——宏伟的穹顶、上层画廊的镶嵌画与《代伊西斯》，由一位在苏丹艾哈迈德区执业 32 年的拜占庭与奥斯曼文化专家为您解读。在下方一键添加免排队门票，或自备门票。导览结束后，您可以继续停留在馆内直至闭馆。",
     "included": [
-     "持证专业真人导游",
-     "圣索菲亚大教堂上层画廊门票",
-     "导览场次：09:15、10:30、15:15",
+     "专为您的团队服务的私人持证导游",
+     "开始时间灵活，与导游协商",
      "导览结束后可停留至闭馆"
     ],
     "not_included": [
+     "门票——可在下方添加，或自行购买",
      "酒店接送",
      "小费"
     ],
-    "note": "0–6 岁儿童免费入场——请携带其有效护照。"
+    "note": "每组一个价格，最多 8 人。0–6 岁儿童免费入场——请携带其有效护照。"
    },
-    "tr": {
-        "name": "Ayasofya Rehberli Turu",
-        "tagline": "Lisanslı uzman rehber eşliğinde, küçük grupta 1 saatlik tur.",
-        "duration": "1 saat",
-        "group": "Küçük grup, maks. 20 · min. 3 kişi",
-        "desc": "Lisanslı uzman rehber eşliğinde 1 saatlik Ayasofya turu. Rehberinizle bilet gişesine yakın Harem Hediyelik Eşya Dükkanı'nda buluşup bilet sırasını beklemeden birlikte giriş yaparsınız. Canlı anlatım eşliğinde Üst Galeri mozaiklerini ve ulu kubbeyi keşfeder, sorularınıza cevap alırsınız. Tur sonrasında kapanış saatine kadar içeride kalabilirsiniz.",
-        "included": [
-            "Lisanslı uzman canlı rehber",
-            "Ayasofya Üst Galeri giriş bileti",
-            "09:15, 10:30 ve 15:15 seans seçenekleri",
-            "Tur sonrasında kapanışa kadar içeride kalma imkanı"
-        ],
-        "not_included": [
-            "Otel gidiş-dönüş transferi",
-            "Bahşişler"
-        ],
-        "note": "0–6 yaş arası çocuklar ücretsizdir — lütfen kimlik/pasaport ibraz ediniz."
-    }
+   "tr": {
+    "name": "Ayasofya Turu",
+    "tagline": "Lisanslı rehberinizle Üst Galeri'de bir saat — tüm hikâyesiyle.",
+    "duration": "1 saat",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Rehberiniz sizi bilet gişesinin yanındaki buluşma noktasında karşılar ve Üst Galeri'ye götürür: İmparator Locası, VI. Leon mozaiği, Viking grafitisi ve kubbenin 55 metreden süzülen ışığı. Turdan sonra kapanış saatine kadar içeride kalabilirsiniz.",
+    "included": [
+     "Lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi",
+     "Tur sonrası kapanışa kadar içeride kalma"
+    ],
+    "not_included": [
+     "Giriş bileti (isterseniz aşağıdan ekleyin)",
+     "Otelden alma ve bırakma",
+     "Bahşişler"
+    ],
+    "note": "Turu rezerve edin; biletlerinizi de isterseniz ekleyin — hızlı giriş bileti kişi başı normal fiyat + €2,50'dir."
+   }
   }
  },
- "hs-private": {
-  "img": "tour-hs-private.webp",
-  "content": {
-   "en": {
-    "name": "Hagia Sophia Private Tour",
-    "tagline": "Just your party and your guide — at your pace.",
-    "duration": "1 hour",
-    "group": "Private, up to 8 guests",
-    "desc": "Hagia Sophia with a private licensed guide for your party only. The route and pace follow your interests — the Deësis mosaic, the imperial gallery, the great calligraphy medallions — with unhurried time for questions and photographs. This tour holds a 5.0 rating from 25 reviews and a Viator Badge of Excellence.",
-    "included": [
-     "Private licensed guide for your party only",
-     "Hagia Sophia Upper Gallery admission ticket",
-     "Flexible start time, arranged with your guide"
-    ],
-    "not_included": [
-     "Hotel pickup and drop-off",
-     "Gratuities"
-    ],
-    "note": "Price: group fee plus per-person ticket, for up to 8 guests."
-   },
-   "de": {
-    "name": "Private Tour durch die Hagia Sophia",
-    "tagline": "Nur Ihre Gruppe und Ihr Guide — in Ihrem Tempo.",
-    "duration": "1 Stunde",
-    "group": "Privat, bis zu 8 Gäste",
-    "desc": "Die Hagia Sophia mit einem privaten, lizenzierten Guide nur für Ihre Gruppe. Route und Tempo richten sich nach Ihren Interessen — das Deësis-Mosaik, die Kaisergalerie, die großen Kalligrafie-Medaillons — mit viel Zeit für Fragen und Fotos. Diese Tour hält eine Bewertung von 5,0 aus 25 Bewertungen und eine Viator-Auszeichnung (Badge of Excellence).",
-    "included": [
-     "Privater lizenzierter Guide nur für Ihre Gruppe",
-     "Eintrittsticket Obere Galerie der Hagia Sophia",
-     "Flexibler Beginn, mit Ihrem Guide abgestimmt"
-    ],
-    "not_included": [
-     "Hotelabholung und Rücktransfer",
-     "Trinkgelder"
-    ],
-    "note": "Preis: Gruppenpauschale plus Ticket pro Person, für bis zu 8 Gäste."
-   },
-   "zh": {
-    "name": "圣索菲亚大教堂私人导览",
-    "tagline": "只有您的团队和您的导游——按您的节奏参观。",
-    "duration": "1 小时",
-    "group": "私人导览，最多 8 人",
-    "desc": "由私人持证导游专为您的团队讲解圣索菲亚大教堂。路线和节奏完全依照您的兴趣——《代伊西斯》镶嵌画、皇家画廊、巨大的书法圆牌——并有充裕的时间提问和拍照。本导览在 25 条评价中获得 5.0 分，并荣获 Viator 卓越徽章。",
-    "included": [
-     "专为您的团队服务的私人持证导游",
-     "圣索菲亚大教堂上层画廊门票",
-     "开始时间灵活，与导游协商"
-    ],
-    "not_included": [
-     "酒店接送",
-     "小费"
-    ],
-    "note": "价格：团队费加每人门票，最多 8 人。"
-   },
-    "tr": {
-        "name": "Ayasofya Özel Turu",
-        "tagline": "Sadece siz ve rehberiniz — kendi temponuzda kişiye özel tur.",
-        "duration": "1 saat",
-        "group": "Özel tur, en fazla 8 kişi",
-        "desc": "Sadece sizin grubunuza özel lisanslı rehber ile 1 saatlik Ayasofya turu. Rehberinizle buluşur, bilet kuyruğunu beklemeden giriş yapar ve Üst Galeri mozaiklerini, katedral ve cami tarihini derinlemesine dinlersiniz. Sizin hızınıza göre ilerler ve tüm sorularınıza zaman ayrılır.",
-        "included": [
-            "Grubunuza özel lisanslı profesyonel rehber",
-            "Ayasofya Üst Galeri giriş biletleri",
-            "Esnek başlangıç saati (09:00–16:00 arası)",
-            "Tur sonrasında kapanışa kadar içeride kalabilme"
-        ],
-        "not_included": [
-            "Otel transferi",
-            "Bahşişler"
-        ],
-        "note": "Grup fiyatı (maks. 8 kişi) + kişi başı bilet ücreti."
-    }
-  }
- },
- "topkapi-private": {
+ "topkapi-palace": {
   "img": "tour-topkapi-private.webp",
   "content": {
    "en": {
-    "name": "Topkapi Palace & Harem Private Tour",
+    "name": "Topkapi Palace Tour",
     "tagline": "The palace and the Harem with your own private guide.",
-    "duration": "45 minutes – 3 hours",
-    "group": "Private, up to 8 guests",
-    "desc": "A private tour of Topkapi Palace and its Harem with a licensed guide. Walk the courtyards, the treasury and the Harem quarters where the Ottoman sultans lived and ruled for nearly 400 years — at a pace and length, from 45 minutes to 3 hours, that suits your day.",
+    "duration": "2 hours",
+    "group": "Private group, up to 8 guests",
+    "desc": "A private tour of Topkapi Palace and its Harem with a licensed guide. Walk the courtyards, the treasury and the Harem quarters where the Ottoman sultans lived and ruled for nearly 400 years. Add the skip-the-line entrance ticket below with one click, or bring your own.",
     "included": [
      "Private licensed live guide",
      "Harem section included in the tour route"
     ],
     "not_included": [
-     "Palace entry tickets — purchased at the venue",
-     "Hotel pickup and drop-off"
+     "Entrance ticket — add it below, or buy your own",
+     "Hotel pickup and drop-off",
+     "Gratuities"
     ],
-    "note": "Price per group of up to 8 guests."
+    "note": "One price per group of up to 8 guests."
    },
    "de": {
-    "name": "Private Tour: Topkapi-Palast & Harem",
+    "name": "Topkapi-Palast-Tour",
     "tagline": "Der Palast und der Harem mit Ihrem eigenen privaten Guide.",
-    "duration": "45 Minuten – 3 Stunden",
-    "group": "Privat, bis zu 8 Gäste",
-    "desc": "Eine private Führung durch den Topkapi-Palast und seinen Harem mit einem lizenzierten Guide. Spazieren Sie durch die Höfe, die Schatzkammer und die Haremsgemächer, in denen die osmanischen Sultane fast 400 Jahre lebten und regierten — in einem Tempo und einer Dauer (45 Minuten bis 3 Stunden), die zu Ihrem Tag passen.",
+    "duration": "2 Stunden",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Eine private Führung durch den Topkapi-Palast und seinen Harem mit einem lizenzierten Guide. Spazieren Sie durch die Höfe, die Schatzkammer und die Haremsgemächer, in denen die osmanischen Sultane fast 400 Jahre lebten und regierten. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit.",
     "included": [
      "Privater lizenzierter Live-Guide",
      "Harem-Bereich ist Teil der Tourroute"
     ],
     "not_included": [
-     "Palast-Eintrittstickets — werden vor Ort gekauft",
-     "Hotelabholung und Rücktransfer"
+     "Eintrittsticket — unten hinzufügen oder selbst kaufen",
+     "Hotelabholung und Rücktransfer",
+     "Trinkgelder"
     ],
-    "note": "Preis pro Gruppe von bis zu 8 Gästen."
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen."
    },
    "zh": {
-    "name": "托普卡珀皇宫与后宫私人导览",
+    "name": "托普卡珀皇宫之旅",
     "tagline": "与您的私人导游参观皇宫与后宫。",
-    "duration": "45 分钟 – 3 小时",
-    "group": "私人导览，最多 8 人",
-    "desc": "由持证导游带领的托普卡珀皇宫及后宫私人导览。漫步于庭院、珍宝馆和后宫——奥斯曼苏丹近 400 年生活与统治之地——时长从 45 分钟到 3 小时，可配合您的行程安排。",
+    "duration": "2 小时",
+    "group": "私人团，最多 8 人",
+    "desc": "由持证导游带领的托普卡珀皇宫及后宫私人导览。漫步于庭院、珍宝馆和后宫——奥斯曼苏丹近 400 年生活与统治之地。在下方一键添加免排队门票，或自备门票。",
     "included": [
      "私人持证真人导游",
      "行程包含后宫区域"
     ],
     "not_included": [
-     "皇宫门票——需在场馆购买",
-     "酒店接送"
-    ],
-    "note": "价格为每组，最多 8 人。"
-   },
-    "tr": {
-        "name": "Topkapı Sarayı & Harem Özel Turu",
-        "tagline": "Özel lisanslı rehberiniz eşliğinde saray ve Harem daireleri.",
-        "duration": "45 dakika – 3 saat",
-        "group": "Özel tur, en fazla 8 kişi",
-        "desc": "Osmanlı padişahlarının 400 yıllık ikametgahı Topkapı Sarayı ve büyüleyici Harem Dairesi'ni kapsayan özel rehberli tur. Divan-ı Hümayun, Kutsal Emanetler, Hazine ve Boğaz manzaralı terasları uzman rehberinizin anlatımıyla keşfedin.",
-        "included": [
-            "Grubunuza özel lisanslı uzman rehber",
-            "Topkapı Sarayı ve Harem bölümleri kapsamı",
-            "Kişisel ilgi ve esnek gezi temposu"
-        ],
-        "not_included": [
-            "Saray ve Harem giriş biletleri",
-            "Otel transferi"
-        ],
-        "note": "Fiyat grup başınadır (maks. 8 kişi). Biletler girişte temin edilir."
-    }
-  }
- },
- "topkapi-night": {
-  "img": "tour-topkapi-night.webp",
-  "meeting": {
-   "en": "Hürrem Sultan Hamamı Cafe, Sultanahmet",
-   "de": "Hürrem Sultan Hamamı Cafe, Sultanahmet",
-   "zh": "Hürrem Sultan 土耳其浴室咖啡厅，苏丹艾哈迈德区",
-  "tr": "4,7 (58 yorum) · TripAdvisor"
-  },
-  "content": {
-   "en": {
-    "name": "Topkapi Palace Night Tour",
-    "tagline": "The palace after dark, in the quiet of the evening.",
-    "duration": "4 hours",
-    "group": "Group tour, min 2 guests",
-    "desc": "Topkapi Palace by night, when the daytime crowds are gone. Over four hours your guide leads you through the palace’s key sections and the Harem, with a personal listening system so you hear every word. The evening begins with a welcome at the Hürrem Sultan Hamamı Cafe. This tour is guided in Turkish.",
-    "included": [
-     "Licensed expert guide (guided in Turkish)",
-     "Topkapi Palace night entry ticket",
-     "Harem entry ticket",
-     "Personal listening system",
-     "Welcome refreshments at Hürrem Sultan Hamamı Cafe"
-    ],
-    "not_included": [
-     "Transport to and from the meeting point",
-     "Gratuities"
-    ],
-    "note": "Price per person. Guided in Turkish."
-   },
-   "de": {
-    "name": "Topkapi-Palast bei Nacht",
-    "tagline": "Der Palast nach Einbruch der Dunkelheit, in abendlicher Ruhe.",
-    "duration": "4 Stunden",
-    "group": "Gruppentour, mind. 2 Gäste",
-    "desc": "Der Topkapi-Palast bei Nacht, wenn die Tagesbesucher gegangen sind. In vier Stunden führt Ihr Guide Sie durch die wichtigsten Bereiche des Palastes und den Harem — mit einem persönlichen Hörsystem, damit Sie jedes Wort verstehen. Der Abend beginnt mit einer Begrüßung im Hürrem Sultan Hamamı Cafe. Diese Tour wird auf Türkisch geführt.",
-    "included": [
-     "Lizenzierter Expertenführer (Führung auf Türkisch)",
-     "Nachteintrittsticket Topkapi-Palast",
-     "Eintrittsticket Harem",
-     "Persönliches Hörsystem",
-     "Begrüßungserfrischungen im Hürrem Sultan Hamamı Cafe"
-    ],
-    "not_included": [
-     "Transfer zum und vom Treffpunkt",
-     "Trinkgelder"
-    ],
-    "note": "Preis pro Person. Führung auf Türkisch."
-   },
-   "zh": {
-    "name": "托普卡珀皇宫夜游",
-    "tagline": "入夜后的皇宫，沉浸在夜晚的宁静中。",
-    "duration": "4 小时",
-    "group": "团体导览，最少 2 人",
-    "desc": "夜晚的托普卡珀皇宫，白天的游客已经散去。在四个小时里，导游将带您参观皇宫的主要区域和后宫，并配备个人聆听系统，让您听清每一句话。夜晚从在 Hürrem Sultan 土耳其浴室咖啡厅的欢迎仪式开始。本导览以土耳其语进行。",
-    "included": [
-     "持证专业导游（土耳其语讲解）",
-     "托普卡珀皇宫夜间门票",
-     "后宫门票",
-     "个人聆听系统",
-     "在 Hürrem Sultan 土耳其浴室咖啡厅的迎宾茶点"
-    ],
-    "not_included": [
-     "往返集合点的交通",
+     "门票——可在下方添加，或自行购买",
+     "酒店接送",
      "小费"
     ],
-    "note": "价格为每人。本导览以土耳其语进行。"
+    "note": "每组一个价格，最多 8 人。"
    },
-    "tr": {
-        "name": "Topkapı Sarayı Gece Turu",
-        "tagline": "Havanın kararmasıyla birlikte akşamın dinginliğinde büyüleyici saray atmosferi.",
-        "duration": "4 saat",
-        "group": "Grup turu, min. 2 kişi",
-        "desc": "Gündüz kalabalığı çekildikten sonra Topkapı Sarayı'nın mistik avlularında ve aydınlatılmış tarihi mekanlarında benzersiz bir gece turu. Geceye özel ayrıcalıklı atmosferde sarayın gizemli hikayelerini dinleyin.",
-        "included": [
-            "Gece turuna özel lisanslı profesyonel rehber",
-            "Topkapı Sarayı gece giriş bileti",
-            "Sessiz ve özel atmosferde rehberli gezi"
-        ],
-        "not_included": [
-            "Akşam yemeği ve içecekler",
-            "Otel transferi"
-        ],
-        "note": "Kişi başı fiyattır. En az 2 kişi ile hareket eder."
-    }
+   "tr": {
+    "name": "Topkapı Sarayı Turu",
+    "tagline": "İki saat boyunca saray avluları, Harem ve hazine daireleri.",
+    "duration": "2 saat",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Rehberinizle sarayın dört avlusunu gezin: Bab-ı Hümayun, mutfaklar ve porselenler, Silahlar Bölümü, Hazine ve Harem (ana bilet dahilse). Kalabalığı atlatmak için en sakin giriş saatini seçiyoruz.",
+    "included": [
+     "Lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi",
+     "Sizin temponuza göre esnek rota"
+    ],
+    "not_included": [
+     "Giriş bileti (isterseniz aşağıdan ekleyin)",
+     "Otelden alma ve bırakma",
+     "Bahşişler"
+    ],
+    "note": "Turu rezerve edin; biletlerinizi de isterseniz ekleyin — hızlı giriş bileti kişi başı normal fiyat + €2,50'dir."
+   }
   }
  },
- "istanbul-day": {
-  "img": "tour-istanbul-day.webp",
+ "basilica-cistern": {
+  "img": "tour-cistern.webp",
+  "content": {
+   "en": {
+    "name": "Basilica Cistern Tour",
+    "tagline": "The underground palace of columns, Medusa heads and still water.",
+    "duration": "45 minutes",
+    "group": "Private group, up to 8 guests",
+    "desc": "Descend into Justinian's great underground cistern — 336 marble columns rising from the water, the famous Medusa heads, and one of the most atmospheric places in Istanbul. Your private guide brings the Byzantine engineering and the legends to life in 45 minutes. Add the skip-the-line entrance ticket below with one click, or bring your own.",
+    "included": [
+     "Private licensed live guide"
+    ],
+    "not_included": [
+     "Entrance ticket — add it below, or buy your own",
+     "Hotel pickup and drop-off",
+     "Gratuities"
+    ],
+    "note": "One price per group of up to 8 guests."
+   },
+   "de": {
+    "name": "Basilika-Zisterne-Tour (Yerebatan)",
+    "tagline": "Der unterirdische Palast aus Säulen, Medusenhäuptern und stillem Wasser.",
+    "duration": "45 Minuten",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Steigen Sie hinab in Justinians große unterirdische Zisterne — 336 Marmorsäulen, die aus dem Wasser ragen, die berühmten Medusenhäupter und einer der stimmungsvollsten Orte Istanbuls. Ihr privater Guide erweckt die byzantinische Ingenieurskunst und die Legenden in 45 Minuten zum Leben. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit.",
+    "included": [
+     "Privater lizenzierter Live-Guide"
+    ],
+    "not_included": [
+     "Eintrittsticket — unten hinzufügen oder selbst kaufen",
+     "Hotelabholung und Rücktransfer",
+     "Trinkgelder"
+    ],
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen."
+   },
+   "zh": {
+    "name": "地下水宫之旅",
+    "tagline": "由石柱、美杜莎头像与静水组成的地下宫殿。",
+    "duration": "45 分钟",
+    "group": "私人团，最多 8 人",
+    "desc": "走进查士丁尼大帝的地下蓄水池——336 根大理石柱从水中升起，著名的美杜莎头像，这里是伊斯坦布尔最具氛围感的地方之一。您的私人导游将在 45 分钟内为您讲述拜占庭工程与传说。在下方一键添加免排队门票，或自备门票。",
+    "included": [
+     "私人持证真人导游"
+    ],
+    "not_included": [
+     "门票——可在下方添加，或自行购买",
+     "酒店接送",
+     "小费"
+    ],
+    "note": "每组一个价格，最多 8 人。"
+   },
+   "tr": {
+    "name": "Yerebatan Sarnıcı Turu",
+    "tagline": "Medusa başlarının ve yeraltı sarayının 45 dakikalık hikâyesi.",
+    "duration": "45 dakika",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Bizans'ın en büyük sarnıcına inin: 336 sütun, iki Medusa başı ve suda yüzen balıkların sessizliği. Rehberiniz sarnıcın neden ve nasıl yapıldığını ve hangi filmlerde göründüğünü anlatır.",
+    "included": [
+     "Lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi"
+    ],
+    "not_included": [
+     "Giriş bileti (isterseniz aşağıdan ekleyin)",
+     "Otelden alma ve bırakma"
+    ],
+    "note": "Turu rezerve edin; biletlerinizi de isterseniz ekleyin — hızlı giriş bileti kişi başı normal fiyat + €2,50'dir."
+   }
+  }
+ },
+ "sultanahmet-hippodrome": {
+  "img": "tour-bluemosque.webp",
   "meeting": {
-   "en": "Your hotel",
-   "de": "Ihr Hotel",
-   "zh": "您的酒店",
-  "tr": "5,0 (25 yorum) · Viator"
+   "en": "In front of the Four Seasons Hotel, Sultanahmet",
+   "de": "Vor dem Four Seasons Hotel, Sultanahmet",
+   "zh": "苏丹艾哈迈德区四季酒店门前",
+   "tr": "Sultanahmet'teki Four Seasons Oteli önü"
   },
   "content": {
    "en": {
-    "name": "Istanbul Private Day — Your Way",
-    "tagline": "A full day, built around what you want to see.",
-    "duration": "6–8 hours (full day)",
-    "group": "Private, up to 8 guests",
-    "desc": "One private guide, one full day, and an itinerary built around you. The classic route links Hagia Sophia, the Blue Mosque, the Hippodrome, Topkapi Palace and the Grand Bazaar — or the day can go wherever your interests lead. Your guide meets you at your hotel.",
+    "name": "Sultanahmet & Hippodrome Tour",
+    "tagline": "The Blue Mosque and the ancient Hippodrome, where the city began.",
+    "duration": "About 45 minutes",
+    "group": "Private group, up to 8 guests",
+    "desc": "A short, rich walk through the heart of old Constantinople: the Sultanahmet (Blue) Mosque with its six minarets and İznik tiles, and the Hippodrome — the Egyptian Obelisk, the Serpent Column and the German Fountain — with the stories of the empire that built them. There is no entrance ticket for this tour; the mosque entry is free. We meet in front of the Four Seasons Hotel in Sultanahmet.",
     "included": [
-     "Private licensed guide for up to 8 guests",
-     "Fully flexible itinerary",
-     "Your guide meets you at your hotel"
+     "Private licensed live guide",
+     "Blue Mosque entry — free"
     ],
     "not_included": [
-     "Museum entry fees",
-     "Meals",
-     "Private minivan (available as an extra)"
+     "Hotel pickup and drop-off",
+     "Gratuities"
     ],
-    "note": "Price per group of up to 8 guests."
+    "note": "Modest dress is required for the mosque. Meeting point: in front of the Four Seasons Hotel, Sultanahmet."
    },
    "de": {
-    "name": "Privater Istanbul-Tag — Nach Ihren Wünschen",
-    "tagline": "Ein ganzer Tag, gebaut um das, was Sie sehen möchten.",
-    "duration": "6–8 Stunden (ganzer Tag)",
-    "group": "Privat, bis zu 8 Gäste",
-    "desc": "Ein privater Guide, ein ganzer Tag und eine Route, die sich ganz nach Ihnen richtet. Die klassische Route verbindet Hagia Sophia, Blaue Moschee, Hippodrom, Topkapi-Palast und den Großen Basar — oder der Tag führt Sie, wohin Ihre Interessen Sie ziehen. Ihr Guide trifft Sie an Ihrem Hotel.",
+    "name": "Sultanahmet & Hippodrom-Tour",
+    "tagline": "Die Blaue Moschee und das antike Hippodrom — wo die Stadt begann.",
+    "duration": "Etwa 45 Minuten",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Ein kurzer, reicher Spaziergang durch das Herz des alten Konstantinopel: die Sultanahmet-Moschee (Blaue Moschee) mit ihren sechs Minaretten und İznik-Fliesen und das Hippodrom — der Ägyptische Obelisk, die Schlangensäule und der Deutsche Brunnen — mit den Geschichten des Reiches, das sie erbaute. Für diese Tour gibt es kein Eintrittsticket; der Moscheeeintritt ist frei. Treffpunkt ist vor dem Four Seasons Hotel in Sultanahmet.",
     "included": [
-     "Privater lizenzierter Guide für bis zu 8 Gäste",
-     "Vollständig flexible Route",
-     "Ihr Guide trifft Sie an Ihrem Hotel"
+     "Privater lizenzierter Live-Guide",
+     "Eintritt in die Blaue Moschee — kostenlos"
     ],
     "not_included": [
-     "Museums-Eintrittsgebühren",
-     "Mahlzeiten",
-     "Privater Minivan (als Extra verfügbar)"
+     "Hotelabholung und Rücktransfer",
+     "Trinkgelder"
     ],
-    "note": "Preis pro Gruppe von bis zu 8 Gästen."
+    "note": "Für die Moschee ist angemessene Kleidung erforderlich. Treffpunkt: vor dem Four Seasons Hotel, Sultanahmet."
    },
    "zh": {
-    "name": "伊斯坦布尔私人一日游——由您定制",
-    "tagline": "一整天，围绕您想看的景点安排。",
-    "duration": "6–8 小时（全天）",
-    "group": "私人导览，最多 8 人",
-    "desc": "一位私人导游，一整天时间，一条为您量身定制的路线。经典路线串联圣索菲亚大教堂、蓝色清真寺、竞技场、托普卡珀皇宫和大巴扎——或者这一天完全由您的兴趣决定。导游将在您的酒店与您会合。",
+    "name": "苏丹艾哈迈德与竞技场之旅",
+    "tagline": "蓝色清真寺与古竞技场——这座城市开始的地方。",
+    "duration": "约 45 分钟",
+    "group": "私人团，最多 8 人",
+    "desc": "一次短暂而丰富的漫步，穿越古君士坦丁堡的心脏：拥有六座宣礼塔与伊兹尼克瓷砖的苏丹艾哈迈德清真寺（蓝色清真寺），以及竞技场——埃及方尖碑、蛇柱与德国喷泉——并聆听建造它们的帝国的故事。本行程无需门票；清真寺免费入场。我们在苏丹艾哈迈德区四季酒店门前集合。",
     "included": [
-     "最多 8 位客人的私人持证导游",
-     "完全灵活的行程",
-     "导游在您的酒店与您会合"
+     "私人持证真人导游",
+     "蓝色清真寺入场——免费"
     ],
     "not_included": [
-     "博物馆门票",
-     "餐食",
-     "私人小巴（可作为额外服务预订）"
+     "酒店接送",
+     "小费"
     ],
-    "note": "价格为每组，最多 8 人。"
+    "note": "进入清真寺需着装得体。集合点：苏丹艾哈迈德区四季酒店门前。"
    },
-    "tr": {
-        "name": "Özel İstanbul Günü — Tamamen Size Özel",
-        "tagline": "Görmek istediğiniz yerlere göre planlanan dolu dolu bir gün.",
-        "duration": "6–8 saat (tam gün)",
-        "group": "Özel tur, en fazla 8 kişi",
-        "desc": "Bir gün, bir özel rehber ve tamamen size göre tasarlanmış bir rota. Klasik rota Ayasofya, Sultanahmet Camii, Hipodrom, Topkapı Sarayı ve Kapalıçarşı'yı kapsar — ya da günü tamamen sizin ilgi alanlarınıza göre şekillendiririz. Rehberiniz sizi otelinizde karşılar.",
-        "included": [
-            "8 kişiye kadar grubunuza özel lisanslı rehber",
-            "Tamamen esnek ve kişiselleştirilmiş rota",
-            "Otelinizde karşılama ve buluşma"
-        ],
-        "not_included": [
-            "Müze ve örenyeri giriş ücretleri",
-            "Yemekler",
-            "Özel minivan (isteğe bağlı eklenebilir)"
-        ],
-        "note": "Fiyat en fazla 8 kişilik grup içindir."
-    }
+   "tr": {
+    "name": "Sultanahmet ve Hipodrom Turu",
+    "tagline": "Sultanahmet Camii ve antik Hipodrom — meydanın tamamı 45 dakikada.",
+    "duration": "Yaklaşık 45 dakika",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Buluşma: Sultanahmet'teki Four Seasons Oteli'nin önü. Oradan Sultanahmet Camii'ne (altı minare, 20.000'den fazla İznik çinisi) ve antik Hipodrom'a yürüyoruz: Dikilitaş, Yılanlı Sütun ve Alman Çeşmesi. Bu tur için bilet gerekmez.",
+    "included": [
+     "Lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi",
+     "Bilet gerekmez — tüm duraklar ücretsiz"
+    ],
+    "not_included": [
+     "Otelden alma ve bırakma",
+     "Bahşişler"
+    ],
+    "note": "Buluşma noktası: Sultanahmet Four Seasons Oteli önü."
+   }
   }
- }
-,
+ },
+ "full-day-istanbul": {
+  "img": "tour-istanbul-day.webp",
+  "meeting": {
+   "en": "Arranged with your guide when you book",
+   "de": "Wird bei der Buchung mit Ihrem Guide vereinbart",
+   "zh": "预订时与导游商定",
+   "tr": "Rezervasyonda rehberinizle kararlaştırılır"
+  },
+  "content": {
+   "en": {
+    "name": "Full-Day Istanbul City Tour",
+    "tagline": "A full day, built around what you want to see.",
+    "duration": "Up to 6 hours (full day)",
+    "group": "Private group, up to 8 guests",
+    "desc": "One private guide for a full day, and an itinerary built around you. The classic route links Hagia Sophia, the Blue Mosque, the Hippodrome, Topkapi Palace and the Grand Bazaar — or the day goes wherever your interests lead. You decide the route together with your guide when you meet and during the day.",
+    "included": [
+     "Private licensed guide for up to 6 hours",
+     "Fully flexible itinerary, decided with your guide on the day"
+    ],
+    "not_included": [
+     "Entrance tickets",
+     "Food and drinks",
+     "Transport",
+     "Personal expenses"
+    ],
+    "note": "One price per group of up to 8 guests."
+   },
+   "de": {
+    "name": "Ganztägige Istanbul-Stadttour",
+    "tagline": "Ein ganzer Tag, gebaut um das, was Sie sehen möchten.",
+    "duration": "Bis zu 6 Stunden (ganzer Tag)",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Ein privater Guide für einen ganzen Tag und eine Route, die sich ganz nach Ihnen richtet. Die klassische Route verbindet Hagia Sophia, Blaue Moschee, Hippodrom, Topkapi-Palast und den Großen Basar — oder der Tag führt Sie, wohin Ihre Interessen Sie ziehen. Die Route entscheiden Sie gemeinsam mit Ihrem Guide beim Treffen und im Laufe des Tages.",
+    "included": [
+     "Privater lizenzierter Guide für bis zu 6 Stunden",
+     "Vollständig flexible Route, am Tag selbst mit Ihrem Guide entschieden"
+    ],
+    "not_included": [
+     "Eintrittstickets",
+     "Essen und Getränke",
+     "Transport",
+     "Persönliche Ausgaben"
+    ],
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen."
+   },
+   "zh": {
+    "name": "伊斯坦布尔全日城市之旅",
+    "tagline": "一整天，围绕您想看的景点安排。",
+    "duration": "最长 6 小时（全天）",
+    "group": "私人团，最多 8 人",
+    "desc": "一位私人导游陪伴一整天，行程围绕您而定。经典路线串联圣索菲亚大教堂、蓝色清真寺、竞技场、托普卡珀皇宫和大巴扎——或者这一天完全由您的兴趣决定。见面时以及当天行程中，您都可以与导游一起决定路线。",
+    "included": [
+     "最长 6 小时的私人持证导游",
+     "完全灵活的行程，当天与导游共同决定"
+    ],
+    "not_included": [
+     "门票",
+     "餐饮",
+     "交通",
+     "个人开支"
+    ],
+    "note": "每组一个价格，最多 8 人。"
+   },
+   "tr": {
+    "name": "Tam Gün İstanbul Turu",
+    "tagline": "Altı saate kadar özel gününüz — rota aynı gün rehberinizle birlikte belirlenir.",
+    "duration": "En fazla 6 saat",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Şehri kendi temponuzda gezin: rehberiniz günün rotasını sizinle birlikte çizer — Ayasofya, Topkapı, Yerebatan, Kapalıçarşı ve Boğaz kıyısı arasından seçim sizin. Biletler, yemek, içecek, ulaşım ve kişisel harcamalar dahil değildir; rehberiniz her durakta en hızlı girişi ve en doğru sırayı ayarlar.",
+    "included": [
+     "6 saate kadar lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi",
+     "Günün akışına göre esnek rota"
+    ],
+    "not_included": [
+     "Giriş biletleri",
+     "Yemek ve içecekler",
+     "Ulaşım",
+     "Kişisel harcamalar"
+    ],
+    "note": "Biletler dahil değildir — hangi duraklarda bilet gerektiğini rehberiniz gün içinde söyler; isterseniz biletleri diğer turlarımızdan da ekleyebilirsiniz."
+   }
+  }
+ },
  "bazaars-tour": {
   "img": "tour-bazaars.webp",
   "content": {
    "en": {
     "name": "Grand Bazaar & Spice Bazaar",
-    "tagline": "A guided walk through the world's oldest markets — quality, bargaining & artisan workshops.",
-    "duration": "2.5–4 hours — depends on your pace",
+    "tagline": "Two legendary markets, with a guide who knows how they work.",
+    "duration": "2.5–4 hours, depending on your pace",
     "group": "Private group, up to 8 guests",
-    "desc": "A guided walk through the Grand Bazaar — one of the world's oldest covered markets — and the Spice Bazaar, with the guide explaining how to read quality, how bargaining works, and which workshops still produce by hand.",
+    "desc": "A guided walk through the Grand Bazaar — one of the world's oldest covered markets — and the Spice Bazaar, with your guide explaining how to read quality, how bargaining works, and which workshops still produce by hand.",
     "included": [
-     "Licensed professional private guide",
-     "Guided walk through Grand Bazaar and Spice Bazaar",
-     "Insider bargaining advice and artisan workshop visits",
-     "Flexible pace tailored to your interests"
+     "Private licensed live guide"
     ],
     "not_included": [
-     "Personal shopping purchases",
-     "Hotel pickup and drop-off",
-     "Food and drinks"
+     "Personal shopping",
+     "Food and drinks",
+     "Hotel pickup and drop-off"
     ],
-    "note": "Price is per group (up to 8 guests)."
+    "note": "One price per group of up to 8 guests. Duration depends on your pace and shopping."
    },
    "de": {
     "name": "Großer Basar & Gewürzbasar",
-    "tagline": "Geführter Rundgang durch die historischen Basare — Qualität, Handeln & Handwerkskunst.",
-    "duration": "2,5–4 Stunden — nach Ihrem Tempo",
+    "tagline": "Zwei legendäre Märkte — mit einem Guide, der weiß, wie sie funktionieren.",
+    "duration": "2,5–4 Stunden, je nach Ihrem Tempo",
     "group": "Private Gruppe, bis zu 8 Gäste",
-    "desc": "Ein geführter Spaziergang durch den Großen Basar — einen der ältesten überdachten Märkte der Welt — und den Gewürzbasar. Ihr Guide erklärt Ihnen, wie Sie Qualität erkennen, wie das Handeln funktioniert und welche Werkstätten noch heute echte Handarbeit herstellen.",
+    "desc": "Ein geführter Spaziergang durch den Großen Basar — einen der ältesten überdachten Märkte der Welt — und den Gewürzbasar. Ihr Guide erklärt Ihnen, wie man Qualität erkennt, wie das Handeln funktioniert und welche Werkstätten noch von Hand produzieren.",
     "included": [
-     "Lizenzierter professioneller Privatguide",
-     "Geführter Rundgang durch Großen Basar & Gewürzbasar",
-     "Insider-Tipps zum Handeln & Besuch traditioneller Werkstätten",
-     "Individuelles Tempo ganz nach Ihren Wünschen"
+     "Privater lizenzierter Live-Guide"
     ],
     "not_included": [
      "Persönliche Einkäufe",
-     "Hotel-Transfer",
-     "Speisen und Getränke"
+     "Essen und Getränke",
+     "Hotelabholung und Rücktransfer"
     ],
-    "note": "Preis gilt pro Gruppe (bis zu 8 Gäste)."
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen. Die Dauer hängt von Ihrem Tempo und Ihren Einkäufen ab."
    },
    "zh": {
     "name": "大巴扎与香料市场",
-    "tagline": "漫步历史悠久的传奇集市——品鉴手作品质、学习还价技巧与探访百年匠心作坊。",
-    "duration": "2.5–4 小时——视您的节奏而定",
-    "group": "私人团体，最多 8 位贵宾",
-    "desc": "由专业导游带领漫步大巴扎（世界上最古老的室内集市之一）与香料市场。导游将为您讲解如何鉴别商品品质、集市还价技巧，并探访至今仍坚持手工制作的传统作坊。",
+    "tagline": "两个传奇市场，由一位深谙其道的导游为您讲解。",
+    "duration": "2.5–4 小时，取决于您的节奏",
+    "group": "私人团，最多 8 人",
+    "desc": "在导游带领下漫步大巴扎——世界上最古老的有顶市场之一——以及香料市场。导游会为您讲解如何辨别品质、如何讨价还价，以及哪些作坊仍在手工制作。",
     "included": [
-     "持证专业私人导游全程陪同",
-     "大巴扎与香料市场深度导览",
-     "集市还价内部技巧与传统手工作坊探访",
-     "根据您的兴趣定制步行节奏"
+     "私人持证真人导游"
     ],
     "not_included": [
-     "个人购物消费",
-     "酒店接送",
-     "餐饮费用"
+     "个人购物",
+     "餐饮",
+     "酒店接送"
     ],
-    "note": "按团体收费（最多 8 人）。"
+    "note": "每组一个价格，最多 8 人。时长取决于您的节奏与购物时间。"
    },
-    "tr": {
-        "name": "Kapalıçarşı ve Mısır Çarşısı",
-        "tagline": "Tarihi çarşılarda rehberli yürüyüş — kalite, pazarlık sanatı ve zanaatkar atölyeleri.",
-        "duration": "2,5–4 saat — temponuza göre",
-        "group": "Özel grup, en fazla 8 kişi",
-        "desc": "Dünyanın en eski kapalı çarşılarından biri olan Kapalıçarşı ve tarihi Mısır Çarşısı'nda rehberli yürüyüş turu. Rehberiniz kaliteyi nasıl ayırt edeceğinizi, pazarlığın inceliklerini ve hangi atölyelerin hala el emeğiyle üretim yaptığını anlatır.",
-        "included": [
-            "Lisanslı profesyonel özel rehber",
-            "Kapalıçarşı ve Mısır Çarşısı rehberli yürüyüşü",
-            "Pazarlık tüyoları ve tarihi hanlardaki zanaatkar atölyesi ziyaretleri",
-            "İlgi alanlarınıza göre uyarlanabilen esnek tempo"
-        ],
-        "not_included": [
-            "Kişisel alışveriş harcamaları",
-            "Otel transferi",
-            "Yeme ve içme"
-        ],
-        "note": "Fiyat grup başınadır (en fazla 8 kişi)."
-    }
-  }
- },
- "traditional-handicrafts": {
-  "img": "tour-handicrafts.webp",
-  "content": {
-   "en": {
-    "name": "Traditional Turkish Handicrafts",
-    "tagline": "Watch traditional carpet weaving & pottery making — with Turkish coffee or tea on us. Free presentation.",
-    "duration": "About 30 minutes",
-    "group": "Private presentation",
-    "desc": "If you would like to buy a carpet or İznik tiles, we take you to traditional handicraft centres run by family businesses with 50 years of heritage and more, who have devoted their lives to this craft. Watch the weaving and the pottery being made, with Turkish coffee or tea on us. About 30 minutes — completely free.",
+   "tr": {
+    "name": "Kapalıçarşı ve Mısır Çarşısı Turu",
+    "tagline": "İki tarihi çarşı, tek tur — 2,5 ila 4 saat arasında pazarlık ve keşif.",
+    "duration": "2,5–4 saat",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Dünyanın en eski kapalı çarşısından başlayın: kuyumcular, halıcılar, antikacılar ve 4.000 dükkân. Sonra Mısır Çarşısı'na inin — baharatlar, lokumlar ve 17. yüzyıldan kalan kokular. Rehberiniz sizi gerçek ustaların dükkânlarına götürür, pazarlıkta yanınızda olur.",
     "included": [
-     "Live demonstration of traditional carpet weaving on the loom",
-     "Master craftsmanship showcase of hand-painted İznik ceramics and tiles",
-     "Complimentary authentic Turkish coffee or freshly brewed tea",
-     "Dedicated artisan introduction and explanation",
-     "Completely free add-on — no purchase obligation"
+     "Lisanslı uzman rehber",
+     "Özel grup — en fazla 8 kişi",
+     "Güvenilir usta dükkânlarına yönlendirme"
     ],
     "not_included": [
-     "Optional personal purchases",
-     "Hotel transportation"
+     "Alışveriş harcamalarınız",
+     "Otelden alma ve bırakma"
     ],
-    "note": "100% Free presentation. Adds €0 to your total and €0 deposit."
-   },
-   "de": {
-    "name": "Traditionelles türkisches Kunsthandwerk",
-    "tagline": "Erleben Sie traditionelles Teppichweben & Töpferei — bei türkischem Kaffee oder Tee. Kostenlose Vorführung.",
-    "duration": "Ca. 30 Minuten",
-    "group": "Private Vorführung",
-    "desc": "Wenn Sie einen Teppich oder İznik-Keramik kaufen möchten, bringen wir Sie zu traditionellen Handwerkszentren von Familienbetrieben mit über 50 Jahren Tradition, die ihr Leben diesem Handwerk gewidmet haben. Erleben Sie das Weben und die Töpferei aus nächster Nähe, bei türkischem Kaffee oder Tee auf unsere Kosten. Ca. 30 Minuten — völlig kostenlos.",
-    "included": [
-     "Live-Vorführung des traditionellen Teppichwebens am Webstuhl",
-     "Meisterhafte Einblicke in handbemalte İznik-Keramik und Fliesen",
-     "Traditioneller türkischer Mokka oder frischer Tee auf unsere Kosten",
-     "Persönliche Einführung durch erfahrene Kunsthandwerker",
-     "Völlig kostenloses Zusatz-Erlebnis — keinerlei Kaufverpflichtung"
-    ],
-    "not_included": [
-     "Optionale Einkäufe",
-     "Hotel-Transfer"
-    ],
-    "note": "100 % kostenlose Vorführung. 0 € im Warenkorb und 0 € Anzahlung."
-   },
-   "zh": {
-    "name": "土耳其传统手工艺",
-    "tagline": "观赏传统手工织毯与陶艺制作——免费享用土耳其咖啡或红茶。完全免费的展示体验。",
-    "duration": "约 30 分钟",
-    "group": "私人展示体验",
-    "desc": "如果您想选购地毯或伊兹尼克瓷砖，我们将带您前往拥有50年以上传承的家族传统手工艺中心。这些工匠世家毕生致力于这门技艺。现场观赏手工织毯与陶艺制作过程，并免费享用地道的土耳其咖啡或红茶。约30分钟——完全免费。",
-    "included": [
-     "古法织布机上的传统手工织毯现场技艺演示",
-     "大师级伊兹尼克手绘瓷器与瓷砖艺术精细展示",
-     "免费品尝纯正土耳其咖啡或新鲜冲泡的土耳其红茶",
-     "手工艺传承人亲身讲解与工艺解答",
-     "全程完全免费的增值体验——绝无任何强制购买要求"
-    ],
-    "not_included": [
-     "自愿选购作品的费用（完全自愿）",
-     "酒店专车接送"
-    ],
-    "note": "100% 免费体验。加入预订总额为 0 欧元，定金为 0 欧元。"
-   },
-    "tr": {
-        "name": "Geleneksel Türk El Sanatları",
-        "tagline": "Geleneksel halı dokuma ve çini sanatını izleyin — Türk kahvesi veya çay ikramımızla. Ücretsiz sunum.",
-        "duration": "Yaklaşık 30 dakika",
-        "group": "Özel sunum",
-        "desc": "Halı veya İznik çinisi almak isterseniz, sizi ömrünü bu zanaata adamış, 50 yılı aşkın köklü aile işletmelerine götürüyoruz. Türk kahvesi veya çay ikramımız eşliğinde dokuma ve çömlek yapımını canlı izleyin. Yaklaşık 30 dakika — tamamen ücretsiz.",
-        "included": [
-            "Tezgahta geleneksel halı dokumanın canlı sunumu",
-            "El boyaması İznik çinisi ve seramik ustalığı gösterisi",
-            "Ücretsiz otantik Türk kahvesi veya taze demlenmiş çay ikramı",
-            "Usta zanaatkarlardan birebir anlatım ve bilgi paylaşımı",
-            "Tamamen ücretsiz deneyim — hiçbir satın alma zorunluluğu yoktur"
-        ],
-        "not_included": [
-            "İsteğe bağlı kişisel alışverişler",
-            "Otel transferi"
-        ],
-        "note": "%100 Ücretsiz tanıtım. Sepetinize 0 € ekler, 0 € ön ödeme gerektirir."
-    }
+    "note": "Süre, grubun temposuna göre 2,5–4 saat arasında değişir."
+   }
   }
  },
  "bosphorus-yacht": {
@@ -641,192 +462,142 @@ export const TOURS: Record<string, TourDef> = {
   "content": {
    "en": {
     "name": "Private Bosphorus Yacht Tour",
-    "tagline": "A private 2-hour cruise between Europe and Asia along Ottoman palaces and waterside yalis.",
+    "tagline": "Two hours on the water between two continents — for your group only.",
     "duration": "2 hours",
-    "group": "Private yacht, up to 7–8 guests",
-    "desc": "A private 2-hour yacht cruise along the Bosphorus Strait, gliding between Europe and Asia. Take in the grand waterfront facades of Dolmabahçe and Çırağan Palaces, Ortaköy Mosque, the Bosphorus bridges, and the historic wooden Ottoman mansions (yalıs). Choose between our Standard Yacht (€400) or our Luxury Yacht (€600, including drinks).",
+    "group": "Private group, up to 8 guests",
+    "desc": "Your own private yacht on the Bosphorus for two hours: palaces, waterfront mansions and the bridges between Europe and Asia, with your licensed guide on board. Choose the standard yacht, or the luxury yacht with drinks included.",
     "included": [
-     "2-hour private yacht cruise on the Bosphorus",
-     "Professional captain and attentive crew",
-     "Up to 8 guests in your private party",
-     "Choice of Standard (€400) or Luxury tier (€600 with drinks included)",
-     "Audio system with Bluetooth connectivity for your own music",
-     "Iconic views of Dolmabahçe Palace, Ortaköy & Rumeli Fortress"
+     "Private yacht for 2 hours",
+     "Captain and crew",
+     "Luxury class: drinks included"
     ],
     "not_included": [
-     "Hotel transfers to and from the pier (available on request)",
-     "Meals (unless pre-ordered)",
-     "Gratuities for the crew"
+     "Transport to and from the pier",
+     "Gratuities"
     ],
-    "note": "Price is per group for 2 hours (up to 8 guests). Select Standard (€400) or Luxury (€600 with drinks)."
+    "note": "Choose your yacht class when you book: standard or luxury (drinks included)."
    },
    "de": {
     "name": "Private Bosporus-Yachttour",
-    "tagline": "Private 2-stündige Bootsfahrt zwischen Europa und Asien entlang osmanischer Paläste und Ufer-Yalıs.",
+    "tagline": "Zwei Stunden auf dem Wasser zwischen zwei Kontinenten — nur für Ihre Gruppe.",
     "duration": "2 Stunden",
-    "group": "Private Yacht, bis zu 7–8 Gäste",
-    "desc": "Eine private 2-stündige Yachtfahrt auf dem Bosporus zwischen Europa und Asien. Bewundern Sie die prächtigen Palastfassaden von Dolmabahçe und Çırağan, die Ortaköy-Moschee, die Bosporus-Brücken und historische osmanische Holzvillen (Yalıs). Wählen Sie zwischen unserer Standard-Yacht (400 €) oder unserer Luxus-Yacht (600 €, inklusive Getränke).",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Ihre eigene private Yacht auf dem Bosporus für zwei Stunden: Paläste, Ufervillen und die Brücken zwischen Europa und Asien — mit Ihrem lizenzierten Guide an Bord. Wählen Sie die Standard-Yacht oder die Luxus-Yacht mit inklusive Getränken.",
     "included": [
-     "2-stündige private Yachtfahrt auf dem Bosporus",
-     "Professioneller Kapitän und zuvorkommende Crew",
-     "Bis zu 8 Gäste in Ihrer privaten Gruppe",
-     "Wahl zwischen Standard (400 €) und Luxus-Kategorie (600 € inkl. Getränke)",
-     "Soundsystem mit Bluetooth für Ihre eigene Musik",
-     "Bester Blick auf Dolmabahçe-Palast, Ortaköy & Festung Rumeli Hisarı"
+     "Private Yacht für 2 Stunden",
+     "Kapitän und Crew",
+     "Luxus-Klasse: Getränke inklusive"
     ],
     "not_included": [
-     "Hotel-Transfer zum Anleger (auf Anfrage)",
-     "Mahlzeiten (sofern nicht vorab bestellt)",
-     "Trinkgeld für die Crew"
+     "Transfer zum und vom Anleger",
+     "Trinkgelder"
     ],
-    "note": "Preis pro Gruppe für 2 Stunden (bis zu 8 Gäste). Wählen Sie Standard (400 €) oder Luxus (600 € mit Getränken)."
+    "note": "Wählen Sie Ihre Yacht-Klasse bei der Buchung: Standard oder Luxus (Getränke inklusive)."
    },
    "zh": {
     "name": "博斯普鲁斯海峡私人游艇之旅",
-    "tagline": "2小时私人游艇巡游欧亚海峡，饱览奥斯曼皇家宫殿与海滨名宅风光。",
+    "tagline": "在两大洲之间的水面上航行两小时——专属您的团队。",
     "duration": "2 小时",
-    "group": "私人专属游艇，最多 7–8 位贵宾",
-    "desc": "2小时私人游艇畅游博斯普鲁斯海峡，在欧亚大陆之间悠然航行。沿途近距离欣赏多尔玛巴赫切宫与彻拉安宫的宏伟水岸立面、奥尔塔柯伊清真寺、博斯普鲁斯大桥以及历史悠久的奥斯曼滨水木制别墅（Yalı）。可选标准游艇（400欧元）或豪华游艇（600欧元，含精选饮品）。",
+    "group": "私人团，最多 8 人",
+    "desc": "专属您的私人游艇，在博斯普鲁斯海峡航行两小时：宫殿、滨水豪宅与连接欧亚的桥梁，持证导游随船同行。您可以选择标准游艇，或含饮品的豪华游艇。",
     "included": [
-     "2小时博斯普鲁斯海峡私人专属游艇巡航",
-     "经验丰富的专业船长与贴心船员全程服务",
-     "最多容纳8位贵宾的私密专属空间",
-     "可选标准游艇（400欧元）或豪华游艇（600欧元含饮品畅饮）",
-     "游艇配备蓝牙音响系统，可自由播放您喜爱的音乐",
-     "饱览多尔玛巴赫切宫、奥尔塔柯伊清真寺及鲁梅利堡垒等经典地标"
+     "2 小时私人游艇",
+     "船长与船员",
+     "豪华级：包含饮品"
     ],
     "not_included": [
-     "往返码头的酒店专车接送（可按需协助安排）",
-     "正餐餐饮（除非提前预订定制）",
-     "船员小费"
+     "往返码头的交通",
+     "小费"
     ],
-    "note": "按团体计费，时长2小时（最多8人）。可选择标准版（400欧元）或豪华版（600欧元含饮品）。"
+    "note": "预订时请选择游艇等级：标准或豪华（含饮品）。"
    },
-    "tr": {
-        "name": "Özel Boğaz Yat Turu",
-        "tagline": "Osmanlı sarayları ve yalılar arasında Avrupa ile Asya'yı ayıran Boğaz'da 2 saatlik özel seyir.",
-        "duration": "2 saat",
-        "group": "Özel yat, en fazla 7–8 kişi",
-        "desc": "Boğaziçi'nde Avrupa ve Asya kıtaları arasında süzülen 2 saatlik özel yat turu. Dolmabahçe ve Çırağan Sarayları'nın muhteşem sahil cephelerini, Ortaköy Camii'ni, Boğaz köprülerini ve tarihi ahşap yalıları seyredin. Standart Yat (400 €) veya Lüks Yat (600 €, içecekler dahil) seçeneklerinden birini tercih edebilirsiniz.",
-        "included": [
-            "Boğaziçi'nde 2 saatlik özel yat turu",
-            "Profesyonel kaptan ve deneyimli mürettebat",
-            "Grubunuza özel en fazla 8 kişi kapasitesi",
-            "Standart (400 €) veya Lüks (600 € içecek dahil) seçenek imkanı",
-            "Kendi müziğinizi çalabileceğiniz Bluetooth ses sistemi",
-            "Dolmabahçe Sarayı, Ortaköy ve Rumeli Hisarı'nın eşsiz manzaraları"
-        ],
-        "not_included": [
-            "İskelesi gidiş-dönüş otel transferi",
-            "Özel yemek siparişleri",
-            "Mürettebat bahşişi"
-        ],
-        "note": "2 saatlik grup fiyatıdır (maks. 8 kişi). Standart (400 €) veya Lüks (600 € içecekli) seçiniz."
-    }
+   "tr": {
+    "name": "Özel Boğaz Yat Turu",
+    "tagline": "İki saatlik özel yat — standart veya içecekler dahil lüks seçenek.",
+    "duration": "2 saat",
+    "group": "Özel yat, en fazla 7–8 kişi",
+    "desc": "Boğaz'ı kendi yatınızdan görün: Dolmabahçe, Çırağan, Ortaköy Camii, Rumeli Hisarı ve köprülerin altından geçiş. Standart yat €400; lüks yat €600 ve içecekler dahildir. Kalkış noktası rezervasyonda teyit edilir.",
+    "included": [
+     "2 saat özel yat",
+     "Kaptan ve mürettebat",
+     "Lüks seçenekte içecekler"
+    ],
+    "not_included": [
+     "Standart seçenekte yiyecek ve içecekler",
+     "Otele transfer"
+    ],
+    "note": "Fiyat yatın tamamı içindir (en fazla 7–8 kişi). Kalkış noktası rezervasyonda teyit edilir."
+   }
   }
  },
- "bosphorus-yacht-standard": {
-  "img": "tour-bosphorus-yacht.webp",
+ "traditional-handicrafts": {
+  "img": "tour-handicrafts.webp",
   "content": {
    "en": {
-    "name": "Private Bosphorus Yacht Tour (Standard)",
-    "tagline": "A private 2-hour cruise on the Bosphorus — Standard tier.",
-    "duration": "2 hours",
-    "group": "Private yacht, up to 7–8 guests",
-    "desc": "A private 2-hour yacht cruise along the Bosphorus Strait (Standard tier: €400 per group).",
-    "included": ["2-hour private yacht cruise on the Bosphorus", "Professional captain and crew", "Up to 8 guests in your private party"],
-    "not_included": ["Drinks and snacks (included in Luxury tier)", "Hotel pickup"],
-    "note": "Standard tier: €400 per group for 2 hours."
+    "name": "Traditional Turkish Handicrafts",
+    "tagline": "Carpets and İznik tiles, made by families who gave their lives to the craft.",
+    "duration": "About 30 minutes",
+    "group": "Private group, up to 8 guests",
+    "desc": "If you would like to buy a carpet or İznik tiles, we take you to traditional handicraft centres run by family businesses with 50 years of heritage and more, who have devoted their lives to this craft. Watch the weaving and the pottery being made, with Turkish coffee or tea on us. About 30 minutes — completely free.",
+    "included": [
+     "Handicraft centre visit with live demonstrations",
+     "Turkish coffee or tea",
+     "Completely free — no obligation to buy"
+    ],
+    "not_included": [
+     "Anything you choose to buy"
+    ],
+    "note": "A free extra alongside your tour. The centre is chosen to suit your budget."
    },
    "de": {
-    "name": "Private Bosporus-Yachttour (Standard)",
-    "tagline": "Private 2-stündige Bootsfahrt auf dem Bosporus — Standard-Option.",
-    "duration": "2 Stunden",
-    "group": "Private Yacht, bis zu 7–8 Gäste",
-    "desc": "Eine private 2-stündige Yachtfahrt auf dem Bosporus (Standard: 400 € pro Gruppe).",
-    "included": ["2-stündige private Yachtfahrt auf dem Bosporus", "Professioneller Kapitän und Crew", "Bis zu 8 Gäste"],
-    "not_included": ["Getränke (in der Luxus-Option inbegriffen)", "Hotel-Transfer"],
-    "note": "Standard-Option: 400 € pro Gruppe für 2 Stunden."
+    "name": "Traditionelles türkisches Kunsthandwerk",
+    "tagline": "Teppiche und İznik-Fliesen von Familien, die ihr Leben diesem Handwerk gewidmet haben.",
+    "duration": "Etwa 30 Minuten",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Wenn Sie einen Teppich oder İznik-Fliesen kaufen möchten, bringen wir Sie zu traditionellen Kunsthandwerkszentren von Familienbetrieben mit 50 Jahren Tradition und mehr, die ihr Leben diesem Handwerk gewidmet haben. Sehen Sie zu, wie gewebt und getöpfert wird — mit türkischem Kaffee oder Tee auf unsere Einladung. Etwa 30 Minuten — völlig kostenlos.",
+    "included": [
+     "Besuch eines Kunsthandwerkszentrums mit Live-Vorführungen",
+     "Türkischer Kaffee oder Tee",
+     "Völlig kostenlos — keine Kaufverpflichtung"
+    ],
+    "not_included": [
+     "Alles, was Sie kaufen möchten"
+    ],
+    "note": "Ein kostenloses Extra zu Ihrer Tour. Das Zentrum wird passend zu Ihrem Budget gewählt."
    },
    "zh": {
-    "name": "博斯普鲁斯海峡私人游艇之旅（标准版）",
-    "tagline": "2小时私人游艇巡航——标准版套餐。",
-    "duration": "2 小时",
-    "group": "私人专属游艇，最多 7–8 位贵宾",
-    "desc": "2小时博斯普鲁斯海峡私人专属游艇巡航（标准版：400欧元/团）。",
-    "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与船员服务", "最多8位贵宾"],
-    "not_included": ["饮品小吃（豪华版包含）", "酒店接送"],
-    "note": "标准版：每组 400 欧元，时长 2 小时。"
+    "name": "土耳其传统手工艺",
+    "tagline": "地毯与伊兹尼克瓷砖，出自将一生奉献给这门手艺的家族之手。",
+    "duration": "约 30 分钟",
+    "group": "私人团，最多 8 人",
+    "desc": "如果您想购买地毯或伊兹尼克瓷砖，我们会带您前往由拥有 50 年以上传承的家族企业经营的传统手工艺中心——他们将一生奉献给了这门手艺。观看编织与陶艺制作的过程，并享用我们请您的土耳其咖啡或茶。约 30 分钟——完全免费。",
+    "included": [
+     "参观手工艺中心并观看现场演示",
+     "土耳其咖啡或茶",
+     "完全免费——无购买义务"
+    ],
+    "not_included": [
+     "您选择购买的任何物品"
+    ],
+    "note": "作为行程的免费附加项。中心会根据您的预算选择。"
    },
-    "tr": {
-        "name": "Özel Boğaz Yat Turu (Standart)",
-        "tagline": "Boğaz'da 2 saatlik özel yat turu — Standart seçenek.",
-        "duration": "2 saat",
-        "group": "Özel yat, en fazla 7–8 kişi",
-        "desc": "Boğaziçi'nde 2 saatlik özel yat seyri (Standart seçenek: grup başı 400 €).",
-        "included": [
-            "Boğaz'da 2 saatlik özel yat turu",
-            "Profesyonel kaptan ve mürettebat",
-            "En fazla 8 misafir"
-        ],
-        "not_included": [
-            "İçecekler ve atıştırmalıklar (Lüks pakete dahildir)",
-            "Otel transferi"
-        ],
-        "note": "Standart seçenek: 2 saat için grup başı 400 €."
-    }
-  }
- },
- "bosphorus-yacht-luxury": {
-  "img": "tour-bosphorus-yacht.webp",
-  "content": {
-   "en": {
-    "name": "Private Bosphorus Yacht Tour (Luxury)",
-    "tagline": "A private 2-hour luxury cruise on the Bosphorus — drinks included.",
-    "duration": "2 hours",
-    "group": "Private yacht, up to 7–8 guests",
-    "desc": "A private 2-hour luxury yacht cruise along the Bosphorus Strait with drinks included (€600 per group).",
-    "included": ["2-hour private yacht cruise on the Bosphorus", "Professional captain and crew", "Selection of drinks included", "Up to 8 guests in your private party"],
-    "not_included": ["Hotel pickup (available on request)"],
-    "note": "Luxury tier: €600 per group for 2 hours, drinks included."
-   },
-   "de": {
-    "name": "Private Bosporus-Yachttour (Luxus)",
-    "tagline": "Private 2-stündige Luxus-Bootsfahrt auf dem Bosporus — inklusive Getränke.",
-    "duration": "2 Stunden",
-    "group": "Private Yacht, bis zu 7–8 Gäste",
-    "desc": "Eine private 2-stündige Luxus-Yachtfahrt auf dem Bosporus inklusive Getränke (600 € pro Gruppe).",
-    "included": ["2-stündige private Yachtfahrt auf dem Bosporus", "Professioneller Kapitän und Crew", "Auswahl an Getränken inbegriffen", "Bis zu 8 Gäste"],
-    "not_included": ["Hotel-Transfer"],
-    "note": "Luxus-Option: 600 € pro Gruppe für 2 Stunden, inklusive Getränke."
-   },
-   "zh": {
-    "name": "博斯普鲁斯海峡私人游艇之旅（豪华版）",
-    "tagline": "2小时私人奢华游艇巡航——含饮品畅饮。",
-    "duration": "2 小时",
-    "group": "私人专属游艇，最多 7–8 位贵宾",
-    "desc": "2小时博斯普鲁斯海峡私人奢华游艇巡航，含精选饮品（豪华版：600欧元/团）。",
-    "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与贴心船员", "精选饮品全程供应", "最多8位贵宾"],
-    "not_included": ["酒店接送"],
-    "note": "豪华版：每组 600 欧元，时长 2 小时，含饮品。"
-   },
-    "tr": {
-        "name": "Özel Boğaz Yat Turu (Lüks)",
-        "tagline": "Boğaz'da 2 saatlik lüks yat turu — içecekler dahil.",
-        "duration": "2 saat",
-        "group": "Özel yat, en fazla 7–8 kişi",
-        "desc": "Boğaziçi'nde içecek ikramı dahil 2 saatlik özel lüks yat turu (Lüks seçenek: grup başı 600 €).",
-        "included": [
-            "Boğaz'da 2 saatlik özel yat turu",
-            "Profesyonel kaptan ve mürettebat",
-            "Seçkin içecek ikramı dahil",
-            "En fazla 8 misafir"
-        ],
-        "not_included": [
-            "Otel transferi"
-        ],
-        "note": "Lüks seçenek: 2 saat için grup başı 600 €, içecekler dahildir."
-    }
+   "tr": {
+    "name": "Geleneksel Türk El Sanatları",
+    "tagline": "Ücretsiz 30 dakikalık sunum — halı ve İznik çinilerinin ustalarından.",
+    "duration": "Yaklaşık 30 dakika",
+    "group": "Ücretsiz sunum",
+    "desc": "Halı veya çini almak istiyorsanız, sizi bu işine yıllarını vermiş ailelerin ürettiği el sanatları merkezlerine götürüyoruz. Halı dokumacılığının ve İznik çini üretiminin nasıl yapıldığını ustalarından görün; kahve ve çay ikramımızdır. Merkezler en az 50 yıllık deneyime ve mirasa sahip aile işletmeleridir; mekân bütçenize göre seçilir.",
+    "included": [
+     "Ücretsiz sunum — yaklaşık 30 dakika",
+     "Canlı halı dokuma ve çini yapımı gösterimi",
+     "Kahve ve çay ikramı",
+     "En az 50 yıllık aile işletmeleri"
+    ],
+    "not_included": [
+     "Satın alma zorunluluğu yoktur"
+    ],
+    "note": "Bu sunum ücretsizdir — alışveriş tamamen sizin isteğinize bağlıdır."
+   }
   }
  }
 };
@@ -840,14 +611,18 @@ export const UI: Record<Locale, any> = {
   "book_now": "Book now",
   "see_tours": "See the tours",
   "hero_kicker": "Oligarch Travel · Istanbul Old City",
-  "hero_title": "Istanbul Tours",
+  "hero_title": "From Constantinople to Istanbul",
   "free": "Free",
+  "add_ticket": "Add entrance tickets too",
+  "skip_note": "Skip-the-line tickets only: normal price + €2.50 per ticket.",
+  "tickets_word": "ticket",
+  "free_word": "Free",
   "tier_label": "Yacht Tier",
   "tier_standard": "Standard Yacht — €400 (2 hrs)",
   "tier_luxury": "Luxury Yacht — €600 (2 hrs, drinks included)",
-  "hero_sub": "Licensed guide Ergin Karakoyun — 32 years in Sultanahmet. Book direct here, meet at the Hagia Sophia ticket office, and get your confirmation personally on WhatsApp.",
-  "tours_title": "Tours & tickets",
-  "tours_sub": "Real tours, real prices. Add one — or several — to a single booking.",
+  "hero_sub": "Your licensed guide Ergin Karakoyun — 32 years in Sultanahmet — leads every tour personally; all tours are organised and tickets are sold by Oligarch Tour, TÜRSAB Travel Agency Licence No. 14988. Book direct here and get your confirmation personally on WhatsApp.",
+  "tours_title": "Istanbul Tours",
+  "tours_sub": "Pick like from a menu: every tour is one flat price for your group (up to 8 people). Need entrance tickets? Add them per person when you book — always the skip-the-line ticket at the normal price + €2.50.",
   "why_title": "Why book direct",
   "why": [
    [
@@ -942,14 +717,18 @@ export const UI: Record<Locale, any> = {
   "book_now": "Jetzt buchen",
   "see_tours": "Touren ansehen",
   "hero_kicker": "Oligarch Travel · Istanbuls Altstadt",
-  "hero_title": "Istanbul-Touren",
+  "hero_title": "Von Konstantinopel nach Istanbul",
   "free": "Kostenlos",
+  "add_ticket": "Eintrittstickets hinzufügen",
+  "skip_note": "Nur Skip-the-Line-Tickets: Normalpreis + €2,50 pro Ticket.",
+  "tickets_word": "Ticket",
+  "free_word": "Kostenlos",
   "tier_label": "Yacht-Option",
   "tier_standard": "Standard-Yacht — 400 € (2 Std.)",
   "tier_luxury": "Luxus-Yacht — 600 € (2 Std., inkl. Getränke)",
-  "hero_sub": "Lizenzierter Guide Ergin Karakoyun — seit 32 Jahren in Sultanahmet. Buchen Sie hier direkt, Treffpunkt an der Kasse der Hagia Sophia, und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
-  "tours_title": "Touren & Tickets",
-  "tours_sub": "Echte Touren, echte Preise. Fügen Sie eine — oder mehrere — zu einer Buchung hinzu.",
+  "hero_sub": "Ihr lizenzierter Guide Ergin Karakoyun — 32 Jahre in Sultanahmet — führt jede Tour persönlich; organisiert werden alle Touren und verkauft alle Tickets von Oligarch Tour, TÜRSAB-Reisebürolizenz Nr. 14988. Buchen Sie direkt hier und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
+  "tours_title": "Istanbul-Touren",
+  "tours_sub": "Wählen Sie wie von einer Speisekarte: Jede Tour hat einen Festpreis für Ihre Gruppe (bis 8 Personen). Eintrittstickets gefällig? Fügen Sie sie bei der Buchung pro Person hinzu — immer Skip-the-Line zum Normalpreis + €2,50.",
   "why_title": "Warum direkt buchen",
   "why": [
    [
@@ -1044,14 +823,18 @@ export const UI: Record<Locale, any> = {
   "book_now": "立即预订",
   "see_tours": "查看导览",
   "hero_kicker": "Oligarch Travel · 伊斯坦布尔老城",
-  "hero_title": "伊斯坦布尔之旅",
+  "hero_title": "从君士坦丁堡到伊斯坦布尔",
   "free": "免费",
+  "add_ticket": "同时添加门票",
+  "skip_note": "仅售免排队票：正常票价 + 每张 €2.50。",
+  "tickets_word": "门票",
+  "free_word": "免费",
   "tier_label": "游艇级别",
   "tier_standard": "标准游艇——400 欧元（2 小时）",
   "tier_luxury": "豪华游艇——600 欧元（2 小时含饮品）",
-  "hero_sub": "持证导游 Ergin Karakoyun——在苏丹艾哈迈德区执业 32 年。在此直接预订，在圣索菲亚售票处会合，并通过 WhatsApp 获得他本人确认。",
-  "tours_title": "导览与门票",
-  "tours_sub": "真实的导览，真实的价格。可将一项——或多项——加入同一次预订。",
+  "hero_sub": "持证导游 Ergin Karakoyun（在 Sultanahmet 从业 32 年）亲自带领每一团；所有行程由 Oligarch Tour 组织、门票由其销售（TÜRSAB 旅行社许可证号 14988）。在此直接预订，并通过 WhatsApp 获得他本人确认。",
+  "tours_title": "伊斯坦布尔之旅",
+  "tours_sub": "像看菜单一样挑选：每条线路为整团一口价（最多 8 人）。需要门票？预订时按人添加 — 均为免排队票，正常票价 + €2.50。",
   "why_title": "为什么直接预订",
   "why": [
    [
@@ -1146,14 +929,18 @@ export const UI: Record<Locale, any> = {
    "book_now": "Hemen Rezerve Et",
    "see_tours": "Turları Gör",
    "hero_kicker": "Oligarch Travel · Tarihi Yarımada",
-   "hero_title": "İstanbul Turları",
+   "hero_title": "Konstantinopolis'ten İstanbul'a",
    "free": "Ücretsiz",
+   "add_ticket": "Giriş biletlerini de ekle",
+   "skip_note": "Yalnızca hızlı giriş bileti satılır: normal fiyat + bilet başı €2,50.",
+   "tickets_word": "bilet",
+   "free_word": "Ücretsiz",
    "tier_label": "Yat Seçeneği",
    "tier_standard": "Standart Yat — 400 € (2 Saat)",
    "tier_luxury": "Lüks Yat — 600 € (2 Saat, İçecekler Dahil)",
-   "hero_sub": "Lisanslı profesyonel rehber Ergin Karakoyun — Sultanahmet'te 32 yıllık deneyim. Buradan doğrudan rezervasyon yapın, Ayasofya gişesinde buluşun, teyidinizi bizzat WhatsApp'tan alın.",
-   "tours_title": "Turlar ve Biletler",
-   "tours_sub": "Gerçek turlar, şeffaf fiyatlar. Tek rezervasyona bir veya birden fazla tur ekleyebilirsiniz.",
+   "hero_sub": "Lisanslı rehberiniz Ergin Karakoyun — Sultanahmet'te 32 yıl — her tura bizzat rehberlik eder; tüm turlar Oligarch Tour tarafından düzenlenir ve biletler onlar tarafından satılır (TÜRSAB Seyahat Acentası Belge No: 14988). Doğrudan buradan rezerve edin, teyidinizi WhatsApp üzerinden bizzat alın.",
+   "tours_title": "İstanbul Turları",
+   "tours_sub": "Menüden seçer gibi seçin: her tur, grubunuz için tek fiyattır (en fazla 8 kişi). Giriş bileti mi lazım? Rezervasyonda kişi başı ekleyin — hepsi hızlı giriş biletidir: normal fiyat + €2,50.",
    "why_title": "Neden Doğrudan Rezervasyon?",
    "why": [
      [
@@ -1243,125 +1030,57 @@ export const UI: Record<Locale, any> = {
 export const TRUST: Record<Locale, [string, string][]> = {"en": [["4.7 / 5", "TripAdvisor · 58 reviews"], ["Badge of Excellence", "Viator"], ["4.86", "Airbnb · 36 reviews"], ["Licensed", "Professional tourist guide"], ["Founding Delegate", "Chamber of Turkey Guides"], ["32 years", "Guiding in Istanbul"]], "de": [["4,7 / 5", "TripAdvisor · 58 Bewertungen"], ["Badge of Excellence", "Viator"], ["4,86", "Airbnb · 36 Bewertungen"], ["Lizenziert", "Professioneller Touristenguide"], ["Gründungsdelegierter", "Kammer der türkischen Guides"], ["32 Jahre", "Führungen in Istanbul"]], "zh": [["4.7 / 5", "TripAdvisor · 58 条评价"], ["卓越徽章", "Viator"], ["4.86", "Airbnb · 36 条评价"], ["持证导游", "专业旅游导游"], ["创始代表", "土耳其导游协会"], ["32 年", "伊斯坦布尔导览经验"]],
  "tr": [["4,7 / 5", "TripAdvisor · 58 yorum"], ["Mükemmellik Rozeti", "Viator"], ["4,86", "Airbnb · 36 yorum"], ["Lisanslı", "Profesyonel Turist Rehberi"], ["Kurucu Delege", "Türkiye Rehberler Odası"], ["32 Yıl", "İstanbul'da Rehberlik Deneyimi"]]};
 export const RATINGS: Record<string, any> = {
- "hs-ticket": {
-  "en": "4.7 (58 reviews) · TripAdvisor",
-  "de": "4,7 (58 Bewertungen) · TripAdvisor",
-  "zh": "4.7（58 条评价）· TripAdvisor",
+ "hagia-sophia": {
+  "en": "5.0 (25 reviews) · Viator",
+  "de": "5,0 (25 Bewertungen) · Viator",
+  "zh": "5.0（25 条评价）· Viator",
   "tr": "5,0 (25 yorum) · Viator"
  },
- "hs-guided": {
-  "en": "5.0 (25 reviews) · Viator",
-  "de": "5,0 (25 Bewertungen) · Viator",
-  "zh": "5.0（25 条评价）· Viator",
-  "tr": "4,86 (36 yorum) · Airbnb"
- },
- "hs-private": {
-  "en": "5.0 (25 reviews) · Viator",
-  "de": "5,0 (25 Bewertungen) · Viator",
-  "zh": "5.0（25 条评价）· Viator",
-  "tr": "5,0 (25 yorum) · Viator",
-  "badge": {
-   "en": "Badge of Excellence",
-   "de": "Badge of Excellence",
-   "zh": "卓越徽章",
-   "tr": "Mükemmellik Rozeti"
-  }
- },
- "topkapi-private": {
+ "topkapi-palace": {
   "en": "4.86 (36 reviews) · Airbnb",
   "de": "4,86 (36 Bewertungen) · Airbnb",
   "zh": "4.86（36 条评价）· Airbnb",
+  "tr": "4,86 (36 yorum) · Airbnb"
+ },
+ "basilica-cistern": {
+  "en": "4.7 (58 reviews) · TripAdvisor",
+  "de": "4,7 (58 Bewertungen) · TripAdvisor",
+  "zh": "4.7（58 条评价）· TripAdvisor",
   "tr": "4,7 (58 yorum) · TripAdvisor"
  },
- "topkapi-night": {
+ "sultanahmet-hippodrome": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
   "zh": "4.7（58 条评价）· TripAdvisor",
-  "tr": "4,9 (42 yorum) · TripAdvisor"
+  "tr": "4,7 (58 yorum) · TripAdvisor"
  },
- "istanbul-day": {
+ "full-day-istanbul": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
   "zh": "4.7（58 条评价）· TripAdvisor",
-  "tr": "5,0 · Misafir Favorisi"
- }
-,
+  "tr": "4,7 (58 yorum) · TripAdvisor"
+ },
  "bazaars-tour": {
-  "en": "4.9 (42 reviews) · TripAdvisor",
-  "de": "4,9 (42 Bewertungen) · TripAdvisor",
-  "zh": "4.9（42 条评价）· TripAdvisor",
-  "tr": "5,0 (38 yorum) · TripAdvisor"
- },
- "traditional-handicrafts": {
-  "en": "5.0 · Guest Favorite",
-  "de": "5,0 · Gäste-Favorit",
-  "zh": "5.0 · 游客最爱体验",
-  "tr": "5,0 (38 yorum) · TripAdvisor"
+  "en": "4.7 (58 reviews) · TripAdvisor",
+  "de": "4,7 (58 Bewertungen) · TripAdvisor",
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
  },
  "bosphorus-yacht": {
-  "en": "5.0 (38 reviews) · TripAdvisor",
-  "de": "5,0 (38 Bewertungen) · TripAdvisor",
-  "zh": "5.0（38 条评价）· TripAdvisor",
-  "tr": "5,0 (38 yorum) · TripAdvisor"
+  "en": "4.7 (58 reviews) · TripAdvisor",
+  "de": "4,7 (58 Bewertungen) · TripAdvisor",
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
  },
- "bosphorus-yacht-standard": {
-  "en": "5.0 (38 reviews) · TripAdvisor",
-  "de": "5,0 (38 Bewertungen) · TripAdvisor",
-  "zh": "5.0（38 条评价）· TripAdvisor",
-  "tr": "5,0 (38 yorum) · TripAdvisor"
- },
- "bosphorus-yacht-luxury": {
-  "en": "5.0 (38 reviews) · TripAdvisor",
-  "de": "5,0 (38 Bewertungen) · TripAdvisor",
-  "zh": "5.0（38 条评价）· TripAdvisor",
-  "tr": "5,0 (38 yorum) · TripAdvisor",
-  "badge": {
-   "en": "Badge of Excellence",
-   "de": "Badge of Excellence",
-   "zh": "卓越徽章",
-   "tr": "Mükemmellik Rozeti"
-  }
+ "traditional-handicrafts": {
+  "en": "4.7 (58 reviews) · TripAdvisor",
+  "de": "4,7 (58 Bewertungen) · TripAdvisor",
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
  }
 };
 export const MEETING_DEFAULT: Record<Locale, string> = {"en": "Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet", "de": "Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet", "zh": "Harem 纪念品店，Babı Hümayun Cd. No:8, Sultanahmet", "tr": "Harem Hediyelik Eşya Dükkanı, Babı Hümayun Cd. No:8, Sultanahmet"};
-export const MEETING_OVERRIDE: Record<string, Record<Locale, string>> = {
-  'bazaars-tour': {
-    en: 'Beyazıt Square / Grand Bazaar Gate 1 or Sultanahmet',
-    de: 'Beyazıt-Platz / Großer Basar Tor 1 oder Sultanahmet',
-    zh: '贝亚泽特广场/大巴扎1号门或苏丹艾哈迈德',
-    tr: "Beyazıt Meydanı / Kapalıçarşı 1 No'lu Kapı veya Sultanahmet",
-  },
-  'traditional-handicrafts': {
-    en: 'Arranged with your guide in Sultanahmet',
-    de: 'Wird mit Ihrem Guide in Sultanahmet abgestimmt',
-    zh: '由您的导游在苏丹艾哈迈德区当面安排',
-    tr: "Sultanahmet'te rehberinizle kararlaştırılır",
-  },
-  'bosphorus-yacht': {
-    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
-    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
-    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
-    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
-  },
-  'bosphorus-yacht-standard': {
-    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
-    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
-    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
-    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
-  },
-  'bosphorus-yacht-luxury': {
-    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
-    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
-    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
-    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
-  },
-  'topkapi-night': {
-    en: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
-    de: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
-    zh: 'Hürrem Sultan Hamamı 咖啡馆，Sultanahmet',
-    tr: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
-  },
-};
+export const MEETING_OVERRIDE: Record<string, Record<Locale, string>> = {};
 export function meetingPoint(locale: Locale, tourId: string): string {
   const own = TOURS[tourId]?.meeting?.[locale];
   if (own) return own;
