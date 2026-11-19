@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AddToBooking from '@/components/AddToBooking';
-import { LOCALES, TOURS, UI, meetingPoint, type Locale } from '@/data/tours';
+import { LOCALES, TOUR_ORDER, TOURS, UI, meetingPoint, type Locale } from '@/data/tours';
 import { getPrices, priceOf } from '@/lib/prices';
 import { priceDisplay } from '@/lib/cart';
 
@@ -36,6 +36,11 @@ export default async function TourPage({
   const c = t.content[loc];
   const prices = getPrices();
   const tp = priceOf(prices, slug);
+  const others = TOUR_ORDER.filter((id) => id !== slug).map((id) => ({
+    id,
+    name: TOURS[id].content[loc].name,
+    price: priceOf(prices, id),
+  }));
   const isFree = tp.perGroup === 0 && tp.perPerson === 0;
   const facts: [string, string][] = [
     [u.duration, c.duration],
@@ -92,7 +97,7 @@ export default async function TourPage({
           </div>
           <aside className="bookbox">
             <div className="price-now">{priceDisplay(tp, u)}</div>
-            <AddToBooking locale={loc} u={u} tourId={slug} price={tp} />
+            <AddToBooking locale={loc} u={u} tourId={slug} price={tp} others={others} />
           </aside>
         </div>
       </div>
