@@ -30,11 +30,13 @@ export default function BookingClient({
   function confirm() {
     const L: string[] = ['New booking — Oligarch Travel website', ''];
     items.forEach((it, i) => {
-      const tp = byId[it.tourId];
-      const en = TOURS[it.tourId].content.en;
+      const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
+      const en = (TOURS[it.tourId] || TOURS['bosphorus-yacht'])?.content.en;
+      if (!tp || !en) return;
+      const isFree = tp.perGroup === 0 && tp.perPerson === 0;
       L.push(`${i + 1}. ${en.name}`);
       L.push(`   Date: ${it.date || '—'} · Guests: ${it.people}`);
-      L.push(`   Price: ${fmtMoney(tp.currency, lineTotal(tp, it.people))}`);
+      L.push(`   Price: ${isFree ? 'Free' : fmtMoney(tp.currency, lineTotal(tp, it.people))}`);
     });
     currencies.forEach((cur) => {
       const t = totals[cur];
@@ -68,11 +70,14 @@ export default function BookingClient({
     <div className="grid2">
       <div>
         {items.map((it, idx) => {
-          const tp = byId[it.tourId];
-          const c = TOURS[it.tourId].content[locale];
+          const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
+          const tourDef = TOURS[it.tourId] || TOURS['bosphorus-yacht'];
+          if (!tp || !tourDef) return null;
+          const c = tourDef.content[locale];
+          const isFree = tp.perGroup === 0 && tp.perPerson === 0;
           return (
             <div className="cart-item" key={idx}>
-              <img src={`/img/${TOURS[it.tourId].img}`} alt={c.name} />
+              <img src={`/img/${tourDef.img}`} alt={c.name} />
               <div style={{ flex: 1 }}>
                 <h3>{c.name}</h3>
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 8 }}>
@@ -108,7 +113,7 @@ export default function BookingClient({
                   {u.remove}
                 </button>
               </div>
-              <div className="line-total">{fmtMoney(tp.currency, lineTotal(tp, it.people))}</div>
+              <div className="line-total">{isFree ? (u.free || 'Free') : fmtMoney(tp.currency, lineTotal(tp, it.people))}</div>
             </div>
           );
         })}

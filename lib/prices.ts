@@ -34,7 +34,11 @@ export function savePrices(cfg: PriceConfig): PriceConfig {
 }
 
 export function priceOf(cfg: PriceConfig, tourId: string): TourPrice {
-  const t = cfg.tours.find((x) => x.id === tourId);
+  const t =
+    cfg.tours.find((x) => x.id === tourId) ||
+    (tourId === 'bosphorus-yacht'
+      ? cfg.tours.find((x) => x.id === 'bosphorus-yacht-standard')
+      : undefined);
   if (!t) throw new Error('unknown tour ' + tourId);
   return t;
 }
@@ -42,5 +46,8 @@ export function priceOf(cfg: PriceConfig, tourId: string): TourPrice {
 export function pricesById(cfg: PriceConfig): Record<string, TourPrice> {
   const m: Record<string, TourPrice> = {};
   for (const t of cfg.tours) m[t.id] = t;
+  if (!m['bosphorus-yacht'] && m['bosphorus-yacht-standard']) {
+    m['bosphorus-yacht'] = m['bosphorus-yacht-standard'];
+  }
   return m;
 }

@@ -36,11 +36,12 @@ export default async function TourPage({
   const c = t.content[loc];
   const prices = getPrices();
   const tp = priceOf(prices, slug);
+  const isFree = tp.perGroup === 0 && tp.perPerson === 0;
   const facts: [string, string][] = [
     [u.duration, c.duration],
     [u.group_size, c.group],
     [u.meeting_label, meetingPoint(loc, slug)],
-    [u.price_from, priceDisplay(tp, u)],
+    [isFree ? (u.price_label || 'Price') : u.price_from, priceDisplay(tp, u)],
   ];
   return (
     <section style={{ paddingTop: 34 }}>

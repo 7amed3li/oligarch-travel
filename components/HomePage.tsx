@@ -8,7 +8,14 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
   const byId = pricesById(prices);
   const options = TOUR_ORDER.map((id) => ({ id, name: TOURS[id].content[locale].name }));
   const popular = ['hs-ticket', 'hs-guided', 'hs-private'];
-  const more = ['topkapi-private', 'topkapi-night', 'istanbul-day'];
+  const more = [
+    'topkapi-private',
+    'topkapi-night',
+    'istanbul-day',
+    'bazaars-tour',
+    'bosphorus-yacht',
+    'traditional-handicrafts',
+  ];
 
   return (
     <>

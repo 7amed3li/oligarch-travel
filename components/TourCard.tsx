@@ -32,7 +32,8 @@ export default function TourCard({
           {c.duration} · {c.group}
         </span>
         <span className="tcard-price">
-          <small>{u.price_from}</small> <strong>{priceDisplay(price, u)}</strong>
+          {price && price.perGroup === 0 && price.perPerson === 0 ? null : <small>{u.price_from} </small>}
+          <strong>{price ? priceDisplay(price, u) : ''}</strong>
         </span>
       </span>
     </Link>

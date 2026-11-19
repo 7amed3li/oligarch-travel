@@ -3,9 +3,10 @@ import './globals.css';
 import CartProvider from '@/components/CartProvider';
 
 export const metadata = {
-  title: 'Oligarch Travel — Hagia Sophia & Topkapi Tours, Istanbul',
+  title: 'Istanbul Tours — Oligarch Travel',
   description:
-    'Skip-the-line tickets and private guided tours of Hagia Sophia and Topkapi Palace with licensed guide Ergin Karakoyun. Book direct — 25% deposit, confirmed on WhatsApp.',
+    'Skip-the-line tickets and private guided tours of Hagia Sophia, Topkapi Palace, Grand Bazaar, and Bosphorus yacht cruises with licensed guide Ergin Karakoyun. Book direct — 25% deposit, confirmed on WhatsApp.',
+  icons: { icon: '/icon.svg' },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

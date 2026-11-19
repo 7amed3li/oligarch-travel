@@ -1,9 +1,24 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import HomePage from '@/components/HomePage';
-import { LOCALES, type Locale } from '@/data/tours';
+import { LOCALES, UI, type Locale } from '@/data/tours';
 import { getPrices } from '@/lib/prices';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!LOCALES.includes(locale as Locale)) return {};
+  const loc = locale as Locale;
+  return {
+    title: `${UI[loc].hero_title} — Oligarch Travel`,
+    description: UI[loc].hero_sub,
+  };
+}
 
 export default async function LocaleHome({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

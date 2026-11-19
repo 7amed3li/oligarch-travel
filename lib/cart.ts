@@ -5,6 +5,7 @@ export interface CartItem {
   tourId: string;
   date: string; // yyyy-mm-dd or ''
   people: number;
+  tier?: string;
 }
 
 export function lineTotal(tp: TourPrice, people: number): number {
@@ -26,7 +27,7 @@ export function cartTotals(
 ): Record<string, CurrencyTotal> {
   const out: Record<string, CurrencyTotal> = {};
   for (const it of items) {
-    const tp = byId[it.tourId];
+    const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
     if (!tp) continue;
     const cur = (out[tp.currency] ||= { subtotal: 0, deposit: 0, remainder: 0 });
     cur.subtotal = round2(cur.subtotal + lineTotal(tp, it.people));
@@ -45,12 +46,16 @@ export function sym(currency: string): string {
 }
 
 export function fmtMoney(currency: string, n: number): string {
+  if (n === 0) return '€0';
   const s = n.toFixed(2).replace(/\.?0+$/, '');
   return sym(currency) + s;
 }
 
 // "€80 / group + €28 / person" style display, localized via UI strings.
 export function priceDisplay(tp: TourPrice, ui: any): string {
+  if (tp.perGroup === 0 && tp.perPerson === 0) {
+    return ui.free || 'Free';
+  }
   const parts: string[] = [];
   if (tp.perGroup > 0) parts.push(`${sym(tp.currency)}${tp.perGroup} ${ui.per_group}`);
   if (tp.perPerson > 0)

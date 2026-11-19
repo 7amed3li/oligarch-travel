@@ -48,8 +48,39 @@
    "minGuests": 1,
    "perGroup": 275,
    "perPerson": 0
+  },
+  {
+   "currency": "EUR",
+   "id": "bazaars-tour",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 80,
+   "perPerson": 0
+  },
+  {
+   "currency": "EUR",
+   "id": "traditional-handicrafts",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 0,
+   "perPerson": 0
+  },
+  {
+   "currency": "EUR",
+   "id": "bosphorus-yacht-standard",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 400,
+   "perPerson": 0
+  },
+  {
+   "currency": "EUR",
+   "id": "bosphorus-yacht-luxury",
+   "maxGuests": 8,
+   "minGuests": 1,
+   "perGroup": 600,
+   "perPerson": 0
   }
  ],
- "version": 1,
  "whatsapp": "905553255565"
 }

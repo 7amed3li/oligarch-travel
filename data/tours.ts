@@ -5,7 +5,7 @@ export const LOCALES: Locale[] = ['en', 'de', 'zh'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
-export const TOUR_ORDER: string[] = ["hs-ticket", "hs-guided", "hs-private", "topkapi-private", "topkapi-night", "istanbul-day"];
+export const TOUR_ORDER: string[] = ["hs-ticket", "hs-guided", "hs-private", "topkapi-private", "topkapi-night", "istanbul-day", "bazaars-tour", "bosphorus-yacht", "traditional-handicrafts"];
 export const TOURS: Record<string, TourDef> = {
  "hs-ticket": {
   "img": "tour-hs-ticket.webp",
@@ -365,6 +365,269 @@ export const TOURS: Record<string, TourDef> = {
    }
   }
  }
+,
+ "bazaars-tour": {
+  "img": "tour-bazaars.webp",
+  "content": {
+   "en": {
+    "name": "Grand Bazaar & Spice Bazaar",
+    "tagline": "A guided walk through the world's oldest markets — quality, bargaining & artisan workshops.",
+    "duration": "2.5–4 hours — depends on your pace",
+    "group": "Private group, up to 8 guests",
+    "desc": "A guided walk through the Grand Bazaar — one of the world's oldest covered markets — and the Spice Bazaar, with the guide explaining how to read quality, how bargaining works, and which workshops still produce by hand.",
+    "included": [
+     "Licensed professional private guide",
+     "Guided walk through Grand Bazaar and Spice Bazaar",
+     "Insider bargaining advice and artisan workshop visits",
+     "Flexible pace tailored to your interests"
+    ],
+    "not_included": [
+     "Personal shopping purchases",
+     "Hotel pickup and drop-off",
+     "Food and drinks"
+    ],
+    "note": "Price is per group (up to 8 guests)."
+   },
+   "de": {
+    "name": "Großer Basar & Gewürzbasar",
+    "tagline": "Geführter Rundgang durch die historischen Basare — Qualität, Handeln & Handwerkskunst.",
+    "duration": "2,5–4 Stunden — nach Ihrem Tempo",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Ein geführter Spaziergang durch den Großen Basar — einen der ältesten überdachten Märkte der Welt — und den Gewürzbasar. Ihr Guide erklärt Ihnen, wie Sie Qualität erkennen, wie das Handeln funktioniert und welche Werkstätten noch heute echte Handarbeit herstellen.",
+    "included": [
+     "Lizenzierter professioneller Privatguide",
+     "Geführter Rundgang durch Großen Basar & Gewürzbasar",
+     "Insider-Tipps zum Handeln & Besuch traditioneller Werkstätten",
+     "Individuelles Tempo ganz nach Ihren Wünschen"
+    ],
+    "not_included": [
+     "Persönliche Einkäufe",
+     "Hotel-Transfer",
+     "Speisen und Getränke"
+    ],
+    "note": "Preis gilt pro Gruppe (bis zu 8 Gäste)."
+   },
+   "zh": {
+    "name": "大巴扎与香料市场",
+    "tagline": "漫步历史悠久的传奇集市——品鉴手作品质、学习还价技巧与探访百年匠心作坊。",
+    "duration": "2.5–4 小时——视您的节奏而定",
+    "group": "私人团体，最多 8 位贵宾",
+    "desc": "由专业导游带领漫步大巴扎（世界上最古老的室内集市之一）与香料市场。导游将为您讲解如何鉴别商品品质、集市还价技巧，并探访至今仍坚持手工制作的传统作坊。",
+    "included": [
+     "持证专业私人导游全程陪同",
+     "大巴扎与香料市场深度导览",
+     "集市还价内部技巧与传统手工作坊探访",
+     "根据您的兴趣定制步行节奏"
+    ],
+    "not_included": [
+     "个人购物消费",
+     "酒店接送",
+     "餐饮费用"
+    ],
+    "note": "按团体收费（最多 8 人）。"
+   }
+  }
+ },
+ "traditional-handicrafts": {
+  "img": "tour-handicrafts.webp",
+  "content": {
+   "en": {
+    "name": "Traditional Turkish Handicrafts",
+    "tagline": "Watch traditional carpet weaving & pottery making — with Turkish coffee or tea on us. Free presentation.",
+    "duration": "About 30 minutes",
+    "group": "Private presentation",
+    "desc": "If you would like to buy a carpet or İznik tiles, we take you to traditional handicraft centres run by family businesses with 50 years of heritage and more, who have devoted their lives to this craft. Watch the weaving and the pottery being made, with Turkish coffee or tea on us. About 30 minutes — completely free.",
+    "included": [
+     "Live demonstration of traditional carpet weaving on the loom",
+     "Master craftsmanship showcase of hand-painted İznik ceramics and tiles",
+     "Complimentary authentic Turkish coffee or freshly brewed tea",
+     "Dedicated artisan introduction and explanation",
+     "Completely free add-on — no purchase obligation"
+    ],
+    "not_included": [
+     "Optional personal purchases",
+     "Hotel transportation"
+    ],
+    "note": "100% Free presentation. Adds €0 to your total and €0 deposit."
+   },
+   "de": {
+    "name": "Traditionelles türkisches Kunsthandwerk",
+    "tagline": "Erleben Sie traditionelles Teppichweben & Töpferei — bei türkischem Kaffee oder Tee. Kostenlose Vorführung.",
+    "duration": "Ca. 30 Minuten",
+    "group": "Private Vorführung",
+    "desc": "Wenn Sie einen Teppich oder İznik-Keramik kaufen möchten, bringen wir Sie zu traditionellen Handwerkszentren von Familienbetrieben mit über 50 Jahren Tradition, die ihr Leben diesem Handwerk gewidmet haben. Erleben Sie das Weben und die Töpferei aus nächster Nähe, bei türkischem Kaffee oder Tee auf unsere Kosten. Ca. 30 Minuten — völlig kostenlos.",
+    "included": [
+     "Live-Vorführung des traditionellen Teppichwebens am Webstuhl",
+     "Meisterhafte Einblicke in handbemalte İznik-Keramik und Fliesen",
+     "Traditioneller türkischer Mokka oder frischer Tee auf unsere Kosten",
+     "Persönliche Einführung durch erfahrene Kunsthandwerker",
+     "Völlig kostenloses Zusatz-Erlebnis — keinerlei Kaufverpflichtung"
+    ],
+    "not_included": [
+     "Optionale Einkäufe",
+     "Hotel-Transfer"
+    ],
+    "note": "100 % kostenlose Vorführung. 0 € im Warenkorb und 0 € Anzahlung."
+   },
+   "zh": {
+    "name": "土耳其传统手工艺",
+    "tagline": "观赏传统手工织毯与陶艺制作——免费享用土耳其咖啡或红茶。完全免费的展示体验。",
+    "duration": "约 30 分钟",
+    "group": "私人展示体验",
+    "desc": "如果您想选购地毯或伊兹尼克瓷砖，我们将带您前往拥有50年以上传承的家族传统手工艺中心。这些工匠世家毕生致力于这门技艺。现场观赏手工织毯与陶艺制作过程，并免费享用地道的土耳其咖啡或红茶。约30分钟——完全免费。",
+    "included": [
+     "古法织布机上的传统手工织毯现场技艺演示",
+     "大师级伊兹尼克手绘瓷器与瓷砖艺术精细展示",
+     "免费品尝纯正土耳其咖啡或新鲜冲泡的土耳其红茶",
+     "手工艺传承人亲身讲解与工艺解答",
+     "全程完全免费的增值体验——绝无任何强制购买要求"
+    ],
+    "not_included": [
+     "自愿选购作品的费用（完全自愿）",
+     "酒店专车接送"
+    ],
+    "note": "100% 免费体验。加入预订总额为 0 欧元，定金为 0 欧元。"
+   }
+  }
+ },
+ "bosphorus-yacht": {
+  "img": "tour-bosphorus-yacht.webp",
+  "content": {
+   "en": {
+    "name": "Private Bosphorus Yacht Tour",
+    "tagline": "A private 2-hour cruise between Europe and Asia along Ottoman palaces and waterside yalis.",
+    "duration": "2 hours",
+    "group": "Private yacht, up to 7–8 guests",
+    "desc": "A private 2-hour yacht cruise along the Bosphorus Strait, gliding between Europe and Asia. Take in the grand waterfront facades of Dolmabahçe and Çırağan Palaces, Ortaköy Mosque, the Bosphorus bridges, and the historic wooden Ottoman mansions (yalıs). Choose between our Standard Yacht (€400) or our Luxury Yacht (€600, including drinks).",
+    "included": [
+     "2-hour private yacht cruise on the Bosphorus",
+     "Professional captain and attentive crew",
+     "Up to 8 guests in your private party",
+     "Choice of Standard (€400) or Luxury tier (€600 with drinks included)",
+     "Audio system with Bluetooth connectivity for your own music",
+     "Iconic views of Dolmabahçe Palace, Ortaköy & Rumeli Fortress"
+    ],
+    "not_included": [
+     "Hotel transfers to and from the pier (available on request)",
+     "Meals (unless pre-ordered)",
+     "Gratuities for the crew"
+    ],
+    "note": "Price is per group for 2 hours (up to 8 guests). Select Standard (€400) or Luxury (€600 with drinks)."
+   },
+   "de": {
+    "name": "Private Bosporus-Yachttour",
+    "tagline": "Private 2-stündige Bootsfahrt zwischen Europa und Asien entlang osmanischer Paläste und Ufer-Yalıs.",
+    "duration": "2 Stunden",
+    "group": "Private Yacht, bis zu 7–8 Gäste",
+    "desc": "Eine private 2-stündige Yachtfahrt auf dem Bosporus zwischen Europa und Asien. Bewundern Sie die prächtigen Palastfassaden von Dolmabahçe und Çırağan, die Ortaköy-Moschee, die Bosporus-Brücken und historische osmanische Holzvillen (Yalıs). Wählen Sie zwischen unserer Standard-Yacht (400 €) oder unserer Luxus-Yacht (600 €, inklusive Getränke).",
+    "included": [
+     "2-stündige private Yachtfahrt auf dem Bosporus",
+     "Professioneller Kapitän und zuvorkommende Crew",
+     "Bis zu 8 Gäste in Ihrer privaten Gruppe",
+     "Wahl zwischen Standard (400 €) und Luxus-Kategorie (600 € inkl. Getränke)",
+     "Soundsystem mit Bluetooth für Ihre eigene Musik",
+     "Bester Blick auf Dolmabahçe-Palast, Ortaköy & Festung Rumeli Hisarı"
+    ],
+    "not_included": [
+     "Hotel-Transfer zum Anleger (auf Anfrage)",
+     "Mahlzeiten (sofern nicht vorab bestellt)",
+     "Trinkgeld für die Crew"
+    ],
+    "note": "Preis pro Gruppe für 2 Stunden (bis zu 8 Gäste). Wählen Sie Standard (400 €) oder Luxus (600 € mit Getränken)."
+   },
+   "zh": {
+    "name": "博斯普鲁斯海峡私人游艇之旅",
+    "tagline": "2小时私人游艇巡游欧亚海峡，饱览奥斯曼皇家宫殿与海滨名宅风光。",
+    "duration": "2 小时",
+    "group": "私人专属游艇，最多 7–8 位贵宾",
+    "desc": "2小时私人游艇畅游博斯普鲁斯海峡，在欧亚大陆之间悠然航行。沿途近距离欣赏多尔玛巴赫切宫与彻拉安宫的宏伟水岸立面、奥尔塔柯伊清真寺、博斯普鲁斯大桥以及历史悠久的奥斯曼滨水木制别墅（Yalı）。可选标准游艇（400欧元）或豪华游艇（600欧元，含精选饮品）。",
+    "included": [
+     "2小时博斯普鲁斯海峡私人专属游艇巡航",
+     "经验丰富的专业船长与贴心船员全程服务",
+     "最多容纳8位贵宾的私密专属空间",
+     "可选标准游艇（400欧元）或豪华游艇（600欧元含饮品畅饮）",
+     "游艇配备蓝牙音响系统，可自由播放您喜爱的音乐",
+     "饱览多尔玛巴赫切宫、奥尔塔柯伊清真寺及鲁梅利堡垒等经典地标"
+    ],
+    "not_included": [
+     "往返码头的酒店专车接送（可按需协助安排）",
+     "正餐餐饮（除非提前预订定制）",
+     "船员小费"
+    ],
+    "note": "按团体计费，时长2小时（最多8人）。可选择标准版（400欧元）或豪华版（600欧元含饮品）。"
+   }
+  }
+ },
+ "bosphorus-yacht-standard": {
+  "img": "tour-bosphorus-yacht.webp",
+  "content": {
+   "en": {
+    "name": "Private Bosphorus Yacht Tour (Standard)",
+    "tagline": "A private 2-hour cruise on the Bosphorus — Standard tier.",
+    "duration": "2 hours",
+    "group": "Private yacht, up to 7–8 guests",
+    "desc": "A private 2-hour yacht cruise along the Bosphorus Strait (Standard tier: €400 per group).",
+    "included": ["2-hour private yacht cruise on the Bosphorus", "Professional captain and crew", "Up to 8 guests in your private party"],
+    "not_included": ["Drinks and snacks (included in Luxury tier)", "Hotel pickup"],
+    "note": "Standard tier: €400 per group for 2 hours."
+   },
+   "de": {
+    "name": "Private Bosporus-Yachttour (Standard)",
+    "tagline": "Private 2-stündige Bootsfahrt auf dem Bosporus — Standard-Option.",
+    "duration": "2 Stunden",
+    "group": "Private Yacht, bis zu 7–8 Gäste",
+    "desc": "Eine private 2-stündige Yachtfahrt auf dem Bosporus (Standard: 400 € pro Gruppe).",
+    "included": ["2-stündige private Yachtfahrt auf dem Bosporus", "Professioneller Kapitän und Crew", "Bis zu 8 Gäste"],
+    "not_included": ["Getränke (in der Luxus-Option inbegriffen)", "Hotel-Transfer"],
+    "note": "Standard-Option: 400 € pro Gruppe für 2 Stunden."
+   },
+   "zh": {
+    "name": "博斯普鲁斯海峡私人游艇之旅（标准版）",
+    "tagline": "2小时私人游艇巡航——标准版套餐。",
+    "duration": "2 小时",
+    "group": "私人专属游艇，最多 7–8 位贵宾",
+    "desc": "2小时博斯普鲁斯海峡私人专属游艇巡航（标准版：400欧元/团）。",
+    "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与船员服务", "最多8位贵宾"],
+    "not_included": ["饮品小吃（豪华版包含）", "酒店接送"],
+    "note": "标准版：每组 400 欧元，时长 2 小时。"
+   }
+  }
+ },
+ "bosphorus-yacht-luxury": {
+  "img": "tour-bosphorus-yacht.webp",
+  "content": {
+   "en": {
+    "name": "Private Bosphorus Yacht Tour (Luxury)",
+    "tagline": "A private 2-hour luxury cruise on the Bosphorus — drinks included.",
+    "duration": "2 hours",
+    "group": "Private yacht, up to 7–8 guests",
+    "desc": "A private 2-hour luxury yacht cruise along the Bosphorus Strait with drinks included (€600 per group).",
+    "included": ["2-hour private yacht cruise on the Bosphorus", "Professional captain and crew", "Selection of drinks included", "Up to 8 guests in your private party"],
+    "not_included": ["Hotel pickup (available on request)"],
+    "note": "Luxury tier: €600 per group for 2 hours, drinks included."
+   },
+   "de": {
+    "name": "Private Bosporus-Yachttour (Luxus)",
+    "tagline": "Private 2-stündige Luxus-Bootsfahrt auf dem Bosporus — inklusive Getränke.",
+    "duration": "2 Stunden",
+    "group": "Private Yacht, bis zu 7–8 Gäste",
+    "desc": "Eine private 2-stündige Luxus-Yachtfahrt auf dem Bosporus inklusive Getränke (600 € pro Gruppe).",
+    "included": ["2-stündige private Yachtfahrt auf dem Bosporus", "Professioneller Kapitän und Crew", "Auswahl an Getränken inbegriffen", "Bis zu 8 Gäste"],
+    "not_included": ["Hotel-Transfer"],
+    "note": "Luxus-Option: 600 € pro Gruppe für 2 Stunden, inklusive Getränke."
+   },
+   "zh": {
+    "name": "博斯普鲁斯海峡私人游艇之旅（豪华版）",
+    "tagline": "2小时私人奢华游艇巡航——含饮品畅饮。",
+    "duration": "2 小时",
+    "group": "私人专属游艇，最多 7–8 位贵宾",
+    "desc": "2小时博斯普鲁斯海峡私人奢华游艇巡航，含精选饮品（豪华版：600欧元/团）。",
+    "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与贴心船员", "精选饮品全程供应", "最多8位贵宾"],
+    "not_included": ["酒店接送"],
+    "note": "豪华版：每组 600 欧元，时长 2 小时，含饮品。"
+   }
+  }
+ }
 };
 export const UI: Record<Locale, any> = {
  "en": {
@@ -376,7 +639,11 @@ export const UI: Record<Locale, any> = {
   "book_now": "Book now",
   "see_tours": "See the tours",
   "hero_kicker": "Oligarch Travel · Istanbul Old City",
-  "hero_title": "Hagia Sophia & Topkapi Palace, with a guide who knows them best.",
+  "hero_title": "Istanbul Tours",
+  "free": "Free",
+  "tier_label": "Yacht Tier",
+  "tier_standard": "Standard Yacht — €400 (2 hrs)",
+  "tier_luxury": "Luxury Yacht — €600 (2 hrs, drinks included)",
   "hero_sub": "Licensed guide Ergin Karakoyun — 32 years in Sultanahmet. Book direct here, meet at the Hagia Sophia ticket office, and get your confirmation personally on WhatsApp.",
   "tours_title": "Tours & tickets",
   "tours_sub": "Real tours, real prices. Add one — or several — to a single booking.",
@@ -474,7 +741,11 @@ export const UI: Record<Locale, any> = {
   "book_now": "Jetzt buchen",
   "see_tours": "Touren ansehen",
   "hero_kicker": "Oligarch Travel · Istanbuls Altstadt",
-  "hero_title": "Hagia Sophia & Topkapi-Palast — mit einem Guide, der sie am besten kennt.",
+  "hero_title": "Istanbul-Touren",
+  "free": "Kostenlos",
+  "tier_label": "Yacht-Option",
+  "tier_standard": "Standard-Yacht — 400 € (2 Std.)",
+  "tier_luxury": "Luxus-Yacht — 600 € (2 Std., inkl. Getränke)",
   "hero_sub": "Lizenzierter Guide Ergin Karakoyun — seit 32 Jahren in Sultanahmet. Buchen Sie hier direkt, Treffpunkt an der Kasse der Hagia Sophia, und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
   "tours_title": "Touren & Tickets",
   "tours_sub": "Echte Touren, echte Preise. Fügen Sie eine — oder mehrere — zu einer Buchung hinzu.",
@@ -572,7 +843,11 @@ export const UI: Record<Locale, any> = {
   "book_now": "立即预订",
   "see_tours": "查看导览",
   "hero_kicker": "Oligarch Travel · 伊斯坦布尔老城",
-  "hero_title": "圣索菲亚与托普卡珀皇宫——由最了解它们的导游为您讲解。",
+  "hero_title": "伊斯坦布尔之旅",
+  "free": "免费",
+  "tier_label": "游艇级别",
+  "tier_standard": "标准游艇——400 欧元（2 小时）",
+  "tier_luxury": "豪华游艇——600 欧元（2 小时含饮品）",
   "hero_sub": "持证导游 Ergin Karakoyun——在苏丹艾哈迈德区执业 32 年。在此直接预订，在圣索菲亚售票处会合，并通过 WhatsApp 获得他本人确认。",
   "tours_title": "导览与门票",
   "tours_sub": "真实的导览，真实的价格。可将一项——或多项——加入同一次预订。",
@@ -699,9 +974,65 @@ export const RATINGS: Record<string, any> = {
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
   "zh": "4.7（58 条评价）· TripAdvisor"
  }
+,
+ "bazaars-tour": {
+  "en": "4.9 (42 reviews) · TripAdvisor",
+  "de": "4,9 (42 Bewertungen) · TripAdvisor",
+  "zh": "4.9（42 条评价）· TripAdvisor"
+ },
+ "traditional-handicrafts": {
+  "en": "5.0 · Guest Favorite",
+  "de": "5,0 · Gäste-Favorit",
+  "zh": "5.0 · 游客最爱体验"
+ },
+ "bosphorus-yacht": {
+  "en": "5.0 (38 reviews) · TripAdvisor",
+  "de": "5,0 (38 Bewertungen) · TripAdvisor",
+  "zh": "5.0（38 条评价）· TripAdvisor"
+ },
+ "bosphorus-yacht-standard": {
+  "en": "5.0 (38 reviews) · TripAdvisor",
+  "de": "5,0 (38 Bewertungen) · TripAdvisor",
+  "zh": "5.0（38 条评价）· TripAdvisor"
+ },
+ "bosphorus-yacht-luxury": {
+  "en": "5.0 (38 reviews) · TripAdvisor",
+  "de": "5,0 (38 Bewertungen) · TripAdvisor",
+  "zh": "5.0（38 条评价）· TripAdvisor",
+  "badge": {
+   "en": "Badge of Excellence",
+   "de": "Badge of Excellence",
+   "zh": "卓越徽章"
+  }
+ }
 };
 export const MEETING_DEFAULT: Record<Locale, string> = {"en": "Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet", "de": "Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet", "zh": "Harem 纪念品店，Babı Hümayun Cd. No:8, Sultanahmet"};
 export const MEETING_OVERRIDE: Record<string, Record<Locale, string>> = {
+  'bazaars-tour': {
+    en: 'Beyazıt Square / Grand Bazaar Gate 1 or Sultanahmet',
+    de: 'Beyazıt-Platz / Großer Basar Tor 1 oder Sultanahmet',
+    zh: '贝亚泽特广场/大巴扎1号门或苏丹艾哈迈德',
+  },
+  'traditional-handicrafts': {
+    en: 'Arranged with your guide in Sultanahmet',
+    de: 'Wird mit Ihrem Guide in Sultanahmet abgestimmt',
+    zh: '由您的导游在苏丹艾哈迈德区当面安排',
+  },
+  'bosphorus-yacht': {
+    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
+    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
+    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+  },
+  'bosphorus-yacht-standard': {
+    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
+    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
+    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+  },
+  'bosphorus-yacht-luxury': {
+    en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
+    de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
+    zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+  },
   'topkapi-night': {
     en: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
     de: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
