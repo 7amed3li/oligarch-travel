@@ -14,6 +14,20 @@ export default function AdminClient() {
       .catch(() => setStatus('Could not load prices.'));
   }, []);
 
+  const setTicket = (id: string, field: 'amount' | 'premium', value: string) =>
+    setCfg((prev) =>
+      prev
+        ? {
+            ...prev,
+            tours: prev.tours.map((t) =>
+              t.id === id && t.ticket
+                ? { ...t, ticket: { ...t.ticket, [field]: value === '' ? 0 : Number(value) } }
+                : t,
+            ),
+          }
+        : prev,
+    );
+
   const setTour = (id: string, field: keyof TourPrice, value: string) =>
     setCfg((prev) =>
       prev
@@ -69,8 +83,10 @@ export default function AdminClient() {
                   <tr>
                     <th>Tour</th>
                     <th>Currency</th>
-                    <th>Price / person</th>
                     <th>Price / group</th>
+                    <th>Ticket (per person)</th>
+                    <th>Skip premium €</th>
+                    <th>Luxury group</th>
                     <th>Min guests</th>
                     <th>Max guests</th>
                   </tr>
@@ -85,18 +101,51 @@ export default function AdminClient() {
                           type="number"
                           step="0.01"
                           min="0"
-                          value={t.perPerson}
-                          onChange={(e) => setTour(t.id, 'perPerson', e.target.value)}
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          step="0.01"
-                          min="0"
                           value={t.perGroup}
                           onChange={(e) => setTour(t.id, 'perGroup', e.target.value)}
                         />
+                      </td>
+                      <td>
+                        {t.ticket ? (
+                          <span>
+                            <input
+                              type="number"
+                              step="0.01"
+                              min="0"
+                              value={t.ticket.amount}
+                              onChange={(e) => setTicket(t.id, 'amount', e.target.value)}
+                            />{' '}
+                            {t.ticket.currency}
+                          </span>
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td>
+                        {t.ticket ? (
+                          <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            value={t.ticket.premium}
+                            onChange={(e) => setTicket(t.id, 'premium', e.target.value)}
+                          />
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td>
+                        {t.luxuryGroup !== undefined ? (
+                          <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            value={t.luxuryGroup}
+                            onChange={(e) => setTour(t.id, 'luxuryGroup', e.target.value)}
+                          />
+                        ) : (
+                          '—'
+                        )}
                       </td>
                       <td>
                         <input
