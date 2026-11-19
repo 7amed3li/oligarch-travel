@@ -1,15 +1,44 @@
 import type { TourPrice } from './prices';
 
 // Pure cart math — shared by client components and tests.
+// Restaurant model (Ergin, 2026-11-19): every tour is ONE flat price per
+// group. Entrance tickets are an optional per-person add-on: the museum's
+// normal price + a €2.50 skip-the-line premium per ticket. A line can span
+// two currencies (EUR group price + TRY tickets + EUR premium), so totals
+// are computed per currency component.
 export interface CartItem {
   tourId: string;
   date: string; // yyyy-mm-dd or ''
   people: number;
-  tier?: string;
+  ticket?: boolean; // entrance tickets added for everyone in the group
+  tier?: 'standard' | 'luxury'; // yacht only
 }
 
-export function lineTotal(tp: TourPrice, people: number): number {
-  return tp.perGroup + tp.perPerson * people;
+export const PREMIUM_CURRENCY = 'EUR';
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
+// The money components of one cart line: currency -> amount.
+export function lineComponents(tp: TourPrice, it: CartItem): Record<string, number> {
+  const out: Record<string, number> = {};
+  const add = (cur: string, n: number) => {
+    if (n) out[cur] = round2((out[cur] || 0) + n);
+  };
+  const group = it.tier === 'luxury' && tp.luxuryGroup ? tp.luxuryGroup : tp.perGroup;
+  add(tp.currency, group + tp.perPerson * it.people);
+  if (it.ticket && tp.ticket) {
+    add(tp.ticket.currency, tp.ticket.amount * it.people);
+    add(PREMIUM_CURRENCY, tp.ticket.premium * it.people);
+  }
+  return out;
+}
+
+export function mergeComponents(
+  target: Record<string, number>,
+  src: Record<string, number>,
+): Record<string, number> {
+  for (const k of Object.keys(src)) target[k] = round2((target[k] || 0) + src[k]);
+  return target;
 }
 
 export interface CurrencyTotal {
@@ -18,47 +47,64 @@ export interface CurrencyTotal {
   remainder: number;
 }
 
-const round2 = (n: number) => Math.round(n * 100) / 100;
-
 export function cartTotals(
   items: CartItem[],
   byId: Record<string, TourPrice>,
   depositPercent: number,
 ): Record<string, CurrencyTotal> {
-  const out: Record<string, CurrencyTotal> = {};
+  const comp: Record<string, number> = {};
   for (const it of items) {
-    const tp = byId[it.tourId] || (it.tourId === 'bosphorus-yacht' ? byId['bosphorus-yacht-standard'] : undefined);
+    const tp = byId[it.tourId];
     if (!tp) continue;
-    const cur = (out[tp.currency] ||= { subtotal: 0, deposit: 0, remainder: 0 });
-    cur.subtotal = round2(cur.subtotal + lineTotal(tp, it.people));
+    mergeComponents(comp, lineComponents(tp, it));
   }
-  for (const k of Object.keys(out)) {
-    const t = out[k];
-    t.deposit = Math.round(t.subtotal * depositPercent) / 100;
-    t.remainder = round2(t.subtotal - t.deposit);
+  const out: Record<string, CurrencyTotal> = {};
+  for (const k of Object.keys(comp)) {
+    const subtotal = comp[k];
+    const deposit = Math.round(subtotal * depositPercent) / 100;
+    out[k] = { subtotal, deposit, remainder: round2(subtotal - deposit) };
   }
   return out;
 }
 
-const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$' };
+const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$', TRY: '₺' };
 export function sym(currency: string): string {
   return SYMBOLS[currency] || currency + ' ';
 }
 
+// €1,234.50-style formatting: thousands separators, cents only when needed.
 export function fmtMoney(currency: string, n: number): string {
-  if (n === 0) return '€0';
-  const s = n.toFixed(2).replace(/\.?0+$/, '');
+  const rounded = Math.round(n * 100) / 100;
+  const hasCents = Math.abs(rounded % 1) > 0.001;
+  const s = rounded.toLocaleString('en-US', {
+    minimumFractionDigits: hasCents ? 2 : 0,
+    maximumFractionDigits: 2,
+  });
   return sym(currency) + s;
 }
 
-// "€80 / group + €28 / person" style display, localized via UI strings.
+// What one skip-the-line ticket costs per person, e.g. "€27.50" or "₺2,750 + €2.50".
+export function ticketPerPersonDisplay(tp: TourPrice): string {
+  if (!tp.ticket) return '';
+  const t = tp.ticket;
+  if (t.currency === PREMIUM_CURRENCY) return fmtMoney(t.currency, t.amount + t.premium);
+  return `${fmtMoney(t.currency, t.amount)} + ${fmtMoney(PREMIUM_CURRENCY, t.premium)}`;
+}
+
+// Card / page price line, localized via UI strings.
 export function priceDisplay(tp: TourPrice, ui: any): string {
   if (tp.perGroup === 0 && tp.perPerson === 0) {
-    return ui.free || 'Free';
+    return ui.free_word || ui.free || 'Free';
   }
-  const parts: string[] = [];
-  if (tp.perGroup > 0) parts.push(`${sym(tp.currency)}${tp.perGroup} ${ui.per_group}`);
-  if (tp.perPerson > 0)
-    parts.push(`${tp.perGroup > 0 ? '+ ' : ''}${sym(tp.currency)}${tp.perPerson} ${ui.per_person}`);
-  return parts.join(' ');
+  let base: string;
+  if (tp.luxuryGroup) {
+    base = `${fmtMoney(tp.currency, tp.perGroup)}–${fmtMoney(tp.currency, tp.luxuryGroup)} ${ui.per_group}`;
+  } else if (tp.perPerson > 0 && tp.perGroup === 0) {
+    base = `${fmtMoney(tp.currency, tp.perPerson)} ${ui.per_person}`;
+  } else {
+    base = `${fmtMoney(tp.currency, tp.perGroup)} ${ui.per_group}`;
+    if (tp.perPerson > 0) base += ` + ${fmtMoney(tp.currency, tp.perPerson)} ${ui.per_person}`;
+  }
+  if (tp.ticket) base += ` + ${ui.tickets_word || 'ticket'} ${ui.per_person}`;
+  return base;
 }
