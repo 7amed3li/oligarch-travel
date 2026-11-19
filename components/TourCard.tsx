@@ -35,6 +35,10 @@ export default function TourCard({
           {price && price.perGroup === 0 && price.perPerson === 0 ? null : <small>{u.price_from} </small>}
           <strong>{price ? priceDisplay(price, u) : ''}</strong>
         </span>
+        <span className="tcard-foot">
+          <span className="tcard-cta">{u.details_link || 'View details'} →</span>
+          {price?.ticket ? <span className="tcard-tick">{u.tickets_available || ''}</span> : null}
+        </span>
       </span>
     </Link>
   );
