@@ -7,15 +7,6 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
   const u = UI[locale];
   const byId = pricesById(prices);
   const options = TOUR_ORDER.map((id) => ({ id, name: TOURS[id].content[locale].name }));
-  const popular = ['hs-ticket', 'hs-guided', 'hs-private'];
-  const more = [
-    'topkapi-private',
-    'topkapi-night',
-    'istanbul-day',
-    'bazaars-tour',
-    'bosphorus-yacht',
-    'traditional-handicrafts',
-  ];
 
   return (
     <>
@@ -50,10 +41,10 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
 
       <section id="tours">
         <div className="wrap">
-          <h2 className="sec">{u.sec_popular}</h2>
+          <h2 className="sec">{u.tours_title}</h2>
           <p className="sec-sub">{u.tours_sub}</p>
           <div className="grid">
-            {popular.map((tid) => (
+            {TOUR_ORDER.map((tid) => (
               <TourCard key={tid} locale={locale} tid={tid} price={byId[tid]} u={u} />
             ))}
           </div>
@@ -61,17 +52,6 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
       </section>
 
       <section className="alt">
-        <div className="wrap">
-          <h2 className="sec">{u.sec_more}</h2>
-          <div className="grid">
-            {more.map((tid) => (
-              <TourCard key={tid} locale={locale} tid={tid} price={byId[tid]} u={u} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
         <div className="wrap">
           <h2 className="sec">{u.why_title}</h2>
           <div className="cols3">
@@ -85,7 +65,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </section>
 
-      <section className="alt" id="about">
+      <section id="about">
         <div className="wrap about-grid">
           <img src="/img/portrait.jpg" alt="Ergin Karakoyun, licensed tourist guide" />
           <div>
@@ -104,7 +84,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </section>
 
-      <section id="reviews">
+      <section className="alt" id="reviews">
         <div className="wrap">
           <h2 className="sec">{u.reviews_title}</h2>
           <div className="stats">
@@ -124,7 +104,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </section>
 
-      <section className="alt" id="contact">
+      <section id="contact">
         <div className="wrap">
           <h2 className="sec">{u.contact_title}</h2>
           <div className="contact-grid">
