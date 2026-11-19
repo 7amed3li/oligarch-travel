@@ -3,21 +3,17 @@ export default function Logo({ withText = true }: { withText?: boolean }) {
     <span className="logo">
       <svg
         className="logo-mark"
-        viewBox="0 0 48 34"
-        width="40"
+        viewBox="0 0 72 84"
+        width="24"
         height="28"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
+        fill="currentColor"
         aria-hidden="true"
       >
-        <path d="M9 27a15 15 0 0 1 30 0" />
-        <line x1="4" y1="27" x2="44" y2="27" />
-        <line x1="24" y1="10.5" x2="24" y2="6" />
-        <circle cx="24" cy="4.4" r="1.5" fill="currentColor" stroke="none" />
-        <line x1="13" y1="27" x2="13" y2="22.5" />
-        <line x1="35" y1="27" x2="35" y2="22.5" />
+        <path
+          fillRule="evenodd"
+          d="M10,78 L10,44 C10,26 20,15 36,13 C52,15 62,26 62,44 L62,78 Z M24,78 L24,46 A12,12 0 0 1 48,46 L48,78 Z"
+        />
+        <polygon points="30.5,17 41.5,17 36,4" />
       </svg>
       {withText && (
         <span className="logo-text">
