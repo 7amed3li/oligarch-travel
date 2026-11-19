@@ -1,7 +1,7 @@
 // Tour content + UI strings (EN/DE/ZH) — extracted from the verified dossier data.
 // Prices do NOT live here: they live in data/prices.json and are editable in /admin.
-export type Locale = 'en' | 'de' | 'zh';
-export const LOCALES: Locale[] = ['en', 'de', 'zh'];
+export type Locale = 'en' | 'de' | 'zh' | 'tr';
+export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
@@ -63,7 +63,25 @@ export const TOURS: Record<string, TourDef> = {
      "真人导游（可参加我们的导览团）"
     ],
     "note": "价格为每人，8 岁以上。"
-   }
+   },
+    "tr": {
+        "name": "Ayasofya Hızlı Giriş Bileti",
+        "tagline": "Telefonunuza gelen karekod bilet ile Üst Galeri girişi — bilet kuyruğu beklemeden.",
+        "duration": "Esnek giriş, 09:00–18:00",
+        "group": "Bireysel giriş",
+        "desc": "Resmi dijital bilet ile Ayasofya Üst Galerisi'ne giriş. Karekod biletiniz akıllı telefonunuza iletilir; böylece bilet kuyruğunu atlayarak 09:00 ile 18:00 saatleri arasında dilediğiniz an giriş yapabilirsiniz. Biletiniz seçtiğiniz tarihten itibaren 7 gün boyunca geçerlidir ve ziyaretiniz için çok dilli sesli rehber dahildir.",
+        "included": [
+            "Ayasofya Üst Galeri giriş bileti",
+            "Akıllı telefonunuza iletilen karekod bilet",
+            "Çok dilli sesli rehber (Audio guide)",
+            "Seçtiğiniz tarihten itibaren 7 gün geçerlilik",
+            "Tek seferlik giriş — kapanış saatine kadar içeride kalabilme"
+        ],
+        "not_included": [
+            "Canlı rehberlik (rehberli turlarımızda mevcuttur)"
+        ],
+        "note": "Kişi başı fiyattır, 8 yaş ve üzeri için geçerlidir."
+    }
   }
  },
  "hs-guided": {
@@ -122,7 +140,25 @@ export const TOURS: Record<string, TourDef> = {
      "小费"
     ],
     "note": "0–6 岁儿童免费入场——请携带其有效护照。"
-   }
+   },
+    "tr": {
+        "name": "Ayasofya Rehberli Turu",
+        "tagline": "Lisanslı uzman rehber eşliğinde, küçük grupta 1 saatlik tur.",
+        "duration": "1 saat",
+        "group": "Küçük grup, maks. 20 · min. 3 kişi",
+        "desc": "Lisanslı uzman rehber eşliğinde 1 saatlik Ayasofya turu. Rehberinizle bilet gişesine yakın Harem Hediyelik Eşya Dükkanı'nda buluşup bilet sırasını beklemeden birlikte giriş yaparsınız. Canlı anlatım eşliğinde Üst Galeri mozaiklerini ve ulu kubbeyi keşfeder, sorularınıza cevap alırsınız. Tur sonrasında kapanış saatine kadar içeride kalabilirsiniz.",
+        "included": [
+            "Lisanslı uzman canlı rehber",
+            "Ayasofya Üst Galeri giriş bileti",
+            "09:15, 10:30 ve 15:15 seans seçenekleri",
+            "Tur sonrasında kapanışa kadar içeride kalma imkanı"
+        ],
+        "not_included": [
+            "Otel gidiş-dönüş transferi",
+            "Bahşişler"
+        ],
+        "note": "0–6 yaş arası çocuklar ücretsizdir — lütfen kimlik/pasaport ibraz ediniz."
+    }
   }
  },
  "hs-private": {
@@ -178,7 +214,25 @@ export const TOURS: Record<string, TourDef> = {
      "小费"
     ],
     "note": "价格：团队费加每人门票，最多 8 人。"
-   }
+   },
+    "tr": {
+        "name": "Ayasofya Özel Turu",
+        "tagline": "Sadece siz ve rehberiniz — kendi temponuzda kişiye özel tur.",
+        "duration": "1 saat",
+        "group": "Özel tur, en fazla 8 kişi",
+        "desc": "Sadece sizin grubunuza özel lisanslı rehber ile 1 saatlik Ayasofya turu. Rehberinizle buluşur, bilet kuyruğunu beklemeden giriş yapar ve Üst Galeri mozaiklerini, katedral ve cami tarihini derinlemesine dinlersiniz. Sizin hızınıza göre ilerler ve tüm sorularınıza zaman ayrılır.",
+        "included": [
+            "Grubunuza özel lisanslı profesyonel rehber",
+            "Ayasofya Üst Galeri giriş biletleri",
+            "Esnek başlangıç saati (09:00–16:00 arası)",
+            "Tur sonrasında kapanışa kadar içeride kalabilme"
+        ],
+        "not_included": [
+            "Otel transferi",
+            "Bahşişler"
+        ],
+        "note": "Grup fiyatı (maks. 8 kişi) + kişi başı bilet ücreti."
+    }
   }
  },
  "topkapi-private": {
@@ -231,7 +285,24 @@ export const TOURS: Record<string, TourDef> = {
      "酒店接送"
     ],
     "note": "价格为每组，最多 8 人。"
-   }
+   },
+    "tr": {
+        "name": "Topkapı Sarayı & Harem Özel Turu",
+        "tagline": "Özel lisanslı rehberiniz eşliğinde saray ve Harem daireleri.",
+        "duration": "45 dakika – 3 saat",
+        "group": "Özel tur, en fazla 8 kişi",
+        "desc": "Osmanlı padişahlarının 400 yıllık ikametgahı Topkapı Sarayı ve büyüleyici Harem Dairesi'ni kapsayan özel rehberli tur. Divan-ı Hümayun, Kutsal Emanetler, Hazine ve Boğaz manzaralı terasları uzman rehberinizin anlatımıyla keşfedin.",
+        "included": [
+            "Grubunuza özel lisanslı uzman rehber",
+            "Topkapı Sarayı ve Harem bölümleri kapsamı",
+            "Kişisel ilgi ve esnek gezi temposu"
+        ],
+        "not_included": [
+            "Saray ve Harem giriş biletleri",
+            "Otel transferi"
+        ],
+        "note": "Fiyat grup başınadır (maks. 8 kişi). Biletler girişte temin edilir."
+    }
   }
  },
  "topkapi-night": {
@@ -239,7 +310,8 @@ export const TOURS: Record<string, TourDef> = {
   "meeting": {
    "en": "Hürrem Sultan Hamamı Cafe, Sultanahmet",
    "de": "Hürrem Sultan Hamamı Cafe, Sultanahmet",
-   "zh": "Hürrem Sultan 土耳其浴室咖啡厅，苏丹艾哈迈德区"
+   "zh": "Hürrem Sultan 土耳其浴室咖啡厅，苏丹艾哈迈德区",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
   },
   "content": {
    "en": {
@@ -298,7 +370,24 @@ export const TOURS: Record<string, TourDef> = {
      "小费"
     ],
     "note": "价格为每人。本导览以土耳其语进行。"
-   }
+   },
+    "tr": {
+        "name": "Topkapı Sarayı Gece Turu",
+        "tagline": "Havanın kararmasıyla birlikte akşamın dinginliğinde büyüleyici saray atmosferi.",
+        "duration": "4 saat",
+        "group": "Grup turu, min. 2 kişi",
+        "desc": "Gündüz kalabalığı çekildikten sonra Topkapı Sarayı'nın mistik avlularında ve aydınlatılmış tarihi mekanlarında benzersiz bir gece turu. Geceye özel ayrıcalıklı atmosferde sarayın gizemli hikayelerini dinleyin.",
+        "included": [
+            "Gece turuna özel lisanslı profesyonel rehber",
+            "Topkapı Sarayı gece giriş bileti",
+            "Sessiz ve özel atmosferde rehberli gezi"
+        ],
+        "not_included": [
+            "Akşam yemeği ve içecekler",
+            "Otel transferi"
+        ],
+        "note": "Kişi başı fiyattır. En az 2 kişi ile hareket eder."
+    }
   }
  },
  "istanbul-day": {
@@ -306,7 +395,8 @@ export const TOURS: Record<string, TourDef> = {
   "meeting": {
    "en": "Your hotel",
    "de": "Ihr Hotel",
-   "zh": "您的酒店"
+   "zh": "您的酒店",
+  "tr": "5,0 (25 yorum) · Viator"
   },
   "content": {
    "en": {
@@ -362,7 +452,25 @@ export const TOURS: Record<string, TourDef> = {
      "私人小巴（可作为额外服务预订）"
     ],
     "note": "价格为每组，最多 8 人。"
-   }
+   },
+    "tr": {
+        "name": "Özel İstanbul Günü — Tamamen Size Özel",
+        "tagline": "Görmek istediğiniz yerlere göre planlanan dolu dolu bir gün.",
+        "duration": "6–8 saat (tam gün)",
+        "group": "Özel tur, en fazla 8 kişi",
+        "desc": "Bir gün, bir özel rehber ve tamamen size göre tasarlanmış bir rota. Klasik rota Ayasofya, Sultanahmet Camii, Hipodrom, Topkapı Sarayı ve Kapalıçarşı'yı kapsar — ya da günü tamamen sizin ilgi alanlarınıza göre şekillendiririz. Rehberiniz sizi otelinizde karşılar.",
+        "included": [
+            "8 kişiye kadar grubunuza özel lisanslı rehber",
+            "Tamamen esnek ve kişiselleştirilmiş rota",
+            "Otelinizde karşılama ve buluşma"
+        ],
+        "not_included": [
+            "Müze ve örenyeri giriş ücretleri",
+            "Yemekler",
+            "Özel minivan (isteğe bağlı eklenebilir)"
+        ],
+        "note": "Fiyat en fazla 8 kişilik grup içindir."
+    }
   }
  }
 ,
@@ -425,7 +533,26 @@ export const TOURS: Record<string, TourDef> = {
      "餐饮费用"
     ],
     "note": "按团体收费（最多 8 人）。"
-   }
+   },
+    "tr": {
+        "name": "Kapalıçarşı ve Mısır Çarşısı",
+        "tagline": "Tarihi çarşılarda rehberli yürüyüş — kalite, pazarlık sanatı ve zanaatkar atölyeleri.",
+        "duration": "2,5–4 saat — temponuza göre",
+        "group": "Özel grup, en fazla 8 kişi",
+        "desc": "Dünyanın en eski kapalı çarşılarından biri olan Kapalıçarşı ve tarihi Mısır Çarşısı'nda rehberli yürüyüş turu. Rehberiniz kaliteyi nasıl ayırt edeceğinizi, pazarlığın inceliklerini ve hangi atölyelerin hala el emeğiyle üretim yaptığını anlatır.",
+        "included": [
+            "Lisanslı profesyonel özel rehber",
+            "Kapalıçarşı ve Mısır Çarşısı rehberli yürüyüşü",
+            "Pazarlık tüyoları ve tarihi hanlardaki zanaatkar atölyesi ziyaretleri",
+            "İlgi alanlarınıza göre uyarlanabilen esnek tempo"
+        ],
+        "not_included": [
+            "Kişisel alışveriş harcamaları",
+            "Otel transferi",
+            "Yeme ve içme"
+        ],
+        "note": "Fiyat grup başınadır (en fazla 8 kişi)."
+    }
   }
  },
  "traditional-handicrafts": {
@@ -487,7 +614,26 @@ export const TOURS: Record<string, TourDef> = {
      "酒店专车接送"
     ],
     "note": "100% 免费体验。加入预订总额为 0 欧元，定金为 0 欧元。"
-   }
+   },
+    "tr": {
+        "name": "Geleneksel Türk El Sanatları",
+        "tagline": "Geleneksel halı dokuma ve çini sanatını izleyin — Türk kahvesi veya çay ikramımızla. Ücretsiz sunum.",
+        "duration": "Yaklaşık 30 dakika",
+        "group": "Özel sunum",
+        "desc": "Halı veya İznik çinisi almak isterseniz, sizi ömrünü bu zanaata adamış, 50 yılı aşkın köklü aile işletmelerine götürüyoruz. Türk kahvesi veya çay ikramımız eşliğinde dokuma ve çömlek yapımını canlı izleyin. Yaklaşık 30 dakika — tamamen ücretsiz.",
+        "included": [
+            "Tezgahta geleneksel halı dokumanın canlı sunumu",
+            "El boyaması İznik çinisi ve seramik ustalığı gösterisi",
+            "Ücretsiz otantik Türk kahvesi veya taze demlenmiş çay ikramı",
+            "Usta zanaatkarlardan birebir anlatım ve bilgi paylaşımı",
+            "Tamamen ücretsiz deneyim — hiçbir satın alma zorunluluğu yoktur"
+        ],
+        "not_included": [
+            "İsteğe bağlı kişisel alışverişler",
+            "Otel transferi"
+        ],
+        "note": "%100 Ücretsiz tanıtım. Sepetinize 0 € ekler, 0 € ön ödeme gerektirir."
+    }
   }
  },
  "bosphorus-yacht": {
@@ -555,7 +701,28 @@ export const TOURS: Record<string, TourDef> = {
      "船员小费"
     ],
     "note": "按团体计费，时长2小时（最多8人）。可选择标准版（400欧元）或豪华版（600欧元含饮品）。"
-   }
+   },
+    "tr": {
+        "name": "Özel Boğaz Yat Turu",
+        "tagline": "Osmanlı sarayları ve yalılar arasında Avrupa ile Asya'yı ayıran Boğaz'da 2 saatlik özel seyir.",
+        "duration": "2 saat",
+        "group": "Özel yat, en fazla 7–8 kişi",
+        "desc": "Boğaziçi'nde Avrupa ve Asya kıtaları arasında süzülen 2 saatlik özel yat turu. Dolmabahçe ve Çırağan Sarayları'nın muhteşem sahil cephelerini, Ortaköy Camii'ni, Boğaz köprülerini ve tarihi ahşap yalıları seyredin. Standart Yat (400 €) veya Lüks Yat (600 €, içecekler dahil) seçeneklerinden birini tercih edebilirsiniz.",
+        "included": [
+            "Boğaziçi'nde 2 saatlik özel yat turu",
+            "Profesyonel kaptan ve deneyimli mürettebat",
+            "Grubunuza özel en fazla 8 kişi kapasitesi",
+            "Standart (400 €) veya Lüks (600 € içecek dahil) seçenek imkanı",
+            "Kendi müziğinizi çalabileceğiniz Bluetooth ses sistemi",
+            "Dolmabahçe Sarayı, Ortaköy ve Rumeli Hisarı'nın eşsiz manzaraları"
+        ],
+        "not_included": [
+            "İskelesi gidiş-dönüş otel transferi",
+            "Özel yemek siparişleri",
+            "Mürettebat bahşişi"
+        ],
+        "note": "2 saatlik grup fiyatıdır (maks. 8 kişi). Standart (400 €) veya Lüks (600 € içecekli) seçiniz."
+    }
   }
  },
  "bosphorus-yacht-standard": {
@@ -590,7 +757,24 @@ export const TOURS: Record<string, TourDef> = {
     "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与船员服务", "最多8位贵宾"],
     "not_included": ["饮品小吃（豪华版包含）", "酒店接送"],
     "note": "标准版：每组 400 欧元，时长 2 小时。"
-   }
+   },
+    "tr": {
+        "name": "Özel Boğaz Yat Turu (Standart)",
+        "tagline": "Boğaz'da 2 saatlik özel yat turu — Standart seçenek.",
+        "duration": "2 saat",
+        "group": "Özel yat, en fazla 7–8 kişi",
+        "desc": "Boğaziçi'nde 2 saatlik özel yat seyri (Standart seçenek: grup başı 400 €).",
+        "included": [
+            "Boğaz'da 2 saatlik özel yat turu",
+            "Profesyonel kaptan ve mürettebat",
+            "En fazla 8 misafir"
+        ],
+        "not_included": [
+            "İçecekler ve atıştırmalıklar (Lüks pakete dahildir)",
+            "Otel transferi"
+        ],
+        "note": "Standart seçenek: 2 saat için grup başı 400 €."
+    }
   }
  },
  "bosphorus-yacht-luxury": {
@@ -625,7 +809,24 @@ export const TOURS: Record<string, TourDef> = {
     "included": ["2小时博斯普鲁斯海峡私人游艇巡航", "专业船长与贴心船员", "精选饮品全程供应", "最多8位贵宾"],
     "not_included": ["酒店接送"],
     "note": "豪华版：每组 600 欧元，时长 2 小时，含饮品。"
-   }
+   },
+    "tr": {
+        "name": "Özel Boğaz Yat Turu (Lüks)",
+        "tagline": "Boğaz'da 2 saatlik lüks yat turu — içecekler dahil.",
+        "duration": "2 saat",
+        "group": "Özel yat, en fazla 7–8 kişi",
+        "desc": "Boğaziçi'nde içecek ikramı dahil 2 saatlik özel lüks yat turu (Lüks seçenek: grup başı 600 €).",
+        "included": [
+            "Boğaz'da 2 saatlik özel yat turu",
+            "Profesyonel kaptan ve mürettebat",
+            "Seçkin içecek ikramı dahil",
+            "En fazla 8 misafir"
+        ],
+        "not_included": [
+            "Otel transferi"
+        ],
+        "note": "Lüks seçenek: 2 saat için grup başı 600 €, içecekler dahildir."
+    }
   }
  }
 };
@@ -935,19 +1136,124 @@ export const UI: Record<Locale, any> = {
   "sec_more": "托普卡珀皇宫与私人一日游",
   "reviews_word": "条评价",
   "badge": "卓越徽章"
+ },
+ "tr": {
+   "nav_tours": "Turlar",
+   "nav_about": "Rehberiniz",
+   "nav_reviews": "Yorumlar",
+   "nav_contact": "İletişim",
+   "booking": "Rezervasyon",
+   "book_now": "Hemen Rezerve Et",
+   "see_tours": "Turları Gör",
+   "hero_kicker": "Oligarch Travel · Tarihi Yarımada",
+   "hero_title": "İstanbul Turları",
+   "free": "Ücretsiz",
+   "tier_label": "Yat Seçeneği",
+   "tier_standard": "Standart Yat — 400 € (2 Saat)",
+   "tier_luxury": "Lüks Yat — 600 € (2 Saat, İçecekler Dahil)",
+   "hero_sub": "Lisanslı profesyonel rehber Ergin Karakoyun — Sultanahmet'te 32 yıllık deneyim. Buradan doğrudan rezervasyon yapın, Ayasofya gişesinde buluşun, teyidinizi bizzat WhatsApp'tan alın.",
+   "tours_title": "Turlar ve Biletler",
+   "tours_sub": "Gerçek turlar, şeffaf fiyatlar. Tek rezervasyona bir veya birden fazla tur ekleyebilirsiniz.",
+   "why_title": "Neden Doğrudan Rezervasyon?",
+   "why": [
+     [
+       "Aracısız — Komisyonsuz",
+       "Pazaryeri platformları yerine doğrudan rehberden rezervasyon yapın. Gördüğünüz fiyat ödeyeceğiniz fiyattır."
+     ],
+     [
+       "WhatsApp ile Kişisel Onay",
+       "Her rezervasyon doğrudan Ergin'in WhatsApp hattına düşer. Kendisi bizzat teyit eder ve buluşma noktasında sizi karşılar."
+     ],
+     [
+       "Lisanslı ve Yerel Rehber",
+       "Lisanslı profesyonel turist rehberi, Türkiye Rehberler Odası kurucu delegesi. Oligarch Tour tarafından işletilmektedir — TÜRSAB Belge No: 14988."
+     ]
+   ],
+   "about_title": "Rehberiniz: Ergin Karakoyun",
+   "about_paras": [
+     "Ergin Karakoyun, İstanbul'un Tarihi Yarımadası'nda 32 yıldır çalışan lisanslı profesyonel bir turist rehberidir. Türkiye Rehberler Odası kurucu delegesi olup Bizans ve Osmanlı mirası — Ayasofya, Topkapı Sarayı ve Sultanahmet bölgesinde uzmandır.",
+     "Ergin bizzat İngilizce, Almanca ve Çince turlar düzenlemektedir. Serbest çalışan rehber ekibi toplam dokuz dili kapsamakta olup, her tura lisanslı bir rehber liderlik eder."
+   ],
+   "about_facts": [
+     "32 yıllık rehberlik deneyimi",
+     "Lisanslı profesyonel rehber",
+     "İngilizce · Almanca · Çince rehberlik",
+     "Rehberler Odası Kurucu Delegesi"
+   ],
+   "reviews_title": "Misafirlerimiz Ne Diyor?",
+   "stats": [
+     "4,7 / 5 · TripAdvisor'da 58 yorum",
+     "5,0 · Ayasofya Özel Turu — Viator'da 25 yorum",
+     "Viator Mükemmellik Rozeti (Badge of Excellence)",
+     "4,86 · Topkapı Turu — Airbnb'de 36 yorum"
+   ],
+   "quotes": [
+     [
+       "Ergin harika ve son derece bilgili bir rehberdi. Çok eğlenceli ve yardımseverdi.",
+       "Misafir Yorumu, TripAdvisor"
+     ],
+     [
+       "İnanılmaz tarih bilgisi ve samimi anlatımıyla bizi büyüledi.",
+       "Misafir Yorumu, TripAdvisor"
+     ]
+   ],
+   "contact_title": "İletişim & Buluşma Noktası",
+   "meeting": "Bizi her gün 09:00–17:00 saatleri arasında Ayasofya gişesinde bulabilirsiniz. Tur buluşma noktası: Harem Hediyelik Eşya Dükkanı, Babı Hümayun Cd. No:8, Sultanahmet — gişeye 50 metre mesafede.",
+   "meeting_label": "Buluşma Noktası",
+   "phone_label": "WhatsApp / Telefon",
+   "email_label": "E-posta",
+   "instagram_label": "Instagram",
+   "footer_line": "Oligarch Travel — İstanbul'da Bizans ve Osmanlı turları. Oligarch Tour tarafından işletilmektedir, TÜRSAB Belge No: 14988.",
+   "legal_line": "Turlar Oligarch Tour tarafından düzenlenmektedir — TÜRSAB Seyahat Acentası Belge No: 14988.",
+   "per_person": "/ kişi",
+   "per_group": "/ grup",
+   "plus_per_person": "+ {p} / kişi",
+   "duration": "Süre",
+   "group_size": "Grup",
+   "facts": "Faydalı Bilgiler",
+   "included": "Dahil Olanlar",
+   "not_included": "Dahil Olmayanlar",
+   "date": "Tarih",
+   "guests": "Kişi Sayısı",
+   "add_to_booking": "Rezervasyona Ekle",
+   "added": "Eklendi ✓",
+   "your_booking": "Rezervasyonunuz",
+   "empty_cart": "Rezervasyon sepetiniz boş. Başlamak için bir tur ekleyin.",
+   "add_another": "Başka bir tur ekle",
+   "choose_tour": "Tur Seçin",
+   "add": "Ekle",
+   "remove": "Kaldır",
+   "total": "Toplam",
+   "deposit": "Onay için ön ödeme (%25)",
+   "remainder": "Tur günü ödenecek kalan tutar",
+   "your_name": "Adınız Soyadınız",
+   "your_phone": "Telefon Numaranız / WhatsApp",
+   "confirm": "Rezervasyonu WhatsApp ile Onayla",
+   "booking_note": "Siteden kredi kartı ödemesi alınmaz. Rezervasyon özetiniz WhatsApp üzerinden Ergin'e iletilir; kendisi bizzat teyit eder ve ön ödeme orada kararlaştırılır.",
+   "items_in_booking": "rezervasyonunuzda",
+   "view_booking": "Rezervasyonu Gör",
+   "price_from": "başlayan fiyatlarla",
+   "start_booking": "Ara",
+   "sec_popular": "En Popüler Turlar",
+   "sec_more": "Topkapı Sarayı & Özel Günlük Turlar",
+   "reviews_word": "Yorum",
+   "badge": "Mükemmellik Rozeti"
  }
 };
-export const TRUST: Record<Locale, [string, string][]> = {"en": [["4.7 / 5", "TripAdvisor · 58 reviews"], ["Badge of Excellence", "Viator"], ["4.86", "Airbnb · 36 reviews"], ["Licensed", "Professional tourist guide"], ["Founding Delegate", "Chamber of Turkey Guides"], ["32 years", "Guiding in Istanbul"]], "de": [["4,7 / 5", "TripAdvisor · 58 Bewertungen"], ["Badge of Excellence", "Viator"], ["4,86", "Airbnb · 36 Bewertungen"], ["Lizenziert", "Professioneller Touristenguide"], ["Gründungsdelegierter", "Kammer der türkischen Guides"], ["32 Jahre", "Führungen in Istanbul"]], "zh": [["4.7 / 5", "TripAdvisor · 58 条评价"], ["卓越徽章", "Viator"], ["4.86", "Airbnb · 36 条评价"], ["持证导游", "专业旅游导游"], ["创始代表", "土耳其导游协会"], ["32 年", "伊斯坦布尔导览经验"]]};
+export const TRUST: Record<Locale, [string, string][]> = {"en": [["4.7 / 5", "TripAdvisor · 58 reviews"], ["Badge of Excellence", "Viator"], ["4.86", "Airbnb · 36 reviews"], ["Licensed", "Professional tourist guide"], ["Founding Delegate", "Chamber of Turkey Guides"], ["32 years", "Guiding in Istanbul"]], "de": [["4,7 / 5", "TripAdvisor · 58 Bewertungen"], ["Badge of Excellence", "Viator"], ["4,86", "Airbnb · 36 Bewertungen"], ["Lizenziert", "Professioneller Touristenguide"], ["Gründungsdelegierter", "Kammer der türkischen Guides"], ["32 Jahre", "Führungen in Istanbul"]], "zh": [["4.7 / 5", "TripAdvisor · 58 条评价"], ["卓越徽章", "Viator"], ["4.86", "Airbnb · 36 条评价"], ["持证导游", "专业旅游导游"], ["创始代表", "土耳其导游协会"], ["32 年", "伊斯坦布尔导览经验"]],
+ "tr": [["4,7 / 5", "TripAdvisor · 58 yorum"], ["Mükemmellik Rozeti", "Viator"], ["4,86", "Airbnb · 36 yorum"], ["Lisanslı", "Profesyonel Turist Rehberi"], ["Kurucu Delege", "Türkiye Rehberler Odası"], ["32 Yıl", "İstanbul'da Rehberlik Deneyimi"]]};
 export const RATINGS: Record<string, any> = {
  "hs-ticket": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
-  "zh": "4.7（58 条评价）· TripAdvisor"
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "5,0 (25 yorum) · Viator"
  },
  "hs-guided": {
   "en": "5.0 (25 reviews) · Viator",
   "de": "5,0 (25 Bewertungen) · Viator",
-  "zh": "5.0（25 条评价）· Viator"
+  "zh": "5.0（25 条评价）· Viator",
+  "tr": "4,86 (36 yorum) · Airbnb"
  },
  "hs-private": {
   "en": "5.0 (25 reviews) · Viator",
@@ -956,39 +1262,46 @@ export const RATINGS: Record<string, any> = {
   "badge": {
    "en": "Badge of Excellence",
    "de": "Badge of Excellence",
-   "zh": "卓越徽章"
+   "zh": "卓越徽章",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
   }
  },
  "topkapi-private": {
   "en": "4.86 (36 reviews) · Airbnb",
   "de": "4,86 (36 Bewertungen) · Airbnb",
-  "zh": "4.86（36 条评价）· Airbnb"
+  "zh": "4.86（36 条评价）· Airbnb",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
  },
  "topkapi-night": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
-  "zh": "4.7（58 条评价）· TripAdvisor"
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "4,9 (42 yorum) · TripAdvisor"
  },
  "istanbul-day": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
-  "zh": "4.7（58 条评价）· TripAdvisor"
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "5,0 · Misafir Favorisi"
  }
 ,
  "bazaars-tour": {
   "en": "4.9 (42 reviews) · TripAdvisor",
   "de": "4,9 (42 Bewertungen) · TripAdvisor",
-  "zh": "4.9（42 条评价）· TripAdvisor"
+  "zh": "4.9（42 条评价）· TripAdvisor",
+  "tr": "5,0 (38 yorum) · TripAdvisor"
  },
  "traditional-handicrafts": {
   "en": "5.0 · Guest Favorite",
   "de": "5,0 · Gäste-Favorit",
-  "zh": "5.0 · 游客最爱体验"
+  "zh": "5.0 · 游客最爱体验",
+  "tr": "5,0 (38 yorum) · TripAdvisor"
  },
  "bosphorus-yacht": {
   "en": "5.0 (38 reviews) · TripAdvisor",
   "de": "5,0 (38 Bewertungen) · TripAdvisor",
-  "zh": "5.0（38 条评价）· TripAdvisor"
+  "zh": "5.0（38 条评价）· TripAdvisor",
+  "tr": "5,0 (38 yorum) · TripAdvisor"
  },
  "bosphorus-yacht-standard": {
   "en": "5.0 (38 reviews) · TripAdvisor",
@@ -1006,37 +1319,43 @@ export const RATINGS: Record<string, any> = {
   }
  }
 };
-export const MEETING_DEFAULT: Record<Locale, string> = {"en": "Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet", "de": "Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet", "zh": "Harem 纪念品店，Babı Hümayun Cd. No:8, Sultanahmet"};
+export const MEETING_DEFAULT: Record<Locale, string> = {"en": "Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet", "de": "Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet", "zh": "Harem 纪念品店，Babı Hümayun Cd. No:8, Sultanahmet", "tr": "Harem Hediyelik Eşya Dükkanı, Babı Hümayun Cd. No:8, Sultanahmet"};
 export const MEETING_OVERRIDE: Record<string, Record<Locale, string>> = {
   'bazaars-tour': {
     en: 'Beyazıt Square / Grand Bazaar Gate 1 or Sultanahmet',
     de: 'Beyazıt-Platz / Großer Basar Tor 1 oder Sultanahmet',
     zh: '贝亚泽特广场/大巴扎1号门或苏丹艾哈迈德',
+    tr: "Beyazıt Meydanı / Kapalıçarşı 1 No'lu Kapı veya Sultanahmet",
   },
   'traditional-handicrafts': {
     en: 'Arranged with your guide in Sultanahmet',
     de: 'Wird mit Ihrem Guide in Sultanahmet abgestimmt',
     zh: '由您的导游在苏丹艾哈迈德区当面安排',
+    tr: "Sultanahmet'te rehberinizle kararlaştırılır",
   },
   'bosphorus-yacht': {
     en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
     de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
     zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
   },
   'bosphorus-yacht-standard': {
     en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
     de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
     zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
   },
   'bosphorus-yacht-luxury': {
     en: 'Karaköy or Kabataş Pier (confirmed on WhatsApp)',
     de: 'Anleger Karaköy oder Kabataş (per WhatsApp bestätigt)',
     zh: '卡拉柯伊（Karaköy）或卡巴塔什（Kabataş）码头（通过 WhatsApp 确认）',
+    tr: 'Karaköy veya Kabataş İskelesi (WhatsApp ile teyit edilir)',
   },
   'topkapi-night': {
     en: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
     de: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
     zh: 'Hürrem Sultan Hamamı 咖啡馆，Sultanahmet',
+    tr: 'Hürrem Sultan Hamamı Cafe, Sultanahmet',
   },
 };
 export function meetingPoint(locale: Locale, tourId: string): string {

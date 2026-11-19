@@ -5,9 +5,9 @@ import Logo from './Logo';
 import { useCart } from './CartProvider';
 import { LOCALES, type Locale } from '@/data/tours';
 
-const LANG_LABEL: Record<Locale, string> = { en: 'EN', de: 'DE', zh: '中文' };
-const LANG_NAME: Record<Locale, string> = { en: 'English', de: 'Deutsch', zh: '中文' };
-const LANG_FLAG: Record<Locale, string> = { en: '🇬🇧', de: '🇩🇪', zh: '🇨🇳' };
+const LANG_LABEL: Record<Locale, string> = { en: 'EN', de: 'DE', zh: '中文', tr: 'TR' };
+const LANG_NAME: Record<Locale, string> = { en: 'English', de: 'Deutsch', zh: '中文', tr: 'Türkçe' };
+const LANG_FLAG: Record<Locale, string> = { en: '🇬🇧', de: '🇩🇪', zh: '🇨🇳', tr: '🇹🇷' };
 
 export default function Header({
   locale,
