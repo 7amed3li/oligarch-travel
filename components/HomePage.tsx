@@ -66,20 +66,26 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
       </section>
 
       <section id="about">
-        <div className="wrap about-grid">
-          <img src="/img/portrait.jpg" alt="Ergin Karakoyun, licensed tourist guide" />
-          <div>
+        <div className="wrap ab">
+          <div className="ab-photo">
+            <img src="/img/portrait.jpg" alt="Ergin Karakoyun, licensed tourist guide" />
+            <div className="ab-badge">
+              <strong>{TRUST[locale][TRUST[locale].length - 1][0]}</strong>
+              <span>{TRUST[locale][TRUST[locale].length - 1][1]}</span>
+            </div>
+          </div>
+          <div className="ab-body">
             <h2 className="sec">{u.about_title}</h2>
             {u.about_paras.map((p: string) => (
-              <p key={p.slice(0, 24)}>{p}</p>
+              <p className="ab-text" key={p.slice(0, 24)}>
+                {p}
+              </p>
             ))}
-            <div className="chips">
+            <ul className="ab-facts">
               {u.about_facts.map((f: string) => (
-                <span className="chip" key={f}>
-                  {f}
-                </span>
+                <li key={f}>{f}</li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
