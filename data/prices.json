@@ -13,6 +13,7 @@
     { "id": "full-day-istanbul", "currency": "EUR", "perPerson": 0, "perGroup": 235, "minGuests": 1, "maxGuests": 8 },
     { "id": "bazaars-tour", "currency": "EUR", "perPerson": 0, "perGroup": 80, "minGuests": 1, "maxGuests": 8 },
     { "id": "bosphorus-yacht", "currency": "EUR", "perPerson": 0, "perGroup": 400, "luxuryGroup": 600, "minGuests": 1, "maxGuests": 8 },
+    { "id": "topkapi-night", "currency": "EUR", "perPerson": 0, "perGroup": 0, "minGuests": 1, "maxGuests": 8 },
     { "id": "traditional-handicrafts", "currency": "EUR", "perPerson": 0, "perGroup": 0, "minGuests": 1, "maxGuests": 8 }
   ]
 }
