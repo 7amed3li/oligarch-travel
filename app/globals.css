@@ -1153,3 +1153,19 @@ html.splash-done .ss-root{display:none!important}
 .tmfoot-add{background:var(--accent-deep);color:#fff;border:0;border-radius:9px;padding:12px 20px;font-size:15.5px;font-weight:800;cursor:pointer;white-space:nowrap}
 .tmfoot-add:hover{background:var(--accent-deep-hover)}
 .tmfoot-book{background:none;border:0;color:var(--accent-deep);font-size:13.5px;font-weight:700;cursor:pointer;padding:2px}
+
+/* ===== Fixed bottom bar — Menu · Booking · WhatsApp · Meeting Point (Ergin, 2026-11-20) ===== */
+.bottombar{display:none}
+@media(max-width:900px){
+  .bottombar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:85;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom)}
+  .bb-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px 7px;text-decoration:none;color:var(--ink);font-size:11px;font-weight:600;line-height:1.15}
+  .bb-item:active{color:var(--accent-deep)}
+  .bb-ic{position:relative;display:inline-flex}
+  .bb-badge{position:absolute;top:-6px;right:-10px;background:var(--accent-deep);color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  body{padding-bottom:58px}
+  .wa-float-wrap{bottom:76px}
+}
+.lang-panel button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:none;background:none;border-radius:8px;font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.lang-panel button:hover{background:var(--mist)}
+.lang-panel button.on{font-weight:800}
+.mb-field select{padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:15px;background:#fff;color:var(--ink)}
