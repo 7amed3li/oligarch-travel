@@ -6,7 +6,7 @@ import path from 'path';
 // and are reflected site-wide (pages are rendered dynamically).
 export interface TicketPrice {
   amount: number; // museum's normal ticket price, in `currency`
-  currency: string; // 'EUR' | 'TRY'
+  currency: string; // 'EUR'
   premium: number; // skip-the-line premium per ticket, always EUR
 }
 export interface TourPrice {

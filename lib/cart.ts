@@ -3,9 +3,8 @@ import type { TourPrice } from './prices';
 // Pure cart math — shared by client components and tests.
 // Restaurant model (Ergin, 2026-11-19): every tour is ONE flat price per
 // group. Entrance tickets are an optional per-person add-on: the museum's
-// normal price + a €2.50 skip-the-line premium per ticket. A line can span
-// two currencies (EUR group price + TRY tickets + EUR premium), so totals
-// are computed per currency component.
+// normal price + a €2.50 skip-the-line premium per ticket. Totals are
+// computed per currency component (all tours and tickets priced in EUR).
 export interface CartItem {
   tourId: string;
   date: string; // yyyy-mm-dd or ''
@@ -67,7 +66,7 @@ export function cartTotals(
   return out;
 }
 
-const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$', TRY: '₺' };
+const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$' };
 export function sym(currency: string): string {
   return SYMBOLS[currency] || currency + ' ';
 }
@@ -83,7 +82,7 @@ export function fmtMoney(currency: string, n: number): string {
   return sym(currency) + s;
 }
 
-// What one skip-the-line ticket costs per person, e.g. "€27.50" or "₺2,750 + €2.50".
+// What one skip-the-line ticket costs per person, e.g. "€27.50" or "€52.50".
 export function ticketPerPersonDisplay(tp: TourPrice): string {
   if (!tp.ticket) return '';
   const t = tp.ticket;
