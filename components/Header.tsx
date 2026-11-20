@@ -142,7 +142,7 @@ export default function Header({
               className="mobile-wa-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              💬 WhatsApp: +90 555 325 55 65
+              WhatsApp: +90 555 325 55 65
             </a>
           </div>
         </nav>

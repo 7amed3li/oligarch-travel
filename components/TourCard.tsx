@@ -52,11 +52,11 @@ export default function TourCard({
     const y = e.clientY - rect.top;
     setMousePos({ x, y });
 
-    // Subtle 3D tilt calculation (dqnamo & React Bits pattern)
+    // Subtle 3D tilt
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotX = ((y - centerY) / centerY) * -3.2;
-    const rotY = ((x - centerX) / centerX) * 3.2;
+    const rotX = ((y - centerY) / centerY) * -3;
+    const rotY = ((x - centerX) / centerX) * 3;
     setRotation({ x: rotX, y: rotY });
   };
 
@@ -69,15 +69,6 @@ export default function TourCard({
     setRotation({ x: 0, y: 0 });
   };
 
-  const fastTrackText =
-    locale === 'zh'
-      ? '含免排队'
-      : locale === 'de'
-      ? 'Skip-the-Line'
-      : locale === 'tr'
-      ? 'Hızlı Giriş'
-      : 'Fast-Track';
-
   return (
     <Link
       ref={cardRef}
@@ -88,60 +79,32 @@ export default function TourCard({
       onMouseLeave={handleMouseLeave}
       style={{
         transform: isHovered
-          ? `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(-8px)`
+          ? `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(-6px)`
           : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)',
       }}
     >
-      {/* React Bits Interactive Radial Spotlight Sheen */}
+      {/* Radial Spotlight Sheen */}
       <div
         className="tcard-spotlight"
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(420px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 85, 51, 0.08), transparent 70%)`,
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 85, 51, 0.08), transparent 70%)`,
         }}
       />
 
-      {/* Card Image Area with Overlays */}
+      {/* Card Image */}
       <div className="tcard-media">
         <img src={`/img/${t.img}`} alt={c.name} loading="lazy" />
-        <div className="tcard-media-gradient" />
-
-        {/* Floating Top Badges */}
-        <div className="tcard-top-badges">
-          {r?.badge ? (
-            <span className="tcard-badge-excellence">
-              <span className="tcard-badge-icon">★</span>
-              <span>{r.badge[locale]}</span>
-            </span>
-          ) : (
-            <span />
-          )}
-
-          {price?.ticket ? (
-            <span className="tcard-badge-ticket">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-              <span>{fastTrackText}</span>
-            </span>
-          ) : null}
-        </div>
-
-        {/* Floating Duration Chip */}
-        {c.duration ? (
-          <div className="tcard-duration-chip">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>{c.duration}</span>
-          </div>
+        {r?.badge ? (
+          <span className="tcard-badge-excellence">
+            {r.badge[locale]}
+          </span>
         ) : null}
       </div>
 
       {/* Card Content Area */}
       <div className="tcard-content">
-        {/* Rating Row */}
+        {/* Rating Line */}
         {r && r[locale] ? (
           <div className="tcard-rating-row">
             <span className="tcard-star">★</span>
@@ -152,21 +115,22 @@ export default function TourCard({
         {/* Tour Title */}
         <h3 className="tcard-title">{c.name}</h3>
 
-        {/* Tour Specs / Group Size */}
-        <div className="tcard-group-row">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          <span>{c.group}</span>
+        {/* Meta: Duration and Group */}
+        <div className="tcard-meta-line">
+          {c.duration} · {c.group}
         </div>
 
-        {/* Clean Hairline Separator */}
+        {/* Skip the line hint if available */}
+        {price?.ticket && u.tickets_available ? (
+          <div className="tcard-ticket-hint">
+            {u.tickets_available}
+          </div>
+        ) : null}
+
+        {/* Fine Hairline Separator */}
         <div className="tcard-divider" />
 
-        {/* Card Footer: Price Stack + The Kitchen dqnamo 3D Button */}
+        {/* Card Footer: Price Stack + Tactile 3D Button */}
         <div className="tcard-footer">
           <div className="tcard-price-stack">
             {isFree ? (
