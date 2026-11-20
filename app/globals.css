@@ -562,3 +562,7 @@ a.ft-row:hover .ft-icon{background:#FF5533;border-color:#FF5533;transform:transl
 .ft-contact a.ft-row .ft-b-soft{color:#E3EAF5}
 a.rv-stat-link{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 a.rv-stat-link:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(26,43,73,.3);border-color:#CBD5E1}
+
+/* Booking actions always visible */
+.book-actions{position:sticky;bottom:0;z-index:20;margin:16px -20px -20px;padding:14px 20px 18px;background:linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 22%);border-radius:0 0 var(--radius) var(--radius)}
+.book-actions button{display:block}

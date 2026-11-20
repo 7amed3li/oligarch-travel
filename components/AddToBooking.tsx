@@ -210,18 +210,20 @@ export default function AddToBooking({
         </div>
       )}
 
-      <button type="submit">{added ? u.added : u.add_to_booking}</button>
-      <button
-        type="button"
-        className="btn ghost"
-        style={{ marginTop: 10 }}
-        onClick={() => {
-          doAdd();
-          router.push(`/${locale}/booking`);
-        }}
-      >
-        {u.book_now}
-      </button>
+      <div className="book-actions">
+        <button type="submit">{added ? u.added : u.add_to_booking}</button>
+        <button
+          type="button"
+          className="btn ghost"
+          style={{ marginTop: 10 }}
+          onClick={() => {
+            doAdd();
+            router.push(`/${locale}/booking`);
+          }}
+        >
+          {u.book_now}
+        </button>
+      </div>
     </form>
   );
 }
