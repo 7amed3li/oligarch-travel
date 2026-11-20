@@ -13,23 +13,12 @@ import {
   UI,
   meetingPoint,
   type Locale,
+  TOUR_GALLERY,
 } from '@/data/tours';
 import { getPrices, priceOf, pricesById } from '@/lib/prices';
 import { priceDisplay, type DispCur } from '@/lib/cart';
 
 export const dynamic = 'force-dynamic';
-
-const TOUR_GALLERY: Record<string, string[]> = {
-  'hagia-sophia': ['tour-hs-guided.webp', 'tour-hs-private.webp', 'tour-hs-ticket.webp'],
-  'topkapi-palace': ['tour-topkapi-private.webp', 'tour-topkapi-night.webp'],
-  'full-day-istanbul': [
-    'tour-istanbul-day.webp',
-    'tour-hs-private.webp',
-    'tour-topkapi-private.webp',
-    'tour-bluemosque.webp',
-  ],
-  'bosphorus-yacht': ['tour-bosphorus-yacht.webp', 'tour-topkapi-night.webp'],
-};
 
 const COMPANION_IMG_POS: Record<string, string> = {
   'hagia-sophia': 'center 58%',

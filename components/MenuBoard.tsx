@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
-import { RATINGS, SEASONAL_TOURS, TOUR_ORDER, TOURS, meetingPoint, type Locale } from '@/data/tours';
+import { RATINGS, SEASONAL_TOURS, TOUR_GALLERY, TOUR_GROUPS, TOURS, meetingPoint, type Locale } from '@/data/tours';
 import { GUIDE_COPY } from '@/data/guide';
 import type { TourPrice } from '@/lib/prices';
 import {
@@ -74,6 +74,17 @@ export default function MenuBoard({
     setTimeout(() => setJustAdded((cur) => (cur === tid ? null : cur)), 2200);
   };
 
+  const groupedItems: ({ type: 'group'; key: string } | { type: 'tour'; id: string })[] = [];
+  for (const g of TOUR_GROUPS) {
+    const ids = [...g.ids].sort((a, b) => {
+      const pa = byId[a] ? byId[a].perGroup / (RATES[byId[a].currency] || 1) : 0;
+      const pb = byId[b] ? byId[b].perGroup / (RATES[byId[b].currency] || 1) : 0;
+      return pb - pa;
+    });
+    groupedItems.push({ type: 'group', key: g.key });
+    for (const id of ids) groupedItems.push({ type: 'tour', id });
+  }
+
   return (
     <div className="mboard">
       <div className="mb-bar">
@@ -135,13 +146,15 @@ export default function MenuBoard({
       </div>
 
       <div className="mlist">
-        {[...TOUR_ORDER]
-          .sort((a, b) => {
-            const pa = byId[a] ? byId[a].perGroup / (RATES[byId[a].currency] || 1) : 0;
-            const pb = byId[b] ? byId[b].perGroup / (RATES[byId[b].currency] || 1) : 0;
-            return pb - pa;
-          })
-          .map((tid) => {
+        {groupedItems.map((item) => {
+          if (item.type === 'group') {
+            return (
+              <h3 key={item.key} className="mb-group-title">
+                {u[item.key]}
+              </h3>
+            );
+          }
+          const tid = item.id;
           const t = TOURS[tid];
           const c = t.content[locale];
           const tp = byId[tid];
@@ -169,11 +182,6 @@ export default function MenuBoard({
                 <p className="mrow-meta">
                   {c.duration} · {c.group}
                 </p>
-                {tp?.ticket ? (
-                  <p className="mrow-ticket">
-                    {u.add_ticket}: {ticketPerPersonDisplay(tp)} {u.per_person}
-                  </p>
-                ) : null}
                 {covered ? (
                   <p className="mrow-covered">{u.covered_full_day}</p>
                 ) : count > 0 ? (
@@ -225,8 +233,8 @@ export default function MenuBoard({
           loading="lazy"
         />
         <div className="whois-body">
-          <h3 className="whois-title">{u.who_is}</h3>
-          <p className="whois-line">{GUIDE_COPY[locale].overline}</p>
+          <h3 className="whois-title">{u.discover_title || 'Discover Istanbul'}</h3>
+          <p className="whois-line">{u.discover_sub}</p>
           <span className="whois-link">{u.nav_about} →</span>
         </div>
       </Link>
@@ -285,6 +293,8 @@ function TourModal({
   const [tier, setTier] = useState<'standard' | 'luxury'>('standard');
   const [ticket, setTicket] = useState(false);
   const [skip, setSkip] = useState(false);
+  const [gi, setGi] = useState(0);
+  const gallery = TOUR_GALLERY[tid] ?? [t.img];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -329,11 +339,26 @@ function TourModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="tmodal-head">
-          <img src={`/img/${t.img}`} alt={c.name} />
+          <img src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`} alt={c.name} />
           <button type="button" className="tmodal-x" aria-label="Close" onClick={onClose}>
             ×
           </button>
         </div>
+        {gallery.length > 1 && (
+          <div className="tm-thumbs">
+            {gallery.map((g, i) => (
+              <button
+                key={g}
+                type="button"
+                className={i === gi ? 'tm-thumb active' : 'tm-thumb'}
+                onClick={() => setGi(i)}
+                aria-label={`Photo ${i + 1}`}
+              >
+                <img src={`/img/${g}`} alt="" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
         <div className="tmodal-body">
           <div className="mrow-top">
             <h3 className="tmodal-name">{c.name}</h3>

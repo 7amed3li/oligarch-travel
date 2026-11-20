@@ -1188,3 +1188,16 @@ html.splash-done .ss-root{display:none!important}
 /* ===== Menu bar heading + bold hint (Ergin, 2026-11-20) ===== */
 .mb-title{width:100%;font-size:19px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:2px}
 .mb-hint{font-weight:700;color:var(--ink)}
+
+/* ===== Rev 7: hero up + livelier video, tour groups, popup gallery, legal strip ===== */
+.hero-shade{background:linear-gradient(180deg,rgba(16,26,46,.26),rgba(16,26,46,.44))}
+.hero-content{padding-top:46px;padding-bottom:104px}
+.mb-group-title{font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:22px 2px 8px}
+.mlist .mb-group-title:first-child{margin-top:2px}
+.tm-thumbs{display:flex;gap:6px;padding:10px 18px 0;flex-wrap:wrap}
+.tm-thumb{padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;background:none;cursor:pointer;opacity:.7;line-height:0}
+.tm-thumb.active{border-color:var(--accent);opacity:1}
+.tm-thumb img{width:58px;height:44px;object-fit:cover;display:block}
+.whois-card{border:2px solid var(--accent-deep)}
+.legal-strip{background:var(--ink);color:#d7e1ee;padding:24px 0;font-size:14.5px;line-height:1.55;text-align:center}
+.mrow-body{flex:1;min-width:0}

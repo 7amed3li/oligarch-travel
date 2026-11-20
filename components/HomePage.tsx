@@ -165,6 +165,11 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           </div>
         </div>
       </section>
+      <section className="legal-strip">
+        <div className="wrap">
+          <p>{u.legal_line}</p>
+        </div>
+      </section>
     </>
   );
 }
