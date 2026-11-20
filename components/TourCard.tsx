@@ -6,6 +6,15 @@ import { RATINGS, TOURS, type Locale } from '@/data/tours';
 import { fmtMoney } from '@/lib/cart';
 import type { TourPrice } from '@/lib/prices';
 
+const IMG_POS: Record<string, string> = {
+  'hagia-sophia': 'center 58%',
+  'topkapi-palace': 'center 35%',
+  'basilica-cistern': 'center 50%',
+  'sultanahmet-hippodrome': 'center 20%',
+  'full-day-istanbul': 'center 40%',
+  'bazaars-tour': 'center 20%',
+};
+
 export default function TourCard({
   locale,
   tid,
@@ -79,11 +88,13 @@ export default function TourCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{
-        transform: isHovered
-          ? `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(-6px)`
-          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)',
-      }}
+      style={
+        isHovered
+          ? {
+              transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(-6px)`,
+            }
+          : undefined
+      }
     >
       {/* Radial Spotlight Sheen */}
       <div
@@ -96,7 +107,13 @@ export default function TourCard({
 
       {/* Card Image */}
       <div className="tcard-media">
-        <img src={`/img/${t.img}`} alt={c.name} loading="lazy" decoding="async" />
+        <img
+          src={`/img/${t.img}`}
+          alt={c.name}
+          loading="lazy"
+          decoding="async"
+          style={IMG_POS[tid] ? { objectPosition: IMG_POS[tid] } : undefined}
+        />
         {r?.badge ? (
           <span className="tcard-badge-excellence">
             {r.badge[locale]}

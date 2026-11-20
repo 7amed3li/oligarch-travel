@@ -147,7 +147,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .tcard-media {
   position: relative;
   width: 100%;
-  height: 220px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: #F1F5F9;
 }
@@ -156,8 +156,20 @@ h2.sec{font-size:29px;margin-bottom:6px}
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .tcard-luxury {
+    transform-style: flat;
+    will-change: auto;
+  }
+  .tcard-media img {
+    will-change: auto;
+  }
 }
 
 .tcard-luxury:hover .tcard-media img {
@@ -476,7 +488,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .td-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .td-more-card{display:flex;flex-direction:column;background:#fff;border:1px solid #D9E2EC;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .td-more-card:hover{transform:translateY(-4px);border-color:#94A3B8;box-shadow:0 16px 32px -14px rgba(26,43,73,.18)}
-.td-more-media{position:relative;aspect-ratio:16/10;background:#F1F5F9;overflow:hidden}
+.td-more-media{position:relative;aspect-ratio:3 / 2;background:#F1F5F9;overflow:hidden}
 .td-more-media img{width:100%;height:100%;object-fit:cover;display:block}
 .td-more-dur{position:absolute;left:12px;bottom:12px;background:rgba(14,25,46,.84);color:#fff;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px}
 .td-more-body{display:flex;flex-direction:column;flex:1;gap:8px;padding:16px 18px 18px}
@@ -943,7 +955,8 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .trust-val{font-size:14.5px}
   .trust-lbl{font-size:11.5px}
   .grid{gap:18px;margin-top:20px}
-  .tcard-media{height:196px}
+  .tcard-media{aspect-ratio:4/3}
+  .td-more-media{aspect-ratio:4/3}
   .tcard-content{padding:16px}
   .tcard-title{font-size:17.5px}
   .tcard-amount{font-size:19px}

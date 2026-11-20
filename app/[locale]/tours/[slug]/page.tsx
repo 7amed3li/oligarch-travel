@@ -29,6 +29,15 @@ const TOUR_GALLERY: Record<string, string[]> = {
   'bosphorus-yacht': ['tour-bosphorus-yacht.webp', 'tour-topkapi-night.webp'],
 };
 
+const COMPANION_IMG_POS: Record<string, string> = {
+  'hagia-sophia': 'center 58%',
+  'topkapi-palace': 'center 35%',
+  'basilica-cistern': 'center 50%',
+  'sultanahmet-hippodrome': 'center 20%',
+  'full-day-istanbul': 'center 40%',
+  'bazaars-tour': 'center 20%',
+};
+
 const PAGE_COPY: Record<
   Locale,
   {
@@ -374,7 +383,13 @@ export default async function TourPage({
               return (
                 <Link key={id} href={`/${loc}/tours/${id}`} className="td-more-card">
                   <div className="td-more-media">
-                    <img src={`/img/${ct.img}`} alt={cc.name} loading="lazy" decoding="async" />
+                    <img
+                      src={`/img/${ct.img}`}
+                      alt={cc.name}
+                      loading="lazy"
+                      decoding="async"
+                      style={COMPANION_IMG_POS[id] ? { objectPosition: COMPANION_IMG_POS[id] } : undefined}
+                    />
                     <span className="td-more-dur">{cc.duration}</span>
                   </div>
                   <div className="td-more-body">
