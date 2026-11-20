@@ -63,7 +63,7 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
                 <ExternalArrow />
               </a>
 
-              <a className="ft-row" href="mailto:erginkarakoyun@gmail.com">
+              <a className="ft-row" href={`/${locale}/guide#contact`}>
                 <IconTile>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="5" width="18" height="14" rx="2.5" />
@@ -71,8 +71,8 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
                   </svg>
                 </IconTile>
                 <span className="ft-row-text">
-                  <small>{u.email_label}</small>
-                  <b>erginkarakoyun@gmail.com</b>
+                  <small>{u.nav_contact}</small>
+                  <b>{u.footer_form}</b>
                 </span>
                 <ExternalArrow />
               </a>
