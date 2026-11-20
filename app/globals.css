@@ -824,3 +824,32 @@ a.ft-row:hover .ft-icon{background:#FF5533;border-color:#FF5533;transform:transl
   .cart-link{padding:7px 10px;font-size:12.5px;min-height:38px;display:inline-flex;align-items:center}
   .mobile-toggle{width:38px;height:38px;padding:0}
 }
+
+/* Smart Splash — Split Architectural Doors */
+html.splash-done .ss-root{display:none!important}
+@keyframes ssFailSafe{0%,90%{opacity:1;visibility:visible;pointer-events:auto}100%{opacity:0;visibility:hidden;pointer-events:none}}
+.ss-root{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;animation:ssFailSafe 3.4s ease forwards}
+.ss-door{position:absolute;top:0;bottom:0;width:50.5%;background:linear-gradient(160deg,#1A2B49 0%,#101C33 100%);will-change:transform}
+.ss-door-left{left:0;border-right:1px solid rgba(255,255,255,.08)}
+.ss-door-right{right:0;border-left:1px solid rgba(255,255,255,.08)}
+.ss-door::before{content:"";position:absolute;top:18px;bottom:18px;border:1px solid rgba(255,255,255,.07);pointer-events:none}
+.ss-door-left::before{left:18px;right:0;border-right:0;border-radius:6px 0 0 6px}
+.ss-door-right::before{right:18px;left:0;border-left:0;border-radius:0 6px 6px 0}
+.ss-seam{position:absolute;top:0;bottom:0;left:50%;width:1px;transform:translateX(-50%);background:rgba(255,255,255,.1);pointer-events:none;z-index:2}
+.ss-seam-fill{position:absolute;top:50%;left:0;width:100%;height:42%;transform:translateY(-50%) scaleY(0);transform-origin:center;background:linear-gradient(180deg,transparent,#FF5533,transparent)}
+.ss-center{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 28px;text-align:center;background:radial-gradient(circle,rgba(16,28,51,.92) 45%,transparent 78%);pointer-events:none}
+.ss-arch-svg{display:block;width:44px;height:52px}
+.ss-wordmark{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ss-wordmark strong{font-size:20px;font-weight:800;letter-spacing:.26em;color:#fff;padding-left:.26em}
+.ss-wordmark small{font-size:10px;font-weight:700;letter-spacing:.42em;color:#93A3BC;padding-left:.42em}
+.ss-loc{font-family:ui-monospace,'Cascadia Mono','SFMono-Regular',Menlo,monospace;font-size:10.5px;font-weight:700;letter-spacing:.18em;color:#8294B0;text-transform:uppercase;margin-top:4px}
+@media(max-width:480px){
+  .ss-door::before{top:12px;bottom:12px}
+  .ss-door-left::before{left:12px}
+  .ss-door-right::before{right:12px}
+  .ss-arch-svg{width:38px;height:45px}
+  .ss-wordmark strong{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ss-root{display:none!important}
+}
