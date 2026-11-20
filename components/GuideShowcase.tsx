@@ -213,7 +213,7 @@ export default function GuideShowcase({
               </div>
               <div className="gs-coord-plate">
                 <div className="gs-coord-left">
-                  <span className="gs-coord-num">41.0086° N · 28.9802° E</span>
+                  <span className="gs-coord-num">41.0065° N · 28.9802° E</span>
                   <span className="gs-coord-place">{copy.coordPlace}</span>
                 </div>
                 <span className="gs-coord-seal">TÜRSAB 14988</span>
