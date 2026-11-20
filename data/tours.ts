@@ -747,12 +747,13 @@ export const UI: Record<Locale, any> = {
   "hero_sub": "Your licensed guide Ergin Karakoyun — 32 years in Sultanahmet — leads every tour personally; all tours are organised and tickets are sold by Oligarch Tour, TÜRSAB Travel Agency Licence No. 14988. Book direct here and get your confirmation personally on WhatsApp.",
   "tours_title": "Istanbul Tours",
   "menu_word": "Menu",
-  "menu_hint": "First pick the date and the number of guests — then add tours like dishes from a menu. Ticket prices are calculated automatically.",
+  "menu_hint": "Select first: tour date, number of guests and tour language — then add your tours below. Ticket prices are calculated automatically.",
+  "select_details": "Please select tour details",
   "full_details": "Full details",
   "covered_full_day": "Already covered by your Full-Day tour",
   "fullday_note": "The Full-Day tour covers the single-site tours — adding it removes them from your booking automatically.",
   "skip_add": "Add skip-the-line ticket",
-  "tours_sub": "Pick like from a menu: every tour is one flat price for your group (up to 8 people). Need entrance tickets? Add them per person when you book — always the skip-the-line ticket at the normal price + €2.50.",
+  "tours_sub": "Every tour is one flat price for your group (up to 8 people). Need entrance tickets? Add them per person when you book — always the skip-the-line ticket at the normal price + €2.50.",
   "why_title": "Why book direct",
   "why": [
    [
@@ -798,7 +799,7 @@ export const UI: Record<Locale, any> = {
    ]
   ],
   "contact_title": "Contact & meeting point",
-  "meeting": "You will find us at the Hagia Sophia ticket office every day, 09:00–17:00. Tours meet at the Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet — 50 metres from the ticket office.",
+  "meeting": "You will find us every day, 09:00–17:00, in front of the Four Seasons Hotel Istanbul at Sultanahmet, Tevkifhane Sk. No:1 — in the heart of the Old Town, a few minutes from Hagia Sophia and the Blue Mosque.",
   "meeting_label": "Meeting point",
   "phone_label": "WhatsApp / Phone",
   "email_label": "Email",
@@ -868,12 +869,13 @@ export const UI: Record<Locale, any> = {
   "hero_sub": "Ihr lizenzierter Guide Ergin Karakoyun — 32 Jahre in Sultanahmet — führt jede Tour persönlich; organisiert werden alle Touren und verkauft alle Tickets von Oligarch Tour, TÜRSAB-Reisebürolizenz Nr. 14988. Buchen Sie direkt hier und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
   "tours_title": "Istanbul-Touren",
   "menu_word": "Menü",
-  "menu_hint": "Zuerst Datum und Gästezahl wählen — dann Touren wie Gerichte von einer Speisekarte hinzufügen. Ticketpreise werden automatisch berechnet.",
+  "menu_hint": "Wählen Sie zuerst: Tourdatum, Gästezahl und Tour-Sprache — dann fügen Sie unten Ihre Touren hinzu. Ticketpreise werden automatisch berechnet.",
+  "select_details": "Bitte wählen Sie die Tourdetails",
   "full_details": "Alle Details",
   "covered_full_day": "Bereits durch Ihre Ganztagestour abgedeckt",
   "fullday_note": "Die Ganztagestour umfasst die einzelnen Sehenswürdigkeiten — beim Hinzufügen werden sie automatisch aus Ihrer Buchung entfernt.",
   "skip_add": "Skip-the-Line-Ticket hinzufügen",
-  "tours_sub": "Wählen Sie wie von einer Speisekarte: Jede Tour hat einen Festpreis für Ihre Gruppe (bis 8 Personen). Eintrittstickets gefällig? Fügen Sie sie bei der Buchung pro Person hinzu — immer Skip-the-Line zum Normalpreis + €2,50.",
+  "tours_sub": "Jede Tour hat einen Festpreis für Ihre Gruppe (bis 8 Personen). Eintrittstickets gefällig? Fügen Sie sie bei der Buchung pro Person hinzu — immer Skip-the-Line zum Normalpreis + €2,50.",
   "why_title": "Warum direkt buchen",
   "why": [
    [
@@ -919,7 +921,7 @@ export const UI: Record<Locale, any> = {
    ]
   ],
   "contact_title": "Kontakt & Treffpunkt",
-  "meeting": "Sie finden uns täglich von 09:00 bis 17:00 Uhr an der Kasse der Hagia Sophia. Treffpunkt der Touren ist der Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet — 50 Meter von der Kasse entfernt.",
+  "meeting": "Sie finden uns täglich von 09:00 bis 17:00 Uhr vor dem Four Seasons Hotel Istanbul at Sultanahmet, Tevkifhane Sk. Nr. 1 — im Herzen der Altstadt, wenige Minuten von Hagia Sophia und Blauer Moschee.",
   "meeting_label": "Treffpunkt",
   "phone_label": "WhatsApp / Telefon",
   "email_label": "E-Mail",
@@ -989,12 +991,13 @@ export const UI: Record<Locale, any> = {
   "hero_sub": "持证导游 Ergin Karakoyun（在 Sultanahmet 从业 32 年）亲自带领每一团；所有行程由 Oligarch Tour 组织、门票由其销售（TÜRSAB 旅行社许可证号 14988）。在此直接预订，并通过 WhatsApp 获得他本人确认。",
   "tours_title": "伊斯坦布尔之旅",
   "menu_word": "菜单",
-  "menu_hint": "先选择日期和人数，再像点菜一样添加行程。门票价格会自动计算。",
+  "menu_hint": "请先选择：行程日期、人数和导览语言——然后在下方添加您的行程。门票价格会自动计算。",
+  "select_details": "请选择行程详情",
   "full_details": "完整详情",
   "covered_full_day": "已包含在您的全日游中",
   "fullday_note": "全日游涵盖各单项景点——添加后会自动从预订中移除这些单项行程。",
   "skip_add": "添加免排队票",
-  "tours_sub": "像看菜单一样挑选：每条线路为整团一口价（最多 8 人）。需要门票？预订时按人添加 — 均为免排队票，正常票价 + €2.50。",
+  "tours_sub": "每条线路为整团一口价（最多 8 人）。需要门票？预订时按人添加 — 均为免排队票，正常票价 + €2.50。",
   "why_title": "为什么直接预订",
   "why": [
    [
@@ -1040,7 +1043,7 @@ export const UI: Record<Locale, any> = {
    ]
   ],
   "contact_title": "联系方式与集合点",
-  "meeting": "我们每天 09:00–17:00 都在圣索菲亚大教堂售票处。导览集合点为 Harem 纪念品店，地址：Babı Hümayun Cd. No:8, Sultanahmet——距售票处 50 米。",
+  "meeting": "每天 09:00–17:00，我们在苏丹艾哈迈德的伊斯坦布尔四季酒店门前等您（Tevkifhane Sk. No:1）——位于老城中心，距圣索菲亚大教堂和蓝色清真寺仅几分钟。",
   "meeting_label": "集合点",
   "phone_label": "WhatsApp / 电话",
   "email_label": "电子邮箱",
@@ -1110,12 +1113,13 @@ export const UI: Record<Locale, any> = {
    "hero_sub": "Lisanslı rehberiniz Ergin Karakoyun — Sultanahmet'te 32 yıl — her tura bizzat rehberlik eder; tüm turlar Oligarch Tour tarafından düzenlenir ve biletler onlar tarafından satılır (TÜRSAB Seyahat Acentası Belge No: 14988). Doğrudan buradan rezerve edin, teyidinizi WhatsApp üzerinden bizzat alın.",
    "tours_title": "İstanbul Turları",
    "menu_word": "Menü",
-   "menu_hint": "Önce tarihi ve kişi sayısını belirleyin — sonra turları menüden yemek seçer gibi ekleyin. Bilet fiyatları otomatik hesaplanır.",
+   "menu_hint": "Önce seçin: tur tarihi, kişi sayısı ve tur dili — sonra turlarınızı aşağıdan ekleyin. Bilet fiyatları otomatik hesaplanır.",
+   "select_details": "Lütfen tur detaylarını seçin",
    "full_details": "Tüm detaylar",
    "covered_full_day": "Tam Gün Turu'nuz zaten kapsıyor",
    "fullday_note": "Tam Gün Turu tekil mekan turlarını kapsar — eklediğinizde bunlar rezervasyonunuzdan otomatik kaldırılır.",
    "skip_add": "Hızlı giriş bileti ekle",
-   "tours_sub": "Menüden seçer gibi seçin: her tur, grubunuz için tek fiyattır (en fazla 8 kişi). Giriş bileti mi lazım? Rezervasyonda kişi başı ekleyin — hepsi hızlı giriş biletidir: normal fiyat + €2,50.",
+   "tours_sub": "Her tur, grubunuz için tek fiyattır (en fazla 8 kişi). Giriş bileti mi lazım? Rezervasyonda kişi başı ekleyin — hepsi hızlı giriş biletidir: normal fiyat + €2,50.",
    "why_title": "Neden Doğrudan Rezervasyon?",
    "why": [
      [
@@ -1161,7 +1165,7 @@ export const UI: Record<Locale, any> = {
      ]
    ],
    "contact_title": "İletişim & Buluşma Noktası",
-   "meeting": "Bizi her gün 09:00–17:00 saatleri arasında Ayasofya gişesinde bulabilirsiniz. Tur buluşma noktası: Harem Hediyelik Eşya Dükkanı, Babı Hümayun Cd. No:8, Sultanahmet — gişeye 50 metre mesafede.",
+   "meeting": "Bizi her gün 09:00–17:00 arasında Four Seasons Hotel Istanbul at Sultanahmet önünde bulabilirsiniz: Tevkifhane Sk. No:1 — Tarihi Yarımada'nın kalbinde, Ayasofya ve Sultanahmet Camii'ne birkaç dakika.",
    "meeting_label": "Buluşma Noktası",
    "phone_label": "WhatsApp / Telefon",
    "email_label": "E-posta",
@@ -1260,7 +1264,7 @@ export const RATINGS: Record<string, any> = {
   "tr": "4,7 (58 yorum) · TripAdvisor"
  }
 };
-export const MEETING_DEFAULT: Record<Locale, string> = {"en": "Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet", "de": "Harem Souvenir Shop, Babı Hümayun Cd. Nr. 8, Sultanahmet", "zh": "Harem 纪念品店，Babı Hümayun Cd. No:8, Sultanahmet", "tr": "Harem Hediyelik Eşya Dükkanı, Babı Hümayun Cd. No:8, Sultanahmet"};
+export const MEETING_DEFAULT: Record<Locale, string> = {"en": "In front of the Four Seasons Hotel, Tevkifhane Sk. No:1, Sultanahmet", "de": "Vor dem Four Seasons Hotel, Tevkifhane Sk. Nr. 1, Sultanahmet", "zh": "四季酒店门前，Tevkifhane Sk. No:1, Sultanahmet", "tr": "Four Seasons Hotel önü, Tevkifhane Sk. No:1, Sultanahmet"};
 export const MEETING_OVERRIDE: Record<string, Record<Locale, string>> = {};
 export function meetingPoint(locale: Locale, tourId: string): string {
   const own = TOURS[tourId]?.meeting?.[locale];

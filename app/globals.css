@@ -1184,3 +1184,7 @@ html.splash-done .ss-root{display:none!important}
 .lang-panel button:hover{background:var(--mist)}
 .lang-panel button.on{font-weight:800}
 .mb-field select{padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:15px;background:#fff;color:var(--ink)}
+
+/* ===== Menu bar heading + bold hint (Ergin, 2026-11-20) ===== */
+.mb-title{width:100%;font-size:19px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:2px}
+.mb-hint{font-weight:700;color:var(--ink)}

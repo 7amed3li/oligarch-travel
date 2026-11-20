@@ -77,6 +77,7 @@ export default function MenuBoard({
   return (
     <div className="mboard">
       <div className="mb-bar">
+        <div className="mb-title">{u.select_details || 'Please select tour details'}</div>
         <div className="mb-field">
           <label htmlFor="mb-date">{u.date}</label>
           <input
