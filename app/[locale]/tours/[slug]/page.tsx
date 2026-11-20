@@ -166,9 +166,7 @@ export default async function TourPage({
   const isFree = tp.perGroup === 0 && tp.perPerson === 0;
   const ratingText = RATINGS[slug]?.[loc] as string | undefined;
   const meetAddr = meetingPoint(loc, slug);
-  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${meetAddr}, Istanbul`,
-  )}`;
+  const mapsHref = "https://maps.app.goo.gl/vTuGMLWqoP2tgWH59";
   const gallery = TOUR_GALLERY[slug] ?? [t.img];
 
   return (
