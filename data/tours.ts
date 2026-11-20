@@ -3,7 +3,7 @@
 export type Locale = 'en' | 'de' | 'zh' | 'tr';
 export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
-export interface TourContent { name: string; tagline: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
+export interface TourContent { name: string; tagline: string; intro: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
 export const TOUR_ORDER: string[] = ["hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "full-day-istanbul", "bazaars-tour", "bosphorus-yacht", "traditional-handicrafts"];
 export const TOURS: Record<string, TourDef> = {
@@ -13,6 +13,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Hagia Sophia Tour",
     "tagline": "One hour inside the great church-mosque, with the guide who knows it best.",
+    "intro": "Built in 537 as the world's greatest cathedral, Hagia Sophia was the spiritual heart of Byzantium for nearly a thousand years before becoming an Ottoman imperial mosque. Its vast dome and golden mosaics still leave visitors speechless.",
     "duration": "1 hour",
     "group": "Private group, up to 8 guests",
     "desc": "Hagia Sophia with a private licensed guide for your party only — the great dome, the Upper Gallery mosaics and the Deësis, explained by a Byzantine and Ottoman specialist with 32 years in Sultanahmet. Add the skip-the-line entrance ticket below with one click, or bring your own. After the tour you are free to stay inside until closing time.",
@@ -31,6 +32,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Hagia-Sophia-Tour",
     "tagline": "Eine Stunde in der großen Kirchenmoschee — mit dem Guide, der sie am besten kennt.",
+    "intro": "537 als größte Kathedrale der Welt erbaut, war die Hagia Sophia fast tausend Jahre das geistige Herz von Byzanz, bevor sie zur osmanischen Kaisermoschee wurde. Ihre gewaltige Kuppel und die goldenen Mosaike lassen Besucher bis heute staunen.",
     "duration": "1 Stunde",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Die Hagia Sophia mit einem privaten, lizenzierten Guide nur für Ihre Gruppe — die große Kuppel, die Mosaiken der Oberen Galerie und die Deësis, erklärt von einem Byzanz- und Osmanen-Spezialisten mit 32 Jahren Erfahrung in Sultanahmet. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit. Nach der Tour können Sie bis zur Schließung im Inneren bleiben.",
@@ -49,6 +51,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "圣索菲亚大教堂之旅",
     "tagline": "在这座伟大的教堂-清真寺内参观一小时，由最了解它的导游为您讲解。",
+    "intro": "圣索菲亚大教堂建于 537 年，曾是世界上最大的教堂，近千年间一直是拜占庭的精神中心，后来成为奥斯曼帝国清真寺。它宏伟的穹顶和金色镶嵌画至今仍令游客叹为观止。",
     "duration": "1 小时",
     "group": "私人团，最多 8 人",
     "desc": "由私人持证导游专为您的团队讲解圣索菲亚大教堂——宏伟的穹顶、上层画廊的镶嵌画与《代伊西斯》，由一位在苏丹艾哈迈德区执业 32 年的拜占庭与奥斯曼文化专家为您解读。在下方一键添加免排队门票，或自备门票。导览结束后，您可以继续停留在馆内直至闭馆。",
@@ -67,6 +70,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Ayasofya Turu",
     "tagline": "Lisanslı rehberinizle Üst Galeri'de bir saat — tüm hikâyesiyle.",
+    "intro": "537 yılında dünyanın en büyük katedrali olarak inşa edilen Ayasofya, yaklaşık bin yıl Bizans'ın ruhani kalbi oldu, sonra Osmanlı'nın en önemli camisine dönüştü. Devasa kubbesi ve altın mozaikleri bugün hâlâ görenleri büyülüyor.",
     "duration": "1 saat",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Rehberiniz sizi bilet gişesinin yanındaki buluşma noktasında karşılar ve Üst Galeri'ye götürür: İmparator Locası, VI. Leon mozaiği, Viking grafitisi ve kubbenin 55 metreden süzülen ışığı. Turdan sonra kapanış saatine kadar içeride kalabilirsiniz.",
@@ -90,6 +94,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Topkapi Palace Tour",
     "tagline": "The palace and the Harem with your own private guide.",
+    "intro": "For nearly 400 years Topkapi Palace was the home of the Ottoman sultans and the seat of their government. Behind its gates lie the Imperial Treasury, the sacred relics, and the Harem — a small city of courtyards, kiosks and secrets above the Bosphorus.",
     "duration": "2 hours",
     "group": "Private group, up to 8 guests",
     "desc": "A private tour of Topkapi Palace and its Harem with a licensed guide. Walk the courtyards, the treasury and the Harem quarters where the Ottoman sultans lived and ruled for nearly 400 years. Add the skip-the-line entrance ticket below with one click, or bring your own.",
@@ -107,6 +112,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Topkapi-Palast-Tour",
     "tagline": "Der Palast und der Harem mit Ihrem eigenen privaten Guide.",
+    "intro": "Fast 400 Jahre war der Topkapi-Palast Wohnsitz der osmanischen Sultane und Sitz der Regierung. Hinter seinen Toren warten die Schatzkammer, die heiligen Reliquien und der Harem — eine kleine Stadt aus Höfen, Kiosken und Geheimnissen über dem Bosporus.",
     "duration": "2 Stunden",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Eine private Führung durch den Topkapi-Palast und seinen Harem mit einem lizenzierten Guide. Spazieren Sie durch die Höfe, die Schatzkammer und die Haremsgemächer, in denen die osmanischen Sultane fast 400 Jahre lebten und regierten. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit.",
@@ -124,6 +130,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "托普卡珀皇宫之旅",
     "tagline": "与您的私人导游参观皇宫与后宫。",
+    "intro": "近 400 年来，托普卡帕宫一直是奥斯曼苏丹的居所和帝国政府的所在地。宫门之内有帝国宝库、神圣遗物和后宫——一座位于博斯普鲁斯海峡之上的庭院与秘密之城。",
     "duration": "2 小时",
     "group": "私人团，最多 8 人",
     "desc": "由持证导游带领的托普卡珀皇宫及后宫私人导览。漫步于庭院、珍宝馆和后宫——奥斯曼苏丹近 400 年生活与统治之地。在下方一键添加免排队门票，或自备门票。",
@@ -141,6 +148,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Topkapı Sarayı Turu",
     "tagline": "İki saat boyunca saray avluları, Harem ve hazine daireleri.",
+    "intro": "Topkapı Sarayı, yaklaşık 400 yıl boyunca Osmanlı sultanlarının evi ve devletin yönetim merkeziydi. Kapılarının ardında Hazine, kutsal emanetler ve sırlarla dolu Harem sizi bekliyor.",
     "duration": "2 saat",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Rehberinizle sarayın dört avlusunu gezin: Bab-ı Hümayun, mutfaklar ve porselenler, Silahlar Bölümü, Hazine ve Harem (ana bilet dahilse). Kalabalığı atlatmak için en sakin giriş saatini seçiyoruz.",
@@ -164,6 +172,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Basilica Cistern Tour",
     "tagline": "The underground palace of columns, Medusa heads and still water.",
+    "intro": "Hidden beneath the streets of Sultanahmet, this vast underground water palace was built by Emperor Justinian in the 6th century. Walk between 336 marble columns rising from the water — and find the two mysterious Medusa heads.",
     "duration": "45 minutes",
     "group": "Private group, up to 8 guests",
     "desc": "Descend into Justinian's great underground cistern — 336 marble columns rising from the water, the famous Medusa heads, and one of the most atmospheric places in Istanbul. Your private guide brings the Byzantine engineering and the legends to life in 45 minutes. Add the skip-the-line entrance ticket below with one click, or bring your own.",
@@ -180,6 +189,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Basilika-Zisterne-Tour (Yerebatan)",
     "tagline": "Der unterirdische Palast aus Säulen, Medusenhäuptern und stillem Wasser.",
+    "intro": "Verborgen unter den Straßen von Sultanahmet liegt diese riesige unterirdische Wasserkathedrale, erbaut im 6. Jahrhundert von Kaiser Justinian. Gehen Sie zwischen 336 Marmorsäulen, die aus dem Wasser ragen — und finden Sie die zwei geheimnisvollen Medusenhäupter.",
     "duration": "45 Minuten",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Steigen Sie hinab in Justinians große unterirdische Zisterne — 336 Marmorsäulen, die aus dem Wasser ragen, die berühmten Medusenhäupter und einer der stimmungsvollsten Orte Istanbuls. Ihr privater Guide erweckt die byzantinische Ingenieurskunst und die Legenden in 45 Minuten zum Leben. Fügen Sie unten mit einem Klick das Eintrittsticket ohne Anstehen hinzu oder bringen Sie Ihr eigenes mit.",
@@ -196,6 +206,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "地下水宫之旅",
     "tagline": "由石柱、美杜莎头像与静水组成的地下宫殿。",
+    "intro": "这座巨大的地下蓄水池隐藏在苏丹艾哈迈德的街道之下，由查士丁尼皇帝于 6 世纪建造。在 336 根从水中升起的大理石柱之间漫步，寻找两颗神秘的美杜莎头像。",
     "duration": "45 分钟",
     "group": "私人团，最多 8 人",
     "desc": "走进查士丁尼大帝的地下蓄水池——336 根大理石柱从水中升起，著名的美杜莎头像，这里是伊斯坦布尔最具氛围感的地方之一。您的私人导游将在 45 分钟内为您讲述拜占庭工程与传说。在下方一键添加免排队门票，或自备门票。",
@@ -212,6 +223,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Yerebatan Sarnıcı Turu",
     "tagline": "Medusa başlarının ve yeraltı sarayının 45 dakikalık hikâyesi.",
+    "intro": "Sultanahmet'in sokaklarının altında saklı bu dev yeraltı sarnıcı, 6. yüzyılda İmparator Justinianus tarafından yaptırıldı. Suyun içinden yükselen 336 mermer sütunun arasında yürüyün ve iki gizemli Medusa başını bulun.",
     "duration": "45 dakika",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Bizans'ın en büyük sarnıcına inin: 336 sütun, iki Medusa başı ve suda yüzen balıkların sessizliği. Rehberiniz sarnıcın neden ve nasıl yapıldığını ve hangi filmlerde göründüğünü anlatır.",
@@ -239,6 +251,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Sultanahmet & Hippodrome Tour",
     "tagline": "The Blue Mosque and the ancient Hippodrome, where the city began.",
+    "intro": "The Hippodrome was the beating heart of Byzantine Constantinople, where emperors watched chariot races with 100,000 spectators. Today the Egyptian Obelisk, the Serpent Column and the German Fountain still stand in the square beside the Blue Mosque.",
     "duration": "About 45 minutes",
     "group": "Private group, up to 8 guests",
     "desc": "A short, rich walk through the heart of old Constantinople: the Sultanahmet (Blue) Mosque with its six minarets and İznik tiles, and the Hippodrome — the Egyptian Obelisk, the Serpent Column and the German Fountain — with the stories of the empire that built them. There is no entrance ticket for this tour; the mosque entry is free. We meet in front of the Four Seasons Hotel in Sultanahmet.",
@@ -255,6 +268,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Sultanahmet & Hippodrom-Tour",
     "tagline": "Die Blaue Moschee und das antike Hippodrom — wo die Stadt begann.",
+    "intro": "Das Hippodrom war das schlagende Herz des byzantinischen Konstantinopel, wo Kaiser vor 100.000 Zuschauern Wagenrennen sahen. Heute stehen der Ägyptische Obelisk, die Schlangensäule und der Deutsche Brunnen noch immer auf dem Platz neben der Blauen Moschee.",
     "duration": "Etwa 45 Minuten",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Ein kurzer, reicher Spaziergang durch das Herz des alten Konstantinopel: die Sultanahmet-Moschee (Blaue Moschee) mit ihren sechs Minaretten und İznik-Fliesen und das Hippodrom — der Ägyptische Obelisk, die Schlangensäule und der Deutsche Brunnen — mit den Geschichten des Reiches, das sie erbaute. Für diese Tour gibt es kein Eintrittsticket; der Moscheeeintritt ist frei. Treffpunkt ist vor dem Four Seasons Hotel in Sultanahmet.",
@@ -271,6 +285,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "苏丹艾哈迈德与竞技场之旅",
     "tagline": "蓝色清真寺与古竞技场——这座城市开始的地方。",
+    "intro": "竞技场曾是拜占庭君士坦丁堡的心脏，皇帝们曾在此与十万名观众一起观看战车比赛。如今，埃及方尖碑、蛇柱和德国喷泉仍矗立在蓝色清真寺旁的广场上。",
     "duration": "约 45 分钟",
     "group": "私人团，最多 8 人",
     "desc": "一次短暂而丰富的漫步，穿越古君士坦丁堡的心脏：拥有六座宣礼塔与伊兹尼克瓷砖的苏丹艾哈迈德清真寺（蓝色清真寺），以及竞技场——埃及方尖碑、蛇柱与德国喷泉——并聆听建造它们的帝国的故事。本行程无需门票；清真寺免费入场。我们在苏丹艾哈迈德区四季酒店门前集合。",
@@ -287,6 +302,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Sultanahmet ve Hipodrom Turu",
     "tagline": "Sultanahmet Camii ve antik Hipodrom — meydanın tamamı 45 dakikada.",
+    "intro": "Hippodrom, Bizans Konstantinopolis'inin kalbiydi; imparatorlar burada 100.000 seyirciyle araba yarışlarını izlerdi. Bugün Mısır Dikilitaşı, Yılanlı Sütun ve Alman Çeşmesi, Sultanahmet Camii'nin yanında hâlâ ayakta.",
     "duration": "Yaklaşık 45 dakika",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Buluşma: Sultanahmet'teki Four Seasons Oteli'nin önü. Oradan Sultanahmet Camii'ne (altı minare, 20.000'den fazla İznik çinisi) ve antik Hipodrom'a yürüyoruz: Dikilitaş, Yılanlı Sütun ve Alman Çeşmesi. Bu tur için bilet gerekmez.",
@@ -315,6 +331,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Full-Day Istanbul City Tour",
     "tagline": "A full day, built around what you want to see.",
+    "intro": "One day, the whole story of Istanbul: from Byzantium to the Ottomans, at your pace with your private guide. Hagia Sophia, Topkapi, the Cistern and the Hippodrome — the city's greatest sights woven into a single route.",
     "duration": "Up to 6 hours (full day)",
     "group": "Private group, up to 8 guests",
     "desc": "One private guide for a full day, and an itinerary built around you. The classic route links Hagia Sophia, the Blue Mosque, the Hippodrome, Topkapi Palace and the Grand Bazaar — or the day goes wherever your interests lead. You decide the route together with your guide when you meet and during the day.",
@@ -333,6 +350,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Ganztägige Istanbul-Stadttour",
     "tagline": "Ein ganzer Tag, gebaut um das, was Sie sehen möchten.",
+    "intro": "Ein Tag, die ganze Geschichte Istanbuls: von Byzanz zu den Osmanen, in Ihrem Tempo mit Ihrem privaten Guide. Hagia Sophia, Topkapi, die Zisterne und das Hippodrom — die größten Sehenswürdigkeiten der Stadt auf einer Route.",
     "duration": "Bis zu 6 Stunden (ganzer Tag)",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Ein privater Guide für einen ganzen Tag und eine Route, die sich ganz nach Ihnen richtet. Die klassische Route verbindet Hagia Sophia, Blaue Moschee, Hippodrom, Topkapi-Palast und den Großen Basar — oder der Tag führt Sie, wohin Ihre Interessen Sie ziehen. Die Route entscheiden Sie gemeinsam mit Ihrem Guide beim Treffen und im Laufe des Tages.",
@@ -351,6 +369,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "伊斯坦布尔全日城市之旅",
     "tagline": "一整天，围绕您想看的景点安排。",
+    "intro": "一天读完伊斯坦布尔的全部故事：从拜占庭到奥斯曼，由您的私人导游把握节奏。圣索菲亚、托普卡帕宫、地下水宫和竞技场——这座城市最伟大的景点，一条路线全部串联。",
     "duration": "最长 6 小时（全天）",
     "group": "私人团，最多 8 人",
     "desc": "一位私人导游陪伴一整天，行程围绕您而定。经典路线串联圣索菲亚大教堂、蓝色清真寺、竞技场、托普卡珀皇宫和大巴扎——或者这一天完全由您的兴趣决定。见面时以及当天行程中，您都可以与导游一起决定路线。",
@@ -369,6 +388,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Tam Gün İstanbul Turu",
     "tagline": "Altı saate kadar özel gününüz — rota aynı gün rehberinizle birlikte belirlenir.",
+    "intro": "Bir günde İstanbul'un bütün hikâyesi: Bizans'tan Osmanlı'ya, temponuzu özel rehberiniz belirler. Ayasofya, Topkapı, Yerebatan ve Hippodrom — şehrin en büyük eserleri tek bir rotada.",
     "duration": "En fazla 6 saat",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Şehri kendi temponuzda gezin: rehberiniz günün rotasını sizinle birlikte çizer — Ayasofya, Topkapı, Yerebatan, Kapalıçarşı ve Boğaz kıyısı arasından seçim sizin. Biletler, yemek, içecek, ulaşım ve kişisel harcamalar dahil değildir; rehberiniz her durakta en hızlı girişi ve en doğru sırayı ayarlar.",
@@ -393,6 +413,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Grand Bazaar & Spice Bazaar",
     "tagline": "Two legendary markets, with a guide who knows how they work.",
+    "intro": "The Grand Bazaar is one of the oldest covered markets on earth — 61 streets and more than 4,000 shops, trading since 1461. A few minutes away, the Spice Bazaar fills the air with saffron, Turkish delight and freshly ground coffee.",
     "duration": "2.5–4 hours, depending on your pace",
     "group": "Private group, up to 8 guests",
     "desc": "A guided walk through the Grand Bazaar — one of the world's oldest covered markets — and the Spice Bazaar, with your guide explaining how to read quality, how bargaining works, and which workshops still produce by hand.",
@@ -409,6 +430,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Großer Basar & Gewürzbasar",
     "tagline": "Zwei legendäre Märkte — mit einem Guide, der weiß, wie sie funktionieren.",
+    "intro": "Der Große Basar ist einer der ältesten überdachten Märkte der Welt — 61 Straßen und über 4.000 Geschäfte, Handel seit 1461. Wenige Minuten entfernt füllt der Gewürzbasar die Luft mit Safran, Lokum und frisch gemahlenem Kaffee.",
     "duration": "2,5–4 Stunden, je nach Ihrem Tempo",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Ein geführter Spaziergang durch den Großen Basar — einen der ältesten überdachten Märkte der Welt — und den Gewürzbasar. Ihr Guide erklärt Ihnen, wie man Qualität erkennt, wie das Handeln funktioniert und welche Werkstätten noch von Hand produzieren.",
@@ -425,6 +447,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "大巴扎与香料市场",
     "tagline": "两个传奇市场，由一位深谙其道的导游为您讲解。",
+    "intro": "大巴扎是世界上最古老的有顶市场之一——61 条街道、4000 多家店铺，自 1461 年以来贸易不断。几分钟外的香料巴扎则弥漫着藏红花、土耳其软糖和现磨咖啡的香气。",
     "duration": "2.5–4 小时，取决于您的节奏",
     "group": "私人团，最多 8 人",
     "desc": "在导游带领下漫步大巴扎——世界上最古老的有顶市场之一——以及香料市场。导游会为您讲解如何辨别品质、如何讨价还价，以及哪些作坊仍在手工制作。",
@@ -441,6 +464,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Kapalıçarşı ve Mısır Çarşısı Turu",
     "tagline": "İki tarihi çarşı, tek tur — 2,5 ila 4 saat arasında pazarlık ve keşif.",
+    "intro": "Kapalıçarşı, 1461'den beri ticaretin sürdüğü, dünyanın en eski kapalı çarşılarından biri: 61 sokak, 4.000'den fazla dükkân. Birkaç dakika ötede Mısır Çarşısı; safran, lokum ve taze kahve kokularıyla dolu.",
     "duration": "2,5–4 saat",
     "group": "Özel grup, en fazla 8 kişi",
     "desc": "Dünyanın en eski kapalı çarşısından başlayın: kuyumcular, halıcılar, antikacılar ve 4.000 dükkân. Sonra Mısır Çarşısı'na inin — baharatlar, lokumlar ve 17. yüzyıldan kalan kokular. Rehberiniz sizi gerçek ustaların dükkânlarına götürür, pazarlıkta yanınızda olur.",
@@ -463,6 +487,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Private Bosphorus Yacht Tour",
     "tagline": "Two hours on the water between two continents — for your group only.",
+    "intro": "The Bosphorus is Istanbul's true main street — palaces, fortresses and wooden mansions line its shores where two continents meet. From the water you see the city the way sultans did: domes and minarets sliding past, bridge to bridge.",
     "duration": "2 hours",
     "group": "Private group, up to 8 guests",
     "desc": "Your own private yacht on the Bosphorus for two hours: palaces, waterfront mansions and the bridges between Europe and Asia, with your licensed guide on board. Choose the standard yacht, or the luxury yacht with drinks included.",
@@ -480,6 +505,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Private Bosporus-Yachttour",
     "tagline": "Zwei Stunden auf dem Wasser zwischen zwei Kontinenten — nur für Ihre Gruppe.",
+    "intro": "Der Bosporus ist Istanbuls eigentliche Hauptstraße — Paläste, Festungen und Holzvillen säumen seine Ufer, wo zwei Kontinente sich treffen. Sehen Sie die Stadt wie die Sultane: Kuppeln und Minarette, die Brücke für Brücke vorüberziehen.",
     "duration": "2 Stunden",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Ihre eigene private Yacht auf dem Bosporus für zwei Stunden: Paläste, Ufervillen und die Brücken zwischen Europa und Asien — mit Ihrem lizenzierten Guide an Bord. Wählen Sie die Standard-Yacht oder die Luxus-Yacht mit inklusive Getränken.",
@@ -497,6 +523,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "博斯普鲁斯海峡私人游艇之旅",
     "tagline": "在两大洲之间的水面上航行两小时——专属您的团队。",
+    "intro": "博斯普鲁斯海峡是伊斯坦布尔真正的主街——两大洲在此交汇，宫殿、城堡和木制大宅沿岸排列。从水上看这座城市，就像苏丹们曾经看到的那样：一座座穹顶和宣礼塔从桥边滑过。",
     "duration": "2 小时",
     "group": "私人团，最多 8 人",
     "desc": "专属您的私人游艇，在博斯普鲁斯海峡航行两小时：宫殿、滨水豪宅与连接欧亚的桥梁，持证导游随船同行。您可以选择标准游艇，或含饮品的豪华游艇。",
@@ -514,6 +541,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Özel Boğaz Yat Turu",
     "tagline": "İki saatlik özel yat — standart veya içecekler dahil lüks seçenek.",
+    "intro": "Boğaz, İstanbul'un asıl caddesidir; iki kıtanın buluştuğu kıyılarında saraylar, kaleler ve yalılar sıralanır. Şehri sultanların gördüğü gibi görün: köprüden köprüye kubbeler ve minareler.",
     "duration": "2 saat",
     "group": "Özel yat, en fazla 7–8 kişi",
     "desc": "Boğaz'ı kendi yatınızdan görün: Dolmabahçe, Çırağan, Ortaköy Camii, Rumeli Hisarı ve köprülerin altından geçiş. Standart yat €400; lüks yat €600 ve içecekler dahildir. Kalkış noktası rezervasyonda teyit edilir.",
@@ -536,6 +564,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Traditional Turkish Handicrafts",
     "tagline": "Carpets and İznik tiles, made by families who gave their lives to the craft.",
+    "intro": "Istanbul's traditional crafts live on in family workshops that have practised them for generations — hand-knotted carpets, İznik tiles and pottery painted by hand. Sit down with a Turkish coffee or tea and watch the masters at work, with no obligation to buy.",
     "duration": "About 30 minutes",
     "group": "Private group, up to 8 guests",
     "desc": "If you would like to buy a carpet or İznik tiles, we take you to traditional handicraft centres run by family businesses with 50 years of heritage and more, who have devoted their lives to this craft. Watch the weaving and the pottery being made, with Turkish coffee or tea on us. About 30 minutes — completely free.",
@@ -552,6 +581,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Traditionelles türkisches Kunsthandwerk",
     "tagline": "Teppiche und İznik-Fliesen von Familien, die ihr Leben diesem Handwerk gewidmet haben.",
+    "intro": "Istanbuls traditionelles Handwerk lebt in Familienwerkstätten weiter, die es seit Generationen ausüben — handgeknüpfte Teppiche, İznik-Fliesen und handbemalte Keramik. Sehen Sie den Meistern bei einem türkischen Kaffee oder Tee zu, ganz ohne Kaufverpflichtung.",
     "duration": "Etwa 30 Minuten",
     "group": "Private Gruppe, bis zu 8 Gäste",
     "desc": "Wenn Sie einen Teppich oder İznik-Fliesen kaufen möchten, bringen wir Sie zu traditionellen Kunsthandwerkszentren von Familienbetrieben mit 50 Jahren Tradition und mehr, die ihr Leben diesem Handwerk gewidmet haben. Sehen Sie zu, wie gewebt und getöpfert wird — mit türkischem Kaffee oder Tee auf unsere Einladung. Etwa 30 Minuten — völlig kostenlos.",
@@ -568,6 +598,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "土耳其传统手工艺",
     "tagline": "地毯与伊兹尼克瓷砖，出自将一生奉献给这门手艺的家族之手。",
+    "intro": "伊斯坦布尔的传统手工艺在世代经营的家族作坊中延续——手工编织地毯、伊兹尼克瓷砖和手绘陶器。喝一杯土耳其咖啡或茶，看大师们工作，绝无购买义务。",
     "duration": "约 30 分钟",
     "group": "私人团，最多 8 人",
     "desc": "如果您想购买地毯或伊兹尼克瓷砖，我们会带您前往由拥有 50 年以上传承的家族企业经营的传统手工艺中心——他们将一生奉献给了这门手艺。观看编织与陶艺制作的过程，并享用我们请您的土耳其咖啡或茶。约 30 分钟——完全免费。",
@@ -584,6 +615,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Geleneksel Türk El Sanatları",
     "tagline": "Ücretsiz 30 dakikalık sunum — halı ve İznik çinilerinin ustalarından.",
+    "intro": "İstanbul'un geleneksel el sanatları, kuşaklardır bu işi yapan aile atölyelerinde yaşıyor: el dokuması halılar, İznik çinileri ve elde boyanmış seramikler. Bir kahve ya da çay eşliğinde ustaları iş başında izleyin; satın alma zorunluluğu yok.",
     "duration": "Yaklaşık 30 dakika",
     "group": "Ücretsiz sunum",
     "desc": "Halı veya çini almak istiyorsanız, sizi bu işine yıllarını vermiş ailelerin ürettiği el sanatları merkezlerine götürüyoruz. Halı dokumacılığının ve İznik çini üretiminin nasıl yapıldığını ustalarından görün; kahve ve çay ikramımızdır. Merkezler en az 50 yıllık deneyime ve mirasa sahip aile işletmeleridir; mekân bütçenize göre seçilir.",
@@ -625,6 +657,7 @@ export const UI: Record<Locale, any> = {
   "tier_luxury": "Luxury Yacht — €600 (2 hrs, drinks included)",
   "hero_sub": "Your licensed guide Ergin Karakoyun — 32 years in Sultanahmet — leads every tour personally; all tours are organised and tickets are sold by Oligarch Tour, TÜRSAB Travel Agency Licence No. 14988. Book direct here and get your confirmation personally on WhatsApp.",
   "tours_title": "Istanbul Tours",
+  "menu_word": "Menu",
   "menu_hint": "First pick the date and the number of guests — then add tours like dishes from a menu. Ticket prices are calculated automatically.",
   "full_details": "Full details",
   "covered_full_day": "Already covered by your Full-Day tour",
@@ -693,6 +726,7 @@ export const UI: Record<Locale, any> = {
   "not_included": "Not included",
   "date": "Date",
   "guests": "Guests",
+  "tour_lang": "Tour language",
   "add_to_booking": "Add to booking",
   "added": "Added ✓",
   "your_booking": "Your booking",
@@ -740,6 +774,7 @@ export const UI: Record<Locale, any> = {
   "tier_luxury": "Luxus-Yacht — 600 € (2 Std., inkl. Getränke)",
   "hero_sub": "Ihr lizenzierter Guide Ergin Karakoyun — 32 Jahre in Sultanahmet — führt jede Tour persönlich; organisiert werden alle Touren und verkauft alle Tickets von Oligarch Tour, TÜRSAB-Reisebürolizenz Nr. 14988. Buchen Sie direkt hier und erhalten Sie Ihre Bestätigung persönlich per WhatsApp.",
   "tours_title": "Istanbul-Touren",
+  "menu_word": "Menü",
   "menu_hint": "Zuerst Datum und Gästezahl wählen — dann Touren wie Gerichte von einer Speisekarte hinzufügen. Ticketpreise werden automatisch berechnet.",
   "full_details": "Alle Details",
   "covered_full_day": "Bereits durch Ihre Ganztagestour abgedeckt",
@@ -808,6 +843,7 @@ export const UI: Record<Locale, any> = {
   "not_included": "Nicht inklusive",
   "date": "Datum",
   "guests": "Gäste",
+  "tour_lang": "Tour-Sprache",
   "add_to_booking": "Zur Buchung hinzufügen",
   "added": "Hinzugefügt ✓",
   "your_booking": "Ihre Buchung",
@@ -855,6 +891,7 @@ export const UI: Record<Locale, any> = {
   "tier_luxury": "豪华游艇——600 欧元（2 小时含饮品）",
   "hero_sub": "持证导游 Ergin Karakoyun（在 Sultanahmet 从业 32 年）亲自带领每一团；所有行程由 Oligarch Tour 组织、门票由其销售（TÜRSAB 旅行社许可证号 14988）。在此直接预订，并通过 WhatsApp 获得他本人确认。",
   "tours_title": "伊斯坦布尔之旅",
+  "menu_word": "菜单",
   "menu_hint": "先选择日期和人数，再像点菜一样添加行程。门票价格会自动计算。",
   "full_details": "完整详情",
   "covered_full_day": "已包含在您的全日游中",
@@ -923,6 +960,7 @@ export const UI: Record<Locale, any> = {
   "not_included": "不包含",
   "date": "日期",
   "guests": "人数",
+  "tour_lang": "导览语言",
   "add_to_booking": "加入预订",
   "added": "已加入 ✓",
   "your_booking": "您的预订",
@@ -970,6 +1008,7 @@ export const UI: Record<Locale, any> = {
    "tier_luxury": "Lüks Yat — 600 € (2 Saat, İçecekler Dahil)",
    "hero_sub": "Lisanslı rehberiniz Ergin Karakoyun — Sultanahmet'te 32 yıl — her tura bizzat rehberlik eder; tüm turlar Oligarch Tour tarafından düzenlenir ve biletler onlar tarafından satılır (TÜRSAB Seyahat Acentası Belge No: 14988). Doğrudan buradan rezerve edin, teyidinizi WhatsApp üzerinden bizzat alın.",
    "tours_title": "İstanbul Turları",
+   "menu_word": "Menü",
    "menu_hint": "Önce tarihi ve kişi sayısını belirleyin — sonra turları menüden yemek seçer gibi ekleyin. Bilet fiyatları otomatik hesaplanır.",
    "full_details": "Tüm detaylar",
    "covered_full_day": "Tam Gün Turu'nuz zaten kapsıyor",
@@ -1038,6 +1077,7 @@ export const UI: Record<Locale, any> = {
    "not_included": "Dahil Olmayanlar",
    "date": "Tarih",
    "guests": "Kişi Sayısı",
+   "tour_lang": "Tur Dili",
    "add_to_booking": "Rezervasyona Ekle",
    "added": "Eklendi ✓",
    "your_booking": "Rezervasyonunuz",
