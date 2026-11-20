@@ -6,6 +6,43 @@ import { cartTotals, displayTotals, fmtComponentsDisp, fmtMoney, fmtMoneyD, line
 import type { PriceConfig } from '@/lib/prices';
 import { TOURS, type Locale } from '@/data/tours';
 
+// Guest country dial codes — most guests are outside Turkey (Hamed, 2026-11-21).
+const DIAL_CODES: { name: string; dial: string }[] = [
+  { name: 'Turkey', dial: '+90' }, { name: 'Germany', dial: '+49' },
+  { name: 'United Kingdom', dial: '+44' }, { name: 'United States', dial: '+1' },
+  { name: 'China', dial: '+86' }, { name: 'France', dial: '+33' },
+  { name: 'Spain', dial: '+34' }, { name: 'Italy', dial: '+39' },
+  { name: 'Netherlands', dial: '+31' }, { name: 'Russia', dial: '+7' },
+  { name: 'Greece', dial: '+30' }, { name: 'Austria', dial: '+43' },
+  { name: 'Switzerland', dial: '+41' }, { name: 'Belgium', dial: '+32' },
+  { name: 'Poland', dial: '+48' }, { name: 'Romania', dial: '+40' },
+  { name: 'Bulgaria', dial: '+359' }, { name: 'Ukraine', dial: '+380' },
+  { name: 'Czechia', dial: '+420' }, { name: 'Hungary', dial: '+36' },
+  { name: 'Portugal', dial: '+351' }, { name: 'Ireland', dial: '+353' },
+  { name: 'Denmark', dial: '+45' }, { name: 'Sweden', dial: '+46' },
+  { name: 'Norway', dial: '+47' }, { name: 'Finland', dial: '+358' },
+  { name: 'Canada', dial: '+1' }, { name: 'Mexico', dial: '+52' },
+  { name: 'Brazil', dial: '+55' }, { name: 'Argentina', dial: '+54' },
+  { name: 'Chile', dial: '+56' }, { name: 'Colombia', dial: '+57' },
+  { name: 'Australia', dial: '+61' }, { name: 'New Zealand', dial: '+64' },
+  { name: 'Japan', dial: '+81' }, { name: 'South Korea', dial: '+82' },
+  { name: 'India', dial: '+91' }, { name: 'Pakistan', dial: '+92' },
+  { name: 'Indonesia', dial: '+62' }, { name: 'Malaysia', dial: '+60' },
+  { name: 'Singapore', dial: '+65' }, { name: 'Thailand', dial: '+66' },
+  { name: 'Vietnam', dial: '+84' }, { name: 'Philippines', dial: '+63' },
+  { name: 'Israel', dial: '+972' }, { name: 'UAE', dial: '+971' },
+  { name: 'Saudi Arabia', dial: '+966' }, { name: 'Qatar', dial: '+974' },
+  { name: 'Kuwait', dial: '+965' }, { name: 'Bahrain', dial: '+973' },
+  { name: 'Oman', dial: '+968' }, { name: 'Jordan', dial: '+962' },
+  { name: 'Lebanon', dial: '+961' }, { name: 'Iraq', dial: '+964' },
+  { name: 'Egypt', dial: '+20' }, { name: 'Morocco', dial: '+212' },
+  { name: 'Algeria', dial: '+213' }, { name: 'Tunisia', dial: '+216' },
+  { name: 'Libya', dial: '+218' }, { name: 'South Africa', dial: '+27' },
+  { name: 'Azerbaijan', dial: '+994' }, { name: 'Georgia', dial: '+995' },
+  { name: 'Kazakhstan', dial: '+7' }, { name: 'Uzbekistan', dial: '+998' },
+  { name: 'Iran', dial: '+98' },
+];
+
 export default function BookingClient({
   locale,
   u,
@@ -20,6 +57,7 @@ export default function BookingClient({
   const { items: rawItems, remove, update, clear, meta } = useCart();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [dial, setDial] = useState('+90');
 
   // Drop lines whose tour no longer exists (stale carts from older versions).
   const items = rawItems.filter((it) => byId[it.tourId] && TOURS[it.tourId]);
@@ -64,7 +102,13 @@ export default function BookingClient({
       L.push(`Remainder on the day: ${fmtMoney(cur, t.remainder)}`);
     });
     if (name) L.push('', `Name: ${name}`);
-    if (phone) L.push(`Phone: ${phone}`);
+    const rawPhone = phone.trim();
+    if (rawPhone) {
+      const fullPhone = rawPhone.startsWith('+')
+        ? rawPhone
+        : `${dial} ${rawPhone.replace(/^0+/, '')}`;
+      L.push(`Phone: ${fullPhone}`);
+    }
     window.open(
       `https://wa.me/${prices.whatsapp}?text=${encodeURIComponent(L.join('\n'))}`,
       '_blank',
@@ -210,7 +254,22 @@ export default function BookingClient({
         </div>
         <div className="field">
           <label htmlFor="bk-phone">{u.your_phone}</label>
-          <input id="bk-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <div className="bk-phone-row">
+            <select aria-label="Country code" value={dial} onChange={(e) => setDial(e.target.value)}>
+              {DIAL_CODES.map((c) => (
+                <option key={c.name} value={c.dial}>
+                  {c.name} {c.dial}
+                </option>
+              ))}
+            </select>
+            <input
+              id="bk-phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="555 123 45 67"
+            />
+          </div>
         </div>
       </div>
       <aside className="totals">
@@ -224,7 +283,7 @@ export default function BookingClient({
               </div>
               <div className="trow dep">
                 <span>
-                  {u.deposit} ({prices.depositPercent}%)
+                  {u.deposit}
                 </span>
                 <span>{fmtMoneyD('EUR', dt.deposit)}</span>
               </div>
