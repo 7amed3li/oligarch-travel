@@ -80,7 +80,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       }
 
       // Tour cards stagger reveal with smooth spring
-      const cards = document.querySelectorAll('.tcard');
+      const cards = document.querySelectorAll('.tcard-luxury, .tcard');
       if (cards.length > 0) {
         gsap.fromTo(
           cards,
