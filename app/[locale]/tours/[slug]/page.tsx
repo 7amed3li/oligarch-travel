@@ -7,6 +7,7 @@ import TourHeroGallery from '@/components/TourHeroGallery';
 import {
   LOCALES,
   RATINGS,
+  SEASONAL_TOURS,
   TOUR_ORDER,
   TOURS,
   UI,
@@ -144,16 +145,21 @@ export default async function TourPage({
   const curRaw = ck.get('oligarch_cur')?.value;
   const dispCur = (['EUR', 'USD', 'TRY', 'CNY'].includes(curRaw || '') ? curRaw : 'EUR') as DispCur;
 
-  const others = TOUR_ORDER.filter((id) => id !== slug).map((id) => ({
+  const seasonal = SEASONAL_TOURS.includes(slug);
+  // Seasonal tours are never addable as a second tour.
+  const others = TOUR_ORDER.filter((id) => id !== slug && !SEASONAL_TOURS.includes(id)).map((id) => ({
     id,
     name: TOURS[id].content[loc].name,
     price: priceOf(prices, id),
   }));
 
-  const currentIdx = TOUR_ORDER.indexOf(slug);
+  // Companion cards only ever point at bookable tours (a seasonal tour has
+  // no price to show in the card footer).
+  const bookableOrder = TOUR_ORDER.filter((id) => !SEASONAL_TOURS.includes(id));
+  const currentIdx = bookableOrder.indexOf(slug);
   const rotated = [
-    ...TOUR_ORDER.slice(currentIdx + 1),
-    ...TOUR_ORDER.slice(0, Math.max(0, currentIdx)),
+    ...bookableOrder.slice(currentIdx + 1),
+    ...bookableOrder.slice(0, Math.max(0, currentIdx)),
   ];
   const companions = rotated.slice(0, 3);
 
@@ -230,21 +236,23 @@ export default async function TourPage({
                 </svg>
               </span>
               <div className="td-spec-text">
-                <span className="lbl">{isFree ? copy.priceLabel : u.price_from}</span>
-                <strong>{priceDisplay(tp, u, dispCur)}</strong>
+                <span className="lbl">{seasonal || isFree ? copy.priceLabel : u.price_from}</span>
+                <strong>{seasonal ? u.night_badge : priceDisplay(tp, u, dispCur)}</strong>
               </div>
             </div>
           </div>
 
-          <div className="td-mobile-cta">
-            <div className="td-mc-price">
-              <small>{copy.directLine}</small>
-              <strong>{priceDisplay(tp, u, dispCur)}</strong>
+          {seasonal ? null : (
+            <div className="td-mobile-cta">
+              <div className="td-mc-price">
+                <small>{copy.directLine}</small>
+                <strong>{priceDisplay(tp, u, dispCur)}</strong>
+              </div>
+              <a className="td-mc-btn" href="#tour-bookbox">
+                {u.book_now}
+              </a>
             </div>
-            <a className="td-mc-btn" href="#tour-bookbox">
-              {u.book_now}
-            </a>
-          </div>
+          )}
 
           <div className="td-main">
             <div className="td-story">
@@ -355,14 +363,26 @@ export default async function TourPage({
             </div>
 
             <aside id="tour-bookbox" className="bookbox td-bookbox">
-              <div className="td-bb-head">
-                <span className="td-bb-kicker">{copy.directLine}</span>
-                <div className="price-now">{priceDisplay(tp, u, dispCur)}</div>
-                {tp.ticket ? (
-                  <div className="td-bb-ticket-hint">{copy.ticketAvailable}</div>
-                ) : null}
-              </div>
-              <AddToBooking locale={loc} u={u} tourId={slug} price={tp} others={others} />
+              {seasonal ? (
+                <>
+                  <div className="td-bb-head">
+                    <span className="td-bb-kicker">{copy.directLine}</span>
+                    <div className="td-seasonal-badge">{u.night_badge}</div>
+                  </div>
+                  <p className="td-seasonal-note">{c.note}</p>
+                </>
+              ) : (
+                <>
+                  <div className="td-bb-head">
+                    <span className="td-bb-kicker">{copy.directLine}</span>
+                    <div className="price-now">{priceDisplay(tp, u, dispCur)}</div>
+                    {tp.ticket ? (
+                      <div className="td-bb-ticket-hint">{copy.ticketAvailable}</div>
+                    ) : null}
+                  </div>
+                  <AddToBooking locale={loc} u={u} tourId={slug} price={tp} others={others} />
+                </>
+              )}
             </aside>
           </div>
         </div>
