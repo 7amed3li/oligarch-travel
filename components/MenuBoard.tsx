@@ -11,6 +11,7 @@ import {
   fmtMoneyD,
   lineComponents,
   priceDisplay,
+  RATES,
   skipGroupTotalDisplay,
   ticketGroupTotalDisplay,
   ticketPerPersonDisplay,
@@ -22,19 +23,11 @@ import {
 // shown plainly, entrance ticket offered with its own price, and ticket
 // totals auto-calculated from the people count. The Full-Day tour covers
 // the single-site tours: adding it removes them and disables their rows.
-// Ergin's menu order (2026-11-20 summary): Full-Day first (most expensive
-// of the city tours), then Topkapi, Hagia Sophia, Cistern, Sultanahmet,
-// Bazaars, Yacht, Handicrafts.
-export const MENU_ORDER = [
-  'full-day-istanbul',
-  'topkapi-palace',
-  'hagia-sophia',
-  'basilica-cistern',
-  'sultanahmet-hippodrome',
-  'bazaars-tour',
-  'bosphorus-yacht',
-  'traditional-handicrafts',
-];
+// Ergin (2026-11-20, final word): the menu order is BY PRICE — most
+// expensive at the top, cheapest at the bottom ("sıralama dil değil,
+// önemli olan fiyata göre"). The sort below is dynamic: it reads the live
+// prices, so if a price changes in the admin the order follows on its own.
+// TOUR_ORDER remains only as the tie-break order for equal prices.
 export const COVERED_BY_FULL_DAY = [
   'hagia-sophia',
   'topkapi-palace',
@@ -140,7 +133,13 @@ export default function MenuBoard({
       </div>
 
       <div className="mlist">
-        {MENU_ORDER.map((tid) => {
+        {[...TOUR_ORDER]
+          .sort((a, b) => {
+            const pa = byId[a] ? byId[a].perGroup / (RATES[byId[a].currency] || 1) : 0;
+            const pb = byId[b] ? byId[b].perGroup / (RATES[byId[b].currency] || 1) : 0;
+            return pb - pa;
+          })
+          .map((tid) => {
           const t = TOURS[tid];
           const c = t.content[locale];
           const tp = byId[tid];
