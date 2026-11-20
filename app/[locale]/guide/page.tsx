@@ -57,7 +57,7 @@ export async function generateMetadata({
     openGraph: {
       title: u.about_title,
       description: u.about_paras[0],
-      images: ['/img/portrait.jpg'],
+      images: ['/img/portrait.webp'],
     },
   };
 }
@@ -82,7 +82,7 @@ export default async function GuidePage({
     name: 'Ergin Karakoyun',
     jobTitle:
       'Licensed Professional Tourist Guide & Founding Delegate, Chamber of Turkey Guides',
-    image: '/img/portrait.jpg',
+    image: '/img/portrait.webp',
     knowsLanguage: ['en', 'de', 'zh', 'tr'],
     telephone: '+90 555 325 55 65',
     email: 'erginkarakoyun@gmail.com',

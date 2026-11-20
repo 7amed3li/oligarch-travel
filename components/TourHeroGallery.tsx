@@ -35,7 +35,7 @@ export default function TourHeroGallery({
   rating,
   images,
 }: TourHeroGalleryProps) {
-  const safeImages = images.length > 0 ? images : ['hero.jpg'];
+  const safeImages = images.length > 0 ? images : ['hero.webp'];
   const t = LABELS[locale] ?? LABELS.en;
   const [activeIdx, setActiveIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -79,6 +79,8 @@ export default function TourHeroGallery({
             src={`/img/${currentImg}`}
             alt={title}
             className="td-hero-bg"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="td-hero-scrim" aria-hidden="true" />
         </div>
@@ -142,7 +144,7 @@ export default function TourHeroGallery({
                       className={idx === activeIdx ? 'td-thumb is-active' : 'td-thumb'}
                       onClick={() => setActiveIdx(idx)}
                     >
-                      <img src={`/img/${img}`} alt="" />
+                      <img src={`/img/${img}`} alt="" loading="lazy" decoding="async" width={56} height={40} />
                     </button>
                   ))}
                 </div>

@@ -96,7 +96,7 @@ export default function TourCard({
 
       {/* Card Image */}
       <div className="tcard-media">
-        <img src={`/img/${t.img}`} alt={c.name} loading="lazy" />
+        <img src={`/img/${t.img}`} alt={c.name} loading="lazy" decoding="async" />
         {r?.badge ? (
           <span className="tcard-badge-excellence">
             {r.badge[locale]}

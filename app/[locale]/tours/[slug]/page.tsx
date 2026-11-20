@@ -291,7 +291,14 @@ export default async function TourPage({
 
               <div className="td-host-card">
                 <div className="td-host-portrait">
-                  <img src="/img/portrait.jpg" alt="Ergin Karakoyun, licensed tourist guide" />
+                  <img
+                    src="/img/portrait.webp"
+                    alt="Ergin Karakoyun, licensed tourist guide"
+                    width={128}
+                    height={148}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="td-host-body">
                   <span className="td-host-kicker">{copy.guideKicker}</span>
@@ -367,7 +374,7 @@ export default async function TourPage({
               return (
                 <Link key={id} href={`/${loc}/tours/${id}`} className="td-more-card">
                   <div className="td-more-media">
-                    <img src={`/img/${ct.img}`} alt={cc.name} loading="lazy" />
+                    <img src={`/img/${ct.img}`} alt={cc.name} loading="lazy" decoding="async" />
                     <span className="td-more-dur">{cc.duration}</span>
                   </div>
                   <div className="td-more-body">

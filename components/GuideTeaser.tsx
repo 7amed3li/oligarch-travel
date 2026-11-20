@@ -77,9 +77,13 @@ export default function GuideTeaser({ locale }: { locale: Locale }) {
             <div className="gt-arch-frame">
               <div className="gt-arch-window">
                 <img
-                  src="/img/portrait.jpg"
+                  src="/img/portrait.webp"
                   alt="Ergin Karakoyun, licensed tourist guide"
                   className="gt-arch-img"
+                  width={720}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="gt-caption">

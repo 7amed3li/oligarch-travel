@@ -1,6 +1,7 @@
 import SearchBar from './SearchBar';
 import { profileMetaFor } from '@/data/links';
 import TourCard from './TourCard';
+import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
 import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
@@ -32,12 +33,15 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
 
   return (
     <>
+      <link rel="preload" as="image" href="/img/hero.webp" type="image/webp" fetchPriority="high" />
       <div className="hero">
         <div className="hero-media">
-          <img className="poster" src="/img/hero.jpg" alt="Hagia Sophia and the Bosphorus at dusk — aerial view" />
-          <video autoPlay muted loop playsInline preload="metadata" poster="/img/hero.jpg">
-            <source src={VIDEO_URL} type="video/webm" />
-          </video>
+          <HeroVideo
+            poster="/img/hero.webp"
+            webmSrc={VIDEO_URL}
+            mp4Src="/img/hero-video.mp4"
+            alt="Hagia Sophia and the Bosphorus at dusk — aerial view"
+          />
           <div className="hero-shade"></div>
         </div>
         <div className="hero-content">

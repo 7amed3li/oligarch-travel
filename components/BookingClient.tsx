@@ -90,7 +90,14 @@ export default function BookingClient({
           return (
             <div className="cart-item" key={idx}>
               <div className="cart-item-head">
-                <img src={`/img/${tourDef.img}`} alt={c.name} />
+                <img
+                  src={`/img/${tourDef.img}`}
+                  alt={c.name}
+                  loading="lazy"
+                  decoding="async"
+                  width={96}
+                  height={76}
+                />
                 <div className="cart-item-title-col">
                   <h3>{c.name}</h3>
                   <div className="line-total">{lineText(tp, it)}</div>
