@@ -1,6 +1,7 @@
 import SearchBar from './SearchBar';
 import { profileMetaFor } from '@/data/links';
 import TourCard from './TourCard';
+import GuideShowcase from './GuideShowcase';
 import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
 
@@ -27,6 +28,9 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
   const u = UI[locale];
   const byId = pricesById(prices);
   const options = TOUR_ORDER.map((id) => ({ id, name: TOURS[id].content[locale].name }));
+  const tourNames = Object.fromEntries(
+    TOUR_ORDER.map((id) => [id, TOURS[id].content[locale].name]),
+  );
 
   return (
     <>
@@ -85,30 +89,12 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </section>
 
-      <section id="about">
-        <div className="wrap ab">
-          <div className="ab-photo">
-            <img src="/img/portrait.jpg" alt="Ergin Karakoyun, licensed tourist guide" />
-            <div className="ab-badge">
-              <strong>{TRUST[locale][TRUST[locale].length - 1][0]}</strong>
-              <span>{TRUST[locale][TRUST[locale].length - 1][1]}</span>
-            </div>
-          </div>
-          <div className="ab-body">
-            <h2 className="sec">{u.about_title}</h2>
-            {u.about_paras.map((p: string) => (
-              <p className="ab-text" key={p.slice(0, 24)}>
-                {p}
-              </p>
-            ))}
-            <ul className="ab-facts">
-              {u.about_facts.map((f: string) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <GuideShowcase
+        locale={locale}
+        title={u.about_title}
+        paras={u.about_paras}
+        tourNames={tourNames}
+      />
 
       <section className="alt" id="reviews">
         <div className="wrap">
