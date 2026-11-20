@@ -5,7 +5,7 @@ import type { Locale } from '@/data/tours';
 
 const FULL_ADDRESS =
   'Four Seasons Hotel Istanbul At Sultanahmet, Tevkifhane Sk. No:1, Sultanahmet, Fatih, Istanbul';
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(FULL_ADDRESS)}`;
+const MAPS_URL = 'https://maps.app.goo.gl/vTuGMLWqoP2tgWH59';
 
 const COPY: Record<
   Locale,

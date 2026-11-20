@@ -224,7 +224,7 @@ export default function SmartSplash() {
             opacity="0.72"
           />
         </svg>
-        <span className="ss-coord ss-coord-l">41.0086° N</span>
+        <span className="ss-coord ss-coord-l">41.0065° N</span>
       </div>
 
       {/* Right Palace Door Leaf */}

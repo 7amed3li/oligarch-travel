@@ -9,9 +9,7 @@ import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 // desktop the header already carries the same entries.
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { count } = useCart();
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    MEETING_DEFAULT[locale] + ', Istanbul',
-  )}`;
+  const mapsUrl = "https://maps.app.goo.gl/vTuGMLWqoP2tgWH59";
   return (
     <nav className="bottombar" aria-label="Quick actions">
       <Link className="bb-item" href={`/${locale}#tours`}>
