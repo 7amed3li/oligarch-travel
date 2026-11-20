@@ -559,7 +559,7 @@ export const TOURS: Record<string, TourDef> = {
   }
  },
  "traditional-handicrafts": {
-  "img": "tour-handicrafts.webp",
+  "img": "tour-carpet.webp",
   "content": {
    "en": {
     "name": "Traditional Turkish Handicrafts",
