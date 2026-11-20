@@ -533,7 +533,7 @@ footer.site .wrap{padding-top:60px;padding-bottom:28px}
 footer.site a{color:#fff}
 footer .logo{color:#fff}
 footer .logo-text small{color:#97A9C4}
-.ft-grid{display:grid;grid-template-columns:1.15fr .72fr 1.3fr 1.35fr;gap:36px;align-items:start}
+.ft-grid{display:grid;grid-template-columns:1.1fr .7fr 1.25fr 1.45fr;gap:34px;align-items:start}
 .ft-brand p{margin:16px 0 0;max-width:300px;font-size:14.5px;line-height:1.65;color:#B6C2D6}
 .ft-col{display:flex;flex-direction:column;gap:12px;min-width:0}
 .ft-col h4{margin:0;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#97A9C4}
@@ -543,20 +543,34 @@ footer .logo-text small{color:#97A9C4}
 .ft-list{display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,.1)}
 a.ft-row{display:flex;align-items:center;gap:13px;width:100%;min-height:58px;padding:12px 2px;text-decoration:none;color:#E3EAF5;border-bottom:1px solid rgba(255,255,255,.1);transition:color .2s ease}
 .ft-icon{flex:none;width:36px;height:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.03);color:#CBD5E1;transition:border-color .2s ease,background .2s ease,color .2s ease}
-.ft-icon-sm{width:32px;height:32px}
 .ft-row-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .ft-row-text small{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#97A9C4}
 .ft-row-text b{font-size:14.5px;font-weight:600;line-height:1.35;color:#fff;overflow-wrap:anywhere}
 .ft-arrow{flex:none;display:inline-flex;align-items:center;justify-content:center;color:#97A9C4;transition:transform .2s ease,color .2s ease}
-a.ft-row:hover .ft-icon,a.ft-place-link:hover .ft-icon{border-color:rgba(255,85,51,.75);background:rgba(255,85,51,.12);color:#fff}
-a.ft-row:hover .ft-arrow,a.ft-row:active .ft-arrow,a.ft-place-link:hover .ft-arrow,a.ft-place-link:active .ft-arrow{color:#fff;transform:translate(2px,-2px)}
+a.ft-row:hover .ft-icon{border-color:rgba(255,85,51,.75);background:rgba(255,85,51,.12);color:#fff}
+a.ft-row:hover .ft-arrow,a.ft-row:active .ft-arrow{color:#fff;transform:translate(2px,-2px)}
 .ft-place{width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
-.ft-map{width:100%;height:152px;background:#0F1B33;overflow:hidden}
-.ft-map iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(.22) contrast(1.03)}
-a.ft-place-link{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;text-decoration:none;color:#E8EEF7;border-top:1px solid rgba(255,255,255,.1);transition:background .2s ease}
-a.ft-place-link:hover,a.ft-place-link:active{background:rgba(255,255,255,.05)}
-.ft-place-addr{flex:1;min-width:0;font-size:13.5px;font-weight:600;line-height:1.45;color:#E8EEF7;overflow-wrap:anywhere}
-.ft-meeting-note{margin:0;padding:11px 14px 13px;border-top:1px solid rgba(255,255,255,.07);font-size:12.5px;line-height:1.55;color:#97A9C4}
+a.ft-wayfinder{position:relative;display:block;width:100%;height:122px;background:#0D1A30;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none}
+.ft-wayfinder-svg{display:block;width:100%;height:100%;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+a.ft-wayfinder:hover .ft-wayfinder-svg{transform:scale(1.03)}
+@keyframes ftPinPulse{0%,100%{opacity:.22;transform:scale(1)}50%{opacity:.46;transform:scale(1.18)}}
+.ft-pin-pulse{transform-box:fill-box;transform-origin:center;animation:ftPinPulse 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.ft-pin-pulse{animation:none}}
+.ft-wf-badge{position:absolute;display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;background:rgba(13,26,48,.82);border:1px solid rgba(255,255,255,.14);font-size:10.5px;font-weight:700;letter-spacing:.03em;color:#D9E1EE;backdrop-filter:blur(6px);line-height:1.2}
+.ft-wf-hours{top:10px;left:10px}
+.ft-wf-dist{bottom:10px;right:10px}
+.ft-wf-coord{position:absolute;bottom:10px;left:11px;font-family:ui-monospace,'Cascadia Mono','SFMono-Regular',Menlo,monospace;font-size:10px;font-weight:600;letter-spacing:.04em;color:#97A9C4;line-height:1.2}
+.ft-place-body{padding:14px 14px 12px}
+.ft-place-addr{margin:0;font-size:14.5px;font-weight:600;line-height:1.4;color:#fff;overflow-wrap:anywhere}
+.ft-meeting-note{margin:7px 0 0;font-size:12.5px;line-height:1.55;color:#9EB0CA}
+.ft-place-actions{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 14px}
+.ft-btn-maps,.ft-btn-copy{flex:1 1 118px;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 12px;border-radius:10px;font:inherit;font-size:13px;font-weight:700;line-height:1;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .15s ease}
+footer.site a.ft-btn-maps{background:#fff;color:var(--ink);border:1px solid #fff}
+footer.site a.ft-btn-maps:hover{background:#EEF2F7;border-color:#EEF2F7;color:var(--ink)}
+footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
+.ft-btn-copy{background:rgba(255,255,255,.06);color:#E8EEF7;border:1px solid rgba(255,255,255,.16)}
+.ft-btn-copy:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff}
+.ft-btn-copy.is-copied{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);color:#fff}
 .ft-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid rgba(147,163,188,.22);font-size:12.5px;color:#97A9C4}
 @media (max-width:960px){
   .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -571,7 +585,8 @@ a.ft-place-link:hover,a.ft-place-link:active{background:rgba(255,255,255,.05)}
   .ft-nav-links a{width:100%;min-height:44px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:none}
   a.ft-row{min-height:56px;padding:13px 0}
   .ft-row-text b{font-size:15px}
-  .ft-map{height:148px}
+  a.ft-wayfinder{height:118px}
+  .ft-btn-maps,.ft-btn-copy{min-height:44px;font-size:13.5px}
   .ft-bottom{flex-direction:column;gap:8px;margin-top:30px;padding-top:18px}
 }
 
