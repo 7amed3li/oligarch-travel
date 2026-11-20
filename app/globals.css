@@ -363,7 +363,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .td-hero-media{position:absolute;inset:0}
 .td-hero-bg{width:100%;height:100%;object-fit:cover;display:block}
 .td-hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,25,46,.6) 0%,rgba(14,25,46,.16) 42%,rgba(14,25,46,.88) 100%);pointer-events:none}
-.td-hero-inner{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:38px}
+.td-hero-inner{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:62px}
 .td-hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .td-back-pill,.td-rating-pill{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:7px 14px;border-radius:999px;background:rgba(14,25,46,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:13px;font-weight:700;text-decoration:none}
 .td-back-pill:hover{background:rgba(14,25,46,.9);border-color:rgba(255,255,255,.4)}
@@ -390,7 +390,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .td-lb-arrow:hover{background:rgba(255,255,255,.22)}
 .td-lb-count{font-size:13.5px;font-weight:700;color:#CBD5E1;font-variant-numeric:tabular-nums}
 .td-body-sec{padding:0 0 60px;background:#fff}
-.td-ribbon{position:relative;z-index:4;margin:-24px 0 32px;background:#fff;border:1px solid #D9E2EC;border-radius:16px;box-shadow:0 16px 38px -18px rgba(26,43,73,.18);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.td-ribbon{position:relative;z-index:4;margin:-24px 0 32px;background:#fff;border:1px solid #D9E2EC;border-radius:16px;box-shadow:0 16px 38px -18px rgba(26,43,73,.18);display:grid;grid-template-columns:.78fr 1fr 1.45fr .92fr}
 .td-spec{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-left:1px solid #E3E8EF;min-width:0}
 .td-spec:first-child{border-left:none}
 .td-spec-icon{flex:none;width:36px;height:36px;border-radius:10px;background:#F5F7FA;border:1px solid #E3E8EF;display:inline-flex;align-items:center;justify-content:center;color:#1A2B49}
@@ -899,10 +899,12 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
 
 /* Responsive layouts for Tour Detail, Guide Teaser & Why Book Direct */
 @media(max-width:900px){
-  .td-ribbon{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .td-spec:nth-child(3){border-left:none}
-  .td-spec:nth-child(n+3){border-top:1px solid #E3E8EF}
-  .td-mobile-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #D9E2EC;border-radius:14px;padding:12px 14px;margin:0 0 22px;box-shadow:0 4px 14px rgba(26,43,73,.06)}
+  .td-hero-inner{padding-bottom:26px}
+  .td-ribbon{margin:16px 0 16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .td-spec{padding:14px 15px}
+  .td-spec-meeting{grid-column:1 / -1;border-left:none;border-top:1px solid #E3E8EF}
+  .td-spec-price{display:none}
+  .td-mobile-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #D9E2EC;border-radius:14px;padding:13px 15px;margin:0 0 18px;box-shadow:0 4px 14px rgba(26,43,73,.06)}
   .td-main{grid-template-columns:1fr;gap:26px}
   .wbd-grid{grid-template-columns:1fr;gap:14px}
   .gt-card{grid-template-columns:1fr;gap:24px;padding:24px 20px}
@@ -944,11 +946,20 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .tcard-title{font-size:17.5px}
   .tcard-amount{font-size:19px}
   .tcard-dqnamo-btn{padding:9px 14px;font-size:12.5px}
-  .td-hero{min-height:360px}
-  .td-hero-inner{padding-top:16px;padding-bottom:26px}
-  .td-hero-bottom{flex-direction:column;align-items:flex-start;gap:16px}
-  .td-ribbon{margin:-16px 0 20px}
-  .td-spec{padding:13px 14px}
+  .td-hero{min-height:390px}
+  .td-hero-inner{padding-top:18px;padding-bottom:24px;gap:36px}
+  .td-hero-top{gap:8px}
+  .td-back-pill,.td-rating-pill{font-size:12px;padding:6px 12px;min-height:36px}
+  .td-hero-bottom{flex-direction:column;align-items:flex-start;gap:18px}
+  .td-hero-pills{font-size:11.5px;margin-bottom:8px;gap:8px}
+  .td-hero-title{font-size:clamp(25px,6.8vw,34px);line-height:1.12}
+  .td-hero-tag{font-size:14.5px;margin-top:8px}
+  .td-ribbon{margin:16px 0 14px}
+  .td-spec{padding:13px 14px;gap:10px}
+  .td-spec-icon{width:34px;height:34px}
+  .td-mobile-cta{margin:0 0 16px}
+  .td-body-sec{padding:0 0 42px}
+  .td-story{gap:16px}
   .td-story-card{padding:18px}
   .td-desc{font-size:15.5px}
   .td-inc-grid{grid-template-columns:1fr;gap:14px}

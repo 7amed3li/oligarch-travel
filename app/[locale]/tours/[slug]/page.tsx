@@ -195,7 +195,7 @@ export default async function TourPage({
               </div>
             </div>
 
-            <div className="td-spec">
+            <div className="td-spec td-spec-meeting">
               <span className="td-spec-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
@@ -208,7 +208,7 @@ export default async function TourPage({
               </div>
             </div>
 
-            <div className="td-spec">
+            <div className="td-spec td-spec-price">
               <span className="td-spec-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
