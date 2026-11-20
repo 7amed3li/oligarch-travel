@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BottomBar from '@/components/BottomBar';
 import { LOCALES, UI, type Locale } from '@/data/tours';
 
 export default async function LocaleLayout({
@@ -24,6 +25,7 @@ export default async function LocaleLayout({
       <Header locale={loc} u={UI[loc]} segment={segment} />
       <main>{children}</main>
       <Footer locale={loc} u={UI[loc]} />
+      <BottomBar locale={loc} u={UI[loc]} />
     </>
   );
 }
