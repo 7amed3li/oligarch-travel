@@ -47,7 +47,10 @@ export default function BookingClient({
       if (it.tier) L.push(`   Yacht: ${it.tier === 'luxury' ? 'Luxury (drinks included)' : 'Standard'}`);
       L.push(`   Date: ${it.date || '—'} · Guests: ${it.people}`);
       if (tp.ticket && it.ticket) {
-        L.push(`   Entrance tickets: YES — skip-the-line, ${ticketPerPersonDisplay(tp)} / person × ${it.people}`);
+        L.push(
+          `   Entrance tickets: YES — ${fmtMoney(tp.ticket.currency, tp.ticket.amount)} / person × ${it.people}` +
+            (it.skip ? ` + skip-the-line ${fmtMoney('EUR', tp.ticket.premium)} / person` : ''),
+        );
       }
       L.push(`   Price: ${lineText(tp, it)}`);
     });
@@ -154,16 +157,36 @@ export default function BookingClient({
                   </div>
                 )}
                 {tp.ticket && (
-                  <label className="cart-check cart-ticket-check">
-                    <input
-                      type="checkbox"
-                      checked={!!it.ticket}
-                      onChange={(e) => update(idx, { ticket: e.target.checked })}
-                    />
-                    <span>
-                      {u.add_ticket} — {ticketPerPersonDisplay(tp)} {u.per_person}
-                    </span>
-                  </label>
+                  <>
+                    <label className="cart-check cart-ticket-check">
+                      <input
+                        type="checkbox"
+                        checked={!!it.ticket}
+                        onChange={(e) =>
+                          update(idx, {
+                            ticket: e.target.checked,
+                            skip: e.target.checked ? it.skip : undefined,
+                          })
+                        }
+                      />
+                      <span>
+                        {u.add_ticket} — {fmtMoney(tp.ticket.currency, tp.ticket.amount)}{' '}
+                        {u.per_person}
+                      </span>
+                    </label>
+                    <label className="cart-check cart-ticket-check">
+                      <input
+                        type="checkbox"
+                        checked={!!it.skip}
+                        disabled={!it.ticket}
+                        onChange={(e) => update(idx, { skip: e.target.checked })}
+                      />
+                      <span>
+                        {u.skip_add || 'Add skip-the-line ticket'} — {fmtMoney('EUR', tp.ticket.premium)}{' '}
+                        {u.per_person}
+                      </span>
+                    </label>
+                  </>
                 )}
                 <div className="cart-item-foot">
                   <button type="button" className="remove" onClick={() => remove(idx)}>

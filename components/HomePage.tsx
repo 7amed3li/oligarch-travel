@@ -1,6 +1,6 @@
 import SearchBar from './SearchBar';
 import { profileMetaFor } from '@/data/links';
-import TourCard from './TourCard';
+import MenuBoard from './MenuBoard';
 import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
@@ -69,11 +69,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         <div className="wrap">
           <h2 className="sec">{u.tours_title}</h2>
           <p className="sec-sub">{u.tours_sub}</p>
-          <div className="grid">
-            {TOUR_ORDER.map((tid) => (
-              <TourCard key={tid} locale={locale} tid={tid} price={byId[tid]} u={u} />
-            ))}
-          </div>
+          <MenuBoard locale={locale} u={u} byId={byId} />
         </div>
       </section>
 

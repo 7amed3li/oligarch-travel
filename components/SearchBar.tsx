@@ -16,11 +16,11 @@ export default function SearchBar({
   options: { id: string; name: string }[];
   byId: Record<string, TourPrice>;
 }) {
-  const { add } = useCart();
+  const { add, meta, setMeta } = useCart();
   const router = useRouter();
   const [tourId, setTourId] = useState(options[0]?.id || '');
-  const [date, setDate] = useState('');
-  const [people, setPeople] = useState(2);
+  const date = meta.date;
+  const people = meta.people;
 
   return (
     <form
@@ -47,7 +47,7 @@ export default function SearchBar({
       <div className="bb-row-2">
         <div className="bb-field">
           <label htmlFor="bb-date">{u.date}</label>
-          <input id="bb-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input id="bb-date" type="date" value={date} onChange={(e) => setMeta({ date: e.target.value })} />
         </div>
         <div className="bb-field small">
           <label htmlFor="bb-people">{u.guests}</label>
@@ -57,7 +57,7 @@ export default function SearchBar({
             min={1}
             max={46}
             value={people}
-            onChange={(e) => setPeople(parseInt(e.target.value, 10) || 1)}
+            onChange={(e) => setMeta({ people: parseInt(e.target.value, 10) || 1 })}
           />
         </div>
       </div>

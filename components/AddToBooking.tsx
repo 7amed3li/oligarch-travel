@@ -66,15 +66,18 @@ export default function AddToBooking({
   price: TourPrice;
   others?: OtherTour[];
 }) {
-  const { add } = useCart();
+  const { add, meta } = useCart();
   const router = useRouter();
   const t = COPY[locale] ?? COPY.en;
   const isYacht = tourId === 'bosphorus-yacht';
 
   const [tier, setTier] = useState<'standard' | 'luxury'>('standard');
   const [ticket, setTicket] = useState(false);
-  const [date, setDate] = useState('');
-  const [people, setPeople] = useState(Math.max(2, price.minGuests));
+  const [skip, setSkip] = useState(false);
+  const [date, setDate] = useState(meta.date || '');
+  const [people, setPeople] = useState(
+    Math.min(price.maxGuests, Math.max(price.minGuests, meta.people || Math.max(2, price.minGuests))),
+  );
 
   // Optional second tour, added in the same form.
   const [addOther, setAddOther] = useState(false);
@@ -92,6 +95,7 @@ export default function AddToBooking({
 
   const opts = () => ({
     ticket: price.ticket ? ticket : undefined,
+    skip: price.ticket && ticket ? skip : undefined,
     tier: isYacht ? tier : undefined,
   });
 
@@ -112,6 +116,7 @@ export default function AddToBooking({
     date,
     people: primaryGuests,
     ticket: price.ticket ? ticket : undefined,
+    skip: price.ticket && ticket ? skip : undefined,
     tier: isYacht ? tier : undefined,
   });
   if (addOther && other) {
@@ -185,22 +190,44 @@ export default function AddToBooking({
       )}
 
       {price.ticket && (
-        <div className={ticket ? 'ticketbox is-checked' : 'ticketbox'}>
-          <label className="tb-row">
-            <input
-              type="checkbox"
-              checked={ticket}
-              onChange={(e) => setTicket(e.target.checked)}
-            />
-            <span>
-              {u.add_ticket || 'Add entrance tickets too'} —{' '}
-              <strong>
-                {ticketPerPersonDisplay(price)} {u.per_person}
-              </strong>
-            </span>
-          </label>
-          <p className="tb-note">{u.skip_note}</p>
-        </div>
+        <>
+          <div className={ticket ? 'ticketbox is-checked' : 'ticketbox'}>
+            <label className="tb-row">
+              <input
+                type="checkbox"
+                checked={ticket}
+                onChange={(e) => {
+                  setTicket(e.target.checked);
+                  if (!e.target.checked) setSkip(false);
+                }}
+              />
+              <span>
+                {u.add_ticket || 'Add entrance tickets too'} +{' '}
+                <strong>
+                  {fmtMoney(price.ticket.currency, price.ticket.amount)} × {clamp(people, price)}{' '}
+                  {u.guests}
+                </strong>
+              </span>
+            </label>
+          </div>
+          <div className={skip ? 'ticketbox is-checked' : 'ticketbox'}>
+            <label className="tb-row">
+              <input
+                type="checkbox"
+                checked={skip}
+                disabled={!ticket}
+                onChange={(e) => setSkip(e.target.checked)}
+              />
+              <span>
+                {u.skip_add || 'Add skip-the-line ticket'} +{' '}
+                <strong>
+                  {fmtMoney('EUR', price.ticket.premium)} {u.per_person}
+                </strong>
+              </span>
+            </label>
+            <p className="tb-note">{u.skip_note}</p>
+          </div>
+        </>
       )}
 
       <div className="field-row-2">
