@@ -351,9 +351,7 @@ function TourModal({
           <p className="mrow-meta">
             {u.meeting_label}: {meetingPoint(locale, tid)}{' '}
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                meetingPoint(locale, tid) + ', Istanbul',
-              )}`}
+              href="https://maps.app.goo.gl/vTuGMLWqoP2tgWH59"
               target="_blank"
               rel="noopener"
             >
