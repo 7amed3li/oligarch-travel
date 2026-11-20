@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
 import {
+  fmtComponentsDisp,
   fmtMoney,
+  fmtMoneyD,
   lineComponents,
   mergeComponents,
   ticketPerPersonDisplay,
@@ -135,7 +137,7 @@ export default function AddToBooking({
   const totalSummary =
     curKeys.length === 0
       ? u.free_word || u.free || 'Free'
-      : curKeys.map((c) => fmtMoney(c, comp[c])).join(' + ');
+      : fmtComponentsDisp(comp);
 
   const selectStyle = {
     width: '100%',
@@ -204,7 +206,7 @@ export default function AddToBooking({
               <span>
                 {u.add_ticket || 'Add entrance tickets too'} +{' '}
                 <strong>
-                  {fmtMoney(price.ticket.currency, price.ticket.amount)} × {clamp(people, price)}{' '}
+                  {fmtMoneyD(price.ticket.currency, price.ticket.amount)} × {clamp(people, price)}{' '}
                   {u.guests}
                 </strong>
               </span>
@@ -221,7 +223,7 @@ export default function AddToBooking({
               <span>
                 {u.skip_add || 'Add skip-the-line ticket'} +{' '}
                 <strong>
-                  {fmtMoney('EUR', price.ticket.premium)} {u.per_person}
+                  {fmtMoneyD('EUR', price.ticket.premium)} {u.per_person}
                 </strong>
               </span>
             </label>

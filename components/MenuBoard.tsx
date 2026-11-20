@@ -6,7 +6,9 @@ import { useCart } from './CartProvider';
 import { RATINGS, TOUR_ORDER, TOURS, meetingPoint, type Locale } from '@/data/tours';
 import type { TourPrice } from '@/lib/prices';
 import {
+  fmtComponentsDisp,
   fmtMoney,
+  fmtMoneyD,
   lineComponents,
   priceDisplay,
   skipGroupTotalDisplay,
@@ -20,6 +22,19 @@ import {
 // shown plainly, entrance ticket offered with its own price, and ticket
 // totals auto-calculated from the people count. The Full-Day tour covers
 // the single-site tours: adding it removes them and disables their rows.
+// Ergin's menu order (2026-11-20 summary): Full-Day first (most expensive
+// of the city tours), then Topkapi, Hagia Sophia, Cistern, Sultanahmet,
+// Bazaars, Yacht, Handicrafts.
+export const MENU_ORDER = [
+  'full-day-istanbul',
+  'topkapi-palace',
+  'hagia-sophia',
+  'basilica-cistern',
+  'sultanahmet-hippodrome',
+  'bazaars-tour',
+  'bosphorus-yacht',
+  'traditional-handicrafts',
+];
 export const COVERED_BY_FULL_DAY = [
   'hagia-sophia',
   'topkapi-palace',
@@ -104,6 +119,18 @@ export default function MenuBoard({
             </button>
           </div>
         </div>
+        <div className="mb-field">
+          <label htmlFor="mb-lang">{u.tour_lang || 'Tour language'}</label>
+          <select
+            id="mb-lang"
+            value={meta.lang || 'en'}
+            onChange={(e) => setMeta({ lang: e.target.value })}
+          >
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
         <p className="mb-hint">{u.menu_hint}</p>
         {items.length > 0 && (
           <Link className="mb-cartlink" href={`/${locale}/booking`}>
@@ -113,7 +140,7 @@ export default function MenuBoard({
       </div>
 
       <div className="mlist">
-        {TOUR_ORDER.map((tid) => {
+        {MENU_ORDER.map((tid) => {
           const t = TOURS[tid];
           const c = t.content[locale];
           const tp = byId[tid];
@@ -256,7 +283,7 @@ function TourModal({
   });
   const tourPrice =
     isYacht && tier === 'luxury' && price.luxuryGroup
-      ? fmtMoney(price.currency, price.luxuryGroup)
+      ? fmtMoneyD(price.currency, price.luxuryGroup)
       : priceDisplay(price, u).replace(/ \+ .*$/, '');
   const ppl = Math.max(1, meta.people);
   const comp = lineComponents(price, {
@@ -267,9 +294,7 @@ function TourModal({
     skip: price.ticket && ticket ? skip : undefined,
     tier: isYacht ? tier : undefined,
   });
-  const totalJoined = Object.keys(comp)
-    .map((cur) => fmtMoney(cur, comp[cur]))
-    .join(' + ');
+  const totalJoined = fmtComponentsDisp(comp);
 
   return (
     <div className="tmodal-overlay" onClick={onClose}>
@@ -301,9 +326,18 @@ function TourModal({
             <span className="tm-chip">{c.group}</span>
           </div>
           <p className="mrow-meta">
-            {u.meeting_label}: {meetingPoint(locale, tid)}
+            {u.meeting_label}: {meetingPoint(locale, tid)}{' '}
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                meetingPoint(locale, tid) + ', Istanbul',
+              )}`}
+              target="_blank"
+              rel="noopener"
+            >
+              📍 Maps ↗
+            </a>
           </p>
-          <p className="tmodal-desc">{c.desc}</p>
+          <p className="tmodal-desc">{c.intro}</p>
           <div className="tmodal-cols">
             <div>
               <h4>{u.included}</h4>
@@ -368,7 +402,7 @@ function TourModal({
                     <span>
                       {u.add_ticket} +{' '}
                       <strong>
-                        {fmtMoney(price.ticket.currency, price.ticket.amount)} × {ppl} {u.guests}
+                        {fmtMoneyD(price.ticket.currency, price.ticket.amount)} × {ppl} {u.guests}
                       </strong>
                     </span>
                   </label>
@@ -384,7 +418,7 @@ function TourModal({
                     <span>
                       {u.skip_add || 'Add skip-the-line ticket'} +{' '}
                       <strong>
-                        {fmtMoney('EUR', price.ticket.premium)} {u.per_person}
+                        {fmtMoneyD('EUR', price.ticket.premium)} {u.per_person}
                       </strong>
                     </span>
                   </label>
@@ -401,7 +435,7 @@ function TourModal({
                 {price.ticket && ticket ? (
                   <div className="tsum-row">
                     <span>
-                      {u.add_ticket}: {fmtMoney(price.ticket.currency, price.ticket.amount)} ×{' '}
+                      {u.add_ticket}: {fmtMoneyD(price.ticket.currency, price.ticket.amount)} ×{' '}
                       {ppl} {u.guests}
                     </span>
                     <span>{ticketGroupTotalDisplay(price, ppl)}</span>
@@ -410,7 +444,7 @@ function TourModal({
                 {price.ticket && ticket && skip ? (
                   <div className="tsum-row">
                     <span>
-                      {u.skip_add || 'Add skip-the-line ticket'}: {fmtMoney('EUR', price.ticket.premium)}{' '}
+                      {u.skip_add || 'Add skip-the-line ticket'}: {fmtMoneyD('EUR', price.ticket.premium)}{' '}
                       × {ppl} {u.guests}
                     </span>
                     <span>{skipGroupTotalDisplay(price, ppl)}</span>

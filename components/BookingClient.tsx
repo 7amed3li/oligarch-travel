@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from './CartProvider';
-import { cartTotals, fmtMoney, lineComponents, ticketPerPersonDisplay } from '@/lib/cart';
+import { cartTotals, displayTotals, fmtComponentsDisp, fmtMoney, fmtMoneyD, lineComponents, ticketPerPersonDisplay } from '@/lib/cart';
 import type { PriceConfig } from '@/lib/prices';
 import { TOURS, type Locale } from '@/data/tours';
 
@@ -17,7 +17,7 @@ export default function BookingClient({
   prices: PriceConfig;
   byId: Record<string, import('@/lib/prices').TourPrice>;
 }) {
-  const { items: rawItems, remove, update, clear } = useCart();
+  const { items: rawItems, remove, update, clear, meta } = useCart();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -54,6 +54,8 @@ export default function BookingClient({
       }
       L.push(`   Price: ${lineText(tp, it)}`);
     });
+    const LANG_EN: Record<string, string> = { en: 'English', de: 'German', zh: 'Chinese' };
+    L.push('', `Tour language: ${LANG_EN[meta.lang] || 'English'}`);
     currencies.forEach((cur) => {
       const t = totals[cur];
       L.push('');
@@ -103,7 +105,7 @@ export default function BookingClient({
                 />
                 <div className="cart-item-title-col">
                   <h3>{c.name}</h3>
-                  <div className="line-total">{lineText(tp, it)}</div>
+                  <div className="line-total">{fmtComponentsDisp(lineComponents(tp, it))}</div>
                 </div>
               </div>
               <div className="cart-item-controls">
@@ -170,7 +172,7 @@ export default function BookingClient({
                         }
                       />
                       <span>
-                        {u.add_ticket} — {fmtMoney(tp.ticket.currency, tp.ticket.amount)}{' '}
+                        {u.add_ticket} — {fmtMoneyD(tp.ticket.currency, tp.ticket.amount)}{' '}
                         {u.per_person}
                       </span>
                     </label>
@@ -182,7 +184,7 @@ export default function BookingClient({
                         onChange={(e) => update(idx, { skip: e.target.checked })}
                       />
                       <span>
-                        {u.skip_add || 'Add skip-the-line ticket'} — {fmtMoney('EUR', tp.ticket.premium)}{' '}
+                        {u.skip_add || 'Add skip-the-line ticket'} — {fmtMoneyD('EUR', tp.ticket.premium)}{' '}
                         {u.per_person}
                       </span>
                     </label>
@@ -212,28 +214,27 @@ export default function BookingClient({
         </div>
       </div>
       <aside className="totals">
-        {currencies.map((cur) => {
-          const t = totals[cur];
+        {(() => {
+          const dt = displayTotals(items, byId, prices.depositPercent);
           return (
-            <div key={cur}>
-              <div className="cur-head">{cur}</div>
+            <div>
               <div className="trow">
                 <span>{u.total}</span>
-                <span>{fmtMoney(cur, t.subtotal)}</span>
+                <span>{fmtMoneyD('EUR', dt.subtotal)}</span>
               </div>
               <div className="trow dep">
                 <span>
                   {u.deposit} ({prices.depositPercent}%)
                 </span>
-                <span>{fmtMoney(cur, t.deposit)}</span>
+                <span>{fmtMoneyD('EUR', dt.deposit)}</span>
               </div>
               <div className="trow">
                 <span>{u.remainder}</span>
-                <span>{fmtMoney(cur, t.remainder)}</span>
+                <span>{fmtMoneyD('EUR', dt.remainder)}</span>
               </div>
             </div>
           );
-        })}
+        })()}
         <button className="confirm-btn" onClick={confirm} style={{ marginTop: 16 }}>
           {u.confirm}
         </button>

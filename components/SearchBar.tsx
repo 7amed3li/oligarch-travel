@@ -50,6 +50,18 @@ export default function SearchBar({
           <input id="bb-date" type="date" value={date} onChange={(e) => setMeta({ date: e.target.value })} />
         </div>
         <div className="bb-field small">
+          <label htmlFor="bb-lang">{u.tour_lang || 'Tour language'}</label>
+          <select
+            id="bb-lang"
+            value={meta.lang || 'en'}
+            onChange={(e) => setMeta({ lang: e.target.value })}
+          >
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+        <div className="bb-field small">
           <label htmlFor="bb-people">{u.guests}</label>
           <input
             id="bb-people"

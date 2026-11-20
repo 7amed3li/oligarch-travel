@@ -1,9 +1,11 @@
 'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
 import { useCart } from './CartProvider';
 import { LOCALES, type Locale } from '@/data/tours';
+import { DISP_CURS } from '@/lib/cart';
 
 const LANG_LABEL: Record<Locale, string> = { en: 'EN', de: 'DE', zh: '中文', tr: 'TR' };
 const LANG_NAME: Record<Locale, string> = { en: 'English', de: 'Deutsch', zh: '中文', tr: 'Türkçe' };
@@ -18,7 +20,9 @@ export default function Header({
   u: any;
   segment: string; // path after /{locale}/, e.g. '' | 'booking' | 'tours/hs-guided'
 }) {
-  const { count } = useCart();
+  const { count, currency, setCurrency } = useCart();
+  const router = useRouter();
+  const curRef = useRef<HTMLDetailsElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const base = `/${locale}`;
   const langRef = useRef<HTMLDetailsElement>(null);
@@ -56,6 +60,39 @@ export default function Header({
           <Link href={`${base}#contact`}>{u.nav_contact}</Link>
         </nav>
         <div className="header-actions">
+          <details className="lang-menu" ref={curRef}>
+            <summary className="lang-btn" aria-label="Currency">
+              <span>
+                {DISP_CURS.find((c) => c.code === currency)?.symbol} {currency}
+              </span>
+              <svg className="lang-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <div className="lang-panel">
+              {DISP_CURS.map((c) => (
+                <button
+                  key={c.code}
+                  type="button"
+                  className={c.code === currency ? 'on' : ''}
+                  onClick={() => {
+                    setCurrency(c.code);
+                    curRef.current?.removeAttribute('open');
+                    setMobileMenuOpen(false);
+                    router.refresh();
+                  }}
+                >
+                  <span className="lang-flag" aria-hidden="true">{c.symbol}</span>
+                  <span className="lang-opt-name">{c.code} · {c.name}</span>
+                  {c.code === currency && (
+                    <svg className="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M4 12.5l5 5L20 6.5" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+          </details>
           <details className="lang-menu" ref={langRef}>
             <summary className="lang-btn" aria-label="Language">
               <svg className="lang-globe" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">

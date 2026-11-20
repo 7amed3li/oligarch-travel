@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import type { CartItem } from '@/lib/cart';
+import { setDisplayCurrency, type CartItem, type DispCur } from '@/lib/cart';
 
 // Booking meta chosen FIRST, before any tour is added (Ergin, 2026-11-20):
 // the guest sets the tour date and the number of people at the top, then
@@ -9,6 +9,7 @@ import type { CartItem } from '@/lib/cart';
 export interface BookingMeta {
   date: string; // yyyy-mm-dd or ''
   people: number;
+  lang: string; // guide language the guest picks: 'en' | 'de' | 'zh' (Ergin, 2026-11-20)
 }
 
 interface CartCtx {
@@ -16,6 +17,8 @@ interface CartCtx {
   count: number;
   meta: BookingMeta;
   setMeta: (patch: Partial<BookingMeta>) => void;
+  currency: DispCur;
+  setCurrency: (c: DispCur) => void;
   add: (tourId: string, date: string, people: number, opts?: { ticket?: boolean; skip?: boolean; tier?: 'standard' | 'luxury' }) => void;
   remove: (idx: number) => void;
   update: (idx: number, patch: Partial<CartItem>) => void;
@@ -24,8 +27,10 @@ interface CartCtx {
 const Ctx = createContext<CartCtx>({
   items: [],
   count: 0,
-  meta: { date: '', people: 2 },
+  meta: { date: '', people: 2, lang: 'en' },
   setMeta: () => {},
+  currency: 'EUR',
+  setCurrency: () => {},
   add: () => {},
   remove: () => {},
   update: () => {},
@@ -35,21 +40,33 @@ export const useCart = () => useContext(Ctx);
 
 const KEY = 'oligarch_cart_v2';
 const META_KEY = 'oligarch_meta_v1';
+const CUR_KEY = 'oligarch_cur_v1';
+const DISP_CURS_LIST: DispCur[] = ['EUR', 'USD', 'TRY', 'CNY'];
 
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [meta, setMetaState] = useState<BookingMeta>({ date: '', people: 2 });
+  const [meta, setMetaState] = useState<BookingMeta>({ date: '', people: 2, lang: 'en' });
+  const [currency, setCurrencyState] = useState<DispCur>('EUR');
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setItems(JSON.parse(raw));
+      const savedCur = localStorage.getItem(CUR_KEY) as DispCur | null;
+      if (savedCur && DISP_CURS_LIST.includes(savedCur)) {
+        setCurrencyState(savedCur);
+        setDisplayCurrency(savedCur);
+      }
       const m = localStorage.getItem(META_KEY);
       if (m) {
         const parsed = JSON.parse(m);
         if (parsed && typeof parsed.people === 'number') {
-          setMetaState({ date: parsed.date || '', people: Math.min(46, Math.max(1, parsed.people)) });
+          setMetaState({
+            date: parsed.date || '',
+            people: Math.min(46, Math.max(1, parsed.people)),
+            lang: ['en', 'de', 'zh'].includes(parsed.lang) ? parsed.lang : 'en',
+          });
         }
       }
     } catch {}
@@ -79,6 +96,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         patch.people !== undefined
           ? Math.min(46, Math.max(1, patch.people || prev.people))
           : prev.people,
+      lang: patch.lang !== undefined ? patch.lang : prev.lang,
     }));
 
   const add = (tourId: string, date: string, people: number, opts?: { ticket?: boolean; skip?: boolean; tier?: 'standard' | 'luxury' }) =>
@@ -91,8 +109,17 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     setItems((prev) => prev.map((it, i) => (i === idx ? { ...it, ...patch } : it)));
   const clear = () => setItems([]);
 
+  const setCurrency = (c: DispCur) => {
+    setCurrencyState(c);
+    setDisplayCurrency(c);
+    try {
+      localStorage.setItem(CUR_KEY, c);
+      document.cookie = `oligarch_cur=${c}; path=/; max-age=31536000; SameSite=Lax`;
+    } catch {}
+  };
+
   return (
-    <Ctx.Provider value={{ items, count: items.length, meta, setMeta, add, remove, update, clear }}>
+    <Ctx.Provider value={{ items, count: items.length, meta, setMeta, currency, setCurrency, add, remove, update, clear }}>
       {children}
     </Ctx.Provider>
   );
