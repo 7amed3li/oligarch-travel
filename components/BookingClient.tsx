@@ -89,22 +89,25 @@ export default function BookingClient({
           const c = tourDef.content[locale];
           return (
             <div className="cart-item" key={idx}>
-              <img src={`/img/${tourDef.img}`} alt={c.name} />
-              <div style={{ flex: 1 }}>
-                <h3>{c.name}</h3>
-                <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 8 }}>
-                  <label className="small">
-                    {u.date}
-                    <br />
+              <div className="cart-item-head">
+                <img src={`/img/${tourDef.img}`} alt={c.name} />
+                <div className="cart-item-title-col">
+                  <h3>{c.name}</h3>
+                  <div className="line-total">{lineText(tp, it)}</div>
+                </div>
+              </div>
+              <div className="cart-item-controls">
+                <div className="cart-inputs-grid">
+                  <label className="cart-field">
+                    <span>{u.date}</span>
                     <input
                       type="date"
                       value={it.date}
                       onChange={(e) => update(idx, { date: e.target.value })}
                     />
                   </label>
-                  <label className="small">
-                    {u.guests}
-                    <br />
+                  <label className="cart-field">
+                    <span>{u.guests}</span>
                     <input
                       type="number"
                       min={tp.minGuests}
@@ -122,47 +125,52 @@ export default function BookingClient({
                   </label>
                 </div>
                 {tp.luxuryGroup && (
-                  <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 8 }}>
-                    <label className="small">
+                  <div className="cart-options">
+                    <label className="cart-check">
                       <input
                         type="radio"
                         name={`tier-${idx}`}
                         checked={it.tier !== 'luxury'}
                         onChange={() => update(idx, { tier: 'standard' })}
-                      />{' '}
-                      {u.tier_standard}
+                      />
+                      <span>{u.tier_standard}</span>
                     </label>
-                    <label className="small">
+                    <label className="cart-check">
                       <input
                         type="radio"
                         name={`tier-${idx}`}
                         checked={it.tier === 'luxury'}
                         onChange={() => update(idx, { tier: 'luxury' })}
-                      />{' '}
-                      {u.tier_luxury}
+                      />
+                      <span>{u.tier_luxury}</span>
                     </label>
                   </div>
                 )}
                 {tp.ticket && (
-                  <label className="small" style={{ display: 'block', marginTop: 8 }}>
+                  <label className="cart-check cart-ticket-check">
                     <input
                       type="checkbox"
                       checked={!!it.ticket}
                       onChange={(e) => update(idx, { ticket: e.target.checked })}
-                    />{' '}
-                    {u.add_ticket} — {ticketPerPersonDisplay(tp)} {u.per_person}
+                    />
+                    <span>
+                      {u.add_ticket} — {ticketPerPersonDisplay(tp)} {u.per_person}
+                    </span>
                   </label>
                 )}
-                <button className="remove" onClick={() => remove(idx)} style={{ marginTop: 8 }}>
-                  {u.remove}
-                </button>
+                <div className="cart-item-foot">
+                  <button type="button" className="remove" onClick={() => remove(idx)}>
+                    {u.remove}
+                  </button>
+                </div>
               </div>
-              <div className="line-total">{lineText(tp, it)}</div>
             </div>
           );
         })}
         <p>
-          <Link href={`/${locale}#tours`}>+ {u.add_another}</Link>
+          <Link href={`/${locale}#tours`} className="cart-add-more">
+            + {u.add_another}
+          </Link>
         </p>
         <div className="field">
           <label htmlFor="bk-name">{u.your_name}</label>
@@ -170,7 +178,7 @@ export default function BookingClient({
         </div>
         <div className="field">
           <label htmlFor="bk-phone">{u.your_phone}</label>
-          <input id="bk-phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <input id="bk-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </div>
       </div>
       <aside className="totals">

@@ -49,23 +49,19 @@ export default async function TourPage({
     [isFree ? (u.price_label || 'Price') : u.price_from, priceDisplay(tp, u)],
   ];
   return (
-    <section style={{ paddingTop: 34 }}>
+    <section className="tour-page-sec">
       <div className="wrap">
         <nav className="crumb" aria-label="Breadcrumb">
           <Link href={`/${loc}#tours`}>{u.nav_tours}</Link>
           <span className="crumb-sep" aria-hidden="true" />
           <span className="crumb-current">{c.name}</span>
         </nav>
-        <h2 className="sec" style={{ fontSize: 34 }}>
-          {c.name}
-        </h2>
-        <p className="sec-sub" style={{ fontSize: 17 }}>
-          {c.tagline}
-        </p>
+        <h1 className="sec tour-title">{c.name}</h1>
+        <p className="sec-sub tour-tagline">{c.tagline}</p>
         <img
           src={`/img/${t.img}`}
           alt={c.name}
-          style={{ borderRadius: 12, width: '100%', maxHeight: 440, objectFit: 'cover', marginTop: 18 }}
+          className="tour-hero-img"
         />
         <div className="facts">
           {facts.map(([l, v]) => (
@@ -74,6 +70,15 @@ export default async function TourPage({
               <strong>{v}</strong>
             </div>
           ))}
+        </div>
+        <div className="tour-mobile-jump">
+          <div className="tmj-price">
+            {!isFree && <small>{u.price_from}</small>}
+            <strong>{priceDisplay(tp, u)}</strong>
+          </div>
+          <a className="btn accent tmj-btn" href="#tour-bookbox">
+            {u.book_now}
+          </a>
         </div>
         <div className="two">
           <div>
@@ -85,7 +90,7 @@ export default async function TourPage({
               ))}
             </ul>
             <h3 style={{ marginTop: 22 }}>{u.not_included}</h3>
-            <ul className="tick">
+            <ul className="cross">
               {c.not_included.map((i) => (
                 <li key={i}>{i}</li>
               ))}
@@ -97,7 +102,7 @@ export default async function TourPage({
               </>
             ) : null}
           </div>
-          <aside className="bookbox">
+          <aside id="tour-bookbox" className="bookbox">
             <div className="price-now">{priceDisplay(tp, u)}</div>
             <AddToBooking locale={loc} u={u} tourId={slug} price={tp} others={others} />
           </aside>

@@ -46,6 +46,7 @@ export default function TourCard({
   }
 
   const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -61,6 +62,7 @@ export default function TourCard({
   };
 
   const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     setIsHovered(true);
   };
 

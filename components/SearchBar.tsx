@@ -44,20 +44,22 @@ export default function SearchBar({
           ))}
         </select>
       </div>
-      <div className="bb-field">
-        <label htmlFor="bb-date">{u.date}</label>
-        <input id="bb-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      </div>
-      <div className="bb-field small">
-        <label htmlFor="bb-people">{u.guests}</label>
-        <input
-          id="bb-people"
-          type="number"
-          min={1}
-          max={46}
-          value={people}
-          onChange={(e) => setPeople(parseInt(e.target.value, 10) || 1)}
-        />
+      <div className="bb-row-2">
+        <div className="bb-field">
+          <label htmlFor="bb-date">{u.date}</label>
+          <input id="bb-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </div>
+        <div className="bb-field small">
+          <label htmlFor="bb-people">{u.guests}</label>
+          <input
+            id="bb-people"
+            type="number"
+            min={1}
+            max={46}
+            value={people}
+            onChange={(e) => setPeople(parseInt(e.target.value, 10) || 1)}
+          />
+        </div>
       </div>
       <button className="btn accent bb-btn" type="submit">
         {u.start_booking}

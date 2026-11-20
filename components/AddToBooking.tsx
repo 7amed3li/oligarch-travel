@@ -67,7 +67,8 @@ export default function AddToBooking({
     borderRadius: 8,
     border: '1px solid #CBD5E1',
     background: '#fff',
-    fontSize: 14,
+    fontSize: 16,
+    minHeight: 44,
   } as const;
 
   return (
@@ -107,20 +108,22 @@ export default function AddToBooking({
           <p className="tb-note">{u.skip_note}</p>
         </div>
       )}
-      <div className="field">
-        <label htmlFor="bk-date">{u.date}</label>
-        <input id="bk-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      </div>
-      <div className="field">
-        <label htmlFor="bk-people">{u.guests}</label>
-        <input
-          id="bk-people"
-          type="number"
-          min={price.minGuests}
-          max={price.maxGuests}
-          value={people}
-          onChange={(e) => setPeople(parseInt(e.target.value, 10) || price.minGuests)}
-        />
+      <div className="field-row-2">
+        <div className="field">
+          <label htmlFor="bk-date">{u.date}</label>
+          <input id="bk-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </div>
+        <div className="field">
+          <label htmlFor="bk-people">{u.guests}</label>
+          <input
+            id="bk-people"
+            type="number"
+            min={price.minGuests}
+            max={price.maxGuests}
+            value={people}
+            onChange={(e) => setPeople(parseInt(e.target.value, 10) || price.minGuests)}
+          />
+        </div>
       </div>
 
       {others.length > 0 && (
@@ -185,25 +188,27 @@ export default function AddToBooking({
                   <p className="tb-note">{u.skip_note}</p>
                 </div>
               )}
-              <div className="field">
-                <label htmlFor="ao-date">{u.date}</label>
-                <input
-                  id="ao-date"
-                  type="date"
-                  value={oDate}
-                  onChange={(e) => setODate(e.target.value)}
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="ao-people">{u.guests}</label>
-                <input
-                  id="ao-people"
-                  type="number"
-                  min={other?.price.minGuests || 1}
-                  max={other?.price.maxGuests || 8}
-                  value={oPeople}
-                  onChange={(e) => setOPeople(parseInt(e.target.value, 10) || 1)}
-                />
+              <div className="field-row-2">
+                <div className="field">
+                  <label htmlFor="ao-date">{u.date}</label>
+                  <input
+                    id="ao-date"
+                    type="date"
+                    value={oDate}
+                    onChange={(e) => setODate(e.target.value)}
+                  />
+                </div>
+                <div className="field">
+                  <label htmlFor="ao-people">{u.guests}</label>
+                  <input
+                    id="ao-people"
+                    type="number"
+                    min={other?.price.minGuests || 1}
+                    max={other?.price.maxGuests || 8}
+                    value={oPeople}
+                    onChange={(e) => setOPeople(parseInt(e.target.value, 10) || 1)}
+                  />
+                </div>
               </div>
             </div>
           )}
@@ -214,8 +219,7 @@ export default function AddToBooking({
         <button type="submit">{added ? u.added : u.add_to_booking}</button>
         <button
           type="button"
-          className="btn ghost"
-          style={{ marginTop: 10 }}
+          className="btn ghost book-now-btn"
           onClick={() => {
             doAdd();
             router.push(`/${locale}/booking`);
