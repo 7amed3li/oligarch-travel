@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Locale } from '@/data/tours';
 
 const FULL_ADDRESS =
-  'Harem Souvenir Shop, Babı Hümayun Cd. No:8, Sultanahmet, Fatih, Istanbul';
+  'Four Seasons Hotel Istanbul At Sultanahmet, Tevkifhane Sk. No:1, Sultanahmet, Fatih, Istanbul';
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(FULL_ADDRESS)}`;
 
 const COPY: Record<
@@ -21,7 +21,7 @@ const COPY: Record<
 > = {
   en: {
     hours: 'Daily · 09:00–17:00',
-    landmark: '50m · Hagia Sophia',
+    landmark: 'Heart of Sultanahmet',
     directions: 'Directions',
     directionsAria: 'Open meeting point in Google Maps',
     copy: 'Copy address',
@@ -30,7 +30,7 @@ const COPY: Record<
   },
   de: {
     hours: 'Täglich · 09:00–17:00',
-    landmark: '50 m · Hagia Sophia',
+    landmark: 'Herz von Sultanahmet',
     directions: 'Route',
     directionsAria: 'Treffpunkt in Google Maps öffnen',
     copy: 'Kopieren',
@@ -39,7 +39,7 @@ const COPY: Record<
   },
   zh: {
     hours: '每日 · 09:00–17:00',
-    landmark: '距圣索菲亚 50 米',
+    landmark: '苏丹艾哈迈德中心',
     directions: '地图导航',
     directionsAria: '在 Google 地图中打开集合地点',
     copy: '复制地址',
@@ -48,7 +48,7 @@ const COPY: Record<
   },
   tr: {
     hours: 'Her gün · 09:00–17:00',
-    landmark: 'Ayasofya’ya 50 m',
+    landmark: "Sultanahmet'in kalbi",
     directions: 'Yol tarifi',
     directionsAria: 'Buluşma noktasını Google Haritalar’da aç',
     copy: 'Kopyala',
@@ -227,7 +227,7 @@ export default function FooterMeetingCard({
         </svg>
 
         <span className="ft-wf-badge ft-wf-hours">{t.hours}</span>
-        <span className="ft-wf-coord">41.0086° N · 28.9802° E</span>
+        <span className="ft-wf-coord">Tevkifhane Sk. No:1</span>
         <span className="ft-wf-badge ft-wf-dist">{t.landmark}</span>
       </a>
 
