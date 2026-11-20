@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import AddToBooking from '@/components/AddToBooking';
 import TourHeroGallery from '@/components/TourHeroGallery';
 import {
@@ -13,7 +14,7 @@ import {
   type Locale,
 } from '@/data/tours';
 import { getPrices, priceOf, pricesById } from '@/lib/prices';
-import { priceDisplay } from '@/lib/cart';
+import { priceDisplay, type DispCur } from '@/lib/cart';
 
 export const dynamic = 'force-dynamic';
 
@@ -138,6 +139,10 @@ export default async function TourPage({
   const prices = getPrices();
   const byId = pricesById(prices);
   const tp = priceOf(prices, slug);
+  // Guest's display currency (set by the header switcher cookie).
+  const ck = await cookies();
+  const curRaw = ck.get('oligarch_cur')?.value;
+  const dispCur = (['EUR', 'USD', 'TRY', 'CNY'].includes(curRaw || '') ? curRaw : 'EUR') as DispCur;
 
   const others = TOUR_ORDER.filter((id) => id !== slug).map((id) => ({
     id,
@@ -226,7 +231,7 @@ export default async function TourPage({
               </span>
               <div className="td-spec-text">
                 <span className="lbl">{isFree ? copy.priceLabel : u.price_from}</span>
-                <strong>{priceDisplay(tp, u)}</strong>
+                <strong>{priceDisplay(tp, u, dispCur)}</strong>
               </div>
             </div>
           </div>
@@ -234,7 +239,7 @@ export default async function TourPage({
           <div className="td-mobile-cta">
             <div className="td-mc-price">
               <small>{copy.directLine}</small>
-              <strong>{priceDisplay(tp, u)}</strong>
+              <strong>{priceDisplay(tp, u, dispCur)}</strong>
             </div>
             <a className="td-mc-btn" href="#tour-bookbox">
               {u.book_now}
@@ -245,6 +250,7 @@ export default async function TourPage({
             <div className="td-story">
               <div className="td-story-card">
                 <p className="td-kicker">{copy.experienceKicker}</p>
+                <p className="td-desc">{c.intro}</p>
                 <p className="td-desc">{c.desc}</p>
               </div>
 
@@ -351,7 +357,7 @@ export default async function TourPage({
             <aside id="tour-bookbox" className="bookbox td-bookbox">
               <div className="td-bb-head">
                 <span className="td-bb-kicker">{copy.directLine}</span>
-                <div className="price-now">{priceDisplay(tp, u)}</div>
+                <div className="price-now">{priceDisplay(tp, u, dispCur)}</div>
                 {tp.ticket ? (
                   <div className="td-bb-ticket-hint">{copy.ticketAvailable}</div>
                 ) : null}
@@ -396,7 +402,7 @@ export default async function TourPage({
                     <h3>{cc.name}</h3>
                     <p>{cc.tagline}</p>
                     <div className="td-more-foot">
-                      <strong>{priceDisplay(cp, u)}</strong>
+                      <strong>{priceDisplay(cp, u, dispCur)}</strong>
                       <span className="td-more-go">{u.details_link || 'View details'} →</span>
                     </div>
                   </div>
