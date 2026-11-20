@@ -67,7 +67,7 @@ export function cartTotals(
   return out;
 }
 
-const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$' };
+const SYMBOLS: Record<string, string> = { EUR: '€', USD: '$', TRY: '₺', CNY: '¥' };
 export function sym(currency: string): string {
   return SYMBOLS[currency] || currency + ' ';
 }
@@ -89,36 +89,90 @@ export function fmtMoney(currency: string, n: number): string {
 export function ticketPerPersonDisplay(tp: TourPrice): string {
   if (!tp.ticket) return '';
   const t = tp.ticket;
-  return `${fmtMoney(t.currency, t.amount)} + ${fmtMoney(PREMIUM_CURRENCY, t.premium)}`;
+  return `${fmtMoneyD(t.currency, t.amount)} + ${fmtMoneyD(PREMIUM_CURRENCY, t.premium)}`;
 }
+// ===== Display currency (Ergin, 2026-11-20: "En üste USD TL Euro cin yuan") =====
+// The guest picks a display currency at the top of the site; guest-facing
+// prices are converted into it. Reference rates per 1 EUR — display only;
+// bookings stay in the original currencies (the WhatsApp confirmation to
+// the guide always shows the originals).
+export type DispCur = 'EUR' | 'USD' | 'TRY' | 'CNY';
+export const DISP_CURS: { code: DispCur; symbol: string; name: string }[] = [
+  { code: 'EUR', symbol: '€', name: 'Euro' },
+  { code: 'USD', symbol: '$', name: 'US Dollar' },
+  { code: 'TRY', symbol: '₺', name: 'Türk Lirası' },
+  { code: 'CNY', symbol: '¥', name: 'Chinese Yuan' },
+];
+export const RATES: Record<string, number> = { EUR: 1, USD: 1.16, TRY: 50, CNY: 8.25 };
+let CUR: DispCur = 'EUR';
+export function setDisplayCurrency(c: DispCur) { CUR = c; }
+export function getDisplayCurrency(): DispCur { return CUR; }
+export function convertTo(currency: string, n: number, target: DispCur): number {
+  return (n / (RATES[currency] || 1)) * (RATES[target] || 1);
+}
+export function fmtMoneyIn(currency: string, n: number, target: DispCur): string {
+  const v = convertTo(currency, n, target);
+  const whole = target === 'TRY' || target === 'CNY';
+  const r = whole ? Math.round(v) : Math.round(v * 100) / 100;
+  const hasCents = !whole && Math.abs(r % 1) > 0.001;
+  const s = r.toLocaleString('en-US', { minimumFractionDigits: hasCents ? 2 : 0, maximumFractionDigits: 2 });
+  return sym(target) + s;
+}
+export function fmtMoneyD(currency: string, n: number): string {
+  return fmtMoneyIn(currency, n, CUR);
+}
+// A line's multi-currency components merged into ONE display-currency amount.
+export function fmtComponentsDisp(comp: Record<string, number>): string {
+  let eur = 0;
+  for (const c of Object.keys(comp)) eur += comp[c] / (RATES[c] || 1);
+  return fmtMoneyIn('EUR', eur, CUR);
+}
+// Whole-cart totals merged into one currency (EUR figures; format with
+// fmtMoneyD('EUR', x)).
+export function displayTotals(
+  items: CartItem[],
+  byId: Record<string, TourPrice>,
+  depositPercent: number,
+): { subtotal: number; deposit: number; remainder: number } {
+  const t = cartTotals(items, byId, depositPercent);
+  let subtotal = 0;
+  let deposit = 0;
+  for (const c of Object.keys(t)) {
+    subtotal += t[c].subtotal / (RATES[c] || 1);
+    deposit += t[c].deposit / (RATES[c] || 1);
+  }
+  return { subtotal: round2(subtotal), deposit: round2(deposit), remainder: round2(subtotal - deposit) };
+}
+
 
 // Total entrance-ticket cost for a whole group, auto-calculated from the
 // guest count: "₺8,250" — the ticket itself only; the skip-the-line
 // upgrade is a separate line (separate checkbox).
 export function ticketGroupTotalDisplay(tp: TourPrice, people: number): string {
   if (!tp.ticket || people < 1) return '';
-  return fmtMoney(tp.ticket.currency, tp.ticket.amount * people);
+  return fmtMoneyD(tp.ticket.currency, tp.ticket.amount * people);
 }
 
 // Total skip-the-line upgrade for a whole group: "€7.50".
 export function skipGroupTotalDisplay(tp: TourPrice, people: number): string {
   if (!tp.ticket || people < 1) return '';
-  return fmtMoney(PREMIUM_CURRENCY, tp.ticket.premium * people);
+  return fmtMoneyD(PREMIUM_CURRENCY, tp.ticket.premium * people);
 }
 
 // Card / page price line, localized via UI strings.
-export function priceDisplay(tp: TourPrice, ui: any): string {
+export function priceDisplay(tp: TourPrice, ui: any, target?: DispCur): string {
+  const T: DispCur = target || CUR;
   if (tp.perGroup === 0 && tp.perPerson === 0) {
     return ui.free_word || ui.free || 'Free';
   }
   let base: string;
   if (tp.luxuryGroup) {
-    base = `${fmtMoney(tp.currency, tp.perGroup)}–${fmtMoney(tp.currency, tp.luxuryGroup)} ${ui.per_group}`;
+    base = `${fmtMoneyIn(tp.currency, tp.perGroup, T)}–${fmtMoneyIn(tp.currency, tp.luxuryGroup, T)} ${ui.per_group}`;
   } else if (tp.perPerson > 0 && tp.perGroup === 0) {
-    base = `${fmtMoney(tp.currency, tp.perPerson)} ${ui.per_person}`;
+    base = `${fmtMoneyIn(tp.currency, tp.perPerson, T)} ${ui.per_person}`;
   } else {
-    base = `${fmtMoney(tp.currency, tp.perGroup)} ${ui.per_group}`;
-    if (tp.perPerson > 0) base += ` + ${fmtMoney(tp.currency, tp.perPerson)} ${ui.per_person}`;
+    base = `${fmtMoneyIn(tp.currency, tp.perGroup, T)} ${ui.per_group}`;
+    if (tp.perPerson > 0) base += ` + ${fmtMoneyIn(tp.currency, tp.perPerson, T)} ${ui.per_person}`;
   }
   if (tp.ticket) base += ` + ${ui.tickets_word || 'ticket'} ${ui.per_person}`;
   return base;
