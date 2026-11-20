@@ -19,7 +19,7 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
   const base = `/${locale}`;
   const year = new Date().getFullYear();
   return (
-    <footer className="site">
+    <footer id="contact" className="site">
       <div className="wrap">
         <div className="ft-grid">
           <div className="ft-brand">
@@ -60,6 +60,24 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
                 <b>erginkarakoyun@gmail.com</b>
               </span>
             </a>
+            <a
+              className="ft-row"
+              href="https://instagram.com/topkapipalacemuseum"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IconTile>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </IconTile>
+              <span className="ft-row-text">
+                <small>{u.instagram_label}</small>
+                <b>@topkapipalacemuseum</b>
+              </span>
+            </a>
           </div>
 
           <div className="ft-col ft-contact">
@@ -89,6 +107,7 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
                 <b className="ft-b-soft">{MEETING_DEFAULT[locale]}</b>
               </span>
             </a>
+            <p className="ft-meeting-note">{u.meeting}</p>
           </div>
         </div>
 

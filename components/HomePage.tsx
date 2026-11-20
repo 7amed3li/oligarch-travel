@@ -181,34 +181,6 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           </div>
         </div>
       </section>
-
-      <section id="contact">
-        <div className="wrap">
-          <h2 className="sec">{u.contact_title}</h2>
-          <div className="contact-grid">
-            <div className="contact-item">
-              <span className="lbl">WhatsApp</span>
-              <a href="https://wa.me/905553255565" target="_blank" rel="noopener">
-                +90 555 325 55 65
-              </a>
-            </div>
-            <div className="contact-item">
-              <span className="lbl">{u.email_label}</span>
-              <a href="mailto:erginkarakoyun@gmail.com">erginkarakoyun@gmail.com</a>
-            </div>
-            <div className="contact-item">
-              <span className="lbl">{u.instagram_label}</span>
-              <a href="https://instagram.com/topkapipalacemuseum" target="_blank" rel="noopener">
-                @topkapipalacemuseum
-              </a>
-            </div>
-            <div className="contact-item">
-              <span className="lbl">{u.meeting_label}</span>
-              <span>{u.meeting}</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

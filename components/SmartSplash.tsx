@@ -2,69 +2,38 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 
 export default function SmartSplash() {
   const [visible, setVisible] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const closingRef = useRef(false);
-  const closeTlRef = useRef<gsap.core.Timeline | null>(null);
+  const yearRef = useRef<HTMLSpanElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const openedRef = useRef(false);
 
-  const openDoors = useCallback(() => {
-    if (closingRef.current) return;
-    closingRef.current = true;
+  const finishSplash = useCallback(() => {
+    document.documentElement.classList.add('splash-done');
+    setVisible(false);
+  }, []);
+
+  const triggerOpen = useCallback(() => {
+    if (openedRef.current) return;
+    openedRef.current = true;
 
     const root = rootRef.current;
-    if (!root) {
-      document.documentElement.classList.add('splash-done');
-      setVisible(false);
-      return;
+    if (root) root.style.pointerEvents = 'none';
+
+    const tl = tlRef.current;
+    if (tl && tl.labels && typeof tl.labels.open === 'number') {
+      if (tl.time() < tl.labels.open) {
+        tl.play('open');
+      } else {
+        tl.play();
+      }
+    } else {
+      finishSplash();
     }
-
-    // Unlock interaction underneath immediately while doors part
-    root.style.pointerEvents = 'none';
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.documentElement.classList.add('splash-done');
-        setVisible(false);
-      },
-    });
-    closeTlRef.current = tl;
-
-    tl.to('.ss-center', {
-      opacity: 0,
-      scale: 0.94,
-      duration: 0.24,
-      ease: 'power2.in',
-    })
-      .to(
-        '.ss-seam',
-        {
-          opacity: 0,
-          duration: 0.18,
-          ease: 'power1.out',
-        },
-        '<',
-      )
-      .to(
-        '.ss-door-left',
-        {
-          xPercent: -102,
-          duration: 0.68,
-          ease: 'power4.inOut',
-        },
-        '-=0.1',
-      )
-      .to(
-        '.ss-door-right',
-        {
-          xPercent: 102,
-          duration: 0.68,
-          ease: 'power4.inOut',
-        },
-        '<',
-      );
-  }, []);
+  }, [finishSplash]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -76,57 +45,141 @@ export default function SmartSplash() {
     const root = rootRef.current;
     if (!root) return;
 
-    let cancelled = false;
+    // Reset state cleanly across React StrictMode double invocation
+    openedRef.current = false;
+    root.style.pointerEvents = 'auto';
+
+    gsap.registerPlugin(DrawSVGPlugin);
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.ss-center',
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.34, ease: 'power2.out' },
-      );
-      gsap.fromTo(
-        '.ss-seam-fill',
-        { scaleY: 0 },
-        { scaleY: 1, duration: 0.45, ease: 'power2.out' },
-      );
+      const yearState = { y: 1994 };
+
+      gsap.set('.ss-draw', { drawSVG: '0% 0%' });
+      gsap.set('.ss-light-slit', { scaleY: 0, scaleX: 1, opacity: 0 });
+      gsap.set('.ss-door-left', { xPercent: 0 });
+      gsap.set('.ss-door-right', { xPercent: 0 });
+
+      const tl = gsap.timeline({
+        onComplete: finishSplash,
+      });
+      tlRef.current = tl;
+
+      // Stage 1 (0.00s -> 0.56s): Immediate arch drawing + year ticker + sunlight slit ignition
+      tl.to(
+        '.ss-draw',
+        {
+          drawSVG: '0% 100%',
+          duration: 0.54,
+          stagger: 0.05,
+          ease: 'power2.inOut',
+        },
+        0,
+      )
+        .to(
+          yearState,
+          {
+            y: 2026,
+            duration: 0.54,
+            ease: 'power2.out',
+            onUpdate: () => {
+              if (yearRef.current) {
+                yearRef.current.textContent = String(Math.round(yearState.y));
+              }
+            },
+          },
+          0,
+        )
+        .to(
+          '.ss-light-slit',
+          {
+            scaleY: 1,
+            opacity: 1,
+            duration: 0.44,
+            ease: 'power2.out',
+          },
+          0.12,
+        )
+        // Stage 2 (0.52s -> 0.64s): Unlatch anticipation — pulls gleam & sunlight widens through crack
+        .to(
+          '.ss-pull',
+          {
+            opacity: 1,
+            scaleY: 1.15,
+            transformOrigin: 'center',
+            duration: 0.14,
+            ease: 'power2.out',
+          },
+          0.5,
+        )
+        .to(
+          '.ss-light-slit',
+          {
+            scaleX: 3.5,
+            duration: 0.16,
+            ease: 'power2.in',
+          },
+          0.5,
+        )
+        // Stage 3 ('open' at 0.64s): Doors sweep open smoothly carrying split arch, pulls, moldings & coords
+        .addLabel('open', 0.64)
+        .call(
+          () => {
+            openedRef.current = true;
+            if (rootRef.current) {
+              rootRef.current.style.pointerEvents = 'none';
+            }
+          },
+          undefined,
+          'open',
+        )
+        .to(
+          '.ss-hud',
+          {
+            opacity: 0,
+            y: -10,
+            duration: 0.22,
+            ease: 'power2.in',
+          },
+          'open',
+        )
+        .to(
+          '.ss-light-slit',
+          {
+            opacity: 0,
+            duration: 0.22,
+            ease: 'power1.out',
+          },
+          'open',
+        )
+        .to(
+          '.ss-door-left',
+          {
+            xPercent: -102,
+            duration: 0.72,
+            ease: 'power4.inOut',
+          },
+          'open+=0.04',
+        )
+        .to(
+          '.ss-door-right',
+          {
+            xPercent: 102,
+            duration: 0.72,
+            ease: 'power4.inOut',
+          },
+          'open+=0.04',
+        );
     }, root);
 
-    const minDelay = new Promise<void>((resolve) => setTimeout(resolve, 420));
-    const maxDelay = new Promise<void>((resolve) => setTimeout(resolve, 850));
-
-    const fontsReady: Promise<unknown> =
-      typeof document !== 'undefined' && document.fonts?.ready
-        ? document.fonts.ready.catch(() => undefined)
-        : Promise.resolve();
-
-    const poster = document.querySelector<HTMLImageElement>('.hero-media img.poster');
-    const posterReady =
-      !poster || poster.complete
-        ? Promise.resolve()
-        : new Promise<void>((resolve) => {
-            const done = () => resolve();
-            poster.addEventListener('load', done, { once: true });
-            poster.addEventListener('error', done, { once: true });
-          });
-
-    Promise.all([
-      minDelay,
-      Promise.race([Promise.all([fontsReady, posterReady]), maxDelay]),
-    ]).then(() => {
-      if (!cancelled) openDoors();
-    });
-
-    const safetyTimer = setTimeout(() => {
-      if (!cancelled) openDoors();
-    }, 2400);
+    const safetyTimer = setTimeout(finishSplash, 2600);
 
     return () => {
-      cancelled = true;
       clearTimeout(safetyTimer);
-      closeTlRef.current?.kill();
+      tlRef.current?.kill();
+      tlRef.current = null;
       ctx.revert();
     };
-  }, [openDoors]);
+  }, [finishSplash]);
 
   if (!visible) return null;
 
@@ -136,27 +189,94 @@ export default function SmartSplash() {
       className="ss-root"
       role="presentation"
       aria-hidden="true"
-      onClick={openDoors}
+      onClick={triggerOpen}
     >
-      <div className="ss-door ss-door-left" />
-      <div className="ss-door ss-door-right" />
-      <div className="ss-seam">
-        <div className="ss-seam-fill" />
-      </div>
-      <div className="ss-center">
-        <svg className="ss-arch-svg" viewBox="0 0 72 84" aria-hidden="true">
+      {/* Left Palace Door Leaf */}
+      <div className="ss-door ss-door-left">
+        <div className="ss-panel-frame" />
+        <svg className="ss-arch-half ss-arch-left" viewBox="0 0 100 220" aria-hidden="true">
           <path
-            fill="#FFFFFF"
-            fillRule="evenodd"
-            d="M10,78 L10,44 C10,26 20,15 36,13 C52,15 62,26 62,44 L62,78 Z M24,78 L24,46 A12,12 0 0 1 48,46 L48,78 Z"
+            className="ss-draw"
+            d="M 100 22 C 52 24 22 64 22 126 L 22 204 L 100 204"
+            fill="none"
+            stroke="#FFFFFF"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <polygon points="30.5,17 41.5,17 36,4" fill="#FF5533" />
+          <path
+            className="ss-draw"
+            d="M 100 56 C 70 58 52 84 52 126 L 52 204"
+            fill="none"
+            stroke="rgba(255,255,255,0.45)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+          <path d="M 100 6 L 88 26 L 100 26 Z" fill="#FF5533" />
+          <rect
+            className="ss-pull"
+            x="86"
+            y="114"
+            width="4"
+            height="32"
+            rx="2"
+            fill="#FFFFFF"
+            opacity="0.72"
+          />
         </svg>
-        <div className="ss-wordmark">
+        <span className="ss-coord ss-coord-l">41.0086° N</span>
+      </div>
+
+      {/* Right Palace Door Leaf */}
+      <div className="ss-door ss-door-right">
+        <div className="ss-panel-frame" />
+        <svg className="ss-arch-half ss-arch-right" viewBox="0 0 100 220" aria-hidden="true">
+          <path
+            className="ss-draw"
+            d="M 0 22 C 48 24 78 64 78 126 L 78 204 L 0 204"
+            fill="none"
+            stroke="#FFFFFF"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            className="ss-draw"
+            d="M 0 56 C 30 58 48 84 48 126 L 48 204"
+            fill="none"
+            stroke="rgba(255,255,255,0.45)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+          <path d="M 0 6 L 12 26 L 0 26 Z" fill="#FF5533" />
+          <rect
+            className="ss-pull"
+            x="10"
+            y="114"
+            width="4"
+            height="32"
+            rx="2"
+            fill="#FFFFFF"
+            opacity="0.72"
+          />
+        </svg>
+        <span className="ss-coord ss-coord-r">28.9802° E</span>
+      </div>
+
+      {/* Warm Sunlight Crack Along Center Seam */}
+      <div className="ss-light-slit" />
+
+      {/* Top Brand Wordmark & Bottom Live Year Counter */}
+      <div className="ss-hud">
+        <div className="ss-brand-top">
           <strong>OLIGARCH</strong>
           <small>TRAVEL</small>
         </div>
-        <span className="ss-loc">ISTANBUL · SULTANAHMET</span>
+        <div className="ss-year-bar">
+          <span ref={yearRef}>1994</span>
+          <span className="ss-year-sep" aria-hidden="true">·</span>
+          <span>ISTANBUL OLD CITY</span>
+        </div>
       </div>
     </div>
   );
