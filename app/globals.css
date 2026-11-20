@@ -1224,3 +1224,8 @@ html.splash-done .ss-root{display:none!important}
 /* ===== Rev 8b: teaser portrait — lock the arch ratio, frame the face ===== */
 .gt-arch-window{aspect-ratio:4/5}
 .gt-arch-img{height:100%;object-position:78% top}
+
+/* ===== Booking phone: country-code row ===== */
+.bk-phone-row{display:flex;gap:8px}
+.bk-phone-row select{width:158px;flex:none}
+.bk-phone-row input{flex:1;min-width:0;width:auto}
