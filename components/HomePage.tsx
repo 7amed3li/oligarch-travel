@@ -87,18 +87,25 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
       <section className="alt" id="reviews">
         <div className="wrap">
           <h2 className="sec">{u.reviews_title}</h2>
-          <div className="stats">
-            {u.stats.map((s: string) => (
-              <div className="stat" key={s}>
-                <strong style={{ fontSize: 17 }}>{s}</strong>
-              </div>
-            ))}
+          <div className="rv-stats">
+            {u.stats.map((s: string) => {
+              const i = s.indexOf(' · ');
+              const value = i > 0 ? s.slice(0, i) : '';
+              const label = i > 0 ? s.slice(i + 3) : s;
+              return (
+                <div className="rv-stat" key={s}>
+                  {value ? <div className="rv-stat-value">{value}</div> : null}
+                  <div className={value ? 'rv-stat-label' : 'rv-stat-label rv-stat-solo'}>{label}</div>
+                </div>
+              );
+            })}
           </div>
-          <div className="quotes">
+          <div className="rv-quotes">
             {u.quotes.map(([q, a]: [string, string]) => (
-              <blockquote key={q.slice(0, 24)}>
-                “{q}”<cite>— {a}</cite>
-              </blockquote>
+              <figure className="rv-quote" key={q.slice(0, 24)}>
+                <blockquote>{q}</blockquote>
+                <figcaption>{a}</figcaption>
+              </figure>
             ))}
           </div>
         </div>
