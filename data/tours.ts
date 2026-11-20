@@ -5,7 +5,11 @@ export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; intro: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
-export const TOUR_ORDER: string[] = ["hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "full-day-istanbul", "bazaars-tour", "bosphorus-yacht", "traditional-handicrafts"];
+export const TOUR_ORDER: string[] = ["hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "full-day-istanbul", "bazaars-tour", "bosphorus-yacht", "topkapi-night", "traditional-handicrafts"];
+// Seasonal tours: shown in the menu and on their own page, but NOT bookable
+// and shown without a price (badge + note instead). Never offered in the
+// hero SearchBar options or as a second tour in AddToBooking.
+export const SEASONAL_TOURS: string[] = ['topkapi-night'];
 export const TOURS: Record<string, TourDef> = {
  "hagia-sophia": {
   "img": "tour-hs-guided.webp",
@@ -558,6 +562,91 @@ export const TOURS: Record<string, TourDef> = {
    }
   }
  },
+ "topkapi-night": {
+  "img": "tour-topkapi-night.webp",
+  "content": {
+   "en": {
+    "name": "Topkapi Palace Night Tour",
+    "tagline": "The palace after dark, in the silence of history",
+    "intro": "When the crowds leave and the lights come on, Topkapi Palace changes completely. Ergin Karakoyun led the palace's very first Night Museum programme — and three years ago he started this night tour, the first of its kind.",
+    "duration": "Evening",
+    "group": "Guided group",
+    "desc": "After we meet, we take a short walk through the Historic Peninsula so the palace's setting makes sense: the Hippodrome, the Blue Mosque and Hagia Sophia from outside, the German Fountain, the Hürrem Sultan Hamam and the Fountain of Ahmed III, all with expert narration. Then we enter Topkapi Palace and visit its most important sections, including the Harem, under the night lights — the world of the Ottoman dynasty, its government and Istanbul's unique history, told by a specialist.",
+    "included": [
+     "Guiding by Ergin Karakoyun, professional tourist guide and Byzantium–Ottoman history expert",
+     "Personal audio-guide listening system for the tour",
+     "Topkapi Palace Night Museum entrance ticket + Harem entrance ticket",
+     "Reservation and entry organisation handled for you",
+     "Welcome and treats at the Hürrem Sultan Hamamı Cafe as part of the welcome programme"
+    ],
+    "not_included": [
+     "Transport to the meeting point",
+     "Personal expenses"
+    ],
+    "note": "Seasonal programme: June to September. Pre-booking opens in May — the price will be announced then."
+   },
+   "de": {
+    "name": "Topkapi-Palast Nachttour",
+    "tagline": "Der Palast bei Nacht — in der Stille der Geschichte",
+    "intro": "Wenn die Menschenmengen gehen und die Lichter angehen, verwandelt sich der Topkapi-Palast vollständig. Ergin Karakoyun führte das allererste Nachtmuseum-Programm des Palastes — und startete vor drei Jahren diese Nachttour, die erste ihrer Art.",
+    "duration": "Abends",
+    "group": "Geführte Gruppe",
+    "desc": "Nach dem Treffen unternehmen wir einen kurzen Spaziergang über die Historische Halbinsel, damit die Lage des Palastes verständlich wird: das Hippodrom, die Blaue Moschee und die Hagia Sophia von außen, der Deutsche Brunnen, das Hürrem-Sultan-Hamam und der Ahmed-III.-Brunnen, alles mit fachkundiger Erklärung. Danach betreten wir den Topkapi-Palast und besuchen seine wichtigsten Bereiche einschließlich des Harems im Nachtlicht — die Welt der osmanischen Dynastie, ihrer Staatsführung und Istanbuls einzigartige Geschichte, erzählt von einem Spezialisten.",
+    "included": [
+     "Führung durch Ergin Karakoyun, professioneller Reiseleiter und Experte für byzantinisch-osmanische Geschichte",
+     "Persönliches Audio-Guide-Hörsystem für die Tour",
+     "Eintrittsticket Topkapi-Palast Nachtmuseum + Eintritt Harem",
+     "Reservierung und Einlass werden für Sie organisiert",
+     "Begrüßung und Bewirtung im Hürrem Sultan Hamamı Cafe im Rahmen des Begrüßungsprogramms"
+    ],
+    "not_included": [
+     "Anfahrt zum Treffpunkt",
+     "Persönliche Ausgaben"
+    ],
+    "note": "Saisonprogramm: Juni bis September. Die Vorreservierung öffnet im Mai — der Preis wird dann bekannt gegeben."
+   },
+   "zh": {
+    "name": "托普卡帕宫夜游",
+    "tagline": "夜幕下的宫殿——在历史的寂静中",
+    "intro": "当人群散去、灯光亮起，托普卡帕宫会完全变一个模样。Ergin Karakoyun 曾为宫殿首个夜间博物馆项目担任导览，并在三年前首创了这条夜游路线。",
+    "duration": "夜间",
+    "group": "导览团",
+    "desc": "集合后，我们先在历史半岛短途步行，帮助您理解宫殿的历史与地理位置：竞技场、蓝色清真寺（外观）、圣索菲亚大教堂（外观）、德国喷泉、许蕾姆苏丹浴场和艾哈迈德三世喷泉，全程由专家讲解。随后进入托普卡帕宫，在夜色灯光下参观包括后宫在内的最重要区域——由专家为您讲述奥斯曼王朝的生活、国家治理和伊斯坦布尔独特的历史。",
+    "included": [
+     "由专业导游、拜占庭—奥斯曼历史专家 Ergin Karakoyun 全程导览",
+     "全程个人导览收听系统（语音导览设备）",
+     "托普卡帕宫夜间博物馆门票 + 后宫门票",
+     "代为办理预约与入场手续",
+     "在许蕾姆苏丹浴场咖啡厅举行的欢迎仪式及茶点招待"
+    ],
+    "not_included": [
+     "前往集合点的交通",
+     "个人消费"
+    ],
+    "note": "季节性项目：6 月至 9 月。预订将于 5 月开放——价格届时公布。"
+   },
+   "tr": {
+    "name": "Topkapı Sarayı Gece Turu",
+    "tagline": "Tarihin sessizliğinde eşsiz bir Topkapı deneyimi",
+    "intro": "Kalabalık çekilip ışıklar yandığında Topkapı Sarayı bambaşka bir yere dönüşür. Sarayın ilk Gece Müzeciliği programında rehberlik yapan Ergin Karakoyun, bu gece turunu 3 yıl önce ilk başlatan isimdir.",
+    "duration": "Akşam",
+    "group": "Rehberli grup",
+    "desc": "Buluşmanın ardından, sarayın tarihî ve coğrafi konumunu daha iyi anlamak için kısa bir Tarihi Yarımada yürüyüşü yapıyoruz: Hipodrom, Sultanahmet Camii (dışarıdan), Alman Çeşmesi, Ayasofya (dışarıdan), Hürrem Sultan Hamamı ve III. Ahmet Çeşmesi uzman anlatımı eşliğinde tanıtılıyor. Ardından Topkapı Sarayı'na geçerek Harem dahil sarayın en önemli bölümlerini gece ışıkları altında ziyaret ediyor; Osmanlı hanedanının yaşamını, devlet yönetimini ve İstanbul'un eşsiz tarihini uzman anlatımıyla keşfediyoruz.",
+    "included": [
+     "Bizans–Osmanlı tarihi uzmanı, profesyonel turist rehberi Ergin Karakoyun eşliğinde rehberlik ve teknik destek",
+     "Tur boyunca kullanılacak kişisel rehber dinleme sistemi (audio guide cihazı)",
+     "Topkapı Sarayı Gece Müzeciliği giriş bileti + Harem Bölümü giriş bileti",
+     "Rezervasyon ve giriş işlemlerinin organizasyonu",
+     "Hürrem Sultan Hamamı Cafe'de gerçekleştirilen karşılama programı kapsamında karşılama ve ikramlar"
+    ],
+    "not_included": [
+     "Buluşma noktasına ulaşım",
+     "Kişisel harcamalar"
+    ],
+    "note": "Sezonluk program: Haziran–Eylül. Ön rezervasyon Mayıs'ta açılacak — fiyat o zaman duyurulacak."
+   }
+  }
+ },
  "traditional-handicrafts": {
   "img": "tour-carpet.webp",
   "content": {
@@ -727,6 +816,10 @@ export const UI: Record<Locale, any> = {
   "date": "Date",
   "guests": "Guests",
   "tour_lang": "Tour language",
+  "night_badge": "June – September · Pre-booking opens in May",
+  "who_is": "Who is Ergin Karakoyun?",
+  "tabii_title": "As seen on tabii",
+  "tabii_text": "Ergin appears in TRT's tabii series 'Like a Dream: Istanbul' — guests ask him about it all the time. Watch links coming soon.",
   "add_to_booking": "Add to booking",
   "added": "Added ✓",
   "your_booking": "Your booking",
@@ -844,6 +937,10 @@ export const UI: Record<Locale, any> = {
   "date": "Datum",
   "guests": "Gäste",
   "tour_lang": "Tour-Sprache",
+  "night_badge": "Juni – September · Vorreservierung ab Mai",
+  "who_is": "Wer ist Ergin Karakoyun?",
+  "tabii_title": "Bekannt aus tabii",
+  "tabii_text": "Ergin ist in der tabii-Serie 'Like a Dream: Istanbul' von TRT zu sehen — Gäste fragen ihn ständig danach. Die Links zum Ansehen folgen in Kürze.",
   "add_to_booking": "Zur Buchung hinzufügen",
   "added": "Hinzugefügt ✓",
   "your_booking": "Ihre Buchung",
@@ -961,6 +1058,10 @@ export const UI: Record<Locale, any> = {
   "date": "日期",
   "guests": "人数",
   "tour_lang": "导览语言",
+  "night_badge": "6 月 – 9 月 · 5 月开放预订",
+  "who_is": "Ergin Karakoyun 是谁？",
+  "tabii_title": "在 tabii 平台亮相",
+  "tabii_text": "Ergin 出演了 TRT 旗下 tabii 平台的剧集《Like a Dream: Istanbul》，客人们经常向他问起。观看链接即将上线。",
   "add_to_booking": "加入预订",
   "added": "已加入 ✓",
   "your_booking": "您的预订",
@@ -1078,6 +1179,10 @@ export const UI: Record<Locale, any> = {
    "date": "Tarih",
    "guests": "Kişi Sayısı",
    "tour_lang": "Tur Dili",
+   "night_badge": "Haziran – Eylül · Ön rezervasyon Mayıs'ta",
+   "who_is": "Ergin Karakoyun Kimdir?",
+   "tabii_title": "tabii'de yer aldı",
+   "tabii_text": "Ergin, TRT'nin tabii dizisi 'Like a Dream: Istanbul'da yer alıyor; misafirlerin en çok sorduğu konulardan biri bu. İzleme linkleri yakında burada olacak.",
    "add_to_booking": "Rezervasyona Ekle",
    "added": "Eklendi ✓",
    "your_booking": "Rezervasyonunuz",
