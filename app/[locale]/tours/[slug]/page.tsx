@@ -51,9 +51,11 @@ export default async function TourPage({
   return (
     <section style={{ paddingTop: 34 }}>
       <div className="wrap">
-        <p className="small">
-          <Link href={`/${loc}#tours`}>← {u.nav_tours}</Link>
-        </p>
+        <nav className="crumb" aria-label="Breadcrumb">
+          <Link href={`/${loc}#tours`}>{u.nav_tours}</Link>
+          <span className="crumb-sep" aria-hidden="true" />
+          <span className="crumb-current">{c.name}</span>
+        </nav>
         <h2 className="sec" style={{ fontSize: 34 }}>
           {c.name}
         </h2>

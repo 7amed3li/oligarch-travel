@@ -509,3 +509,10 @@ footer.site .wrap{padding-top:64px;padding-bottom:28px}
 .ft-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid rgba(147,163,188,.22);font-size:12.5px;color:#8294B0}
 @media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;gap:34px}.ft-brand{grid-column:1/-1}}
 @media (max-width:520px){.ft-grid{grid-template-columns:1fr}footer.site .wrap{padding-top:44px}}
+
+/* Breadcrumb */
+.crumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.crumb a{color:#5D6B82;text-decoration:none;transition:color .2s ease}
+.crumb a:hover{color:#1A2B49}
+.crumb-sep{width:6px;height:6px;border-top:1.5px solid #A3AEC0;border-right:1.5px solid #A3AEC0;transform:rotate(45deg);margin:0 2px}
+.crumb-current{color:#1A2B49}
