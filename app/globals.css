@@ -560,3 +560,5 @@ a.ft-row:hover .ft-icon{background:#FF5533;border-color:#FF5533;transform:transl
 .ft-contact a.ft-row[href*="google.com/maps"]:hover .ft-icon{background:#FF5533}
 .ft-row-text b{font-size:15px}
 .ft-contact a.ft-row .ft-b-soft{color:#E3EAF5}
+a.rv-stat-link{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+a.rv-stat-link:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(26,43,73,.3);border-color:#CBD5E1}

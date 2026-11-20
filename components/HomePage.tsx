@@ -1,4 +1,5 @@
 import SearchBar from './SearchBar';
+import { profileLinkFor } from '@/data/links';
 import TourCard from './TourCard';
 import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
@@ -98,10 +99,20 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
               const i = s.indexOf(' · ');
               const value = i > 0 ? s.slice(0, i) : '';
               const label = i > 0 ? s.slice(i + 3) : s;
-              return (
-                <div className="rv-stat" key={s}>
+              const href = profileLinkFor(s);
+              const inner = (
+                <>
                   {value ? <div className="rv-stat-value">{value}</div> : null}
                   <div className={value ? 'rv-stat-label' : 'rv-stat-label rv-stat-solo'}>{label}</div>
+                </>
+              );
+              return href ? (
+                <a className="rv-stat rv-stat-link" key={s} href={href} target="_blank" rel="noopener noreferrer">
+                  {inner}
+                </a>
+              ) : (
+                <div className="rv-stat" key={s}>
+                  {inner}
                 </div>
               );
             })}
