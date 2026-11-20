@@ -546,3 +546,17 @@ a.ft-row:hover .ft-icon{background:#FF5533;border-color:#FF5533;transform:transl
 /* Footer map */
 .ft-map{width:100%;max-width:340px;height:170px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.14);background:#0F1B33;box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
 .ft-map iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(.25) contrast(1.02)}
+
+/* Footer contact cards */
+.ft-contact{gap:12px}
+.ft-contact a.ft-row{width:100%;max-width:340px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.ft-contact a.ft-row:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+.ft-contact a.ft-row .ft-icon{background:rgba(255,255,255,.1);border-color:transparent;width:40px;height:40px}
+.ft-contact a.ft-row:hover .ft-icon{transform:none}
+.ft-contact a.ft-row[href^="https://wa.me"] .ft-icon{background:#25D366;color:#fff}
+.ft-contact a.ft-row[href^="mailto"]:hover .ft-icon{background:#FF5533}
+.ft-contact a.ft-row[href*="google.com/maps"] .ft-icon{background:#FF5533;color:#fff}
+.ft-contact a.ft-row[href^="https://wa.me"]:hover .ft-icon{background:#25D366}
+.ft-contact a.ft-row[href*="google.com/maps"]:hover .ft-icon{background:#FF5533}
+.ft-row-text b{font-size:15px}
+.ft-contact a.ft-row .ft-b-soft{color:#E3EAF5}
