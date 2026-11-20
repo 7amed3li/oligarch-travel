@@ -42,10 +42,12 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           <div className="hero-shade"></div>
         </div>
         <div className="hero-content">
-          <div className="wrap">
-            <p className="kicker">{u.hero_kicker}</p>
-            <h1>{u.hero_title}</h1>
-            <p className="hero-sub">{u.hero_sub}</p>
+          <div className="wrap hero-wrap">
+            <p className="hero-topline">{u.hero_topline}</p>
+            <div className="hero-bottom">
+              <h1>{u.hero_title}</h1>
+              <p className="hero-sub">{u.hero_sub}</p>
+            </div>
           </div>
         </div>
       </div>
