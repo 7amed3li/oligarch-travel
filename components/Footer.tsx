@@ -41,7 +41,7 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
             <h4>{u.nav_tours}</h4>
             <div className="ft-nav-links">
               <Link href={`${base}#tours`}>{u.tours_title}</Link>
-              <Link href={`${base}#about`}>{u.nav_about}</Link>
+              <Link href={`${base}/guide`}>{u.nav_about}</Link>
               <Link href={`${base}#reviews`}>{u.nav_reviews}</Link>
               <Link href={`${base}/booking`}>{u.booking}</Link>
             </div>

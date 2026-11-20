@@ -13,6 +13,7 @@ interface GuideShowcaseProps {
   title: string;
   paras: string[];
   tourNames: Record<string, string>;
+  headingAs?: 'h1' | 'h2';
 }
 
 const LANG_KEYS: PersonalLang[] = ['en', 'de', 'zh'];
@@ -55,7 +56,9 @@ export default function GuideShowcase({
   title,
   paras,
   tourNames,
+  headingAs = 'h2',
 }: GuideShowcaseProps) {
+  const HeadingTag = headingAs;
   const copy = GUIDE_COPY[locale];
   const [flipped, setFlipped] = useState(false);
   const [activeLang, setActiveLang] = useState<PersonalLang>(
@@ -268,7 +271,7 @@ export default function GuideShowcase({
           {/* Right column: Editorial bio, animated metrics, live language preview, engraved stamps */}
           <div className="gs-content">
             <p className="gs-overline">{copy.overline}</p>
-            <h2 className="sec gs-title">{title}</h2>
+            <HeadingTag className="sec gs-title">{title}</HeadingTag>
 
             {/* Editorial numeric strip */}
             <div className="gs-metrics">

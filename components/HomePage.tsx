@@ -1,7 +1,8 @@
 import SearchBar from './SearchBar';
 import { profileMetaFor } from '@/data/links';
 import TourCard from './TourCard';
-import GuideShowcase from './GuideShowcase';
+import GuideTeaser from './GuideTeaser';
+import WhyBookDirect from './WhyBookDirect';
 import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
 
@@ -28,9 +29,6 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
   const u = UI[locale];
   const byId = pricesById(prices);
   const options = TOUR_ORDER.map((id) => ({ id, name: TOURS[id].content[locale].name }));
-  const tourNames = Object.fromEntries(
-    TOUR_ORDER.map((id) => [id, TOURS[id].content[locale].name]),
-  );
 
   return (
     <>
@@ -75,26 +73,9 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </section>
 
-      <section className="alt">
-        <div className="wrap">
-          <h2 className="sec">{u.why_title}</h2>
-          <div className="cols3">
-            {u.why.map(([t, d]: [string, string]) => (
-              <div className="why-item" key={t}>
-                <h3>{t}</h3>
-                <p>{d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyBookDirect locale={locale} title={u.why_title} items={u.why} />
 
-      <GuideShowcase
-        locale={locale}
-        title={u.about_title}
-        paras={u.about_paras}
-        tourNames={tourNames}
-      />
+      <GuideTeaser locale={locale} />
 
       <section className="alt" id="reviews">
         <div className="wrap">

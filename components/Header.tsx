@@ -51,7 +51,7 @@ export default function Header({
         </Link>
         <nav className="main">
           <Link href={`${base}#tours`}>{u.nav_tours}</Link>
-          <Link href={`${base}#about`}>{u.nav_about}</Link>
+          <Link href={`${base}/guide`}>{u.nav_about}</Link>
           <Link href={`${base}#reviews`}>{u.nav_reviews}</Link>
           <Link href={`${base}#contact`}>{u.nav_contact}</Link>
         </nav>
@@ -126,7 +126,7 @@ export default function Header({
             <Link href={`${base}#tours`} onClick={() => setMobileMenuOpen(false)}>
               {u.nav_tours}
             </Link>
-            <Link href={`${base}#about`} onClick={() => setMobileMenuOpen(false)}>
+            <Link href={`${base}/guide`} onClick={() => setMobileMenuOpen(false)}>
               {u.nav_about}
             </Link>
             <Link href={`${base}#reviews`} onClick={() => setMobileMenuOpen(false)}>

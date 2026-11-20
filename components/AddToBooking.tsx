@@ -1,8 +1,14 @@
 'use client';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
-import { ticketPerPersonDisplay } from '@/lib/cart';
+import {
+  fmtMoney,
+  lineComponents,
+  mergeComponents,
+  ticketPerPersonDisplay,
+} from '@/lib/cart';
 import type { TourPrice } from '@/lib/prices';
 import type { Locale } from '@/data/tours';
 
@@ -11,6 +17,41 @@ export interface OtherTour {
   name: string;
   price: TourPrice;
 }
+
+const COPY: Record<
+  Locale,
+  {
+    estimatedTotal: string;
+    trustNote: string;
+    decGuests: string;
+    incGuests: string;
+  }
+> = {
+  en: {
+    estimatedTotal: 'Estimated total',
+    trustNote: 'No online card required · Confirmed personally on WhatsApp',
+    decGuests: 'Decrease guests',
+    incGuests: 'Increase guests',
+  },
+  de: {
+    estimatedTotal: 'Geschätzter Gesamtpreis',
+    trustNote: 'Keine Kreditkarte nötig · Persönliche Bestätigung per WhatsApp',
+    decGuests: 'Gästezahl verringern',
+    incGuests: 'Gästezahl erhöhen',
+  },
+  zh: {
+    estimatedTotal: '预计总计',
+    trustNote: '无需在线刷卡 · Ergin 通过 WhatsApp 亲自确认',
+    decGuests: '减少人数',
+    incGuests: '增加人数',
+  },
+  tr: {
+    estimatedTotal: 'Tahmini toplam',
+    trustNote: 'Online kart gerekmez · WhatsApp üzerinden bizzat onay',
+    decGuests: 'Kişi sayısını azalt',
+    incGuests: 'Kişi sayısını artır',
+  },
+};
 
 export default function AddToBooking({
   locale,
@@ -27,7 +68,9 @@ export default function AddToBooking({
 }) {
   const { add } = useCart();
   const router = useRouter();
+  const t = COPY[locale] ?? COPY.en;
   const isYacht = tourId === 'bosphorus-yacht';
+
   const [tier, setTier] = useState<'standard' | 'luxury'>('standard');
   const [ticket, setTicket] = useState(false);
   const [date, setDate] = useState('');
@@ -46,6 +89,7 @@ export default function AddToBooking({
 
   const clamp = (n: number, p: TourPrice) =>
     Math.min(p.maxGuests, Math.max(p.minGuests, n || p.minGuests));
+
   const opts = () => ({
     ticket: price.ticket ? ticket : undefined,
     tier: isYacht ? tier : undefined,
@@ -61,6 +105,33 @@ export default function AddToBooking({
     }
   };
 
+  // Live multi-currency total preview
+  const primaryGuests = clamp(people, price);
+  const comp = lineComponents(price, {
+    tourId,
+    date,
+    people: primaryGuests,
+    ticket: price.ticket ? ticket : undefined,
+    tier: isYacht ? tier : undefined,
+  });
+  if (addOther && other) {
+    mergeComponents(
+      comp,
+      lineComponents(other.price, {
+        tourId: other.id,
+        date: oDate,
+        people: clamp(oPeople, other.price),
+        ticket: other.price.ticket ? oTicket : undefined,
+        tier: other.id === 'bosphorus-yacht' ? oTier : undefined,
+      }),
+    );
+  }
+  const curKeys = Object.keys(comp);
+  const totalSummary =
+    curKeys.length === 0
+      ? u.free_word || u.free || 'Free'
+      : curKeys.map((c) => fmtMoney(c, comp[c])).join(' + ');
+
   const selectStyle = {
     width: '100%',
     padding: '10px 12px',
@@ -70,6 +141,9 @@ export default function AddToBooking({
     fontSize: 16,
     minHeight: 44,
   } as const;
+
+  const otherMin = other?.price.minGuests || 1;
+  const otherMax = other?.price.maxGuests || 8;
 
   return (
     <form
@@ -82,22 +156,42 @@ export default function AddToBooking({
     >
       {isYacht && (
         <div className="field">
-          <label htmlFor="bk-tier">{u.tier_label || 'Yacht Option'}</label>
-          <select
-            id="bk-tier"
-            value={tier}
-            onChange={(e) => setTier(e.target.value as 'standard' | 'luxury')}
-            style={selectStyle}
+          <label>{u.tier_label || 'Yacht Tier'}</label>
+          <div
+            className="bk-tier-grid"
+            role="radiogroup"
+            aria-label={u.tier_label || 'Yacht Tier'}
           >
-            <option value="standard">{u.tier_standard || 'Standard Yacht — €400'}</option>
-            <option value="luxury">{u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}</option>
-          </select>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={tier === 'standard'}
+              className={tier === 'standard' ? 'bk-tier-btn is-selected' : 'bk-tier-btn'}
+              onClick={() => setTier('standard')}
+            >
+              <span>{u.tier_standard || 'Standard Yacht — €400 (2 hrs)'}</span>
+            </button>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={tier === 'luxury'}
+              className={tier === 'luxury' ? 'bk-tier-btn is-selected' : 'bk-tier-btn'}
+              onClick={() => setTier('luxury')}
+            >
+              <span>{u.tier_luxury || 'Luxury Yacht — €600 (2 hrs, drinks included)'}</span>
+            </button>
+          </div>
         </div>
       )}
+
       {price.ticket && (
-        <div className="ticketbox">
+        <div className={ticket ? 'ticketbox is-checked' : 'ticketbox'}>
           <label className="tb-row">
-            <input type="checkbox" checked={ticket} onChange={(e) => setTicket(e.target.checked)} />
+            <input
+              type="checkbox"
+              checked={ticket}
+              onChange={(e) => setTicket(e.target.checked)}
+            />
             <span>
               {u.add_ticket || 'Add entrance tickets too'} —{' '}
               <strong>
@@ -108,21 +202,42 @@ export default function AddToBooking({
           <p className="tb-note">{u.skip_note}</p>
         </div>
       )}
+
       <div className="field-row-2">
         <div className="field">
           <label htmlFor="bk-date">{u.date}</label>
-          <input id="bk-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input
+            id="bk-date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
         <div className="field">
-          <label htmlFor="bk-people">{u.guests}</label>
-          <input
-            id="bk-people"
-            type="number"
-            min={price.minGuests}
-            max={price.maxGuests}
-            value={people}
-            onChange={(e) => setPeople(parseInt(e.target.value, 10) || price.minGuests)}
-          />
+          <label htmlFor="bk-people-val">{u.guests}</label>
+          <div className="bk-stepper">
+            <button
+              type="button"
+              className="bk-step-btn"
+              onClick={() => setPeople((v) => Math.max(price.minGuests, v - 1))}
+              disabled={primaryGuests <= price.minGuests}
+              aria-label={t.decGuests}
+            >
+              −
+            </button>
+            <span id="bk-people-val" className="bk-step-val">
+              {primaryGuests}
+            </span>
+            <button
+              type="button"
+              className="bk-step-btn"
+              onClick={() => setPeople((v) => Math.min(price.maxGuests, v + 1))}
+              disabled={primaryGuests >= price.maxGuests}
+              aria-label={t.incGuests}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
 
@@ -158,20 +273,35 @@ export default function AddToBooking({
               </div>
               {other?.id === 'bosphorus-yacht' && (
                 <div className="field">
-                  <label htmlFor="ao-tier">{u.tier_label || 'Yacht Option'}</label>
-                  <select
-                    id="ao-tier"
-                    value={oTier}
-                    onChange={(e) => setOTier(e.target.value as 'standard' | 'luxury')}
-                    style={selectStyle}
+                  <label>{u.tier_label || 'Yacht Option'}</label>
+                  <div
+                    className="bk-tier-grid"
+                    role="radiogroup"
+                    aria-label={u.tier_label || 'Yacht Option'}
                   >
-                    <option value="standard">{u.tier_standard || 'Standard Yacht — €400'}</option>
-                    <option value="luxury">{u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}</option>
-                  </select>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={oTier === 'standard'}
+                      className={oTier === 'standard' ? 'bk-tier-btn is-selected' : 'bk-tier-btn'}
+                      onClick={() => setOTier('standard')}
+                    >
+                      <span>{u.tier_standard || 'Standard Yacht — €400'}</span>
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={oTier === 'luxury'}
+                      className={oTier === 'luxury' ? 'bk-tier-btn is-selected' : 'bk-tier-btn'}
+                      onClick={() => setOTier('luxury')}
+                    >
+                      <span>{u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}</span>
+                    </button>
+                  </div>
                 </div>
               )}
               {other?.price.ticket && (
-                <div className="ticketbox">
+                <div className={oTicket ? 'ticketbox is-checked' : 'ticketbox'}>
                   <label className="tb-row">
                     <input
                       type="checkbox"
@@ -199,15 +329,30 @@ export default function AddToBooking({
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="ao-people">{u.guests}</label>
-                  <input
-                    id="ao-people"
-                    type="number"
-                    min={other?.price.minGuests || 1}
-                    max={other?.price.maxGuests || 8}
-                    value={oPeople}
-                    onChange={(e) => setOPeople(parseInt(e.target.value, 10) || 1)}
-                  />
+                  <label htmlFor="ao-people-val">{u.guests}</label>
+                  <div className="bk-stepper">
+                    <button
+                      type="button"
+                      className="bk-step-btn"
+                      onClick={() => setOPeople((v) => Math.max(otherMin, v - 1))}
+                      disabled={oPeople <= otherMin}
+                      aria-label={t.decGuests}
+                    >
+                      −
+                    </button>
+                    <span id="ao-people-val" className="bk-step-val">
+                      {Math.min(otherMax, Math.max(otherMin, oPeople))}
+                    </span>
+                    <button
+                      type="button"
+                      className="bk-step-btn"
+                      onClick={() => setOPeople((v) => Math.min(otherMax, v + 1))}
+                      disabled={oPeople >= otherMax}
+                      aria-label={t.incGuests}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -215,17 +360,29 @@ export default function AddToBooking({
         </div>
       )}
 
+      <div className="bk-live-total">
+        <span>{t.estimatedTotal}</span>
+        <strong>{totalSummary}</strong>
+      </div>
+
+      <p className="bk-trust-note">{t.trustNote}</p>
+
       <div className="book-actions">
-        <button type="submit">{added ? u.added : u.add_to_booking}</button>
         <button
           type="button"
-          className="btn ghost book-now-btn"
+          className="bk-primary-btn"
           onClick={() => {
             doAdd();
             router.push(`/${locale}/booking`);
           }}
         >
           {u.book_now}
+        </button>
+        <button
+          type="submit"
+          className={added ? 'bk-add-btn is-added' : 'bk-add-btn'}
+        >
+          {added ? u.added : u.add_to_booking}
         </button>
       </div>
     </form>
