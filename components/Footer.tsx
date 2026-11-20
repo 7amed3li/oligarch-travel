@@ -7,10 +7,21 @@ const WA_PATH =
 
 const MAP_QUERY = encodeURIComponent('Babı Hümayun Cd. No:8, Sultanahmet, Fatih, Istanbul');
 
-function IconTile({ children }: { children: React.ReactNode }) {
+function IconTile({ children, small = false }: { children: React.ReactNode; small?: boolean }) {
   return (
-    <span className="ft-icon" aria-hidden="true">
+    <span className={small ? 'ft-icon ft-icon-sm' : 'ft-icon'} aria-hidden="true">
       {children}
+    </span>
+  );
+}
+
+function ExternalArrow() {
+  return (
+    <span className="ft-arrow" aria-hidden="true">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 17L17 7" />
+        <path d="M9 7h8v8" />
+      </svg>
     </span>
   );
 }
@@ -27,87 +38,97 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
             <p>{u.footer_line}</p>
           </div>
 
-          <nav className="ft-col" aria-label="Footer">
+          <nav className="ft-col ft-nav" aria-label="Footer">
             <h4>{u.nav_tours}</h4>
-            <Link href={`${base}#tours`}>{u.tours_title}</Link>
-            <Link href={`${base}#about`}>{u.nav_about}</Link>
-            <Link href={`${base}#reviews`}>{u.nav_reviews}</Link>
-            <Link href={`${base}/booking`}>{u.booking}</Link>
+            <div className="ft-nav-links">
+              <Link href={`${base}#tours`}>{u.tours_title}</Link>
+              <Link href={`${base}#about`}>{u.nav_about}</Link>
+              <Link href={`${base}#reviews`}>{u.nav_reviews}</Link>
+              <Link href={`${base}/booking`}>{u.booking}</Link>
+            </div>
           </nav>
 
           <div className="ft-col ft-contact">
             <h4>{u.nav_contact}</h4>
-            <a className="ft-row" href="https://wa.me/905553255565" target="_blank" rel="noopener">
-              <IconTile>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={WA_PATH} />
-                </svg>
-              </IconTile>
-              <span className="ft-row-text">
-                <small>{u.phone_label}</small>
-                <b>+90 555 325 55 65</b>
-              </span>
-            </a>
-            <a className="ft-row" href="mailto:erginkarakoyun@gmail.com">
-              <IconTile>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="5" width="18" height="14" rx="2.5" />
-                  <path d="M3.5 7.5l8.5 6 8.5-6" />
-                </svg>
-              </IconTile>
-              <span className="ft-row-text">
-                <small>{u.email_label}</small>
-                <b>erginkarakoyun@gmail.com</b>
-              </span>
-            </a>
-            <a
-              className="ft-row"
-              href="https://instagram.com/topkapipalacemuseum"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconTile>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                </svg>
-              </IconTile>
-              <span className="ft-row-text">
-                <small>{u.instagram_label}</small>
-                <b>@topkapipalacemuseum</b>
-              </span>
-            </a>
+            <div className="ft-list">
+              <a className="ft-row" href="https://wa.me/905553255565" target="_blank" rel="noopener noreferrer">
+                <IconTile>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={WA_PATH} />
+                  </svg>
+                </IconTile>
+                <span className="ft-row-text">
+                  <small>{u.phone_label}</small>
+                  <b>+90 555 325 55 65</b>
+                </span>
+                <ExternalArrow />
+              </a>
+
+              <a className="ft-row" href="mailto:erginkarakoyun@gmail.com">
+                <IconTile>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2.5" />
+                    <path d="M3.5 7.5l8.5 6 8.5-6" />
+                  </svg>
+                </IconTile>
+                <span className="ft-row-text">
+                  <small>{u.email_label}</small>
+                  <b>erginkarakoyun@gmail.com</b>
+                </span>
+                <ExternalArrow />
+              </a>
+
+              <a
+                className="ft-row"
+                href="https://instagram.com/topkapipalacemuseum"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconTile>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </IconTile>
+                <span className="ft-row-text">
+                  <small>{u.instagram_label}</small>
+                  <b>@topkapipalacemuseum</b>
+                </span>
+                <ExternalArrow />
+              </a>
+            </div>
           </div>
 
-          <div className="ft-col ft-contact">
+          <div className="ft-col ft-location">
             <h4>{u.meeting_label}</h4>
-            <div className="ft-map">
-              <iframe
-                title={u.meeting_label}
-                src={`https://www.google.com/maps?q=${MAP_QUERY}&z=17&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+            <div className="ft-place">
+              <div className="ft-map">
+                <iframe
+                  title={u.meeting_label}
+                  src={`https://www.google.com/maps?q=${MAP_QUERY}&z=17&output=embed`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+              <a
+                className="ft-place-link"
+                href={`https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconTile small>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
+                    <circle cx="12" cy="10" r="2.4" />
+                  </svg>
+                </IconTile>
+                <span className="ft-place-addr">{MEETING_DEFAULT[locale]}</span>
+                <ExternalArrow />
+              </a>
+              <p className="ft-meeting-note">{u.meeting}</p>
             </div>
-            <a
-              className="ft-row"
-              href={`https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`}
-              target="_blank"
-              rel="noopener"
-            >
-              <IconTile>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
-                  <circle cx="12" cy="10" r="2.4" />
-                </svg>
-              </IconTile>
-              <span className="ft-row-text">
-                <b className="ft-b-soft">{MEETING_DEFAULT[locale]}</b>
-              </span>
-            </a>
-            <p className="ft-meeting-note">{u.meeting}</p>
           </div>
         </div>
 
