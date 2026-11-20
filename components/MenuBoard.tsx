@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
-import { RATINGS, TOUR_ORDER, TOURS, meetingPoint, type Locale } from '@/data/tours';
+import { RATINGS, SEASONAL_TOURS, TOUR_ORDER, TOURS, meetingPoint, type Locale } from '@/data/tours';
+import { GUIDE_COPY } from '@/data/guide';
 import type { TourPrice } from '@/lib/prices';
 import {
   fmtComponentsDisp,
@@ -146,6 +147,7 @@ export default function MenuBoard({
           const r = RATINGS[tid];
           const covered = isCovered(tid);
           const count = inCart(tid);
+          const seasonal = SEASONAL_TOURS.includes(tid);
           return (
             <article
               key={tid}
@@ -180,33 +182,53 @@ export default function MenuBoard({
                 ) : null}
               </div>
               <div className="mrow-side">
-                <span className="mrow-price">
-                  {tp && tp.perGroup === 0 && tp.perPerson === 0 ? (
-                    <strong>{u.free_word || 'Free'}</strong>
-                  ) : (
-                    <>
-                      <small>{u.price_from} </small>
-                      <strong>{tp ? priceDisplay(tp, u).replace(/ \+ .*$/, '') : ''}</strong>
-                    </>
-                  )}
-                </span>
-                <button
-                  type="button"
-                  className="mrow-add"
-                  aria-label={`${u.add_to_booking}: ${c.name}`}
-                  disabled={covered}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (!covered) doAdd(tid);
-                  }}
-                >
-                  {justAdded === tid ? '✓' : '+'}
-                </button>
+                {seasonal ? (
+                  <span className="mrow-badge">{u.night_badge}</span>
+                ) : (
+                  <>
+                    <span className="mrow-price">
+                      {tp && tp.perGroup === 0 && tp.perPerson === 0 ? (
+                        <strong>{u.free_word || 'Free'}</strong>
+                      ) : (
+                        <>
+                          <small>{u.price_from} </small>
+                          <strong>{tp ? priceDisplay(tp, u).replace(/ \+ .*$/, '') : ''}</strong>
+                        </>
+                      )}
+                    </span>
+                    <button
+                      type="button"
+                      className="mrow-add"
+                      aria-label={`${u.add_to_booking}: ${c.name}`}
+                      disabled={covered}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!covered) doAdd(tid);
+                      }}
+                    >
+                      {justAdded === tid ? '✓' : '+'}
+                    </button>
+                  </>
+                )}
               </div>
             </article>
           );
         })}
       </div>
+
+      <Link href={`/${locale}/guide`} className="whois-card">
+        <img
+          className="whois-img"
+          src="/img/portrait.webp"
+          alt="Ergin Karakoyun"
+          loading="lazy"
+        />
+        <div className="whois-body">
+          <h3 className="whois-title">{u.who_is}</h3>
+          <p className="whois-line">{GUIDE_COPY[locale].overline}</p>
+          <span className="whois-link">{u.nav_about} →</span>
+        </div>
+      </Link>
 
       {openId && (
         <TourModal
@@ -257,6 +279,7 @@ function TourModal({
   const t = TOURS[tid];
   const c = t.content[locale];
   const r = RATINGS[tid];
+  const seasonal = SEASONAL_TOURS.includes(tid);
   const isYacht = tid === 'bosphorus-yacht';
   const [tier, setTier] = useState<'standard' | 'luxury'>('standard');
   const [ticket, setTicket] = useState(false);
@@ -359,7 +382,13 @@ function TourModal({
           <p className="small">
             <Link href={`/${locale}/tours/${tid}`}>{u.full_details || 'Full details'} →</Link>
           </p>
+          {seasonal ? (
+            <p className="tm-badge-row">
+              <span className="tm-badge">{u.night_badge}</span>
+            </p>
+          ) : null}
 
+          {seasonal ? null : (
           <div className="tmodal-book">
             <div className="tmodal-price">
               <span>
@@ -457,7 +486,9 @@ function TourModal({
             ) : null}
             {covered ? <p className="mrow-covered">{u.covered_full_day}</p> : null}
           </div>
+          )}
 
+          {seasonal ? null : (
           <div className="tmodal-foot">
             <div className="tmfoot-price">
               <small>
@@ -477,6 +508,7 @@ function TourModal({
               </div>
             )}
           </div>
+          )}
         </div>
       </div>
     </div>
