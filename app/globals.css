@@ -1109,6 +1109,18 @@ html.splash-done .ss-root{display:none!important}
 .mrow-add{width:42px;height:42px;border-radius:50%;border:0;background:var(--accent-deep);color:#fff;font-size:24px;font-weight:800;line-height:1;cursor:pointer;box-shadow:var(--shadow)}
 .mrow-add:hover{background:var(--accent-deep-hover)}
 .mrow-add:disabled{background:#B9C4D2;cursor:not-allowed;box-shadow:none}
+.mrow-badge{align-self:center;max-width:170px;text-align:center;background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;line-height:1.35;color:var(--ink)}
+.tm-badge-row{margin:12px 0 0}
+.tm-badge{display:inline-block;background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;color:var(--ink)}
+.whois-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-top:12px;box-shadow:var(--shadow);text-decoration:none;transition:border-color .15s ease,transform .15s ease}
+.whois-card:hover{border-color:#C6D2E0;transform:translateY(-1px)}
+.whois-img{width:104px;height:104px;flex:none;object-fit:cover;border-radius:9px}
+.whois-body{flex:1;min-width:0}
+.whois-title{margin:0;font-size:19px;font-weight:800;color:var(--ink)}
+.whois-line{margin:3px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.whois-link{display:inline-block;margin-top:8px;font-size:14.5px;font-weight:700;color:var(--accent-deep)}
+.td-seasonal-badge{display:inline-block;background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;line-height:1.35;color:var(--ink)}
+.td-seasonal-note{margin:12px 0 0;font-size:14.5px;line-height:1.58;color:var(--ink-soft)}
 /* tour detail popup */
 .tmodal-overlay{position:fixed;inset:0;z-index:90;background:rgba(16,26,43,.55);display:flex;align-items:flex-end;justify-content:center;padding:0}
 .tmodal{background:#fff;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;box-shadow:var(--shadow-lg);animation:tmodalIn .18s ease}
@@ -1138,6 +1150,9 @@ html.splash-done .ss-root{display:none!important}
 @media(max-width:560px){
   .mb-bar{top:64px}
   .mrow-img{width:84px;height:84px}
+  .whois-img{width:84px;height:84px}
+  .whois-title{font-size:17px}
+  .mrow-badge{max-width:132px;font-size:11.5px;padding:6px 9px}
   .mrow-name{font-size:16px}
   .mrow-price{font-size:14px}
 }
