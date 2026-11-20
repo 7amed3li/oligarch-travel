@@ -4,7 +4,7 @@ import MenuBoard from './MenuBoard';
 import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
-import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
+import { SEASONAL_TOURS, TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
 
 function ExternalIcon() {
@@ -29,7 +29,10 @@ function ExternalIcon() {
 export default function HomePage({ locale, prices }: { locale: Locale; prices: PriceConfig }) {
   const u = UI[locale];
   const byId = pricesById(prices);
-  const options = TOUR_ORDER.map((id) => ({ id, name: TOURS[id].content[locale].name }));
+  const options = TOUR_ORDER.filter((id) => !SEASONAL_TOURS.includes(id)).map((id) => ({
+    id,
+    name: TOURS[id].content[locale].name,
+  }));
 
   return (
     <>
@@ -76,6 +79,13 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
       <WhyBookDirect locale={locale} title={u.why_title} items={u.why} />
 
       <GuideTeaser locale={locale} />
+
+      <section id="tabii">
+        <div className="wrap">
+          <h2 className="sec">{u.tabii_title}</h2>
+          <p className="sec-sub">{u.tabii_text}</p>
+        </div>
+      </section>
 
       <section className="alt" id="reviews">
         <div className="wrap">
