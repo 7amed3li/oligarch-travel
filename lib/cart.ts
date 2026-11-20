@@ -10,6 +10,7 @@ export interface CartItem {
   date: string; // yyyy-mm-dd or ''
   people: number;
   ticket?: boolean; // entrance tickets added for everyone in the group
+  skip?: boolean; // skip-the-line upgrade on the tickets (+€2.50 pp) — separate checkbox (Ergin, 2026-11-20)
   tier?: 'standard' | 'luxury'; // yacht only
 }
 
@@ -27,7 +28,7 @@ export function lineComponents(tp: TourPrice, it: CartItem): Record<string, numb
   add(tp.currency, group + tp.perPerson * it.people);
   if (it.ticket && tp.ticket) {
     add(tp.ticket.currency, tp.ticket.amount * it.people);
-    add(PREMIUM_CURRENCY, tp.ticket.premium * it.people);
+    if (it.skip) add(PREMIUM_CURRENCY, tp.ticket.premium * it.people);
   }
   return out;
 }
@@ -82,12 +83,27 @@ export function fmtMoney(currency: string, n: number): string {
   return sym(currency) + s;
 }
 
-// What one skip-the-line ticket costs per person, e.g. "€27.50" or "€52.50".
+// What one ticket costs per person, shown as a breakdown so the ticket's
+// own price is always visible (Ergin, 2026-11-20): "€25 + €2.50" or
+// "₺2,750 + €2.50" (ticket price + skip-the-line premium).
 export function ticketPerPersonDisplay(tp: TourPrice): string {
   if (!tp.ticket) return '';
   const t = tp.ticket;
-  if (t.currency === PREMIUM_CURRENCY) return fmtMoney(t.currency, t.amount + t.premium);
   return `${fmtMoney(t.currency, t.amount)} + ${fmtMoney(PREMIUM_CURRENCY, t.premium)}`;
+}
+
+// Total entrance-ticket cost for a whole group, auto-calculated from the
+// guest count: "₺8,250" — the ticket itself only; the skip-the-line
+// upgrade is a separate line (separate checkbox).
+export function ticketGroupTotalDisplay(tp: TourPrice, people: number): string {
+  if (!tp.ticket || people < 1) return '';
+  return fmtMoney(tp.ticket.currency, tp.ticket.amount * people);
+}
+
+// Total skip-the-line upgrade for a whole group: "€7.50".
+export function skipGroupTotalDisplay(tp: TourPrice, people: number): string {
+  if (!tp.ticket || people < 1) return '';
+  return fmtMoney(PREMIUM_CURRENCY, tp.ticket.premium * people);
 }
 
 // Card / page price line, localized via UI strings.
