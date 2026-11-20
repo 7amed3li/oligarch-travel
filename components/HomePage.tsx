@@ -1,8 +1,27 @@
 import SearchBar from './SearchBar';
-import { profileLinkFor } from '@/data/links';
+import { profileMetaFor } from '@/data/links';
 import TourCard from './TourCard';
 import { TOUR_ORDER, TOURS, TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
+
+function ExternalIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
+}
 
 export default function HomePage({ locale, prices }: { locale: Locale; prices: PriceConfig }) {
   const u = UI[locale];
@@ -99,15 +118,45 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
               const i = s.indexOf(' · ');
               const value = i > 0 ? s.slice(0, i) : '';
               const label = i > 0 ? s.slice(i + 3) : s;
-              const href = profileLinkFor(s);
+              const meta = profileMetaFor(s);
+              const ctaText = meta
+                ? (u.view_on || 'View on {platform}').replace('{platform}', meta.name)
+                : '';
               const inner = (
                 <>
-                  {value ? <div className="rv-stat-value">{value}</div> : null}
-                  <div className={value ? 'rv-stat-label' : 'rv-stat-label rv-stat-solo'}>{label}</div>
+                  {meta ? (
+                    <div className="rv-stat-head">
+                      <span className="rv-platform">{meta.name}</span>
+                      <span className="rv-ext-icon" aria-hidden="true">
+                        <ExternalIcon />
+                      </span>
+                    </div>
+                  ) : null}
+                  <div className="rv-stat-body">
+                    {value ? <div className="rv-stat-value">{value}</div> : null}
+                    <div className={value ? 'rv-stat-label' : 'rv-stat-label rv-stat-solo'}>
+                      {label}
+                    </div>
+                  </div>
+                  {meta ? (
+                    <div className="rv-stat-cta">
+                      <span>{ctaText}</span>
+                      <span className="rv-cta-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </div>
+                  ) : null}
                 </>
               );
-              return href ? (
-                <a className="rv-stat rv-stat-link" key={s} href={href} target="_blank" rel="noopener noreferrer">
+              return meta ? (
+                <a
+                  className="rv-stat rv-stat-link"
+                  key={s}
+                  href={meta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s} — ${ctaText}`}
+                >
                   {inner}
                 </a>
               ) : (
@@ -118,12 +167,31 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
             })}
           </div>
           <div className="rv-quotes">
-            {u.quotes.map(([q, a]: [string, string]) => (
-              <figure className="rv-quote" key={q.slice(0, 24)}>
-                <blockquote>{q}</blockquote>
-                <figcaption>{a}</figcaption>
-              </figure>
-            ))}
+            {u.quotes.map(([q, a]: [string, string]) => {
+              const qMeta = profileMetaFor(a);
+              const qCta = qMeta
+                ? (u.view_on || 'View on {platform}').replace('{platform}', qMeta.name)
+                : '';
+              return (
+                <figure className="rv-quote" key={q.slice(0, 24)}>
+                  <blockquote>{q}</blockquote>
+                  <figcaption className="rv-quote-foot">
+                    <span>{a}</span>
+                    {qMeta ? (
+                      <a
+                        className="rv-quote-link"
+                        href={qMeta.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>{qCta}</span>
+                        <ExternalIcon />
+                      </a>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -653,6 +653,7 @@ export const UI: Record<Locale, any> = {
    "Founding delegate, Chamber of Turkey Guides"
   ],
   "reviews_title": "What guests say",
+  "view_on": "View on {platform}",
   "stats": [
    "4.7 / 5 · 58 reviews on TripAdvisor",
    "5.0 · Hagia Sophia Private Tour — 25 reviews on Viator",
@@ -762,6 +763,7 @@ export const UI: Record<Locale, any> = {
    "Gründungsdelegierter der Guides-Kammer"
   ],
   "reviews_title": "Was Gäste sagen",
+  "view_on": "Auf {platform} ansehen",
   "stats": [
    "4,7 / 5 · 58 Bewertungen auf TripAdvisor",
    "5,0 · Private Tour Hagia Sophia — 25 Bewertungen auf Viator",
@@ -871,6 +873,7 @@ export const UI: Record<Locale, any> = {
    "导游协会创始代表"
   ],
   "reviews_title": "游客怎么说",
+  "view_on": "在 {platform} 查看",
   "stats": [
    "4.7 / 5 · TripAdvisor 上 58 条评价",
    "5.0 · 圣索菲亚私人导览——Viator 上 25 条评价",
@@ -980,6 +983,7 @@ export const UI: Record<Locale, any> = {
      "Rehberler Odası Kurucu Delegesi"
    ],
    "reviews_title": "Misafirlerimiz Ne Diyor?",
+   "view_on": "{platform} üzerinde gör",
    "stats": [
      "4,7 / 5 · TripAdvisor'da 58 yorum",
      "5,0 · Ayasofya Özel Turu — Viator'da 25 yorum",
