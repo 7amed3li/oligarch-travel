@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import GuideShowcase from '@/components/GuideShowcase';
+import ContactForm from '@/components/ContactForm';
 import { PROFILE_LINKS } from '@/data/links';
 import { LOCALES, TOUR_ORDER, TOURS, UI, type Locale } from '@/data/tours';
 
@@ -85,7 +86,6 @@ export default async function GuidePage({
     image: '/img/portrait.webp',
     knowsLanguage: ['en', 'de', 'zh', 'tr'],
     telephone: '+90 555 325 55 65',
-    email: 'erginkarakoyun@gmail.com',
     worksFor: {
       '@type': 'TravelAgency',
       name: 'Oligarch Tour',
@@ -161,6 +161,7 @@ export default async function GuidePage({
           </div>
         </div>
       </section>
+      <ContactForm locale={loc} u={u} />
     </>
   );
 }
