@@ -360,13 +360,20 @@ function TourModal({
               className="tmodal-head-img"
               src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`}
               alt={c.name}
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom(true);
+              }}
             />
             <button
               type="button"
               className="tmodal-zoom"
               aria-label="Zoom"
               title="Zoom"
-              onClick={() => setZoom(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom(true);
+              }}
             >
               <svg
                 width="18"
@@ -384,9 +391,6 @@ function TourModal({
                 <line x1="21" y1="3" x2="14" y2="10" />
                 <line x1="3" y1="21" x2="10" y2="14" />
               </svg>
-            </button>
-            <button type="button" className="tmodal-x" aria-label="Close" onClick={onClose}>
-              ×
             </button>
           </div>
           {gallery.length > 1 && (
@@ -577,6 +581,29 @@ function TourModal({
           )}
         </div>
         )}
+        <button
+          type="button"
+          className="tmodal-x"
+          aria-label="Close"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
       </div>
 
       {zoom ? (
@@ -594,7 +621,10 @@ function TourModal({
             <button
               type="button"
               className="td-lb-close"
-              onClick={() => setZoom(false)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom(false);
+              }}
               aria-label="Close"
             >
               <svg
