@@ -3,6 +3,30 @@ import { useEffect, useState } from 'react';
 import type { PriceConfig, TourPrice } from '@/lib/prices';
 import { TOURS } from '@/data/tours';
 
+// Mobile-first price editor: one card per tour, big labelled inputs, and a
+// sticky save bar so the Save button is always within thumb reach on a phone.
+function AdmField({
+  id,
+  label,
+  suffix,
+  children,
+}: {
+  id: string;
+  label: string;
+  suffix?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="adm-field">
+      <label htmlFor={id}>{label}</label>
+      <div className="adm-input-row">
+        {children}
+        {suffix ? <span className="adm-suffix">{suffix}</span> : null}
+      </div>
+    </div>
+  );
+}
+
 export default function AdminClient() {
   const [cfg, setCfg] = useState<PriceConfig | null>(null);
   const [status, setStatus] = useState('');
@@ -66,140 +90,145 @@ export default function AdminClient() {
   }
 
   return (
-    <main>
-      <section>
-        <div className="wrap">
-          <h2 className="sec">Oligarch Travel — Price admin</h2>
-          <p className="sec-sub">
-            Edit prices only. The tour list is fixed. Changes are saved to the server and appear on
-            the site immediately.
-          </p>
-          {!cfg ? (
-            <p>Loading…</p>
-          ) : (
-            <>
-              <div className="admin-table-wrap">
-                <table className="admin">
-                <thead>
-                  <tr>
-                    <th>Tour</th>
-                    <th>Currency</th>
-                    <th>Price / group</th>
-                    <th>Ticket (per person)</th>
-                    <th>Skip premium €</th>
-                    <th>Luxury group</th>
-                    <th>Min guests</th>
-                    <th>Max guests</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cfg.tours.map((t) => (
-                    <tr key={t.id}>
-                      <td>{TOURS[t.id]?.content.en.name || t.id}</td>
-                      <td>{t.currency}</td>
-                      <td>
+    <main className="adm">
+      <div className="adm-wrap">
+        <h2 className="sec">Oligarch Travel — Price admin</h2>
+        <p className="sec-sub">
+          Edit prices only. The tour list is fixed. Changes are saved to the server and appear on
+          the site immediately.
+        </p>
+        <div className="adm-top-actions">
+          <a className="btn ghost adm-action" href="/en" target="_blank" rel="noopener">
+            View site
+          </a>
+          <button className="btn ghost adm-action" onClick={logout}>
+            Log out
+          </button>
+        </div>
+        {!cfg ? (
+          <p>Loading…</p>
+        ) : (
+          <>
+            <div className="adm-cards">
+              {cfg.tours.map((t) => (
+                <article className="adm-card" key={t.id}>
+                  <h3 className="adm-card-title">
+                    {TOURS[t.id]?.content.en.name || t.id}
+                  </h3>
+                  <p className="adm-card-cur">Prices in {t.currency}</p>
+                  <AdmField id={`grp-${t.id}`} label="Price / group" suffix={t.currency}>
+                    <input
+                      id={`grp-${t.id}`}
+                      className="adm-input"
+                      type="number"
+                      inputMode="decimal"
+                      step="0.01"
+                      min="0"
+                      value={t.perGroup}
+                      onChange={(e) => setTour(t.id, 'perGroup', e.target.value)}
+                    />
+                  </AdmField>
+                  {t.ticket ? (
+                    <>
+                      <AdmField
+                        id={`tkt-${t.id}`}
+                        label="Ticket (per person)"
+                        suffix={t.ticket.currency}
+                      >
                         <input
+                          id={`tkt-${t.id}`}
+                          className="adm-input"
                           type="number"
+                          inputMode="decimal"
                           step="0.01"
                           min="0"
-                          value={t.perGroup}
-                          onChange={(e) => setTour(t.id, 'perGroup', e.target.value)}
+                          value={t.ticket.amount}
+                          onChange={(e) => setTicket(t.id, 'amount', e.target.value)}
                         />
-                      </td>
-                      <td>
-                        {t.ticket ? (
-                          <span>
-                            <input
-                              type="number"
-                              step="0.01"
-                              min="0"
-                              value={t.ticket.amount}
-                              onChange={(e) => setTicket(t.id, 'amount', e.target.value)}
-                            />{' '}
-                            {t.ticket.currency}
-                          </span>
-                        ) : (
-                          '—'
-                        )}
-                      </td>
-                      <td>
-                        {t.ticket ? (
-                          <input
-                            type="number"
-                            step="0.01"
-                            min="0"
-                            value={t.ticket.premium}
-                            onChange={(e) => setTicket(t.id, 'premium', e.target.value)}
-                          />
-                        ) : (
-                          '—'
-                        )}
-                      </td>
-                      <td>
-                        {t.luxuryGroup !== undefined ? (
-                          <input
-                            type="number"
-                            step="0.01"
-                            min="0"
-                            value={t.luxuryGroup}
-                            onChange={(e) => setTour(t.id, 'luxuryGroup', e.target.value)}
-                          />
-                        ) : (
-                          '—'
-                        )}
-                      </td>
-                      <td>
+                      </AdmField>
+                      <AdmField id={`prm-${t.id}`} label="Skip premium" suffix="€">
                         <input
+                          id={`prm-${t.id}`}
+                          className="adm-input"
                           type="number"
-                          min="1"
-                          value={t.minGuests}
-                          onChange={(e) => setTour(t.id, 'minGuests', e.target.value)}
+                          inputMode="decimal"
+                          step="0.01"
+                          min="0"
+                          value={t.ticket.premium}
+                          onChange={(e) => setTicket(t.id, 'premium', e.target.value)}
                         />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          min="1"
-                          value={t.maxGuests}
-                          onChange={(e) => setTour(t.id, 'maxGuests', e.target.value)}
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              </div>
-              <div className="field" style={{ maxWidth: 260 }}>
-                <label htmlFor="dep">Booking deposit (%)</label>
-                <input
-                  id="dep"
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={cfg.depositPercent}
-                  onChange={(e) =>
-                    setCfg({ ...cfg, depositPercent: Number(e.target.value) || 0 })
-                  }
-                />
-              </div>
-              <div className="toolbar">
-                <button className="btn accent" onClick={save}>
-                  Save prices
-                </button>
-                <a className="btn ghost" href="/en" target="_blank" rel="noopener">
-                  View site
-                </a>
-                <button className="btn ghost" onClick={logout}>
-                  Log out
-                </button>
-              </div>
-              <p className="small" aria-live="polite">
+                      </AdmField>
+                    </>
+                  ) : null}
+                  {t.luxuryGroup !== undefined ? (
+                    <AdmField id={`lux-${t.id}`} label="Luxury group" suffix={t.currency}>
+                      <input
+                        id={`lux-${t.id}`}
+                        className="adm-input"
+                        type="number"
+                        inputMode="decimal"
+                        step="0.01"
+                        min="0"
+                        value={t.luxuryGroup}
+                        onChange={(e) => setTour(t.id, 'luxuryGroup', e.target.value)}
+                      />
+                    </AdmField>
+                  ) : null}
+                  <div className="adm-field-pair">
+                    <AdmField id={`min-${t.id}`} label="Min guests">
+                      <input
+                        id={`min-${t.id}`}
+                        className="adm-input"
+                        type="number"
+                        inputMode="numeric"
+                        min="1"
+                        value={t.minGuests}
+                        onChange={(e) => setTour(t.id, 'minGuests', e.target.value)}
+                      />
+                    </AdmField>
+                    <AdmField id={`max-${t.id}`} label="Max guests">
+                      <input
+                        id={`max-${t.id}`}
+                        className="adm-input"
+                        type="number"
+                        inputMode="numeric"
+                        min="1"
+                        value={t.maxGuests}
+                        onChange={(e) => setTour(t.id, 'maxGuests', e.target.value)}
+                      />
+                    </AdmField>
+                  </div>
+                </article>
+              ))}
+              <article className="adm-card">
+                <h3 className="adm-card-title">Booking</h3>
+                <AdmField id="dep" label="Booking deposit" suffix="%">
+                  <input
+                    id="dep"
+                    className="adm-input"
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="100"
+                    value={cfg.depositPercent}
+                    onChange={(e) =>
+                      setCfg({ ...cfg, depositPercent: Number(e.target.value) || 0 })
+                    }
+                  />
+                </AdmField>
+              </article>
+            </div>
+            <div className="adm-savebar">
+              <p className="adm-save-status" aria-live="polite">
                 {status}
               </p>
-            </>
-          )}
-        </div>
-      </section>
+              <button className="btn accent adm-save-btn" onClick={save}>
+                Save prices
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </main>
   );
 }
