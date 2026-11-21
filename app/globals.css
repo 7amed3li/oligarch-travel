@@ -970,7 +970,14 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .hero h1{font-size:clamp(30px,8.5vw,40px);margin-top:14px}
   .hero-sub{font-size:15px;line-height:1.55;margin-top:12px}
   .bookbar{margin-top:22px;border-radius:14px;padding:10px}
-  .trust-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* TrustTicker wraps the items in .trust-track rows and GSAP-marquees
+     .trust-in on mobile — that shifted the strip left and cut the first
+     column off-screen. On mobile show a static 2x3 grid instead: the
+     first track becomes the grid, the duplicate track is hidden and the
+     marquee transform is neutralised. */
+  .trust-in{display:block;transform:none!important}
+  .trust-track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust-track-dup{display:none}
   .trust-item{flex:none;padding:12px 8px;border-left:none;border-bottom:1px solid var(--line)}
   .trust-item:nth-child(even){border-left:1px solid var(--line)}
   .trust-item:nth-last-child(-n+2){border-bottom:none}
