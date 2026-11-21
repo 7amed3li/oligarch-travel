@@ -1442,3 +1442,13 @@ html.splash-done .ss-root{display:none!important}
 @media(max-width:900px){
   body nav.otqnav{display:grid!important;visibility:visible!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important}
 }
+
+/* ===== Rev 9g: Sultanahmet Info WhatsApp channel band (guide page) ===== */
+.gp-chan-band{margin-top:18px;background:#fff;border:1px solid var(--line);border-inline-start:4px solid #1FA855;border-radius:18px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;box-shadow:0 10px 30px rgba(26,43,73,.06)}
+.gp-chan-copy h2{margin:4px 0 6px}
+.gp-chan-btn{display:inline-flex;align-items:center;gap:9px;background:#1FA855;color:#fff;font-weight:800;font-size:15px;padding:13px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:background .2s ease}
+.gp-chan-btn:hover{background:#178A45}
+@media(max-width:640px){.gp-chan-band{padding:22px 20px}.gp-chan-btn{width:100%;justify-content:center}}
+/* Rev 9g fix: the portrait <img> height attribute (1100) was driving the
+   box height over aspect-ratio, stretching the arch frame. Force auto. */
+.gs-arch-img{height:auto}
