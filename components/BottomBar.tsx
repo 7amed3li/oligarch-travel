@@ -12,6 +12,23 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { count } = useCart();
   const mapsUrl = "https://maps.app.goo.gl/vTuGMLWqoP2tgWH59";
   return (
+    <>
+    {/* The bar's full CSS travels inline with the component (Rev 9e):
+        on the owner's phone the external stylesheet rules for the bar
+        were somehow not being applied, so the bar now carries its own
+        styles in the HTML itself and cannot be lost with the bundle. */}
+    <style>{`
+.otqnav{display:none}
+@media(max-width:900px){
+.otqnav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important;visibility:visible!important;background:#fff;border-top:1px solid #E3E8EF;box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
+.otq-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:#1A2B49;font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent}
+.otq-item>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+.otq-item:active{color:#C93A1B}
+.otq-item svg{width:20px;height:20px;flex:none}
+.otq-ic{position:relative;display:inline-flex}
+.otq-badge{position:absolute;top:-6px;right:-10px;background:#C93A1B;color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+}
+`}</style>
     <nav className="otqnav" aria-label="Quick actions">
       <Link className="otq-item" href={`/${locale}#tours`}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" aria-hidden="true">
@@ -53,5 +70,6 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
         <span>{u.meeting_label}</span>
       </a>
     </nav>
+    </>
   );
 }
