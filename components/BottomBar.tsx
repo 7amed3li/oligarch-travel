@@ -5,8 +5,9 @@ import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 
 // Fixed bottom bar, Lucky Sushi style (Ergin, 2026-11-20: "Menü cart
 // WhatsApp meerting point — en alttaki bu süper oturmuş"): Menu · Booking
-// (cart, with count badge) · WhatsApp · Meeting Point. Mobile only — on
-// desktop the header already carries the same entries.
+// (cart, with count badge) · Discover Istanbul (the guide's own page,
+// added 2026-11-21) · WhatsApp · Meeting Point. Mobile only — on desktop
+// the header already carries the same entries.
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { count } = useCart();
   const mapsUrl = "https://maps.app.goo.gl/vTuGMLWqoP2tgWH59";
@@ -30,6 +31,13 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
           {u.booking}
           {count > 0 ? ` (${count})` : ''}
         </span>
+      </Link>
+      <Link className="bb-item" href={`/${locale}/guide`}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <polygon points="16.2 7.8 13.8 13.8 7.8 16.2 10.2 10.2" />
+        </svg>
+        <span>{u.discover_title || 'Discover Istanbul'}</span>
       </Link>
       <a className="bb-item" href="https://wa.me/905553255565" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
