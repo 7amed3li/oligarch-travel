@@ -89,7 +89,7 @@ export default function MenuBoard({
     <div className="mboard">
       <div className="mb-bar">
         <div className="mb-title">{u.select_details || 'Please select tour details'}</div>
-        <div className="mb-field">
+        <div className="mb-field mb-field-date">
           <label htmlFor="mb-date">{u.date}</label>
           <input
             id="mb-date"
@@ -98,7 +98,7 @@ export default function MenuBoard({
             onChange={(e) => setMeta({ date: e.target.value })}
           />
         </div>
-        <div className="mb-field">
+        <div className="mb-field mb-field-people">
           <label htmlFor="mb-people">{u.guests}</label>
           <div className="mb-stepper">
             <button
@@ -125,7 +125,7 @@ export default function MenuBoard({
             </button>
           </div>
         </div>
-        <div className="mb-field">
+        <div className="mb-field mb-field-lang">
           <label htmlFor="mb-lang">{u.tour_lang || 'Tour language'}</label>
           <select
             id="mb-lang"
@@ -338,202 +338,204 @@ function TourModal({
         aria-label={c.name}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="tmodal-head">
-          <img src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`} alt={c.name} />
-          <button type="button" className="tmodal-x" aria-label="Close" onClick={onClose}>
-            ×
-          </button>
-        </div>
-        {gallery.length > 1 && (
-          <div className="tm-thumbs">
-            {gallery.map((g, i) => (
-              <button
-                key={g}
-                type="button"
-                className={i === gi ? 'tm-thumb active' : 'tm-thumb'}
-                onClick={() => setGi(i)}
-                aria-label={`Photo ${i + 1}`}
-              >
-                <img src={`/img/${g}`} alt="" loading="lazy" />
-              </button>
-            ))}
+        <div className="tmodal-scroll" data-lenis-prevent>
+          <div className="tmodal-head">
+            <img src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`} alt={c.name} />
+            <button type="button" className="tmodal-x" aria-label="Close" onClick={onClose}>
+              ×
+            </button>
           </div>
-        )}
-        <div className="tmodal-body">
-          <div className="mrow-top">
-            <h3 className="tmodal-name">{c.name}</h3>
-            {r ? (
-              <span className="mrow-rating">
-                <span className="star">★</span> {r[locale]}
-              </span>
-            ) : null}
-          </div>
-          <p className="tmodal-tag">{c.tagline}</p>
-          <div className="tm-chips">
-            <span className="tm-chip">{c.duration}</span>
-            <span className="tm-chip">{c.group}</span>
-          </div>
-          <p className="mrow-meta">
-            {u.meeting_label}: {meetingPoint(locale, tid)}{' '}
-            <a
-              href="https://maps.app.goo.gl/vTuGMLWqoP2tgWH59"
-              target="_blank"
-              rel="noopener"
-            >
-              📍 Maps ↗
-            </a>
-          </p>
-          <p className="tmodal-desc">{c.intro}</p>
-          <div className="tmodal-cols">
-            <div>
-              <h4>{u.included}</h4>
-              <ul className="tick">
-                {c.included.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4>{u.not_included}</h4>
-              <ul className="tick">
-                {c.not_included.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          {c.note ? <p className="small">{c.note}</p> : null}
-          <p className="small">
-            <Link href={`/${locale}/tours/${tid}`}>{u.full_details || 'Full details'} →</Link>
-          </p>
-          {seasonal ? (
-            <p className="tm-badge-row">
-              <span className="tm-badge">{u.night_badge}</span>
-            </p>
-          ) : null}
-
-          {seasonal ? null : (
-          <div className="tmodal-book">
-            <div className="tmodal-price">
-              <span>
-                {u.price_label || 'Price'} · {u.guests}: {meta.people}
-                {meta.date ? ` · ${meta.date}` : ''}
-              </span>
-              <strong>{tourPrice}</strong>
-            </div>
-            {tid === 'full-day-istanbul' && !fullDayInCart ? (
-              <p className="small">{u.fullday_note}</p>
-            ) : null}
-            {isYacht && (
-              <div className="field">
-                <label htmlFor="tm-tier">{u.tier_label || 'Yacht Option'}</label>
-                <select
-                  id="tm-tier"
-                  value={tier}
-                  onChange={(e) => setTier(e.target.value as 'standard' | 'luxury')}
+          {gallery.length > 1 && (
+            <div className="tm-thumbs">
+              {gallery.map((g, i) => (
+                <button
+                  key={g}
+                  type="button"
+                  className={i === gi ? 'tm-thumb active' : 'tm-thumb'}
+                  onClick={() => setGi(i)}
+                  aria-label={`Photo ${i + 1}`}
                 >
-                  <option value="standard">{u.tier_standard || 'Standard Yacht — €400'}</option>
-                  <option value="luxury">
-                    {u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}
-                  </option>
-                </select>
-              </div>
-            )}
-            {price.ticket && (
-              <>
-                <div className="ticketbox">
-                  <label className="tb-row">
-                    <input
-                      type="checkbox"
-                      checked={ticket}
-                      onChange={(e) => {
-                        setTicket(e.target.checked);
-                        if (!e.target.checked) setSkip(false);
-                      }}
-                    />
-                    <span>
-                      {u.add_ticket} +{' '}
-                      <strong>
-                        {fmtMoneyD(price.ticket.currency, price.ticket.amount)} × {ppl} {u.guests}
-                      </strong>
-                    </span>
-                  </label>
-                </div>
-                <div className="ticketbox">
-                  <label className="tb-row">
-                    <input
-                      type="checkbox"
-                      checked={skip}
-                      disabled={!ticket}
-                      onChange={(e) => setSkip(e.target.checked)}
-                    />
-                    <span>
-                      {u.skip_add || 'Add skip-the-line ticket'} +{' '}
-                      <strong>
-                        {fmtMoneyD('EUR', price.ticket.premium)} {u.per_person}
-                      </strong>
-                    </span>
-                  </label>
-                  <p className="tb-note">{u.skip_note}</p>
-                </div>
-              </>
-            )}
-            {totalJoined ? (
-              <div className="tmodal-sum">
-                <div className="tsum-row">
-                  <span>{c.name}</span>
-                  <span>{tourPrice}</span>
-                </div>
-                {price.ticket && ticket ? (
-                  <div className="tsum-row">
-                    <span>
-                      {u.add_ticket}: {fmtMoneyD(price.ticket.currency, price.ticket.amount)} ×{' '}
-                      {ppl} {u.guests}
-                    </span>
-                    <span>{ticketGroupTotalDisplay(price, ppl)}</span>
-                  </div>
-                ) : null}
-                {price.ticket && ticket && skip ? (
-                  <div className="tsum-row">
-                    <span>
-                      {u.skip_add || 'Add skip-the-line ticket'}: {fmtMoneyD('EUR', price.ticket.premium)}{' '}
-                      × {ppl} {u.guests}
-                    </span>
-                    <span>{skipGroupTotalDisplay(price, ppl)}</span>
-                  </div>
-                ) : null}
-                <div className="tsum-row total">
-                  <span>{u.total || 'Total'}</span>
-                  <span>{totalJoined}</span>
-                </div>
-              </div>
-            ) : null}
-            {covered ? <p className="mrow-covered">{u.covered_full_day}</p> : null}
-          </div>
-          )}
-
-          {seasonal ? null : (
-          <div className="tmodal-foot">
-            <div className="tmfoot-price">
-              <small>
-                {u.total || 'Total'}
-                {meta.date ? ` · ${meta.date}` : ''} · {ppl} {u.guests}
-              </small>
-              <strong>{totalJoined || tourPrice}</strong>
+                  <img src={`/img/${g}`} alt="" loading="lazy" />
+                </button>
+              ))}
             </div>
-            {covered ? null : (
-              <div className="tmfoot-btns">
-                <button type="button" className="tmfoot-add" onClick={() => onAdd(opts())}>
-                  + {u.add_to_booking}
-                </button>
-                <button type="button" className="tmfoot-book" onClick={() => onBookNow(opts())}>
-                  {u.book_now} →
-                </button>
+          )}
+          <div className="tmodal-body">
+            <div className="mrow-top">
+              <h3 className="tmodal-name">{c.name}</h3>
+              {r ? (
+                <span className="mrow-rating">
+                  <span className="star">★</span> {r[locale]}
+                </span>
+              ) : null}
+            </div>
+            <p className="tmodal-tag">{c.tagline}</p>
+            <div className="tm-chips">
+              <span className="tm-chip">{c.duration}</span>
+              <span className="tm-chip">{c.group}</span>
+            </div>
+            <p className="mrow-meta">
+              {u.meeting_label}: {meetingPoint(locale, tid)}{' '}
+              <a
+                href="https://maps.app.goo.gl/vTuGMLWqoP2tgWH59"
+                target="_blank"
+                rel="noopener"
+              >
+                Maps ↗
+              </a>
+            </p>
+            <p className="tmodal-desc">{c.intro}</p>
+            <div className="tmodal-cols">
+              <div>
+                <h4>{u.included}</h4>
+                <ul className="tick">
+                  {c.included.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
               </div>
+              <div>
+                <h4>{u.not_included}</h4>
+                <ul className="tick">
+                  {c.not_included.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {c.note ? <p className="small">{c.note}</p> : null}
+            <p className="small">
+              <Link href={`/${locale}/tours/${tid}`}>{u.full_details || 'Full details'} →</Link>
+            </p>
+            {seasonal ? (
+              <p className="tm-badge-row">
+                <span className="tm-badge">{u.night_badge}</span>
+              </p>
+            ) : null}
+
+            {seasonal ? null : (
+            <div className="tmodal-book">
+              <div className="tmodal-price">
+                <span>
+                  {u.price_label || 'Price'} · {u.guests}: {meta.people}
+                  {meta.date ? ` · ${meta.date}` : ''}
+                </span>
+                <strong>{tourPrice}</strong>
+              </div>
+              {tid === 'full-day-istanbul' && !fullDayInCart ? (
+                <p className="small">{u.fullday_note}</p>
+              ) : null}
+              {isYacht && (
+                <div className="field">
+                  <label htmlFor="tm-tier">{u.tier_label || 'Yacht Option'}</label>
+                  <select
+                    id="tm-tier"
+                    value={tier}
+                    onChange={(e) => setTier(e.target.value as 'standard' | 'luxury')}
+                  >
+                    <option value="standard">{u.tier_standard || 'Standard Yacht — €400'}</option>
+                    <option value="luxury">
+                      {u.tier_luxury || 'Luxury Yacht — €600 (drinks included)'}
+                    </option>
+                  </select>
+                </div>
+              )}
+              {price.ticket && (
+                <>
+                  <div className="ticketbox">
+                    <label className="tb-row">
+                      <input
+                        type="checkbox"
+                        checked={ticket}
+                        onChange={(e) => {
+                          setTicket(e.target.checked);
+                          if (!e.target.checked) setSkip(false);
+                        }}
+                      />
+                      <span>
+                        {u.add_ticket} +{' '}
+                        <strong>
+                          {fmtMoneyD(price.ticket.currency, price.ticket.amount)} × {ppl} {u.guests}
+                        </strong>
+                      </span>
+                    </label>
+                  </div>
+                  <div className="ticketbox">
+                    <label className="tb-row">
+                      <input
+                        type="checkbox"
+                        checked={skip}
+                        disabled={!ticket}
+                        onChange={(e) => setSkip(e.target.checked)}
+                      />
+                      <span>
+                        {u.skip_add || 'Add skip-the-line ticket'} +{' '}
+                        <strong>
+                          {fmtMoneyD('EUR', price.ticket.premium)} {u.per_person}
+                        </strong>
+                      </span>
+                    </label>
+                    <p className="tb-note">{u.skip_note}</p>
+                  </div>
+                </>
+              )}
+              {totalJoined ? (
+                <div className="tmodal-sum">
+                  <div className="tsum-row">
+                    <span>{c.name}</span>
+                    <span>{tourPrice}</span>
+                  </div>
+                  {price.ticket && ticket ? (
+                    <div className="tsum-row">
+                      <span>
+                        {u.add_ticket}: {fmtMoneyD(price.ticket.currency, price.ticket.amount)} ×{' '}
+                        {ppl} {u.guests}
+                      </span>
+                      <span>{ticketGroupTotalDisplay(price, ppl)}</span>
+                    </div>
+                  ) : null}
+                  {price.ticket && ticket && skip ? (
+                    <div className="tsum-row">
+                      <span>
+                        {u.skip_add || 'Add skip-the-line ticket'}: {fmtMoneyD('EUR', price.ticket.premium)}{' '}
+                        × {ppl} {u.guests}
+                      </span>
+                      <span>{skipGroupTotalDisplay(price, ppl)}</span>
+                    </div>
+                  ) : null}
+                  <div className="tsum-row total">
+                    <span>{u.total || 'Total'}</span>
+                    <span>{totalJoined}</span>
+                  </div>
+                </div>
+              ) : null}
+              {covered ? <p className="mrow-covered">{u.covered_full_day}</p> : null}
+            </div>
             )}
           </div>
+        </div>
+
+        {seasonal ? null : (
+        <div className="tmodal-foot">
+          <div className="tmfoot-price">
+            <small>
+              {u.total || 'Total'}
+              {meta.date ? ` · ${meta.date}` : ''} · {ppl} {u.guests}
+            </small>
+            <strong>{totalJoined || tourPrice}</strong>
+          </div>
+          {covered ? null : (
+            <div className="tmfoot-btns">
+              <button type="button" className="tmfoot-add" onClick={() => onAdd(opts())}>
+                + {u.add_to_booking}
+              </button>
+              <button type="button" className="tmfoot-book" onClick={() => onBookNow(opts())}>
+                {u.book_now} →
+              </button>
+            </div>
           )}
         </div>
+        )}
       </div>
     </div>
   );

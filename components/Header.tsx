@@ -28,14 +28,19 @@ export default function Header({
   const langRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
-    const el = langRef.current;
-    if (!el) return;
     const onDocClick = (e: MouseEvent) => {
-      if (el.open && !el.contains(e.target as Node)) el.removeAttribute('open');
+      const target = e.target as Node;
+      if (langRef.current?.open && !langRef.current.contains(target)) {
+        langRef.current.removeAttribute('open');
+      }
+      if (curRef.current?.open && !curRef.current.contains(target)) {
+        curRef.current.removeAttribute('open');
+      }
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        el.removeAttribute('open');
+        langRef.current?.removeAttribute('open');
+        curRef.current?.removeAttribute('open');
         setMobileMenuOpen(false);
       }
     };
@@ -60,7 +65,13 @@ export default function Header({
           <Link href={`${base}#contact`}>{u.nav_contact}</Link>
         </nav>
         <div className="header-actions">
-          <details className="lang-menu" ref={curRef}>
+          <details
+            className="lang-menu cur-menu"
+            ref={curRef}
+            onToggle={() => {
+              if (curRef.current?.open) langRef.current?.removeAttribute('open');
+            }}
+          >
             <summary className="lang-btn" aria-label="Currency">
               <span>
                 {DISP_CURS.find((c) => c.code === currency)?.symbol} {currency}
@@ -93,7 +104,13 @@ export default function Header({
               ))}
             </div>
           </details>
-          <details className="lang-menu" ref={langRef}>
+          <details
+            className="lang-menu"
+            ref={langRef}
+            onToggle={() => {
+              if (langRef.current?.open) curRef.current?.removeAttribute('open');
+            }}
+          >
             <summary className="lang-btn" aria-label="Language">
               <svg className="lang-globe" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
