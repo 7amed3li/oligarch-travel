@@ -184,6 +184,7 @@ export default function BookingClient({
                     <span>{u.guests}</span>
                     <input
                       type="number"
+                      inputMode="numeric"
                       min={tp.minGuests}
                       max={tp.maxGuests}
                       value={it.people}
@@ -268,7 +269,7 @@ export default function BookingClient({
         </p>
         <div className="field">
           <label htmlFor="bk-name">{u.your_name}</label>
-          <input id="bk-name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input id="bk-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="field">
           <label htmlFor="bk-phone">{u.your_phone}</label>
@@ -324,6 +325,8 @@ export default function BookingClient({
             <input
               id="bk-phone"
               type="tel"
+              inputMode="tel"
+              autoComplete="tel-national"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="555 123 45 67"

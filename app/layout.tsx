@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import CartProvider from '@/components/CartProvider';
@@ -12,6 +13,12 @@ const inter = Inter({
   display: 'swap',
   variable: '--font-inter',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata = {
   title: 'Istanbul Tours — Oligarch Travel',

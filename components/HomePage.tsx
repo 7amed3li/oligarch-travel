@@ -3,6 +3,7 @@ import MenuBoard from './MenuBoard';
 import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
+import TrustTicker from './TrustTicker';
 import { TRUST, UI, VIDEO_URL, type Locale } from '@/data/tours';
 import { pricesById, type PriceConfig } from '@/lib/prices';
 
@@ -52,16 +53,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         </div>
       </div>
 
-      <div className="trust-strip">
-        <div className="wrap trust-in">
-          {TRUST[locale].map(([v, l]) => (
-            <div className="trust-item" key={l}>
-              <div className="trust-val">{v}</div>
-              <div className="trust-lbl">{l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <TrustTicker items={TRUST[locale]} />
 
       <section id="tours">
         <div className="wrap">

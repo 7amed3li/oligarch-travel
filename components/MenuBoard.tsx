@@ -111,6 +111,7 @@ export default function MenuBoard({
             <input
               id="mb-people"
               type="number"
+              inputMode="numeric"
               min={1}
               max={46}
               value={meta.people}

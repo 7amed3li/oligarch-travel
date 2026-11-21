@@ -78,7 +78,8 @@ export default function AdminClient() {
             <p>Loading…</p>
           ) : (
             <>
-              <table className="admin">
+              <div className="admin-table-wrap">
+                <table className="admin">
                 <thead>
                   <tr>
                     <th>Tour</th>
@@ -167,6 +168,7 @@ export default function AdminClient() {
                   ))}
                 </tbody>
               </table>
+              </div>
               <div className="field" style={{ maxWidth: 260 }}>
                 <label htmlFor="dep">Booking deposit (%)</label>
                 <input
