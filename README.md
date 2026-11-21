@@ -60,3 +60,14 @@ tour, combined total per currency, 25% deposit + remainder due on the day.
 
 Wikimedia Commons Hagia Sophia clip (480p VP9) streamed from upload.wikimedia.org,
 with Ergin's sunset photo as poster/fallback.
+
+## Production environment (Vercel)
+
+Set on the Vercel project (Production + Preview); a new deployment is required
+after any change:
+
+- `ADMIN_PASSWORD` — enables the price admin at `/admin`.
+- `RESEND_API_KEY` — server-only key used by `app/api/contact` to send the
+  contact form by email.
+- `CONTACT_TO_EMAIL` — server-only recipient for contact-form messages; the
+  address is never rendered on the site.
