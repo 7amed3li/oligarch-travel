@@ -3,24 +3,37 @@
 import { useState } from 'react';
 import type { Locale } from '@/data/tours';
 
-// Privacy-first contact form (Ergin, 2026-11-20): his email address is never
-// shown anywhere on the site. The form hands the message to WhatsApp, which
-// delivers it to Ergin directly — same channel as the booking confirmations.
+// Privacy-first contact form (Ergin, 2026-11-20; email activation
+// 2026-11-21): his email address is never shown anywhere on the site.
+// The form POSTs to /api/contact, which emails the message to Ergin
+// via Resend from the server — no WhatsApp handoff any more.
 export default function ContactForm({ u }: { locale: Locale; u: any }) {
   const [name, setName] = useState('');
   const [reach, setReach] = useState('');
   const [msg, setMsg] = useState('');
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  function send() {
-    const lines = [
-      name ? `Hello Ergin, I am ${name}.` : 'Hello Ergin,',
-      msg,
-      reach ? `Reach me at: ${reach}` : '',
-    ].filter(Boolean);
-    window.open(
-      `https://wa.me/905553255565?text=${encodeURIComponent(lines.join('\n'))}`,
-      '_blank',
-    );
+  async function send() {
+    if (state === 'sending' || !msg.trim()) return;
+    setState('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, reach, message: msg }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.ok) {
+        setState('sent');
+        setName('');
+        setReach('');
+        setMsg('');
+      } else {
+        setState('error');
+      }
+    } catch {
+      setState('error');
+    }
   }
 
   return (
@@ -43,10 +56,20 @@ export default function ContactForm({ u }: { locale: Locale; u: any }) {
               <textarea rows={4} value={msg} onChange={(e) => setMsg(e.target.value)} />
             </label>
           </div>
-          <button type="button" className="cf-send" onClick={send}>
-            {u.form_send}
+          <button type="button" className="cf-send" onClick={send} disabled={state === 'sending'}>
+            {state === 'sending' ? u.form_sending || 'Sending…' : u.form_send}
           </button>
-          <p className="cf-note">{u.form_note}</p>
+          {state === 'sent' ? (
+            <p className="cf-note" role="status">
+              {u.form_sent}
+            </p>
+          ) : state === 'error' ? (
+            <p className="cf-note" role="alert">
+              {u.form_error}
+            </p>
+          ) : (
+            <p className="cf-note">{u.form_note}</p>
+          )}
         </div>
       </div>
     </section>
