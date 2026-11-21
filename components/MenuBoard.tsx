@@ -229,7 +229,7 @@ export default function MenuBoard({
       <Link href={`/${locale}/guide`} className="whois-card">
         <img
           className="whois-img"
-          src="/img/portrait.webp"
+          src="/img/portrait-v2.webp"
           alt="Ergin Karakoyun"
           loading="lazy"
         />
