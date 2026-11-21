@@ -80,8 +80,8 @@ export default function GuideTeaser({ locale }: { locale: Locale }) {
                   src="/img/portrait.webp"
                   alt="Ergin Karakoyun, licensed tourist guide"
                   className="gt-arch-img"
-                  width={720}
-                  height={720}
+                  width={880}
+                  height={1100}
                   loading="lazy"
                   decoding="async"
                 />
