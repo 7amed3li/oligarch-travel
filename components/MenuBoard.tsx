@@ -294,11 +294,20 @@ function TourModal({
   const [ticket, setTicket] = useState(false);
   const [skip, setSkip] = useState(false);
   const [gi, setGi] = useState(0);
+  const [zoom, setZoom] = useState(false);
   const gallery = TOUR_GALLERY[tid] ?? [t.img];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        // Esc closes the zoom lightbox first; only a second Esc closes the modal.
+        if (zoom) setZoom(false);
+        else onClose();
+      } else if (zoom && gallery.length > 1 && e.key === 'ArrowRight') {
+        setGi((i) => (i + 1) % gallery.length);
+      } else if (zoom && gallery.length > 1 && e.key === 'ArrowLeft') {
+        setGi((i) => (i - 1 + gallery.length) % gallery.length);
+      }
     };
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
@@ -307,7 +316,7 @@ function TourModal({
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prev;
     };
-  }, [onClose]);
+  }, [onClose, zoom, gallery.length]);
 
   const opts = () => ({
     ticket: price.ticket ? ticket : undefined,
@@ -340,7 +349,41 @@ function TourModal({
       >
         <div className="tmodal-scroll" data-lenis-prevent>
           <div className="tmodal-head">
-            <img src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`} alt={c.name} />
+            <img
+              className="tmodal-head-bg"
+              src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`}
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              className="tmodal-head-img"
+              src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`}
+              alt={c.name}
+            />
+            <button
+              type="button"
+              className="tmodal-zoom"
+              aria-label="Zoom"
+              title="Zoom"
+              onClick={() => setZoom(true)}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+            </button>
             <button type="button" className="tmodal-x" aria-label="Close" onClick={onClose}>
               ×
             </button>
@@ -404,9 +447,6 @@ function TourModal({
               </div>
             </div>
             {c.note ? <p className="small">{c.note}</p> : null}
-            <p className="small">
-              <Link href={`/${locale}/tours/${tid}`}>{u.full_details || 'Full details'} →</Link>
-            </p>
             {seasonal ? (
               <p className="tm-badge-row">
                 <span className="tm-badge">{u.night_badge}</span>
@@ -537,6 +577,94 @@ function TourModal({
         </div>
         )}
       </div>
+
+      {zoom ? (
+        <div
+          className="td-lightbox tm-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={c.name}
+          onClick={(e) => {
+            e.stopPropagation();
+            setZoom(false);
+          }}
+        >
+          <div className="td-lb-stage" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="td-lb-close"
+              onClick={() => setZoom(false)}
+              aria-label="Close"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <img
+              src={`/img/${gallery[Math.min(gi, gallery.length - 1)]}`}
+              alt={`${c.name} (${gi + 1}/${gallery.length})`}
+              className="td-lb-img"
+            />
+            {gallery.length > 1 ? (
+              <div className="td-lb-nav">
+                <button
+                  type="button"
+                  className="td-lb-arrow"
+                  onClick={() => setGi((i) => (i - 1 + gallery.length) % gallery.length)}
+                  aria-label="Previous photo"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <span className="td-lb-count">
+                  {gi + 1} / {gallery.length}
+                </span>
+                <button
+                  type="button"
+                  className="td-lb-arrow"
+                  onClick={() => setGi((i) => (i + 1) % gallery.length)}
+                  aria-label="Next photo"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
