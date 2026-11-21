@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import { useCart } from './CartProvider';
 import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 
@@ -10,6 +11,36 @@ import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 // the header already carries the same entries.
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { count } = useCart();
+  const navRef = useRef<HTMLElement>(null);
+
+  // Rev 9f: last-resort guarantee. On the owner's phone the bar stayed
+  // hidden through stylesheet rules AND an inline <style> block, so the
+  // critical styles are also forced onto the element itself from JS
+  // with !important priority once the component mounts.
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const apply = () => {
+      if (window.innerWidth <= 900) {
+        el.style.setProperty('display', 'grid', 'important');
+        el.style.setProperty('grid-template-columns', 'repeat(5,minmax(0,1fr))', 'important');
+        el.style.setProperty('position', 'fixed', 'important');
+        el.style.setProperty('bottom', '0', 'important');
+        el.style.setProperty('left', '0', 'important');
+        el.style.setProperty('right', '0', 'important');
+        el.style.setProperty('z-index', '200', 'important');
+        el.style.setProperty('visibility', 'visible', 'important');
+        el.style.setProperty('background', '#fff', 'important');
+        el.style.setProperty('border-top', '1px solid #E3E8EF', 'important');
+      } else {
+        el.style.removeProperty('display');
+        el.style.removeProperty('position');
+      }
+    };
+    apply();
+    window.addEventListener('resize', apply);
+    return () => window.removeEventListener('resize', apply);
+  }, []);
   const mapsUrl = "https://maps.app.goo.gl/vTuGMLWqoP2tgWH59";
   return (
     <>
@@ -29,7 +60,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
 .otq-badge{position:absolute;top:-6px;right:-10px;background:#C93A1B;color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
 }
 `}</style>
-    <nav className="otqnav" aria-label="Quick actions">
+    <nav className="otqnav" aria-label="Quick actions" ref={navRef}>
       <Link className="otq-item" href={`/${locale}#tours`}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" aria-hidden="true">
           <path d="M4 6h16M4 12h16M4 18h10" />
