@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from './CartProvider';
 import { cartTotals, displayTotals, fmtComponentsDisp, fmtMoney, fmtMoneyD, lineComponents, ticketPerPersonDisplay } from '@/lib/cart';
@@ -57,7 +57,17 @@ export default function BookingClient({
   const { items: rawItems, remove, update, clear, meta } = useCart();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [dial, setDial] = useState('+90');
+  const [country, setCountry] = useState(DIAL_CODES[0]);
+  const [ccOpen, setCcOpen] = useState(false);
+  const [ccQuery, setCcQuery] = useState('');
+  const ccRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (ccRef.current && !ccRef.current.contains(e.target as Node)) setCcOpen(false);
+    };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, []);
 
   // Drop lines whose tour no longer exists (stale carts from older versions).
   const items = rawItems.filter((it) => byId[it.tourId] && TOURS[it.tourId]);
@@ -106,7 +116,7 @@ export default function BookingClient({
     if (rawPhone) {
       const fullPhone = rawPhone.startsWith('+')
         ? rawPhone
-        : `${dial} ${rawPhone.replace(/^0+/, '')}`;
+        : `${country.dial} ${rawPhone.replace(/^0+/, '')}`;
       L.push(`Phone: ${fullPhone}`);
     }
     window.open(
@@ -127,6 +137,14 @@ export default function BookingClient({
       </div>
     );
   }
+
+  const ccQ = ccQuery.trim().toLowerCase().replace(/\+/g, '');
+  const filteredCc = DIAL_CODES.filter(
+    (c) =>
+      !ccQ ||
+      c.name.toLowerCase().includes(ccQ) ||
+      c.dial.replace('+', '').startsWith(ccQ),
+  );
 
   return (
     <div className="grid2">
@@ -255,13 +273,54 @@ export default function BookingClient({
         <div className="field">
           <label htmlFor="bk-phone">{u.your_phone}</label>
           <div className="bk-phone-row">
-            <select aria-label="Country code" value={dial} onChange={(e) => setDial(e.target.value)}>
-              {DIAL_CODES.map((c) => (
-                <option key={c.name} value={c.dial}>
-                  {c.name} {c.dial}
-                </option>
-              ))}
-            </select>
+            <div className="bk-cc" ref={ccRef}>
+              <button
+                type="button"
+                className="bk-cc-btn"
+                aria-haspopup="listbox"
+                aria-expanded={ccOpen}
+                onClick={() => {
+                  setCcOpen((o) => !o);
+                  setCcQuery('');
+                }}
+              >
+                <span className="bk-cc-label">
+                  {country.name} {country.dial}
+                </span>
+                <span className="bk-cc-chev" aria-hidden="true">
+                  ▾
+                </span>
+              </button>
+              {ccOpen && (
+                <div className="bk-cc-panel">
+                  <input
+                    className="bk-cc-search"
+                    autoFocus
+                    value={ccQuery}
+                    onChange={(e) => setCcQuery(e.target.value)}
+                    placeholder={u.cc_search}
+                  />
+                  <ul className="bk-cc-list" role="listbox">
+                    {filteredCc.map((c) => (
+                      <li key={c.name}>
+                        <button
+                          type="button"
+                          className="bk-cc-item"
+                          onClick={() => {
+                            setCountry(c);
+                            setCcOpen(false);
+                          }}
+                        >
+                          <span>{c.name}</span>
+                          <span className="bk-cc-dial">{c.dial}</span>
+                        </button>
+                      </li>
+                    ))}
+                    {filteredCc.length === 0 && <li className="bk-cc-empty">{u.cc_nomatch}</li>}
+                  </ul>
+                </div>
+              )}
+            </div>
             <input
               id="bk-phone"
               type="tel"
