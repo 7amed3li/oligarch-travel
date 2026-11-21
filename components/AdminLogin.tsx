@@ -22,32 +22,31 @@ export default function AdminLogin() {
   }
 
   return (
-    <main>
-      <section>
-        <div className="wrap" style={{ maxWidth: 420 }}>
-          <h2 className="sec">Oligarch Travel — Admin</h2>
-          <p className="sec-sub">Enter the admin password to manage prices.</p>
-          <form onSubmit={submit}>
-            <div className="field">
-              <label htmlFor="admin-pw">Password</label>
-              <input
-                id="admin-pw"
-                type="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <button className="btn accent" type="submit">
-              Log in
-            </button>
-            <p className="small" aria-live="polite">
-              {status}
-            </p>
-          </form>
-        </div>
-      </section>
+    <main className="adm">
+      <div className="adm-login-card">
+        <h2 className="sec">Oligarch Travel — Admin</h2>
+        <p className="sec-sub">Enter the admin password to manage prices.</p>
+        <form onSubmit={submit}>
+          <div className="adm-field">
+            <label htmlFor="admin-pw">Password</label>
+            <input
+              id="admin-pw"
+              className="adm-input"
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="btn accent adm-login-btn" type="submit">
+            Log in
+          </button>
+          <p className="adm-login-status" aria-live="polite">
+            {status}
+          </p>
+        </form>
+      </div>
     </main>
   );
 }
