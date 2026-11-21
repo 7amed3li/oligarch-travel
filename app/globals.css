@@ -1196,15 +1196,15 @@ html.splash-done .ss-root{display:none!important}
 .tmfoot-book{background:none;border:0;color:var(--accent-deep);font-size:13.5px;font-weight:700;cursor:pointer;padding:2px}
 
 /* ===== Fixed bottom bar — Menu · Booking · Discover · WhatsApp · Meeting Point ===== */
-.bottombar{display:none}
+.otqnav{display:none}
 @media(max-width:900px){
-  .bottombar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:85;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
-  .bb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:var(--ink);font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent}
-  .bb-item>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
-  .bb-item:active{color:var(--accent-deep)}
-  .bb-item svg{width:20px;height:20px;flex:none}
-  .bb-ic{position:relative;display:inline-flex}
-  .bb-badge{position:absolute;top:-6px;right:-10px;background:var(--accent-deep);color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .otqnav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:85;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .otq-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:var(--ink);font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent}
+  .otq-item>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+  .otq-item:active{color:var(--accent-deep)}
+  .otq-item svg{width:20px;height:20px;flex:none}
+  .otq-ic{position:relative;display:inline-flex}
+  .otq-badge{position:absolute;top:-6px;right:-10px;background:var(--accent-deep);color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
   body{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
   .wa-float-wrap{display:none!important}
   .book-actions{position:static;margin:14px 0 0;padding:14px 0 0;background:transparent;box-shadow:none;border-top:1px solid var(--line);border-radius:0}
@@ -1440,5 +1440,5 @@ html.splash-done .ss-root{display:none!important}
    correct, but on at least one real device it failed to appear, so pin
    it with maximum-strength selectors at the very end of the file. */
 @media(max-width:900px){
-  body nav.bottombar{display:grid!important;visibility:visible!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important}
+  body nav.otqnav{display:grid!important;visibility:visible!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important}
 }
