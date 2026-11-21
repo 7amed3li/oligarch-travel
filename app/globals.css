@@ -1420,3 +1420,18 @@ html.splash-done .ss-root{display:none!important}
   .logo-text{font-size:14.5px}
   .lang-btn{min-height:42px;padding:9px 8px;font-size:12.5px;gap:5px}
 }
+
+/* Rev 9c: FINAL mobile hero/header overrides. These use two-class
+   selectors on purpose: the <=420px `.wrap{padding:0 14px}` shorthand
+   (same specificity, later in the file) was silently zeroing the
+   hero-wrap top/bottom padding from the <=640px block, which is why
+   the topline/title stayed glued to the hero edges on narrow phones.
+   Header is now 16+42+16+1 = 75px tall on mobile, and the hero
+   min-height calc below matches it. Nothing after this block. */
+@media(max-width:640px){
+  .hero .hero-wrap{padding-top:52px;padding-bottom:60px}
+  .hero{min-height:calc(100vh - 75px);min-height:calc(100svh - 75px)}
+  header.site .header-in{padding-top:16px;padding-bottom:16px}
+  header.site .logo-mark{width:26px;height:30px}
+  header.site .logo-text{font-size:15.5px}
+}
