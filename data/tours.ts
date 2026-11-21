@@ -583,7 +583,7 @@ export const TOURS: Record<string, TourDef> = {
      "Transport to the meeting point",
      "Personal expenses"
     ],
-    "note": "Seasonal programme: June to September. Pre-booking opens in May — the price will be announced then."
+    "note": "Seasonal programme: June to September. Bookings cannot be made yet — the season starts in June and the price will be announced then."
    },
    "de": {
     "name": "Topkapi-Palast Nachttour",
@@ -603,7 +603,7 @@ export const TOURS: Record<string, TourDef> = {
      "Anfahrt zum Treffpunkt",
      "Persönliche Ausgaben"
     ],
-    "note": "Saisonprogramm: Juni bis September. Die Vorreservierung öffnet im Mai — der Preis wird dann bekannt gegeben."
+    "note": "Saisonprogramm: Juni bis September. Eine Buchung ist noch nicht möglich — die Saison beginnt im Juni, der Preis wird dann bekannt gegeben."
    },
    "zh": {
     "name": "托普卡帕宫夜游",
@@ -623,7 +623,7 @@ export const TOURS: Record<string, TourDef> = {
      "前往集合点的交通",
      "个人消费"
     ],
-    "note": "季节性项目：6 月至 9 月。预订将于 5 月开放——价格届时公布。"
+    "note": "季节性项目：6 月至 9 月。目前尚无法预订——季节将于 6 月开始，价格届时公布。"
    },
    "tr": {
     "name": "Topkapı Sarayı Gece Turu",
@@ -643,7 +643,7 @@ export const TOURS: Record<string, TourDef> = {
      "Buluşma noktasına ulaşım",
      "Kişisel harcamalar"
     ],
-    "note": "Sezonluk program: Haziran–Eylül. Ön rezervasyon Mayıs'ta açılacak — fiyat o zaman duyurulacak."
+    "note": "Sezonluk program: Haziran–Eylül. Şimdilik rezervasyon yapılamıyor — sezon Haziran'da başlayacak, fiyat o zaman duyurulacak."
    }
   }
  },
@@ -836,7 +836,7 @@ export const UI: Record<Locale, any> = {
   "date": "Date",
   "guests": "Guests",
   "tour_lang": "Tour language",
-  "night_badge": "June – September · Pre-booking opens in May",
+  "night_badge": "June – September · Bookings not open yet — starts in June",
   "who_is": "Who is Ergin Karakoyun?",
   "tabii_title": "As seen on tabii",
   "tabii_text": "Ergin appears in TRT's tabii series 'Like a Dream: Istanbul' — guests ask him about it all the time. Watch links coming soon.",
@@ -979,7 +979,7 @@ export const UI: Record<Locale, any> = {
   "date": "Datum",
   "guests": "Gäste",
   "tour_lang": "Tour-Sprache",
-  "night_badge": "Juni – September · Vorreservierung ab Mai",
+  "night_badge": "Juni – September · Buchung noch nicht möglich — Start im Juni",
   "who_is": "Wer ist Ergin Karakoyun?",
   "tabii_title": "Bekannt aus tabii",
   "tabii_text": "Ergin ist in der tabii-Serie 'Like a Dream: Istanbul' von TRT zu sehen — Gäste fragen ihn ständig danach. Die Links zum Ansehen folgen in Kürze.",
@@ -1122,7 +1122,7 @@ export const UI: Record<Locale, any> = {
   "date": "日期",
   "guests": "人数",
   "tour_lang": "导览语言",
-  "night_badge": "6 月 – 9 月 · 5 月开放预订",
+  "night_badge": "6 月 – 9 月 · 暂未开放预订 — 6 月开始",
   "who_is": "Ergin Karakoyun 是谁？",
   "tabii_title": "在 tabii 平台亮相",
   "tabii_text": "Ergin 出演了 TRT 旗下 tabii 平台的剧集《Like a Dream: Istanbul》，客人们经常向他问起。观看链接即将上线。",
@@ -1265,7 +1265,7 @@ export const UI: Record<Locale, any> = {
    "date": "Tarih",
    "guests": "Kişi Sayısı",
    "tour_lang": "Tur Dili",
-   "night_badge": "Haziran – Eylül · Ön rezervasyon Mayıs'ta",
+   "night_badge": "Haziran – Eylül · Rezervasyon henüz yapılamıyor — Haziran'da başlıyor",
    "who_is": "Ergin Karakoyun Kimdir?",
    "tabii_title": "tabii'de yer aldı",
    "tabii_text": "Ergin, TRT'nin tabii dizisi 'Like a Dream: Istanbul'da yer alıyor; misafirlerin en çok sorduğu konulardan biri bu. İzleme linkleri yakında burada olacak.",
