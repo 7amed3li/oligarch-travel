@@ -203,7 +203,7 @@ export default function GuideShowcase({
               <div className="gs-arch-window">
                 <img
                   className="gs-arch-img"
-                  src="/img/portrait.webp"
+                  src="/img/portrait-v2.webp"
                   alt="Ergin Karakoyun, licensed tourist guide"
                   width={880}
                   height={1100}

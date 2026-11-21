@@ -302,7 +302,7 @@ export default async function TourPage({
               <div className="td-host-card">
                 <div className="td-host-portrait">
                   <img
-                    src="/img/portrait.webp"
+                    src="/img/portrait-v2.webp"
                     alt="Ergin Karakoyun, licensed tourist guide"
                     width={128}
                     height={148}
