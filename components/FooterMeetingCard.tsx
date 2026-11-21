@@ -115,121 +115,25 @@ export default function FooterMeetingCard({
 
   return (
     <div className="ft-place" role="group" aria-label={label}>
-      <a
-        className="ft-wayfinder"
-        href={MAPS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={t.directionsAria}
-      >
-        <svg
-          className="ft-wayfinder-svg"
-          viewBox="0 0 360 124"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-        >
-          <defs>
-            <radialGradient id="ftMapGlow" cx="66%" cy="38%" r="58%">
-              <stop offset="0%" stopColor="rgba(38,67,118,0.55)" />
-              <stop offset="100%" stopColor="rgba(12,23,43,0)" />
-            </radialGradient>
-          </defs>
-
-          <rect width="360" height="124" fill="url(#ftMapGlow)" />
-
-          {/* Architectural Sultanahmet courtyard & historic blocks */}
-          <path
-            d="M42 26h78l10 38-28 24H46z"
-            fill="rgba(255,255,255,0.03)"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="1"
-          />
-          <circle
-            cx="126"
-            cy="70"
-            r="16"
-            fill="rgba(255,255,255,0.025)"
-            stroke="rgba(255,255,255,0.07)"
-            strokeWidth="1"
-          />
-          <path
-            d="M168 18h128v26l-34 22h-84z"
-            fill="rgba(255,255,255,0.03)"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="1"
-          />
-          <path
-            d="M188 78h118v34H172z"
-            fill="rgba(255,255,255,0.025)"
-            stroke="rgba(255,255,255,0.055)"
-            strokeWidth="1"
-          />
-
-          {/* Fine secondary lanes */}
-          <path
-            d="M0 96C80 92 140 82 210 68M156 0c-6 36-18 82-34 124M276 0c-12 40-18 84-16 124"
-            fill="none"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
-          />
-
-          {/* Main Babı Hümayun Cd. avenue */}
-          <path
-            d="M64 124C122 92 178 66 244 42c34-12 72-18 116-20"
-            fill="none"
-            stroke="rgba(255,255,255,0.18)"
-            strokeWidth="2.2"
-          />
-
-          {/* Hagia Sophia origin & 50m walking path */}
-          <path
-            d="M126 70Q180 54 236 46"
-            fill="none"
-            stroke="rgba(255,255,255,0.34)"
-            strokeWidth="1.5"
-            strokeDasharray="3 4"
-            strokeLinecap="round"
-          />
-          <circle
-            cx="126"
-            cy="70"
-            r="7"
-            fill="none"
-            stroke="rgba(255,255,255,0.22)"
-            strokeWidth="1"
-          />
-          <circle cx="126" cy="70" r="3" fill="rgba(255,255,255,0.5)" />
-
-          {/* Meeting Point graphic beacon */}
-          <circle
-            className="ft-pin-pulse"
-            cx="236"
-            cy="46"
-            r="14"
-            fill="rgba(255,85,51,0.28)"
-          />
-          <circle
-            cx="236"
-            cy="46"
-            r="9"
-            fill="rgba(255,85,51,0.18)"
-            stroke="rgba(255,85,51,0.55)"
-            strokeWidth="1"
-          />
-          <circle
-            cx="236"
-            cy="46"
-            r="4.5"
-            fill="#FF5533"
-            stroke="#FFFFFF"
-            strokeWidth="1.6"
-          />
-        </svg>
-
+      <div className="ft-map">
+        <iframe
+          className="ft-map-frame"
+          title={t.directionsAria}
+          src="https://maps.google.com/maps?q=41.0065,28.9802&z=16&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+        <a
+          className="ft-map-link"
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t.directionsAria}
+        />
         <span className="ft-wf-badge ft-wf-hours">{t.hours}</span>
-        <span className="ft-wf-coord">Tevkifhane Sk. No:1</span>
         <span className="ft-wf-badge ft-wf-dist">{t.landmark}</span>
-      </a>
+      </div>
 
       <div className="ft-place-body">
         <p className="ft-place-addr">{address}</p>
