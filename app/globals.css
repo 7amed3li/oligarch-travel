@@ -1276,8 +1276,23 @@ html.splash-done .ss-root{display:none!important}
 @media(max-width:820px){
   /* Header: avoid crowding; BottomBar already carries Booking on <= 900px */
   .cart-link{display:none}
-  .header-in{gap:10px;padding:10px 0}
+  /* Header, more substantial on mobile (Hamed): taller bar, bigger logo
+     and controls, soft shadow under the sticky bar. Height at phone
+     widths = 14 top pad + 42 content + 14 bottom pad + 1 border = 71px;
+     the <=640px hero min-height calc below subtracts exactly this. */
+  header.site{box-shadow:0 10px 24px -16px rgba(26,43,73,.45)}
+  .header-in{gap:10px;padding:14px 0}
   .header-actions{gap:7px;margin-left:auto}
+  .logo{gap:8px}
+  .logo-mark{width:24px;height:28px}
+  .logo-text{font-size:15px;letter-spacing:.12em}
+  .logo-text small{font-size:8.5px;letter-spacing:.26em}
+  .lang-btn{min-height:42px;padding:9px 10px;gap:6px;font-size:13px;border-radius:10px}
+  .mobile-toggle{width:42px;height:42px;padding:0;border-radius:10px}
+  .mobile-toggle svg{width:23px;height:23px}
+  /* Anchor jumps must still clear the taller (71px) header */
+  section[id]{scroll-margin-top:92px}
+  footer#contact{scroll-margin-top:90px}
   .cur-menu .lang-panel{right:-44px;max-width:calc(100vw - 24px)}
 
   /* MenuBoard top filter bar: scroll naturally instead of blocking half the screen */
@@ -1294,14 +1309,15 @@ html.splash-done .ss-root{display:none!important}
 }
 
 @media(max-width:640px){
-  /* Hero: full first screen on mobile — the sticky header is ~58px tall
-     at this width (10px+10px padding + ~37px content + border), so the
-     hero takes the rest of the viewport and the video/poster (absolute
-     inset 0, object-fit:cover) fills it edge-to-edge. .hero-wrap is a
-     space-between column: topline at the top with clear air below the
-     header, title + sub at the bottom. */
-  .hero{min-height:calc(100vh - 58px);min-height:calc(100svh - 58px)}
-  .hero-wrap{padding-top:26px;padding-bottom:26px}
+  /* Hero: full first screen on mobile — the sticky header is 71px tall
+     at this width (14px+14px padding + 42px controls + 1px border, see
+     the <=820px header rules above), so the hero takes the rest of the
+     viewport and the video/poster (absolute inset 0, object-fit:cover)
+     fills it edge-to-edge. .hero-wrap is a space-between column: topline
+     at the top, title + sub at the bottom, both with generous inner
+     padding so neither glues to the hero's edges (Hamed). */
+  .hero{min-height:calc(100vh - 71px);min-height:calc(100svh - 71px)}
+  .hero-wrap{padding-top:52px;padding-bottom:60px}
   .hero-topline{font-size:11px;letter-spacing:.18em;line-height:1.4}
   .hero-bottom h1{font-size:clamp(22px,6.2vw,30px);line-height:1.2;margin-bottom:8px}
   .hero-sub{font-size:14.5px;line-height:1.5;margin-top:0}
@@ -1392,4 +1408,15 @@ html.splash-done .ss-root{display:none!important}
   .trust-track{flex-wrap:wrap}
   .trust-track-dup{display:none}
   .trust-item{flex:1 1 40%;border-bottom:1px solid var(--line)}
+}
+
+/* Rev 9b: narrow phones — keep the taller header's controls at a uniform
+   42px (the <=420px lang-btn trim above would otherwise shrink them to
+   38px and break the 71px header height the hero calc assumes), with
+   slightly tighter horizontal padding/text so logo + currency + language
+   + burger still fit at 360px. */
+@media(max-width:420px){
+  .header-in{gap:8px}
+  .logo-text{font-size:14.5px}
+  .lang-btn{min-height:42px;padding:9px 8px;font-size:12.5px;gap:5px}
 }
