@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
 import AddToBooking from '@/components/AddToBooking';
+import NightFilm from '@/components/NightFilm';
 import TourHeroGallery from '@/components/TourHeroGallery';
 import {
   LOCALES,
+  NIGHT_STORY,
   RATINGS,
   SEASONAL_TOURS,
   TOUR_ORDER,
@@ -107,10 +109,12 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   if (!LOCALES.includes(locale as Locale) || !TOURS[slug]) return {};
   const c = TOURS[slug].content[locale as Locale];
+  const description =
+    slug === 'topkapi-night' ? NIGHT_STORY[locale as Locale].meta : c.tagline;
   return {
     title: `${c.name} — BYZIST`,
-    description: c.tagline,
-    openGraph: { title: c.name, description: c.tagline, images: [`/img/${TOURS[slug].img}`] },
+    description,
+    openGraph: { title: c.name, description, images: [`/img/${TOURS[slug].img}`] },
   };
 }
 
@@ -248,6 +252,41 @@ export default async function TourPage({
                 <p className="td-desc">{c.intro}</p>
                 <p className="td-desc">{c.desc}</p>
               </div>
+
+              {slug === 'topkapi-night' && (
+                <div className="td-night-card">
+                  <p className="td-kicker">{NIGHT_STORY[loc].kicker}</p>
+                  <h3 className="td-night-title">{NIGHT_STORY[loc].title}</h3>
+                  {NIGHT_STORY[loc].paras.map((p) => (
+                    <p className="td-desc" key={p.slice(0, 24)}>
+                      {p}
+                    </p>
+                  ))}
+                  <div className="td-night-facts">
+                    {NIGHT_STORY[loc].facts.map((f) => (
+                      <div className="td-night-fact" key={f.k}>
+                        <span>{f.k}</span>
+                        <strong>{f.v}</strong>
+                      </div>
+                    ))}
+                  </div>
+                  <NightFilm
+                    play={NIGHT_STORY[loc].filmPlay}
+                    caption={NIGHT_STORY[loc].filmCaption}
+                  />
+                  <p className="td-night-sources">
+                    {NIGHT_STORY[loc].sources.split('millisaraylar.gov.tr')[0]}
+                    <a
+                      href="https://www.millisaraylar.gov.tr"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      millisaraylar.gov.tr
+                    </a>
+                    {NIGHT_STORY[loc].sources.split('millisaraylar.gov.tr')[1]}
+                  </p>
+                </div>
+              )}
 
               <div className="td-inc-grid">
                 <div className="td-inc-card is-in">

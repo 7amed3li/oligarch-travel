@@ -1498,3 +1498,101 @@ export function meetingPoint(locale: Locale, tourId: string): string {
   if (own) return own;
   return (MEETING_OVERRIDE[tourId] && MEETING_OVERRIDE[tourId][locale]) || MEETING_DEFAULT[locale];
 }
+
+export interface NightStory {
+  kicker: string;
+  title: string;
+  paras: string[];
+  facts: { k: string; v: string }[];
+  filmPlay: string;
+  filmCaption: string;
+  sources: string;
+  meta: string;
+}
+
+// First-night story for the Topkapi Palace Night Tour page. Every dated
+// fact is from the Presidency of National Palaces (Milli Saraylar)
+// announcements and the season reports, researched 2026-11-24
+// (~/workspace/research_notes/topkapi-night-first-tour-research-20261124-1748).
+// The "Ergin guided on the first night" claim is Ergin's own, evidenced by
+// the Ministry film embedded in the block; no press source names him.
+export const NIGHT_STORY: Record<Locale, NightStory> = {
+  en: {
+    kicker: 'A first in a century',
+    title: 'The first night: 29 June 2024',
+    paras: [
+      'Topkapı Palace became a museum in 1924 — and for a hundred years its gates closed before dark. That changed on Saturday, 29 June 2024, when the Presidency of National Palaces opened the palace at night for the first time: two groups, entering at 21:00 and 22:00, walking the courtyards and the Harem under the lights until 23:00.',
+      "Ergin Karakoyun guided on that first night — the Ministry of Culture and Tourism's film of the evening, made with SICPA, shows him leading his group through the palace; watch it below. He has run this night tour every season since: in 2025 from 21 June, and in 2026 on Saturdays from 13 June to 19 September, 20:30–22:30 — 31,870 visitors across 15 nights.",
+      'The night visit has its own ticket, sold separately from the daytime ticket, and the Harem is part of the night route — together with the Divan, the Sacred Relics, the Treasury and the fourth-courtyard terraces. Each group is limited to 300 visitors, which is why the palace feels almost empty.',
+    ],
+    facts: [
+      { k: 'First night', v: '29 June 2024' },
+      { k: 'Season', v: 'Saturdays, June–September' },
+      { k: 'Entry', v: 'Two groups per night' },
+      { k: 'Ticket', v: 'Separate night ticket, Harem included' },
+    ],
+    filmPlay: 'Play the film of the first night',
+    filmCaption:
+      'The first night museum tour at Topkapı Palace, filmed for the Ministry of Culture and Tourism with SICPA. Ergin appears from 0:25.',
+    sources: 'Sources: Presidency of National Palaces (Milli Saraylar) announcements, millisaraylar.gov.tr — information last verified 24 November 2026.',
+    meta: "Topkapı Palace Night Tour with the guide of the very first night, 29 June 2024 — the Harem and Treasury after dark, Saturdays June–September. The original night tour, since the first night.",
+  },
+  de: {
+    kicker: 'Eine Premiere seit einem Jahrhundert',
+    title: 'Die erste Nacht: 29. Juni 2024',
+    paras: [
+      'Der Topkapi-Palast wurde 1924 zum Museum — und hundert Jahre lang schlossen seine Tore vor Einbruch der Dunkelheit. Das änderte sich am Samstag, dem 29. Juni 2024, als die Verwaltung der Nationalpaläste (Milli Saraylar) den Palast erstmals bei Nacht öffnete: zwei Gruppen, Einlass um 21:00 und 22:00 Uhr, die Höfe und den Harem im Lichterschein bis 23:00 Uhr.',
+      'Ergin Karakoyun führte in dieser ersten Nacht — der Film des Ministeriums für Kultur und Tourismus über jenen Abend, entstanden mit SICPA, zeigt ihn, wie er seine Gruppe durch den Palast führt; sehen Sie ihn unten. Diese Nachttour führt er seitdem in jeder Saison: 2025 ab dem 21. Juni, und 2026 samstags vom 13. Juni bis 19. September, 20:30–22:30 Uhr — 31.870 Besucher an 15 Abenden.',
+      'Der Nachtbesuch hat ein eigenes Ticket, getrennt vom Tagesticket, und der Harem ist Teil der Nacht-Route — zusammen mit dem Divan, den Heiligen Reliquien, der Schatzkammer und den Terrassen des vierten Hofs. Jede Gruppe ist auf 300 Besucher begrenzt; deshalb fühlt sich der Palast fast leer an.',
+    ],
+    facts: [
+      { k: 'Erste Nacht', v: '29. Juni 2024' },
+      { k: 'Saison', v: 'Samstags, Juni–September' },
+      { k: 'Einlass', v: 'Zwei Gruppen pro Nacht' },
+      { k: 'Ticket', v: 'Separates Nachtticket, Harem inklusive' },
+    ],
+    filmPlay: 'Film der ersten Nacht abspielen',
+    filmCaption:
+      'Die erste Nachtmuseum-Tour im Topkapi-Palast, gefilmt für das Ministerium für Kultur und Tourismus mit SICPA. Ergin ist ab 0:25 zu sehen.',
+    sources: 'Quellen: Mitteilungen der Verwaltung der Nationalpaläste (Milli Saraylar), millisaraylar.gov.tr — Angaben zuletzt geprüft am 24. November 2026.',
+    meta: 'Topkapi-Palast Nachttour mit dem Guide der allerersten Nacht, 29. Juni 2024 — Harem und Schatzkammer nach Einbruch der Dunkelheit, samstags Juni–September. Die originale Nachttour, seit der ersten Nacht.',
+  },
+  zh: {
+    kicker: '百年来的首次',
+    title: '首次夜间开放：2024 年 6 月 29 日',
+    paras: [
+      '托普卡帕宫于 1924 年成为博物馆——此后一百年间，它的大门总在天黑前关闭。2024 年 6 月 29 日星期六，这一惯例被打破：国家宫殿管理局（Milli Saraylar）首次在夜间开放宫殿——两批参观者分别于 21:00 和 22:00 入场，在灯光下漫步庭院与后宫，直至 23:00。',
+      'Ergin Karakoyun 正是首夜的导游之一——文化和旅游部为当晚制作的影片（与 SICPA 合作）记录了他带领团队参观宫殿的画面，请在下方观看。自那以后，他每个季节都带领这条夜游路线：2025 年自 6 月 21 日起，2026 年在 6 月 13 日至 9 月 19 日的每个星期六 20:30–22:30 举行——15 个夜晚共接待 31,870 名参观者。',
+      '夜间参观使用单独的门票，与日间门票分开出售，后宫包含在夜间路线中——此外还有帝国议会厅、圣物馆、珍宝馆和第四庭院的露台。每组参观者上限为 300 人，因此宫殿显得格外宁静。',
+    ],
+    facts: [
+      { k: '首夜', v: '2024 年 6 月 29 日' },
+      { k: '季节', v: '6 月至 9 月的星期六' },
+      { k: '入场', v: '每晚两组' },
+      { k: '门票', v: '单独的夜间门票，含后宫' },
+    ],
+    filmPlay: '播放首夜影片',
+    filmCaption: '托普卡帕宫首个夜间博物馆之旅，由文化和旅游部与 SICPA 合作拍摄。Ergin 从 0:25 开始出现。',
+    sources: '来源：国家宫殿管理局（Milli Saraylar）公告，millisaraylar.gov.tr——信息最后核实于 2026 年 11 月 24 日。',
+    meta: '托普卡帕宫夜游——由 2024 年 6 月 29 日首夜的导游带领：夜幕下的后宫与珍宝馆，6 月至 9 月每周六。自首夜以来的原创夜游。',
+  },
+  tr: {
+    kicker: 'Yüzyılda bir ilk',
+    title: 'İlk gece: 29 Haziran 2024',
+    paras: [
+      "Topkapı Sarayı 1924'te müze oldu — ve yüz yıl boyunca kapıları hava kararmadan kapandı. Bu, 29 Haziran 2024 Cumartesi günü değişti: Millî Saraylar Başkanlığı sarayı ilk kez gece açtı — 21:00 ve 22:00'de giren iki grup, 23:00'e kadar avluları ve Harem'i ışıklar altında gezdi.",
+      "Ergin Karakoyun o ilk gecede rehberlik yaptı — Kültür ve Turizm Bakanlığı'nın o akşama dair filmi (SICPA iş birliğiyle) onu grubunu sarayda gezdirirken gösteriyor; aşağıda izleyebilirsiniz. Bu gece turunu o ilk sezondan beri her sezon yapıyor: 2025'te 21 Haziran'dan itibaren, 2026'da 13 Haziran – 19 Eylül arasında cumartesileri 20:30–22:30 — 15 gecede 31.870 ziyaretçi.",
+      "Gece ziyareti, gündüz biletinden ayrı satılan kendi biletine sahip ve Harem gece rotasına dahil — Dîvân, Mukaddes Emanetler, Hazine ve dördüncü avlu teraslarıyla birlikte. Her grup 300 ziyaretçiyle sınırlı; sarayın neredeyse boş hissedilmesinin sebebi bu.",
+    ],
+    facts: [
+      { k: 'İlk gece', v: '29 Haziran 2024' },
+      { k: 'Sezon', v: 'Cumartesileri, Haziran–Eylül' },
+      { k: 'Giriş', v: 'Gece başına iki grup' },
+      { k: 'Bilet', v: 'Ayrı gece bileti, Harem dahil' },
+    ],
+    filmPlay: 'İlk gecenin filmini oynat',
+    filmCaption: "Topkapı Sarayı'ndaki ilk gece müze turu; Kültür ve Turizm Bakanlığı için SICPA ile çekildi. Ergin 0:25'ten itibaren görünüyor.",
+    sources: 'Kaynaklar: Millî Saraylar Başkanlığı duyuruları, millisaraylar.gov.tr — bilgiler son olarak 24 Kasım 2026 tarihinde doğrulandı.',
+    meta: 'Topkapı Sarayı Gece Turu, ilk gecenin (29 Haziran 2024) rehberiyle — karanlıkta Harem ve Hazine, Haziran–Eylül cumartesileri. İlk geceden beri yapılan orijinal gece turu.',
+  },
+};
