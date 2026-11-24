@@ -573,7 +573,7 @@ export const TOURS: Record<string, TourDef> = {
   }
  },
  "bosphorus-yacht": {
-  "img": "tour-bosphorus-yacht.webp",
+  "img": "tour-bosphorus-yacht-v2.webp",
   "content": {
    "en": {
     "name": "Private Bosphorus Yacht Tour",
@@ -1498,7 +1498,7 @@ export const TOUR_GALLERY: Record<string, string[]> = {
   'topkapi-palace': ['tour-topkapi-private.webp', 'gal-topkapi-gate.webp', 'tour-topkapi-night.webp'],
   'topkapi-night': ['night-tour-1.webp', 'night-tour-2.webp', 'night-tour-3.webp', 'night-tour-4.webp', 'night-tour-5.webp', 'night-tour-6.webp', 'tour-topkapi-night.webp', 'tour-topkapi-private.webp'],
   'bazaars-tour': ['tour-bazaars.webp', 'gal-bazaar-gold.webp', 'tour-carpet.webp'],
-  'bosphorus-yacht': ['tour-bosphorus-yacht.webp', 'gal-bosphorus-bridge.webp'],
+  'bosphorus-yacht': ['tour-bosphorus-yacht-v2.webp', 'gal-bosphorus-bridge.webp'],
   'traditional-handicrafts': ['tour-carpet.webp', 'gal-tiles.webp', 'gal-bazaar-gold.webp'],
   'full-day-istanbul': ['tour-istanbul-day.webp', 'tour-hs-private.webp', 'tour-topkapi-private.webp', 'tour-bluemosque.webp'],
 };
