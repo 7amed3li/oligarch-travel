@@ -46,7 +46,20 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           <div className="wrap hero-wrap">
             <p className="hero-topline">{u.hero_topline}</p>
             <div className="hero-bottom">
-              <h1>{u.hero_title}</h1>
+              <h1>
+                {(() => {
+                  const ht = String(u.hero_title);
+                  const ni = ht.indexOf('Ergin Karakoyun');
+                  if (ni < 0) return ht;
+                  return (
+                    <>
+                      {ht.slice(0, ni)}
+                      <span className="hero-name">Ergin Karakoyun</span>
+                      {ht.slice(ni + 'Ergin Karakoyun'.length)}
+                    </>
+                  );
+                })()}
+              </h1>
               <p className="hero-sub">{u.hero_sub}</p>
             </div>
           </div>
