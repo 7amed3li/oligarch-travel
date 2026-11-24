@@ -5,7 +5,7 @@ export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; intro: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
-export const TOUR_ORDER: string[] = ["full-day-istanbul", "hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "bazaars-tour", "bosphorus-yacht", "topkapi-night", "traditional-handicrafts"];
+export const TOUR_ORDER: string[] = ["full-day-istanbul", "half-day-istanbul", "hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "bazaars-tour", "bosphorus-yacht", "topkapi-night", "traditional-handicrafts"];
 // Seasonal tours: shown in the menu and on their own page, but NOT bookable
 // and shown without a price (badge + note instead). Never offered in the
 // hero SearchBar options or as a second tour in AddToBooking.
@@ -408,6 +408,93 @@ export const TOURS: Record<string, TourDef> = {
      "Kişisel harcamalar"
     ],
     "note": "Biletler dahil değildir — hangi duraklarda bilet gerektiğini rehberiniz gün içinde söyler; isterseniz biletleri diğer turlarımızdan da ekleyebilirsiniz."
+   }
+  }
+ },
+ "half-day-istanbul": {
+  "img": "tour-hs-private.webp",
+  "meeting": {
+   "en": "Arranged with your guide when you book",
+   "de": "Wird bei der Buchung mit Ihrem Guide vereinbart",
+   "zh": "预订时与导游商定",
+   "tr": "Rezervasyonda rehberinizle kararlaştırılır"
+  },
+  "content": {
+   "en": {
+    "name": "Half-Day Istanbul City Tour",
+    "tagline": "The Old City essentials in three hours.",
+    "intro": "Three hours in the heart of the Old City: Hagia Sophia, the Blue Mosque and the Hippodrome with your private guide — Istanbul's essential route at an easy pace.",
+    "duration": "3 hours (half day)",
+    "group": "Private group, up to 8 guests",
+    "desc": "A private guide for three hours in the Sultanahmet district. The classic route links Hagia Sophia, the Blue Mosque and the Hippodrome, and the route can flex around what you want to see most. You decide the details together with your guide when you meet.",
+    "included": [
+     "Private licensed guide for 3 hours",
+     "Flexible Old City route, decided with your guide on the day"
+    ],
+    "not_included": [
+     "Entrance tickets",
+     "Food and drinks",
+     "Transport",
+     "Personal expenses"
+    ],
+    "note": "One price per group of up to 8 guests."
+   },
+   "de": {
+    "name": "Halbtägige Istanbul-Stadttour",
+    "tagline": "Die Höhepunkte der Altstadt in drei Stunden.",
+    "intro": "Drei Stunden im Herzen der Altstadt: Hagia Sophia, Blaue Moschee und Hippodrom mit Ihrem privaten Guide — Istanbuls wichtigste Route in entspanntem Tempo.",
+    "duration": "3 Stunden (halber Tag)",
+    "group": "Private Gruppe, bis zu 8 Gäste",
+    "desc": "Ein privater Guide für drei Stunden im Sultanahmet-Viertel. Die klassische Route verbindet Hagia Sophia, Blaue Moschee und Hippodrom, und die Route richtet sich flexibel nach dem, was Sie am meisten sehen möchten. Die Details entscheiden Sie gemeinsam mit Ihrem Guide beim Treffen.",
+    "included": [
+     "Privater lizenzierter Guide für 3 Stunden",
+     "Flexible Altstadt-Route, am Tag selbst mit Ihrem Guide entschieden"
+    ],
+    "not_included": [
+     "Eintrittstickets",
+     "Essen und Getränke",
+     "Transport",
+     "Persönliche Ausgaben"
+    ],
+    "note": "Ein Preis pro Gruppe von bis zu 8 Gästen."
+   },
+   "zh": {
+    "name": "伊斯坦布尔半日城市之旅",
+    "tagline": "三小时走完老城精华。",
+    "intro": "三小时，老城核心：圣索菲亚、蓝色清真寺和竞技场，由您的私人导游陪同——伊斯坦布尔最经典的路线，节奏轻松。",
+    "duration": "3 小时（半天）",
+    "group": "私人团，最多 8 人",
+    "desc": "一位私人导游，在苏丹艾哈迈德区陪伴您三小时。经典路线串联圣索菲亚大教堂、蓝色清真寺和竞技场，行程也可根据您最想看的景点灵活调整。见面时，您与导游一起决定细节。",
+    "included": [
+     "3 小时的私人持证导游",
+     "灵活的老城行程，当天与导游共同决定"
+    ],
+    "not_included": [
+     "门票",
+     "餐饮",
+     "交通",
+     "个人开支"
+    ],
+    "note": "每组一个价格，最多 8 人。"
+   },
+   "tr": {
+    "name": "Yarım Gün İstanbul Turu",
+    "tagline": "Tarihi Yarımada'nın özü üç saatte.",
+    "intro": "Üç saat, Tarihi Yarımada'nın kalbi: Ayasofya, Sultanahmet Camii ve Hippodrom özel rehberinizle — İstanbul'un en temel rotası, rahat bir tempoda.",
+    "duration": "3 saat (yarım gün)",
+    "group": "Özel grup, en fazla 8 kişi",
+    "desc": "Sultanahmet'te üç saat boyunca özel rehber. Klasik rota Ayasofya, Sultanahmet Camii ve Hippodrom'u birbirine bağlar; rota, en çok görmek istediklerinize göre esneyebilir. Ayrıntıları buluştuğunuzda rehberinizle birlikte kararlaştırırsınız.",
+    "included": [
+     "3 saat özel lisanslı rehber",
+     "Esnek Tarihi Yarımada rotası, aynı gün rehberinizle belirlenir"
+    ],
+    "not_included": [
+     "Giriş biletleri",
+     "Yiyecek ve içecekler",
+     "Ulaşım",
+     "Kişisel harcamalar"
+    ],
+    "note": "En fazla 8 kişilik grup için tek fiyat."
    }
   }
  },
@@ -1324,6 +1411,12 @@ export const RATINGS: Record<string, any> = {
   "tr": "4,7 (58 yorum) · TripAdvisor"
  },
  "full-day-istanbul": {
+  "en": "4.7 (58 reviews) · TripAdvisor",
+  "de": "4,7 (58 Bewertungen) · TripAdvisor",
+  "zh": "4.7（58 条评价）· TripAdvisor",
+  "tr": "4,7 (58 yorum) · TripAdvisor"
+ },
+ "half-day-istanbul": {
   "en": "4.7 (58 reviews) · TripAdvisor",
   "de": "4,7 (58 Bewertungen) · TripAdvisor",
   "zh": "4.7（58 条评价）· TripAdvisor",

@@ -1,8 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCart } from './CartProvider';
 import { MEETING_DEFAULT, type Locale } from '@/data/tours';
+import { displayTotals, fmtMoneyD } from '@/lib/cart';
+import type { TourPrice } from '@/lib/prices';
 
 // Fixed bottom bar, Lucky Sushi style (Ergin, 2026-11-20: "Menü cart
 // WhatsApp meerting point — en alttaki bu süper oturmuş"): Booking
@@ -11,8 +13,35 @@ import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 // removed on 2026-11-24 at the owner's request. Mobile only — on
 // desktop the header already carries the same entries.
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
-  const { count } = useCart();
+  const { items, count, currency } = useCart();
+  void currency; // re-render on currency change; amounts format via fmtMoneyD
   const navRef = useRef<HTMLElement>(null);
+  const [priceMap, setPriceMap] = useState<{ byId: Record<string, TourPrice>; dep: number } | null>(null);
+
+  // Prices are admin-editable, so the bar reads them from the public API
+  // once, then shows the live cart total in the guest's display currency
+  // under the Booking label (owner's request, 2026-11-24: the guest must
+  // SEE the money, e.g. how many euros they have put together so far).
+  useEffect(() => {
+    let live = true;
+    fetch('/api/prices')
+      .then((r) => r.json())
+      .then((cfg) => {
+        if (!live || !cfg || !Array.isArray(cfg.tours)) return;
+        const byId: Record<string, TourPrice> = {};
+        for (const t of cfg.tours) byId[t.id] = t;
+        setPriceMap({ byId, dep: typeof cfg.depositPercent === 'number' ? cfg.depositPercent : 25 });
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  const total =
+    priceMap && items.length > 0
+      ? displayTotals(items, priceMap.byId, priceMap.dep).subtotal
+      : 0;
 
   // Rev 9f: last-resort guarantee. On the owner's phone the bar stayed
   // hidden through stylesheet rules AND an inline <style> block, so the
@@ -59,6 +88,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
 .otq-item svg{width:20px;height:20px;flex:none}
 .otq-ic{position:relative;display:inline-flex}
 .otq-badge{position:absolute;top:-6px;right:-10px;background:#C93A1B;color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.otq-total{display:block;font-size:11.5px;font-weight:800;color:#C93A1B;line-height:1.2}
 }
 `}</style>
     <nav className="otqnav" aria-label="Quick actions" ref={navRef}>
@@ -73,6 +103,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
         <span>
           {u.booking}
           {count > 0 ? ` (${count})` : ''}
+          {total > 0 ? <span className="otq-total">{fmtMoneyD('EUR', total)}</span> : null}
         </span>
       </Link>
       <Link className="otq-item" href={`/${locale}/guide`}>

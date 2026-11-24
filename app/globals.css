@@ -1145,7 +1145,7 @@ html.splash-done .ss-root{display:none!important}
 .tm-badge{display:inline-block;background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;color:var(--ink)}
 .whois-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-top:12px;box-shadow:var(--shadow);text-decoration:none;transition:border-color .15s ease,transform .15s ease}
 .whois-card:hover{border-color:#C6D2E0;transform:translateY(-1px)}
-.whois-img{width:104px;height:104px;flex:none;object-fit:cover;object-position:78% top;border-radius:9px}
+.whois-img{width:104px;height:130px;flex:none;object-fit:cover;object-position:center;border-radius:9px}
 .whois-body{flex:1;min-width:0}
 .whois-title{margin:0;font-size:19px;font-weight:800;color:var(--ink)}
 .whois-line{margin:3px 0 0;font-size:14.5px;color:var(--ink-soft)}
@@ -1345,7 +1345,7 @@ html.splash-done .ss-root{display:none!important}
 
   /* Whois guide card */
   .whois-card{gap:12px;padding:12px}
-  .whois-img{width:82px;height:82px}
+  .whois-img{width:82px;height:103px}
   .whois-title{font-size:16.5px}
   .whois-line{font-size:13.5px;line-height:1.45}
   .whois-link{font-size:13.5px;margin-top:6px}
@@ -1476,3 +1476,9 @@ html.splash-done .ss-root{display:none!important}
 .gs-video-facade:hover .gs-video-play,.gs-video-facade:focus-visible .gs-video-play{transform:translate(-50%,-50%) scale(1.07)}
 .gs-video-caption{margin:12px 2px 0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
 @media(max-width:640px){.gs-video{margin:30px 0 2px}.gs-video-frame{border-radius:14px}.gs-video-play{width:62px;height:62px}}
+
+/* Half-Day card: tabii watch chip overlaid on the card image (2026-11-24).
+   The card itself is a link, so the chip is a span that stops the card
+   navigation and opens the tabii series page in a new tab. */
+.tcard-tabii{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;background:rgba(6,12,24,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.03em;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.tcard-tabii:hover{background:rgba(6,12,24,.95)}
