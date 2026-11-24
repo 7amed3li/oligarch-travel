@@ -55,6 +55,20 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
 
       <TrustTicker items={TRUST[locale]} />
 
+      {/* TÜRSAB band (owner, 2026-11-24): the association logo is a site
+          requirement — it sits after the moving trust strip and before
+          the Istanbul Tours heading. Ergin's own logo file. */}
+      <section className="tursab-band" aria-label="TÜRSAB">
+        <div className="wrap">
+          <img
+            className="tursab-logo"
+            src="/img/tursab-logo.jpg"
+            alt="TÜRSAB — Association of Turkish Travel Agencies"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       <section id="tours">
         <div className="wrap">
           <h2 className="sec">{u.tours_title}</h2>

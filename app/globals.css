@@ -1507,3 +1507,9 @@ html.splash-done .ss-root{display:none!important}
 .mrow-media{position:relative;flex:none;display:block}
 .mrow-tabii{position:absolute;left:5px;bottom:5px;display:inline-flex;align-items:center;gap:4px;background:rgba(6,12,24,.85);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.02em;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .mrow-tabii:hover{background:rgba(6,12,24,.97)}
+
+/* TÜRSAB band (2026-11-24): centered association logo between the trust
+   ticker and the tours section. The source file is small (120x47), so it
+   renders near native size to stay crisp. */
+.tursab-band{background:#fff;padding:22px 0 0}
+.tursab-logo{display:block;margin:0 auto;height:46px;width:auto}
