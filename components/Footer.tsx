@@ -112,7 +112,6 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
         </div>
 
         <div className="ft-bottom">
-          <span>{u.legal_line}</span>
           <span>&copy; {year} BYZIST</span>
         </div>
       </div>

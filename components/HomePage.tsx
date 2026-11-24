@@ -108,7 +108,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
             <img
               className="tabii-scene"
               src="/img/tabii-scene.jpg"
-              alt="Like a Dream: Istanbul — tabii"
+              alt="Like a Dream: Istanbul — TRT tabii"
               loading="lazy"
             />
             <img className="tabii-badge" src="/img/tabii-badge.jpg" alt="" aria-hidden="true" />
