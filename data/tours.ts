@@ -5,7 +5,7 @@ export const LOCALES: Locale[] = ['en', 'de', 'zh', 'tr'];
 export const VIDEO_URL = '/img/hero-video.webm';
 export interface TourContent { name: string; tagline: string; intro: string; duration: string; group: string; desc: string; included: string[]; not_included: string[]; note: string; }
 export interface TourDef { img: string; meeting?: Record<Locale, string>; content: Record<Locale, TourContent>; }
-export const TOUR_ORDER: string[] = ["hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "full-day-istanbul", "bazaars-tour", "bosphorus-yacht", "topkapi-night", "traditional-handicrafts"];
+export const TOUR_ORDER: string[] = ["full-day-istanbul", "hagia-sophia", "topkapi-palace", "basilica-cistern", "sultanahmet-hippodrome", "bazaars-tour", "bosphorus-yacht", "topkapi-night", "traditional-handicrafts"];
 // Seasonal tours: shown in the menu and on their own page, but NOT bookable
 // and shown without a price (badge + note instead). Never offered in the
 // hero SearchBar options or as a second tour in AddToBooking.
