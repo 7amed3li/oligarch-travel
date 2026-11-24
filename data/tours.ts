@@ -1520,6 +1520,7 @@ export interface NightStory {
   title: string;
   paras: string[];
   facts: { k: string; v: string }[];
+  filmTitle: string;
   filmPlay: string;
   filmCaption: string;
   natgeoTitle: string;
@@ -1550,6 +1551,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
       { k: 'Entry', v: 'Two groups per night' },
       { k: 'Ticket', v: 'Separate night ticket, Harem included' },
     ],
+    filmTitle: 'VISITING TOPKAPI PALACE AT NIGHT',
     filmPlay: 'Play the film of the first night',
     filmCaption:
       'The first night museum tour at Topkapı Palace, filmed for the Ministry of Culture and Tourism with SICPA. Ergin appears from 0:25.',
@@ -1573,6 +1575,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
       { k: 'Einlass', v: 'Zwei Gruppen pro Nacht' },
       { k: 'Ticket', v: 'Separates Nachtticket, Harem inklusive' },
     ],
+    filmTitle: 'TOPKAPI-PALAST BEI NACHT',
     filmPlay: 'Film der ersten Nacht abspielen',
     filmCaption:
       'Die erste Nachtmuseum-Tour im Topkapi-Palast, gefilmt für das Ministerium für Kultur und Tourismus mit SICPA. Ergin ist ab 0:25 zu sehen.',
@@ -1596,6 +1599,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
       { k: '入场', v: '每晚两组' },
       { k: '门票', v: '单独的夜间门票，含后宫' },
     ],
+    filmTitle: '夜访托普卡珀宫',
     filmPlay: '播放首夜影片',
     filmCaption: '托普卡帕宫首个夜间博物馆之旅，由文化和旅游部与 SICPA 合作拍摄。Ergin 从 0:25 开始出现。',
     natgeoTitle: 'Ergin 登上国家地理频道，1996',
@@ -1618,6 +1622,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
       { k: 'Giriş', v: 'Gece başına iki grup' },
       { k: 'Bilet', v: 'Ayrı gece bileti, Harem dahil' },
     ],
+    filmTitle: "GECE TOPKAPI SARAYI'NI ZİYARET",
     filmPlay: 'İlk gecenin filmini oynat',
     filmCaption: "Topkapı Sarayı'ndaki ilk gece müze turu; Kültür ve Turizm Bakanlığı için SICPA ile çekildi. Ergin 0:25'ten itibaren görünüyor.",
     natgeoTitle: "Ergin National Geographic'te, 1996",

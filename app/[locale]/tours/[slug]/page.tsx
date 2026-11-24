@@ -272,6 +272,7 @@ export default async function TourPage({
                     ))}
                   </div>
                   <NightFilm
+                    title={NIGHT_STORY[loc].filmTitle}
                     play={NIGHT_STORY[loc].filmPlay}
                     caption={NIGHT_STORY[loc].filmCaption}
                   />

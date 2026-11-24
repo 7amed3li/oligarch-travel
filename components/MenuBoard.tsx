@@ -438,6 +438,7 @@ function TourModal({
             <p className="tmodal-desc">{c.intro}</p>
             {tid === 'topkapi-night' ? (
               <NightFilm
+                title={NIGHT_STORY[locale].filmTitle}
                 play={NIGHT_STORY[locale].filmPlay}
                 caption={NIGHT_STORY[locale].filmCaption}
               />
