@@ -655,7 +655,7 @@ export const TOURS: Record<string, TourDef> = {
    "en": {
     "name": "Topkapi Palace Night Tour",
     "tagline": "The palace after dark, in the silence of history",
-    "intro": "When the crowds leave and the lights come on, Topkapi Palace changes completely. Ergin Karakoyun led the palace's very first Night Museum programme — and three years ago he started this night tour, the first of its kind.",
+    "intro": "When the crowds leave and the lights come on, Topkapi Palace changes completely. Ergin Karakoyun led the palace's very first Night Museum programme — and he has run this night tour, the first of its kind, since the first season in 2024.",
     "duration": "Evening",
     "group": "Guided group",
     "desc": "After we meet, we take a short walk through the Historic Peninsula so the palace's setting makes sense: the Hippodrome, the Blue Mosque and Hagia Sophia from outside, the German Fountain, the Hürrem Sultan Hamam and the Fountain of Ahmed III, all with expert narration. Then we enter Topkapi Palace and visit its most important sections, including the Harem, under the night lights — the world of the Ottoman dynasty, its government and Istanbul's unique history, told by a specialist.",
@@ -675,7 +675,7 @@ export const TOURS: Record<string, TourDef> = {
    "de": {
     "name": "Topkapi-Palast Nachttour",
     "tagline": "Der Palast bei Nacht — in der Stille der Geschichte",
-    "intro": "Wenn die Menschenmengen gehen und die Lichter angehen, verwandelt sich der Topkapi-Palast vollständig. Ergin Karakoyun führte das allererste Nachtmuseum-Programm des Palastes — und startete vor drei Jahren diese Nachttour, die erste ihrer Art.",
+    "intro": "Wenn die Menschenmengen gehen und die Lichter angehen, verwandelt sich der Topkapi-Palast vollständig. Ergin Karakoyun führte das allererste Nachtmuseum-Programm des Palastes — und führt diese Nachttour, die erste ihrer Art, seit der ersten Saison 2024.",
     "duration": "Abends",
     "group": "Geführte Gruppe",
     "desc": "Nach dem Treffen unternehmen wir einen kurzen Spaziergang über die Historische Halbinsel, damit die Lage des Palastes verständlich wird: das Hippodrom, die Blaue Moschee und die Hagia Sophia von außen, der Deutsche Brunnen, das Hürrem-Sultan-Hamam und der Ahmed-III.-Brunnen, alles mit fachkundiger Erklärung. Danach betreten wir den Topkapi-Palast und besuchen seine wichtigsten Bereiche einschließlich des Harems im Nachtlicht — die Welt der osmanischen Dynastie, ihrer Staatsführung und Istanbuls einzigartige Geschichte, erzählt von einem Spezialisten.",
@@ -695,7 +695,7 @@ export const TOURS: Record<string, TourDef> = {
    "zh": {
     "name": "托普卡帕宫夜游",
     "tagline": "夜幕下的宫殿——在历史的寂静中",
-    "intro": "当人群散去、灯光亮起，托普卡帕宫会完全变一个模样。Ergin Karakoyun 曾为宫殿首个夜间博物馆项目担任导览，并在三年前首创了这条夜游路线。",
+    "intro": "当人群散去、灯光亮起，托普卡帕宫会完全变一个模样。Ergin Karakoyun 曾为宫殿首个夜间博物馆项目担任导览，并自 2024 年首个季节起一直带领这条首创的夜游路线。",
     "duration": "夜间",
     "group": "导览团",
     "desc": "集合后，我们先在历史半岛短途步行，帮助您理解宫殿的历史与地理位置：竞技场、蓝色清真寺（外观）、圣索菲亚大教堂（外观）、德国喷泉、许蕾姆苏丹浴场和艾哈迈德三世喷泉，全程由专家讲解。随后进入托普卡帕宫，在夜色灯光下参观包括后宫在内的最重要区域——由专家为您讲述奥斯曼王朝的生活、国家治理和伊斯坦布尔独特的历史。",
@@ -715,7 +715,7 @@ export const TOURS: Record<string, TourDef> = {
    "tr": {
     "name": "Topkapı Sarayı Gece Turu",
     "tagline": "Tarihin sessizliğinde eşsiz bir Topkapı deneyimi",
-    "intro": "Kalabalık çekilip ışıklar yandığında Topkapı Sarayı bambaşka bir yere dönüşür. Sarayın ilk Gece Müzeciliği programında rehberlik yapan Ergin Karakoyun, bu gece turunu 3 yıl önce ilk başlatan isimdir.",
+    "intro": "Kalabalık çekilip ışıklar yandığında Topkapı Sarayı bambaşka bir yere dönüşür. Sarayın ilk Gece Müzeciliği programında rehberlik yapan Ergin Karakoyun, bu gece turunu ilk sezondan, 2024'ten beri yapıyor.",
     "duration": "Akşam",
     "group": "Rehberli grup",
     "desc": "Buluşmanın ardından, sarayın tarihî ve coğrafi konumunu daha iyi anlamak için kısa bir Tarihi Yarımada yürüyüşü yapıyoruz: Hipodrom, Sultanahmet Camii (dışarıdan), Alman Çeşmesi, Ayasofya (dışarıdan), Hürrem Sultan Hamamı ve III. Ahmet Çeşmesi uzman anlatımı eşliğinde tanıtılıyor. Ardından Topkapı Sarayı'na geçerek Harem dahil sarayın en önemli bölümlerini gece ışıkları altında ziyaret ediyor; Osmanlı hanedanının yaşamını, devlet yönetimini ve İstanbul'un eşsiz tarihini uzman anlatımıyla keşfediyoruz.",
@@ -1506,6 +1506,9 @@ export interface NightStory {
   facts: { k: string; v: string }[];
   filmPlay: string;
   filmCaption: string;
+  natgeoTitle: string;
+  natgeoPlay: string;
+  natgeoCaption: string;
   sources: string;
   meta: string;
 }
@@ -1534,6 +1537,9 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmPlay: 'Play the film of the first night',
     filmCaption:
       'The first night museum tour at Topkapı Palace, filmed for the Ministry of Culture and Tourism with SICPA. Ergin appears from 0:25.',
+    natgeoTitle: 'Ergin on National Geographic, 1996',
+    natgeoPlay: 'Play the National Geographic video',
+    natgeoCaption: 'Broadcast on the National Geographic Channel in 1996 — Ergin guiding at Topkapı Palace.',
     sources: 'Sources: Presidency of National Palaces (Milli Saraylar) announcements, millisaraylar.gov.tr — information last verified 24 November 2026.',
     meta: "Topkapı Palace Night Tour with the guide of the very first night, 29 June 2024 — the Harem and Treasury after dark, Saturdays June–September. The original night tour, since the first night.",
   },
@@ -1554,6 +1560,9 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmPlay: 'Film der ersten Nacht abspielen',
     filmCaption:
       'Die erste Nachtmuseum-Tour im Topkapi-Palast, gefilmt für das Ministerium für Kultur und Tourismus mit SICPA. Ergin ist ab 0:25 zu sehen.',
+    natgeoTitle: 'Ergin auf National Geographic, 1996',
+    natgeoPlay: 'National-Geographic-Video abspielen',
+    natgeoCaption: '1996 im National Geographic Channel ausgestrahlt — Ergin als Guide im Topkapi-Palast.',
     sources: 'Quellen: Mitteilungen der Verwaltung der Nationalpaläste (Milli Saraylar), millisaraylar.gov.tr — Angaben zuletzt geprüft am 24. November 2026.',
     meta: 'Topkapi-Palast Nachttour mit dem Guide der allerersten Nacht, 29. Juni 2024 — Harem und Schatzkammer nach Einbruch der Dunkelheit, samstags Juni–September. Die originale Nachttour, seit der ersten Nacht.',
   },
@@ -1573,6 +1582,9 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     ],
     filmPlay: '播放首夜影片',
     filmCaption: '托普卡帕宫首个夜间博物馆之旅，由文化和旅游部与 SICPA 合作拍摄。Ergin 从 0:25 开始出现。',
+    natgeoTitle: 'Ergin 登上国家地理频道，1996',
+    natgeoPlay: '播放国家地理视频',
+    natgeoCaption: '1996 年在国家地理频道播出——Ergin 在托普卡帕宫担任导游。',
     sources: '来源：国家宫殿管理局（Milli Saraylar）公告，millisaraylar.gov.tr——信息最后核实于 2026 年 11 月 24 日。',
     meta: '托普卡帕宫夜游——由 2024 年 6 月 29 日首夜的导游带领：夜幕下的后宫与珍宝馆，6 月至 9 月每周六。自首夜以来的原创夜游。',
   },
@@ -1592,6 +1604,9 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     ],
     filmPlay: 'İlk gecenin filmini oynat',
     filmCaption: "Topkapı Sarayı'ndaki ilk gece müze turu; Kültür ve Turizm Bakanlığı için SICPA ile çekildi. Ergin 0:25'ten itibaren görünüyor.",
+    natgeoTitle: "Ergin National Geographic'te, 1996",
+    natgeoPlay: 'National Geographic videosunu oynat',
+    natgeoCaption: "1996'da National Geographic Kanalı'nda yayınlandı — Ergin, Topkapı Sarayı'nda rehberlik yaparken.",
     sources: 'Kaynaklar: Millî Saraylar Başkanlığı duyuruları, millisaraylar.gov.tr — bilgiler son olarak 24 Kasım 2026 tarihinde doğrulandı.',
     meta: 'Topkapı Sarayı Gece Turu, ilk gecenin (29 Haziran 2024) rehberiyle — karanlıkta Harem ve Hazine, Haziran–Eylül cumartesileri. İlk geceden beri yapılan orijinal gece turu.',
   },

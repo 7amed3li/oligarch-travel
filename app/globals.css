@@ -1617,3 +1617,4 @@ a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
 .td-night-sources{margin:14px 0 4px;font-size:12.5px;line-height:1.5;color:var(--ink-soft)}
 .td-night-sources a{color:var(--accent-deep);font-weight:700}
 @media(max-width:820px){.td-night-facts{grid-template-columns:repeat(2,1fr)}.td-night-card{padding:20px 18px 14px}}
+.td-night-subtitle{margin:22px 0 10px;font-size:17px}

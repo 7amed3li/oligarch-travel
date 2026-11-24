@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
 import AddToBooking from '@/components/AddToBooking';
+import NatGeoFilm from '@/components/NatGeoFilm';
 import NightFilm from '@/components/NightFilm';
 import TourHeroGallery from '@/components/TourHeroGallery';
 import {
@@ -273,6 +274,11 @@ export default async function TourPage({
                   <NightFilm
                     play={NIGHT_STORY[loc].filmPlay}
                     caption={NIGHT_STORY[loc].filmCaption}
+                  />
+                  <NatGeoFilm
+                    title={NIGHT_STORY[loc].natgeoTitle}
+                    play={NIGHT_STORY[loc].natgeoPlay}
+                    caption={NIGHT_STORY[loc].natgeoCaption}
                   />
                   <p className="td-night-sources">
                     {NIGHT_STORY[loc].sources.split('millisaraylar.gov.tr')[0]}
