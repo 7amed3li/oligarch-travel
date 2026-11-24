@@ -118,8 +118,16 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           <div className="gp-chan-band">
             <div className="gp-chan-copy">
               <p className="hp-chan-kicker">{u.chan_kicker}</p>
+              <p className="chan-headline">{u.chan_headline}</p>
               <h2>SULTANAHMET INFO</h2>
               <p className="hp-chan-sub">{u.chan_sub}</p>
+              <p className="chan-intro">{u.chan_intro}</p>
+              <ul className="chan-list">
+                {u.chan_items.map((it: string) => (
+                  <li key={it}>{it}</li>
+                ))}
+              </ul>
+              <p className="chan-tag">{u.chan_tag}</p>
             </div>
             <a
               href={WHATSAPP_CHANNEL_URL}

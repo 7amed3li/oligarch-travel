@@ -31,6 +31,36 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
   return (
     <footer id="contact" className="site">
       <div className="wrap">
+        {/* Ergin (2026-11-24): the WhatsApp channel promotion must be on
+            EVERY page — it lives in the footer so tours and booking
+            pages carry it too, not just home and guide. */}
+        <div className="gp-chan-band ft-chan-band">
+          <div className="gp-chan-copy">
+            <p className="hp-chan-kicker">{u.chan_kicker}</p>
+            <p className="chan-headline">{u.chan_headline}</p>
+            <h2>SULTANAHMET INFO</h2>
+            <p className="hp-chan-sub">{u.chan_sub}</p>
+            <p className="chan-intro">{u.chan_intro}</p>
+            <ul className="chan-list">
+              {u.chan_items.map((it: string) => (
+                <li key={it}>{it}</li>
+              ))}
+            </ul>
+            <p className="chan-tag">{u.chan_tag}</p>
+          </div>
+          <a
+            href="https://whatsapp.com/channel/0029Vb8WypN0wajq3OxenC1U"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gp-chan-btn"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={WA_PATH} />
+            </svg>
+            <span>{u.chan_btn}</span>
+          </a>
+        </div>
+
         <div className="ft-grid">
           <div className="ft-brand">
             <Logo />

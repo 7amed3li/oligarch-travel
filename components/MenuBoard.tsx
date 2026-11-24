@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from './CartProvider';
-import { RATINGS, SEASONAL_TOURS, TOUR_GALLERY, TOUR_GROUPS, TOURS, meetingPoint, type Locale } from '@/data/tours';
+import { NIGHT_STORY, RATINGS, SEASONAL_TOURS, TOUR_GALLERY, TOUR_GROUPS, TOURS, meetingPoint, type Locale } from '@/data/tours';
 import { GUIDE_COPY } from '@/data/guide';
+import NightFilm from './NightFilm';
 import type { TourPrice } from '@/lib/prices';
 import {
   fmtComponentsDisp,
@@ -435,6 +436,12 @@ function TourModal({
               </a>
             </p>
             <p className="tmodal-desc">{c.intro}</p>
+            {tid === 'topkapi-night' ? (
+              <NightFilm
+                play={NIGHT_STORY[locale].filmPlay}
+                caption={NIGHT_STORY[locale].filmCaption}
+              />
+            ) : null}
             <div className="tmodal-cols">
               <div>
                 <h4>{u.included}</h4>

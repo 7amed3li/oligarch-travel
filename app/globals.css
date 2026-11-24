@@ -664,7 +664,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .wa-float-btn{position:relative;display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#fff;text-decoration:none;padding:11px 18px 11px 15px;border-radius:999px;font-weight:800;font-size:14.5px;box-shadow:0 4px 14px rgba(37,211,102,.4),0 2px 4px rgba(0,0,0,.08);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .15s ease}
 .wa-float-btn:hover{background:#20BD5A;transform:translateY(-2px) scale(1.03);box-shadow:0 8px 24px rgba(37,211,102,.5),0 4px 8px rgba(0,0,0,.1)}
 .wa-float-btn:active{transform:translateY(2px) scale(.96);box-shadow:0 2px 6px rgba(37,211,102,.3)}
-.wa-pulse-ring{position:absolute;inset:-4px;border-radius:999px;border:2px solid #25D366;animation:waRingPulse 2.4s cubic-bezier(.25,.8,.25,1) infinite;pointer-events:none}
+.wa-pulse-ring{position:absolute;inset:0;border-radius:999px;border:2px solid #25D366;animation:waRingPulse 2.4s cubic-bezier(.25,.8,.25,1) infinite;pointer-events:none}
 @keyframes waRingPulse{0%{transform:scale(.95);opacity:.9}60%{transform:scale(1.18);opacity:0}100%{transform:scale(1.18);opacity:0}}
 .wa-icon{flex:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15))}
 .wa-float-label{letter-spacing:.02em}
@@ -1618,3 +1618,48 @@ a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
 .td-night-sources a{color:var(--accent-deep);font-weight:700}
 @media(max-width:820px){.td-night-facts{grid-template-columns:repeat(2,1fr)}.td-night-card{padding:20px 18px 14px}}
 .td-night-subtitle{margin:22px 0 10px;font-size:17px}
+
+/* ===== 2026-11-24 late: channel copy (Ergin's text) + device-audit header fixes ===== */
+/* Channel band: Ergin's own promotion text — headline, contents list, tag line */
+.ft-chan-band{margin:0 0 28px;color:var(--ink)}
+.chan-headline{margin:8px 0 0;font-size:19px;font-weight:800;line-height:1.25;color:var(--ink)}
+.chan-intro{margin:12px 0 6px;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+.chan-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;max-width:540px}
+.chan-list li{position:relative;font-size:14.5px;font-weight:600;line-height:1.4;color:var(--ink);padding-left:24px}
+.chan-list li::before{content:"✓";position:absolute;left:0;top:0;color:#1FA855;font-weight:900}
+.chan-tag{margin:12px 0 0;font-size:12px;font-weight:800;letter-spacing:.14em;color:#A07D2C}
+@media(max-width:640px){.chan-list{grid-template-columns:1fr}.chan-headline{font-size:17px}}
+
+/* Audit fix 1 — 320px phones: header actions ended at 339px (hamburger cut).
+   Compact the whole bar under 360px so logo + currency + language + toggle fit. */
+@media(max-width:360px){
+  header.site .header-in{gap:6px}
+  header.site .logo-mark{width:38px;height:19px}
+  .logo{gap:6px}
+  header.site .logo-text{font-size:13.5px}
+  .logo-text small{font-size:7px;letter-spacing:.15em}
+  .header-actions{gap:5px}
+  .lang-btn{padding:9px 7px;gap:4px}
+}
+
+/* Audit fix 2 — 821–920px (iPad portrait, large phones landscape): with a cart
+   item the desktop header ran to 877px on an 834px screen (Booking button cut).
+   Tighten nav + actions in this band only. */
+@media(min-width:821px) and (max-width:920px){
+  .header-in{gap:10px}
+  nav.main{gap:12px;margin-left:10px}
+  nav.main a{font-size:14.5px;white-space:nowrap}
+  .header-actions{gap:8px;margin-left:8px}
+  .lang-btn{padding:8px 9px}
+  .cart-link{padding:8px 11px}
+}
+
+/* Audit fix 3 — the WhatsApp float's "clipped label" was the decorative
+   pulse ring (an animated child wider than the pill). Replace the ring
+   span with a box-shadow pulse on the button itself: same effect, and
+   the button's content box now measures exactly its content. */
+.wa-pulse-ring{display:none}
+.wa-float-btn{animation:waBtnPulse 2.4s ease-out infinite}
+@keyframes waBtnPulse{0%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.45)}60%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,0)}}
+/* breathing room inside the night-tour modal film */
+.tmodal-body .td-night-film{margin:14px 0 6px}

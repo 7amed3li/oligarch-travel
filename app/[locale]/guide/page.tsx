@@ -22,6 +22,10 @@ const PAGE_COPY: Record<
     chanKicker: string;
     chanSub: string;
     chanBtn: string;
+    chanHeadline: string;
+    chanIntro: string;
+    chanItems: string[];
+    chanTag: string;
   }
 > = {
   en: {
@@ -30,8 +34,12 @@ const PAGE_COPY: Record<
     ctaHeadline: 'Ready to walk Istanbul with Ergin?',
     ctaSub: 'Browse private tours across Sultanahmet or confirm dates personally on WhatsApp.',
     chanKicker: "Ergin's WhatsApp Channel",
-    chanSub: 'Museums, mosques, visiting hours, closures and official announcements for the Historic Peninsula — all in one place, straight from your guide.',
+    chanSub: "Up-to-date information from Istanbul's Historic Peninsula.",
     chanBtn: 'Follow the channel',
+    chanHeadline: 'FOLLOW BEFORE YOU EXPLORE ISTANBUL!',
+    chanIntro: 'The up-to-date information you need while planning your Istanbul trip is here:',
+    chanItems: ['Museums and mosques', 'Visiting hours and entry information', 'Temporary closures', 'Official announcements', 'Latest news from the Historic Peninsula'],
+    chanTag: 'FOLLOW • STAY UP TO DATE • SHARE',
   },
   de: {
     home: 'Startseite',
@@ -39,8 +47,12 @@ const PAGE_COPY: Record<
     ctaHeadline: 'Bereit für Istanbul mit Ergin?',
     ctaSub: 'Entdecken Sie private Touren durch Sultanahmet oder stimmen Sie Ihren Wunschtermin direkt per WhatsApp ab.',
     chanKicker: 'Ergins WhatsApp-Kanal',
-    chanSub: 'Museen, Moscheen, Öffnungszeiten, Schließungen und offizielle Ankündigungen für die Historische Halbinsel — alles an einem Ort, direkt von Ihrem Guide.',
+    chanSub: 'Aktuelle Informationen von der Historischen Halbinsel Istanbuls.',
     chanBtn: 'Kanal folgen',
+    chanHeadline: 'FOLGEN SIE, BEVOR SIE ISTANBUL ENTDECKEN!',
+    chanIntro: 'Die aktuellen Informationen, die Sie zur Planung Ihrer Istanbul-Reise brauchen, finden Sie hier:',
+    chanItems: ['Museen und Moscheen', 'Öffnungszeiten und Eintrittsinformationen', 'Vorübergehende Schließungen', 'Offizielle Ankündigungen', 'Aktuelle Nachrichten von der Historischen Halbinsel'],
+    chanTag: 'FOLGEN • AKTUELL BLEIBEN • TEILEN',
   },
   zh: {
     home: '首页',
@@ -48,8 +60,12 @@ const PAGE_COPY: Record<
     ctaHeadline: '准备好与 Ergin 一起探索伊斯坦布尔了吗？',
     ctaSub: '浏览苏丹艾哈迈德私人深度游线路，或直接通过 WhatsApp 与 Ergin 确认日期。',
     chanKicker: 'Ergin 的 WhatsApp 频道',
-    chanSub: '历史半岛的博物馆、清真寺、开放时间、闭馆信息与官方公告——一站获取，直接来自您的导游。',
+    chanSub: '来自伊斯坦布尔历史半岛的最新信息。',
     chanBtn: '关注频道',
+    chanHeadline: '探索伊斯坦布尔之前,先关注!',
+    chanIntro: '规划伊斯坦布尔之旅所需的最新信息都在这里:',
+    chanItems: ['博物馆与清真寺', '开放时间与入场信息', '临时关闭通知', '官方公告', '历史半岛最新消息'],
+    chanTag: '关注 • 保持更新 • 分享',
   },
   tr: {
     home: 'Ana Sayfa',
@@ -57,8 +73,12 @@ const PAGE_COPY: Record<
     ctaHeadline: 'İstanbul’u Ergin ile keşfetmeye hazır mısınız?',
     ctaSub: 'Sultanahmet özel turlarını inceleyin veya tarihinizi doğrudan WhatsApp üzerinden netleştirin.',
     chanKicker: "Ergin'in WhatsApp Kanalı",
-    chanSub: 'Tarihi Yarımada için müzeler, camiler, ziyaret saatleri, kapanışlar ve resmî duyurular — hepsi tek yerde, doğrudan rehberinizden.',
+    chanSub: "İstanbul'un Tarihi Yarımadası'ndan güncel bilgiler.",
     chanBtn: 'Kanalı takip et',
+    chanHeadline: "İSTANBUL'U KEŞFETMEDEN ÖNCE TAKİP EDİN!",
+    chanIntro: 'İstanbul gezinizi planlarken ihtiyacınız olan güncel bilgiler burada:',
+    chanItems: ['Müzeler ve camiler', 'Ziyaret saatleri ve giriş bilgileri', 'Geçici kapanışlar', 'Resmî duyurular', "Tarihi Yarımada'dan güncel haberler"],
+    chanTag: 'TAKİP EDİN • GÜNCEL KALIN • PAYLAŞIN',
   },
 };
 
@@ -184,8 +204,16 @@ export default async function GuidePage({
           <div className="gp-chan-band">
             <div className="gp-chan-copy">
               <p className="gp-cta-kicker">{copy.chanKicker}</p>
+              <p className="chan-headline">{copy.chanHeadline}</p>
               <h2>SULTANAHMET INFO</h2>
               <p className="gp-cta-sub">{copy.chanSub}</p>
+              <p className="chan-intro">{copy.chanIntro}</p>
+              <ul className="chan-list">
+                {copy.chanItems.map((it) => (
+                  <li key={it}>{it}</li>
+                ))}
+              </ul>
+              <p className="chan-tag">{copy.chanTag}</p>
             </div>
             <a
               href={WHATSAPP_CHANNEL_URL}
