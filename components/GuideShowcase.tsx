@@ -419,6 +419,21 @@ export default function GuideShowcase({
           </div>
         </div>
 
+        {/* TV feature: Ergin appearing in the Topkapi Palace Night Museum
+            programme (Milli Saraylar), embedded from 0:25 where he appears.
+            Responsive 16:9 frame so it fits every platform. */}
+        <div className="gs-video">
+          <div className="gs-video-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/F_U0Zlypl54?start=25&rel=0"
+              title="Topkapi Palace Night Museum — TV feature with Ergin Karakoyun"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
         {/* Bottom full-width Heritage Route with GSAP DrawSVG */}
         <div className="gs-route">
           <div className="gs-route-head">
