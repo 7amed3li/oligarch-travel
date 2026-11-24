@@ -82,9 +82,9 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   en: {
     overline: 'Licensed Heritage Specialist · Est. 1994',
     video: {
-      kicker: 'As seen on TV',
+      kicker: 'As seen on YouTube',
       title: 'Your guide on screen — the Topkapi Night Museum film',
-      caption: 'A television feature on Topkapi Palace’s night museum programme. Ergin appears from 0:25, so playback starts there.',
+      caption: 'Filmed as Ergin led the first night museum tour at Topkapi Palace — produced in cooperation with the Ministry of Culture and Tourism and SICPA. Ergin appears from 0:25, so playback starts there.',
       play: 'Play the video',
     },
     coordPlace: 'Sultanahmet, Old City',
@@ -156,9 +156,9 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   de: {
     overline: 'Lizenzierter Kulturerbe-Spezialist · Seit 1994',
     video: {
-      kicker: 'Im Fernsehen',
+      kicker: 'Auf YouTube',
       title: 'Ihr Guide auf dem Bildschirm — der Topkapi-Nachtmuseum-Film',
-      caption: 'Ein Fernsehbeitrag über das Nachtmuseum-Programm des Topkapi-Palasts. Ergin ist ab 0:25 zu sehen, daher startet die Wiedergabe dort.',
+      caption: 'Gedreht, als Ergin die erste Nachtmuseum-Tour im Topkapi-Palast führte — entstanden in Zusammenarbeit mit dem Ministerium für Kultur und Tourismus und SICPA. Ergin ist ab 0:25 zu sehen, daher startet die Wiedergabe dort.',
       play: 'Video abspielen',
     },
     coordPlace: 'Sultanahmet, Altstadt',
@@ -230,9 +230,9 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   zh: {
     overline: '持证历史遗产专家 · 始于 1994',
     video: {
-      kicker: '电视专题',
+      kicker: 'YouTube 影片',
       title: '屏幕上的向导——托普卡帕宫夜间博物馆影片',
-      caption: '关于托普卡帕宫夜间博物馆的电视专题片。Ergin 从 0:25 开始出现，因此将从那里开始播放。',
+      caption: '本片拍摄于 Ergin 带领托普卡帕宫首个夜间博物馆之旅之时，由土耳其文化和旅游部与 SICPA 合作制作。Ergin 从 0:25 开始出现，因此将从那里开始播放。',
       play: '播放视频',
     },
     coordPlace: '苏丹艾哈迈德 · 老城区',
@@ -304,9 +304,9 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   tr: {
     overline: 'Lisanslı Kültürel Miras Uzmanı · 1994’ten Beri',
     video: {
-      kicker: 'Televizyonda',
+      kicker: "YouTube'da",
       title: 'Rehberiniz ekranda — Topkapı Gece Müzeciliği filmi',
-      caption: 'Topkapı Sarayı gece müzeciliği üzerine bir televizyon programı. Ergin 0:25’ten itibaren görünüyor, oynatma oradan başlıyor.',
+      caption: "Ergin'in Topkapı Sarayı'ndaki ilk gece müze turunu yaparken çekildi; Kültür ve Turizm Bakanlığı ile SICPA iş birliğiyle hazırlandı. Ergin 0:25'ten itibaren görünüyor, oynatma oradan başlıyor.",
       play: 'Videoyu oynat',
     },
     coordPlace: 'Sultanahmet, Tarihi Yarımada',

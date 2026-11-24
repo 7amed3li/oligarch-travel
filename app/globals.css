@@ -573,13 +573,28 @@ h2.sec{font-size:29px;margin-bottom:6px}
 .cart-item-foot{display:flex;justify-content:flex-end;padding-top:4px;border-top:1px solid #F1F5F9}
 .cart-add-more{display:inline-flex;align-items:center;min-height:42px;font-weight:700;color:var(--accent-deep);text-decoration:none}
 .cart-add-more:hover{text-decoration:underline}
-.grid2{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:30px;align-items:start}
 .line-total{font-weight:800;white-space:nowrap;font-size:16.5px;color:var(--ink)}
 .remove{background:none;border:none;color:var(--accent-deep);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 0;min-height:36px}
 .totals{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:#fff;box-shadow:var(--shadow)}
 .trow{display:flex;justify-content:space-between;padding:7px 0;font-size:15px}
 .trow.grand{border-top:1px solid var(--line);margin-top:8px;padding-top:13px;font-weight:800;font-size:17px}
 .trow.dep{color:var(--accent-deep);font-weight:800}
+/* Booking overflow fix (Ergin's phone, 2026-11-24): long labels and inputs
+   forced the booking column ~19px wider than small screens, clipping the
+   right-aligned totals. Let grid/flex children shrink below min-content. */
+.grid2>*{min-width:0}
+.cart-item{min-width:0}
+.cart-check{min-width:0}
+.cart-check span{min-width:0}
+.bk-phone-row{min-width:0}
+.field{min-width:0}
+.field label{display:block;min-width:0}
+.field input{max-width:100%}
+.totals{min-width:0}
+.trow{gap:12px}
+.trow span:first-child{min-width:0}
+.trow span:last-child{flex:none}
 .cur-head{font-weight:800;margin:14px 0 2px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
 /* admin — mobile-first price editor (cards, big inputs, sticky save bar) */
 .adm{background:var(--mist);min-height:100vh;padding:22px 0 40px}
@@ -616,7 +631,7 @@ h2.sec{font-size:29px;margin-bottom:6px}
   nav.main{display:none}
   .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
   .mobile-nav{display:block}
-  .grid2{grid-template-columns:1fr}
+  .grid2{grid-template-columns:minmax(0,1fr)}
   .bookbox{position:static}
   .bookbar{flex-direction:column;padding:12px}
   .bb-field{border-left:none;border-top:1px solid var(--line);padding:10px 6px}
@@ -1560,3 +1575,13 @@ a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
   .cart-options{flex-direction:column;flex-wrap:nowrap}
   .cart-ticket-check{width:100%}
 }
+
+/* tabii behind-the-scenes strip + homepage channel band (2026-11-24) */
+.tabii-bts-label{margin:22px 0 10px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.tabii-bts{display:flex;gap:10px}
+.tabii-bts img{flex:1 1 0;min-width:0;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--mist)}
+#channel{padding-top:0}
+.hp-chan-kicker{margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#178A45}
+.hp-chan-sub{margin:8px 0 0;font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:520px}
+.gp-chan-copy .gp-cta-kicker{color:#178A45}
+.gp-chan-copy .gp-cta-sub{color:var(--ink-soft)}
