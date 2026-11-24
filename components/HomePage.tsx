@@ -57,15 +57,16 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
 
       {/* TÜRSAB band (owner, 2026-11-24): the association logo is a site
           requirement — it sits after the moving trust strip and before
-          the Istanbul Tours heading. Ergin's own logo file. */}
+          the Istanbul Tours heading, with the membership line under it. */}
       <section className="tursab-band" aria-label="TÜRSAB">
         <div className="wrap">
           <img
             className="tursab-logo"
-            src="/img/tursab-logo.jpg"
+            src="/img/tursab-logo.png"
             alt="TÜRSAB — Association of Turkish Travel Agencies"
             loading="lazy"
           />
+          <p className="tursab-text">{u.tursab_text}</p>
         </div>
       </section>
 
@@ -85,6 +86,20 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         <div className="wrap">
           <h2 className="sec">{u.tabii_title}</h2>
           <p className="sec-sub">{u.tabii_text}</p>
+          <a
+            className="tabii-card"
+            href="https://www.tabii.com/ar/watch/182973"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              className="tabii-scene"
+              src="/img/tabii-scene.jpg"
+              alt="Like a Dream: Istanbul — tabii"
+              loading="lazy"
+            />
+            <img className="tabii-badge" src="/img/tabii-badge.jpg" alt="" aria-hidden="true" />
+          </a>
         </div>
       </section>
 

@@ -120,23 +120,6 @@ export default function TourCard({
             {r.badge[locale]}
           </span>
         ) : null}
-        {tid === 'half-day-istanbul' ? (
-          <span
-            className="tcard-tabii"
-            role="link"
-            aria-label="tabii — Like a Dream: Istanbul"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              window.open('https://www.tabii.com/ar/watch/182973', '_blank', 'noopener');
-            }}
-          >
-            <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden="true">
-              <path d="M8 5v14l11-7z" fill="currentColor" />
-            </svg>
-            tabii
-          </span>
-        ) : null}
       </div>
 
       {/* Card Content Area */}

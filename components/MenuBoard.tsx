@@ -171,22 +171,6 @@ export default function MenuBoard({
             >
               <span className="mrow-media">
                 <img className="mrow-img" src={`/img/${t.img}`} alt={c.name} loading="lazy" />
-                {tid === 'half-day-istanbul' ? (
-                  <span
-                    className="mrow-tabii"
-                    role="link"
-                    aria-label="tabii — Like a Dream: Istanbul"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open('https://www.tabii.com/ar/watch/182973', '_blank', 'noopener');
-                    }}
-                  >
-                    <svg viewBox="0 0 24 24" width="8" height="8" aria-hidden="true">
-                      <path d="M8 5v14l11-7z" fill="currentColor" />
-                    </svg>
-                    tabii
-                  </span>
-                ) : null}
               </span>
               <div className="mrow-body">
                 <div className="mrow-top">

@@ -1240,7 +1240,7 @@ html.splash-done .ss-root{display:none!important}
 .hero-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding-top:24px;padding-bottom:28px;width:100%}
 .hero-topline{text-align:center;font-size:13px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5);margin:0}
 .hero-bottom{text-align:center}
-.hero-bottom h1{font-size:clamp(21px,3.6vw,32px);line-height:1.2;margin:0 0 6px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero-bottom h1{font-size:clamp(21px,3.6vw,32px);line-height:1.2;margin:0 auto 6px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
 .hero-sub{font-size:15px;text-shadow:0 1px 8px rgba(0,0,0,.5)}
 .gs-arch-img{object-position:78% top}
 .contact-sec{padding:54px 0;background:var(--mist)}
@@ -1511,5 +1511,13 @@ html.splash-done .ss-root{display:none!important}
 /* TÜRSAB band (2026-11-24): centered association logo between the trust
    ticker and the tours section. The source file is small (120x47), so it
    renders near native size to stay crisp. */
-.tursab-band{background:#fff;padding:22px 0 0}
-.tursab-logo{display:block;margin:0 auto;height:46px;width:auto}
+.tursab-band{background:#fff;padding:26px 0 2px}
+.tursab-logo{display:block;margin:0 auto;height:58px;width:auto}
+.tursab-text{margin:12px auto 0;max-width:640px;text-align:center;font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+
+/* ---- tabii card: the series picture fills the card, the tabii logo
+   sits inside the picture, and the whole card opens the film page. ---- */
+.tabii-card{position:relative;display:block;margin-top:18px;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.tabii-scene{display:block;width:100%;height:auto}
+.tabii-badge{position:absolute;left:14px;bottom:14px;height:52px;width:auto;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+@media(max-width:640px){.tabii-badge{height:40px;left:10px;bottom:10px}}
