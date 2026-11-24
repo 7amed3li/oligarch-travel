@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata = {
-  title: 'Istanbul Tours — Oligarch Travel',
+  title: 'Istanbul Tours — BYZIST',
   description:
     'Skip-the-line tickets and private guided tours of Hagia Sophia, Topkapi Palace, Grand Bazaar, and Bosphorus yacht cruises with licensed guide Ergin Karakoyun. Book direct — 25% deposit, confirmed on WhatsApp.',
   icons: { icon: '/icon.svg' },

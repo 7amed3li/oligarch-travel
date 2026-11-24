@@ -55,7 +55,7 @@ export default function Header({
   return (
     <header className="site">
       <div className="wrap header-in">
-        <Link href={base} aria-label="Oligarch Travel" className="header-logo-link">
+        <Link href={base} aria-label="BYZIST" className="header-logo-link">
           <Logo />
         </Link>
         <nav className="main">

@@ -12,7 +12,7 @@ export default async function AdminPage() {
       <main>
         <section>
           <div className="wrap" style={{ maxWidth: 520 }}>
-            <h2 className="sec">Oligarch Travel — Admin</h2>
+            <h2 className="sec">BYZIST — Admin</h2>
             <p className="sec-sub">
               The admin is disabled because the <code>ADMIN_PASSWORD</code> environment variable
               is not set on this server. Set it and restart the site to enable price management.

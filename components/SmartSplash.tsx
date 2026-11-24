@@ -270,8 +270,8 @@ export default function SmartSplash() {
       <div className="ss-hud">
         <div className="ss-presents">OLIGARCH TOURS PRESENTS</div>
         <div className="ss-brand-top">
-          <strong>OLIGARCH</strong>
-          <small>TRAVEL</small>
+          <strong>BYZIST</strong>
+          <small>ISTANBUL EXPERIENCES</small>
         </div>
         <div className="ss-year-bar">
           <span ref={yearRef}>1994</span>

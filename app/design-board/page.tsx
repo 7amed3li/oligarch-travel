@@ -49,7 +49,7 @@ export default function DesignBoard() {
       <style>{boardCss}</style>
       <section style={{ background: '#fff', borderBottom: '1px solid #E3E8EF' }}>
         <div className="wrap">
-          <h1>Oligarch Travel — Website Design</h1>
+          <h1>BYZIST — Website Design</h1>
           <p className="lead">
             <strong>Vision:</strong> a booking page as clear as the big marketplaces — a visitor
             lands, searches, and books in under a minute. One dominant search bar over the Hagia
@@ -154,7 +154,7 @@ export default function DesignBoard() {
             prices below are the actual site, not a mockup.
           </p>
           <div className="frame">
-            <iframe src="/en" title="Oligarch Travel homepage preview" />
+            <iframe src="/en" title="BYZIST homepage preview" />
           </div>
           <p style={{ marginTop: 14 }}>
             <a href="/en" target="_blank" rel="noopener" style={{ fontWeight: 700 }}>

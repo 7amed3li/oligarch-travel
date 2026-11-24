@@ -24,7 +24,7 @@ export default function AdminLogin() {
   return (
     <main className="adm">
       <div className="adm-login-card">
-        <h2 className="sec">Oligarch Travel — Admin</h2>
+        <h2 className="sec">BYZIST — Admin</h2>
         <p className="sec-sub">Enter the admin password to manage prices.</p>
         <form onSubmit={submit}>
           <div className="adm-field">

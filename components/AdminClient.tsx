@@ -92,7 +92,7 @@ export default function AdminClient() {
   return (
     <main className="adm">
       <div className="adm-wrap">
-        <h2 className="sec">Oligarch Travel — Price admin</h2>
+        <h2 className="sec">BYZIST — Price admin</h2>
         <p className="sec-sub">
           Edit prices only. The tour list is fixed. Changes are saved to the server and appear on
           the site immediately.

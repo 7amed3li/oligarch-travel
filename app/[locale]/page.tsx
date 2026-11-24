@@ -15,7 +15,7 @@ export async function generateMetadata({
   if (!LOCALES.includes(locale as Locale)) return {};
   const loc = locale as Locale;
   return {
-    title: `${UI[loc].hero_title} — Oligarch Travel`,
+    title: `${UI[loc].hero_title} — BYZIST`,
     description: UI[loc].hero_sub,
   };
 }

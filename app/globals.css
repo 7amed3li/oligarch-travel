@@ -1049,7 +1049,7 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .wrap{padding:0 16px}
   .header-in{gap:6px;padding:10px 0}
   .logo{gap:7px}
-  .logo-mark{width:20px;height:24px}
+  .logo-mark{width:40px;height:25px}
   .logo-text{font-size:13px;letter-spacing:.1em}
   .logo-text small{font-size:7.5px;letter-spacing:.22em}
   .header-actions{gap:6px}
@@ -1287,7 +1287,7 @@ html.splash-done .ss-root{display:none!important}
   .header-in{gap:10px;padding:14px 0}
   .header-actions{gap:7px;margin-left:auto}
   .logo{gap:8px}
-  .logo-mark{width:24px;height:28px}
+  .logo-mark{width:44px;height:27px}
   .logo-text{font-size:15px;letter-spacing:.12em}
   .logo-text small{font-size:8.5px;letter-spacing:.26em}
   .lang-btn{min-height:42px;padding:9px 10px;gap:6px;font-size:13px;border-radius:10px}
@@ -1435,7 +1435,7 @@ html.splash-done .ss-root{display:none!important}
   .hero .hero-wrap{padding-top:52px;padding-bottom:60px}
   .hero{min-height:calc(100vh - 75px);min-height:calc(100svh - 75px)}
   header.site .header-in{padding-top:16px;padding-bottom:16px}
-  header.site .logo-mark{width:26px;height:30px}
+  header.site .logo-mark{width:46px;height:28px}
   header.site .logo-text{font-size:15.5px}
 }
 

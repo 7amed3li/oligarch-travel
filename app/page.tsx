@@ -8,7 +8,7 @@ import { getPrices } from '@/lib/prices';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: `${UI.en.hero_title} — Oligarch Travel`,
+  title: `${UI.en.hero_title} — BYZIST`,
   description: UI.en.hero_sub,
 };
 

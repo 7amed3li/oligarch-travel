@@ -108,7 +108,7 @@ export async function generateMetadata({
   if (!LOCALES.includes(locale as Locale) || !TOURS[slug]) return {};
   const c = TOURS[slug].content[locale as Locale];
   return {
-    title: `${c.name} — Oligarch Travel`,
+    title: `${c.name} — BYZIST`,
     description: c.tagline,
     openGraph: { title: c.name, description: c.tagline, images: [`/img/${TOURS[slug].img}`] },
   };

@@ -71,7 +71,7 @@ export async function generateMetadata({
   const loc = locale as Locale;
   const u = UI[loc];
   return {
-    title: `Ergin Karakoyun — ${u.nav_about} | Oligarch Travel`,
+    title: `Ergin Karakoyun — ${u.nav_about} | BYZIST`,
     description: u.about_paras[0],
     openGraph: {
       title: u.about_title,

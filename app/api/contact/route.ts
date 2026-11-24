@@ -37,9 +37,9 @@ export async function POST(req: Request) {
   }
 
   const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reach);
-  const subject = `Website contact — ${name || 'Visitor'} (Oligarch Travel)`;
+  const subject = `Website contact — ${name || 'Visitor'} (BYZIST)`;
   const text = [
-    `New message from the Oligarch Travel website contact form.`,
+    `New message from the BYZIST website contact form.`,
     ``,
     `Name: ${name || '—'}`,
     `Reach them at: ${reach || '—'}`,
@@ -47,12 +47,12 @@ export async function POST(req: Request) {
     `Message:`,
     message,
   ].join('\n');
-  const html = `<p>New message from the <strong>Oligarch Travel</strong> website contact form.</p>
+  const html = `<p>New message from the <strong>BYZIST</strong> website contact form.</p>
 <p><strong>Name:</strong> ${esc(name || '—')}<br/><strong>Reach them at:</strong> ${esc(reach || '—')}</p>
 <p><strong>Message:</strong></p><p>${esc(message).replace(/\n/g, '<br/>')}</p>`;
 
   const payload: Record<string, unknown> = {
-    from: 'Oligarch Travel Website <onboarding@resend.dev>',
+    from: 'BYZIST Website <onboarding@resend.dev>',
     to: [to],
     subject,
     text,

@@ -86,7 +86,7 @@ export default function BookingClient({
   }
 
   function confirm() {
-    const L: string[] = ['New booking — Oligarch Travel website', ''];
+    const L: string[] = ['New booking — BYZIST website', ''];
     items.forEach((it, i) => {
       const tp = byId[it.tourId];
       const en = TOURS[it.tourId]?.content.en;
