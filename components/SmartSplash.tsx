@@ -109,7 +109,7 @@ export default function SmartSplash() {
             duration: 0.14,
             ease: 'power2.out',
           },
-          0.5,
+          2.14,
         )
         .to(
           '.ss-light-slit',
@@ -118,10 +118,10 @@ export default function SmartSplash() {
             duration: 0.16,
             ease: 'power2.in',
           },
-          0.5,
+          2.14,
         )
         // Stage 3 ('open' at 0.64s): Doors sweep open smoothly carrying split arch, pulls, moldings & coords
-        .addLabel('open', 0.64)
+        .addLabel('open', 2.28)
         .call(
           () => {
             openedRef.current = true;
@@ -171,7 +171,7 @@ export default function SmartSplash() {
         );
     }, root);
 
-    const safetyTimer = setTimeout(finishSplash, 2600);
+    const safetyTimer = setTimeout(finishSplash, 3600);
 
     return () => {
       clearTimeout(safetyTimer);
