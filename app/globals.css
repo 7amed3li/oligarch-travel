@@ -1663,3 +1663,8 @@ a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
 @keyframes waBtnPulse{0%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.45)}60%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 4px 14px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,0)}}
 /* breathing room inside the night-tour modal film */
 .tmodal-body .td-night-film{margin:14px 0 6px}
+
+/* Press note (Ergin, 2026-11-24): his Night Museum journalists sentence —
+   guide page bio column and the night tour card. */
+.press-note{margin:14px 0 0;padding:10px 14px;border-inline-start:3px solid #C6A15B;background:#F8F5EE;border-radius:8px;font-size:14.5px;line-height:1.55;color:var(--ink)}
+.tmodal-body .press-note{margin-top:10px}

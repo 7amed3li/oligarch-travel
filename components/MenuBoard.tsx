@@ -437,11 +437,14 @@ function TourModal({
             </p>
             <p className="tmodal-desc">{c.intro}</p>
             {tid === 'topkapi-night' ? (
-              <NightFilm
-                title={NIGHT_STORY[locale].filmTitle}
-                play={NIGHT_STORY[locale].filmPlay}
-                caption={NIGHT_STORY[locale].filmCaption}
-              />
+              <>
+                <NightFilm
+                  title={NIGHT_STORY[locale].filmTitle}
+                  play={NIGHT_STORY[locale].filmPlay}
+                  caption={NIGHT_STORY[locale].filmCaption}
+                />
+                <p className="press-note">{NIGHT_STORY[locale].pressNote}</p>
+              </>
             ) : null}
             <div className="tmodal-cols">
               <div>

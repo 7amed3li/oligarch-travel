@@ -1496,7 +1496,7 @@ export const TOUR_GALLERY: Record<string, string[]> = {
   'basilica-cistern': ['tour-cistern.webp', 'gal-cistern-columns.webp', 'gal-cistern-medusa.webp'],
   'sultanahmet-hippodrome': ['tour-bluemosque.webp', 'gal-hippodrome-obelisk.webp'],
   'topkapi-palace': ['tour-topkapi-private.webp', 'gal-topkapi-gate.webp', 'tour-topkapi-night.webp'],
-  'topkapi-night': ['tour-topkapi-night.webp', 'tour-topkapi-private.webp'],
+  'topkapi-night': ['night-tour-1.webp', 'night-tour-2.webp', 'night-tour-3.webp', 'night-tour-4.webp', 'night-tour-5.webp', 'night-tour-6.webp', 'tour-topkapi-night.webp', 'tour-topkapi-private.webp'],
   'bazaars-tour': ['tour-bazaars.webp', 'gal-bazaar-gold.webp', 'tour-carpet.webp'],
   'bosphorus-yacht': ['tour-bosphorus-yacht.webp', 'gal-bosphorus-bridge.webp'],
   'traditional-handicrafts': ['tour-carpet.webp', 'gal-tiles.webp', 'gal-bazaar-gold.webp'],
@@ -1523,6 +1523,7 @@ export interface NightStory {
   filmTitle: string;
   filmPlay: string;
   filmCaption: string;
+  pressNote: string;
   natgeoTitle: string;
   natgeoPlay: string;
   natgeoCaption: string;
@@ -1555,6 +1556,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmPlay: 'Play the film of the first night',
     filmCaption:
       'The first night museum tour at Topkapı Palace, filmed for the Ministry of Culture and Tourism with SICPA. Ergin appears from 0:25.',
+    pressNote: "Ergin Karakoyun served as a guide for journalists and visitors during the first 'Night Museum' program at Topkapı Palace, held on June 29, 2024.",
     natgeoTitle: 'Ergin on National Geographic, 1996',
     natgeoPlay: 'Play the National Geographic video',
     natgeoCaption: 'Broadcast on the National Geographic Channel in 1996 — Ergin guiding at Topkapı Palace.',
@@ -1579,6 +1581,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmPlay: 'Film der ersten Nacht abspielen',
     filmCaption:
       'Die erste Nachtmuseum-Tour im Topkapi-Palast, gefilmt für das Ministerium für Kultur und Tourismus mit SICPA. Ergin ist ab 0:25 zu sehen.',
+    pressNote: 'Ergin Karakoyun war beim ersten „Nachtmuseum“-Programm im Topkapı-Palast am 29. Juni 2024 als Guide für Journalisten und Besucher tätig.',
     natgeoTitle: 'Ergin auf National Geographic, 1996',
     natgeoPlay: 'National-Geographic-Video abspielen',
     natgeoCaption: '1996 im National Geographic Channel ausgestrahlt — Ergin als Guide im Topkapi-Palast.',
@@ -1602,6 +1605,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmTitle: '夜访托普卡珀宫',
     filmPlay: '播放首夜影片',
     filmCaption: '托普卡帕宫首个夜间博物馆之旅，由文化和旅游部与 SICPA 合作拍摄。Ergin 从 0:25 开始出现。',
+    pressNote: '2024年6月29日,在托普卡珀宫首个“夜博物馆”项目中,Ergin Karakoyun 担任记者与游客的导游。',
     natgeoTitle: 'Ergin 登上国家地理频道，1996',
     natgeoPlay: '播放国家地理视频',
     natgeoCaption: '1996 年在国家地理频道播出——Ergin 在托普卡帕宫担任导游。',
@@ -1625,6 +1629,7 @@ export const NIGHT_STORY: Record<Locale, NightStory> = {
     filmTitle: "GECE TOPKAPI SARAYI'NI ZİYARET",
     filmPlay: 'İlk gecenin filmini oynat',
     filmCaption: "Topkapı Sarayı'ndaki ilk gece müze turu; Kültür ve Turizm Bakanlığı için SICPA ile çekildi. Ergin 0:25'ten itibaren görünüyor.",
+    pressNote: "Ergin Karakoyun, 29 Haziran 2024'te düzenlenen ilk 'Gece Müzesi' programında Topkapı Sarayı'nda gazeteciler ve ziyaretçiler için rehberlik yaptı.",
     natgeoTitle: "Ergin National Geographic'te, 1996",
     natgeoPlay: 'National Geographic videosunu oynat',
     natgeoCaption: "1996'da National Geographic Kanalı'nda yayınlandı — Ergin, Topkapı Sarayı'nda rehberlik yaparken.",

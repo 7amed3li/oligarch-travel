@@ -313,6 +313,7 @@ export default function GuideShowcase({
                   photo — written once, not repeated in a section below. */}
               <p className="gp-bio-langs">{GUIDE_BIO[locale].langs}</p>
               <p className="gp-bio-tag">{GUIDE_BIO[locale].tagline}</p>
+              <p className="press-note">{GUIDE_BIO[locale].pressNote}</p>
             </div>
 
             {/* Live language switcher */}
@@ -433,7 +434,7 @@ export default function GuideShowcase({
             appears in the Topkapi Palace Night Museum programme. */}
         <div className="gs-video">
           <div className="gs-video-head">
-            <span className="gs-route-kicker">{copy.video.kicker}</span>
+            {copy.video.kicker ? <span className="gs-route-kicker">{copy.video.kicker}</span> : null}
             <h3 className="gs-route-title">{copy.video.title}</h3>
           </div>
           <div className="gs-video-frame">

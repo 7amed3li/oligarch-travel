@@ -88,8 +88,8 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   en: {
     overline: 'Licensed Heritage Specialist · Est. 1994',
     video: {
-      kicker: 'As seen on YouTube',
-      title: 'Your guide on screen — the Topkapi Night Museum film',
+      kicker: '',
+      title: "TOPKAPI PALACE AT NIGHT — first 'Night Museum' program at Topkapı Palace, held on June 29, 2024",
       caption: 'Filmed as Ergin led the first night museum tour at Topkapi Palace — produced in cooperation with the Ministry of Culture and Tourism and SICPA. Ergin appears from 0:25, so playback starts there.',
       play: 'Play the video',
     },
@@ -168,8 +168,8 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   de: {
     overline: 'Lizenzierter Kulturerbe-Spezialist · Seit 1994',
     video: {
-      kicker: 'Auf YouTube',
-      title: 'Ihr Guide auf dem Bildschirm — der Topkapi-Nachtmuseum-Film',
+      kicker: '',
+      title: 'TOPKAPI-PALAST BEI NACHT — das erste „Nachtmuseum“-Programm im Topkapı-Palast, am 29. Juni 2024',
       caption: 'Gedreht, als Ergin die erste Nachtmuseum-Tour im Topkapi-Palast führte — entstanden in Zusammenarbeit mit dem Ministerium für Kultur und Tourismus und SICPA. Ergin ist ab 0:25 zu sehen, daher startet die Wiedergabe dort.',
       play: 'Video abspielen',
     },
@@ -248,8 +248,8 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   zh: {
     overline: '持证历史遗产专家 · 始于 1994',
     video: {
-      kicker: 'YouTube 影片',
-      title: '屏幕上的向导——托普卡帕宫夜间博物馆影片',
+      kicker: '',
+      title: '夜访托普卡珀宫——托普卡珀宫首个“夜博物馆”项目,2024年6月29日',
       caption: '本片拍摄于 Ergin 带领托普卡帕宫首个夜间博物馆之旅之时，由土耳其文化和旅游部与 SICPA 合作制作。Ergin 从 0:25 开始出现，因此将从那里开始播放。',
       play: '播放视频',
     },
@@ -328,8 +328,8 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   tr: {
     overline: 'Lisanslı Kültürel Miras Uzmanı · 1994’ten Beri',
     video: {
-      kicker: "YouTube'da",
-      title: 'Rehberiniz ekranda — Topkapı Gece Müzeciliği filmi',
+      kicker: '',
+      title: "GECE TOPKAPI SARAYI — Topkapı Sarayı'nda düzenlenen ilk 'Gece Müzesi' programı, 29 Haziran 2024",
       caption: "Ergin'in Topkapı Sarayı'ndaki ilk gece müze turunu yaparken çekildi; Kültür ve Turizm Bakanlığı ile SICPA iş birliğiyle hazırlandı. Ergin 0:25'ten itibaren görünüyor, oynatma oradan başlıyor.",
       play: 'Videoyu oynat',
     },
@@ -414,6 +414,7 @@ export interface GuideBio {
   paras: string[];
   langs: string;
   tagline: string;
+  pressNote: string;
 }
 
 // Ergin's own bio text, sent and approved by him on 2026-11-24 (EN is his
@@ -431,6 +432,7 @@ export const GUIDE_BIO: Record<Locale, GuideBio> = {
     ],
     langs: 'Professional Guiding & Cultural Experiences in English, German, Russian and Chinese.',
     tagline: 'Beyond guiding. Discovering heritage — More than a tour. A journey through history.',
+    pressNote: "Ergin Karakoyun served as a guide for journalists and visitors during the first 'Night Museum' program at Topkapı Palace, held on June 29, 2024.",
   },
   de: {
     kicker: 'Ihr Guide',
@@ -444,6 +446,7 @@ export const GUIDE_BIO: Record<Locale, GuideBio> = {
     ],
     langs: 'Professionelle Führungen & kulturelle Erlebnisse auf Englisch, Deutsch, Russisch und Chinesisch.',
     tagline: 'Mehr als Führung. Erbe entdecken — Mehr als eine Tour. Eine Reise durch die Geschichte.',
+    pressNote: 'Ergin Karakoyun war beim ersten „Nachtmuseum“-Programm im Topkapı-Palast am 29. Juni 2024 als Guide für Journalisten und Besucher tätig.',
   },
   zh: {
     kicker: '您的导游',
@@ -457,6 +460,7 @@ export const GUIDE_BIO: Record<Locale, GuideBio> = {
     ],
     langs: '提供英语、德语、俄语和中文的专业导览与文化体验。',
     tagline: '超越导览，探索遗产——不止是一次旅行，更是一段穿越历史的旅程。',
+    pressNote: '2024年6月29日,在托普卡珀宫首个“夜博物馆”项目中,Ergin Karakoyun 担任记者与游客的导游。',
   },
   tr: {
     kicker: 'Rehberiniz',
@@ -470,5 +474,6 @@ export const GUIDE_BIO: Record<Locale, GuideBio> = {
     ],
     langs: 'İngilizce, Almanca, Rusça ve Çince profesyonel rehberlik ve kültürel deneyimler.',
     tagline: 'Rehberliğin ötesinde. Mirası keşfetmek — Bir turdan fazlası. Tarih içinde bir yolculuk.',
+    pressNote: "Ergin Karakoyun, 29 Haziran 2024'te düzenlenen ilk 'Gece Müzesi' programında Topkapı Sarayı'nda gazeteciler ve ziyaretçiler için rehberlik yaptı.",
   },
 };
