@@ -1669,3 +1669,20 @@ footer.site a.gp-chan-btn{color:#fff}
    guide page bio column and the night tour card. */
 .press-note{margin:14px 0 0;padding:10px 14px;border-inline-start:3px solid #C6A15B;background:#F8F5EE;border-radius:8px;font-size:14.5px;line-height:1.55;color:var(--ink)}
 .tmodal-body .press-note{margin-top:10px}
+
+/* BTS marquee + lightbox */
+.bts-marquee{overflow:hidden;margin-top:10px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.bts-track{display:flex;width:max-content;animation:btsScroll 30s linear infinite}
+.bts-marquee:hover .bts-track,.bts-marquee:focus-within .bts-track{animation-play-state:paused}
+.bts-half{display:flex}
+.bts-item{flex:none;margin-right:10px;padding:0;border:none;background:none;cursor:zoom-in;border-radius:12px;overflow:hidden;line-height:0}
+.bts-item img{width:158px;height:106px;object-fit:cover;display:block}
+@keyframes btsScroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.bts-track{animation:none}}
+.lb-root{position:fixed;inset:0;z-index:3200;background:rgba(7,13,24,.93);display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:94vw;max-height:84vh;border-radius:10px;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(16,40,62,.72);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-close{top:14px;right:14px;font-size:26px}
+.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;letter-spacing:.08em}

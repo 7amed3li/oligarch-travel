@@ -1,6 +1,7 @@
 import { profileMetaFor } from '@/data/links';
 import MenuBoard from './MenuBoard';
 import TabiiCard from './TabiiCard';
+import BtsGallery from './BtsGallery';
 import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
@@ -102,11 +103,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           <p className="sec-sub">{u.tabii_text}</p>
           <TabiiCard locale={locale} />
           <p className="tabii-bts-label">{u.tabii_bts}</p>
-          <div className="tabii-bts" aria-label={u.tabii_bts}>
-            {[1, 2, 3, 4, 5].map((n) => (
-              <img key={n} src={`/img/tabii-bts-${n}.jpg`} alt="" loading="lazy" />
-            ))}
-          </div>
+          <BtsGallery label={u.tabii_bts} />
         </div>
       </section>
 
