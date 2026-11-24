@@ -80,7 +80,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
           <circle cx="12" cy="12" r="9" />
           <polygon points="16.2 7.8 13.8 13.8 7.8 16.2 10.2 10.2" />
         </svg>
-        <span>{u.discover_title || 'Discover Istanbul'}</span>
+        <span>{u.discover_title || 'Meet your guide'}</span>
       </Link>
       <a className="otq-item" href="https://wa.me/905553255565" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

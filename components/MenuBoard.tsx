@@ -234,7 +234,7 @@ export default function MenuBoard({
           loading="lazy"
         />
         <div className="whois-body">
-          <h3 className="whois-title">{u.discover_title || 'Discover Istanbul'}</h3>
+          <h3 className="whois-title">{u.discover_title || 'Meet your guide'}</h3>
           <p className="whois-line">{u.discover_sub}</p>
           <span className="whois-link">{u.nav_about} →</span>
         </div>
