@@ -268,6 +268,7 @@ export default function SmartSplash() {
 
       {/* Top Brand Wordmark & Bottom Live Year Counter */}
       <div className="ss-hud">
+        <div className="ss-presents">OLIGARCH TOURS PRESENTS</div>
         <div className="ss-brand-top">
           <strong>OLIGARCH</strong>
           <small>TRAVEL</small>

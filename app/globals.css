@@ -1078,6 +1078,7 @@ html.splash-done .ss-root{display:none!important}
 .ss-coord-r{left:14px}
 .ss-light-slit{position:absolute;top:14%;bottom:14%;left:50%;width:2px;transform:translateX(-50%) scaleY(0);transform-origin:center;background:linear-gradient(180deg,transparent 0%,rgba(255,85,51,.55) 18%,#FF5533 50%,rgba(255,85,51,.55) 82%,transparent 100%);box-shadow:0 0 22px 2px rgba(255,85,51,.55);pointer-events:none;z-index:3}
 .ss-hud{position:absolute;inset:0;pointer-events:none;z-index:4}
+.ss-presents{position:absolute;left:50%;top:calc(50% - 208px);transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:.34em;padding-left:.34em;color:#E8EDF5;white-space:nowrap;text-align:center}
 .ss-brand-top{position:absolute;left:50%;top:calc(50% - 172px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;white-space:nowrap}
 .ss-brand-top strong{font-size:19px;font-weight:800;letter-spacing:.28em;color:#fff;padding-left:.28em}
 .ss-brand-top small{font-size:9.5px;font-weight:700;letter-spacing:.44em;color:#93A3BC;padding-left:.44em}
@@ -1091,12 +1092,14 @@ html.splash-done .ss-root{display:none!important}
   .ss-coord{top:calc(50% + 104px);font-size:9.5px;letter-spacing:.1em}
   .ss-coord-l{right:10px}
   .ss-coord-r{left:10px}
+  .ss-presents{top:calc(50% - 178px);font-size:9.5px;letter-spacing:.26em;padding-left:.26em}
   .ss-brand-top{top:calc(50% - 150px)}
   .ss-brand-top strong{font-size:16.5px}
   .ss-year-bar{top:calc(50% + 136px);font-size:10px;letter-spacing:.12em}
 }
 @media(max-height:560px){
-  .ss-brand-top{top:18px}
+  .ss-presents{top:14px}
+  .ss-brand-top{top:42px}
   .ss-year-bar{top:auto;bottom:16px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1449,6 +1452,12 @@ html.splash-done .ss-root{display:none!important}
 .gp-chan-btn{display:inline-flex;align-items:center;gap:9px;background:#1FA855;color:#fff;font-weight:800;font-size:15px;padding:13px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:background .2s ease}
 .gp-chan-btn:hover{background:#178A45}
 @media(max-width:640px){.gp-chan-band{padding:22px 20px}.gp-chan-btn{width:100%;justify-content:center}}
+.gp-prof-band{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;box-shadow:0 10px 30px rgba(26,43,73,.06)}
+.gp-prof-band h2{margin:0}
+.gp-prof-links{display:flex;gap:10px;flex-wrap:wrap}
+.gp-prof-btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);color:var(--ink);font-weight:800;font-size:14.5px;padding:11px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:background .2s ease,color .2s ease}
+.gp-prof-btn:hover{background:var(--ink);color:#fff}
+@media(max-width:640px){.gp-prof-band{padding:22px 20px}.gp-prof-btn{flex:1;justify-content:center}}
 /* Rev 9g fix: the portrait <img> height attribute (1100) was driving the
    box height over aspect-ratio, stretching the arch frame. Force auto. */
 .gs-arch-img{height:auto}

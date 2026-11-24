@@ -197,6 +197,33 @@ export default async function GuidePage({
               <span>{copy.chanBtn}</span>
             </a>
           </div>
+
+          <div className="gp-prof-band">
+            <div className="gp-chan-copy">
+              <h2>{u.reviews_title}</h2>
+            </div>
+            <div className="gp-prof-links">
+              {(
+                [
+                  ['TripAdvisor', PROFILE_LINKS.tripadvisor],
+                  ['Viator', PROFILE_LINKS.viator],
+                  ['Airbnb', PROFILE_LINKS.airbnb],
+                ] as const
+              ).map(([name, href]) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gp-prof-btn"
+                >
+                  <span>
+                    {(u.view_on || 'View on {platform}').replace('{platform}', name)}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
       <ContactForm locale={loc} u={u} />

@@ -115,7 +115,13 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       title: 'Areas of heritage mastery',
       stops: [
         {
-          era: '330–1453',
+          era: '330–395',
+          title: 'Roman Constantinople',
+          desc: 'From Constantine to Theodosius — the new capital takes shape around the Hippodrome, where the Egyptian Obelisk still stands over the square today.',
+          tourSlugs: ['sultanahmet-hippodrome'],
+        },
+        {
+          era: '395–1453',
           title: 'Byzantine Constantinople',
           desc: 'Justinian’s great dome, the Upper Gallery mosaics, and the subterranean marble forest of the Basilica Cistern.',
           tourSlugs: ['hagia-sophia', 'basilica-cistern'],
@@ -177,7 +183,13 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       title: 'Fachgebiete im historischen Zentrum',
       stops: [
         {
-          era: '330–1453',
+          era: '330–395',
+          title: 'Römisches Konstantinopel',
+          desc: 'Von Konstantin bis Theodosius — die neue Hauptstadt entsteht rund um das Hippodrom, wo der Ägyptische Obelisk bis heute über dem Platz steht.',
+          tourSlugs: ['sultanahmet-hippodrome'],
+        },
+        {
+          era: '395–1453',
           title: 'Byzantinisches Konstantinopel',
           desc: 'Die große Kuppel Justinians, die Mosaike der Oberen Galerie und die Säulenwälder der Cisterna Basilica.',
           tourSlugs: ['hagia-sophia', 'basilica-cistern'],
@@ -239,7 +251,13 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       title: '历史遗产专长路线',
       stops: [
         {
-          era: '330–1453',
+          era: '330–395',
+          title: '罗马君士坦丁堡',
+          desc: '从君士坦丁到狄奥多西——新都围绕竞技场拔地而起,埃及方尖碑至今仍矗立在广场之上。',
+          tourSlugs: ['sultanahmet-hippodrome'],
+        },
+        {
+          era: '395–1453',
           title: '拜占庭帝国君士坦丁堡',
           desc: '查士丁尼穹顶、二楼珍贵马赛克壁画，以及地下水宫深处庄严的石柱森林。',
           tourSlugs: ['hagia-sophia', 'basilica-cistern'],
@@ -301,7 +319,13 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       title: 'Uzmanlık Alanları ve Tarihi Rota',
       stops: [
         {
-          era: '330–1453',
+          era: '330–395',
+          title: 'Roma Konstantinopolisi',
+          desc: 'Konstantin’den Theodosius’a — yeni başkent Hipodrom çevresinde şekillenir; Mısır Dikilitaşı bugün hâlâ meydanda yükselir.',
+          tourSlugs: ['sultanahmet-hippodrome'],
+        },
+        {
+          era: '395–1453',
           title: 'Bizans Konstantinopolisi',
           desc: 'Justinianus’un büyük kubbesi, Üst Galeri mozaikleri ve Yerebatan Sarnıcı’nın yeraltı sütun ormanı.',
           tourSlugs: ['hagia-sophia', 'basilica-cistern'],
