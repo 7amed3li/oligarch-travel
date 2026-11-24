@@ -204,7 +204,7 @@ export default function AddToBooking({
                 }}
               />
               <span>
-                {u.add_ticket || 'Add entrance tickets too'} +{' '}
+                {u.add_ticket || 'Add entrance tickets'} +{' '}
                 <strong>
                   {fmtMoneyD(price.ticket.currency, price.ticket.amount)} × {clamp(people, price)}{' '}
                   {u.guests}
@@ -338,7 +338,7 @@ export default function AddToBooking({
                       onChange={(e) => setOTicket(e.target.checked)}
                     />
                     <span>
-                      {u.add_ticket || 'Add entrance tickets too'} —{' '}
+                      {u.add_ticket || 'Add entrance tickets'} —{' '}
                       <strong>
                         {ticketPerPersonDisplay(other.price)} {u.per_person}
                       </strong>
