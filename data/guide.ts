@@ -123,7 +123,7 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       s3Bottom: 'TÜRSAB LICENCE',
     },
     route: {
-      kicker: 'Two Empires · One Old City',
+      kicker: 'Three Empires · One Old City',
       title: 'Areas of heritage mastery',
       stops: [
         {
@@ -197,7 +197,7 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       s3Bottom: 'TÜRSAB LIZENZ',
     },
     route: {
-      kicker: 'Zwei Imperien · Eine Altstadt',
+      kicker: 'Drei Imperien · Eine Altstadt',
       title: 'Fachgebiete im historischen Zentrum',
       stops: [
         {
@@ -271,7 +271,7 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       s3Bottom: 'TÜRSAB 官方牌照',
     },
     route: {
-      kicker: '两大帝国 · 一座古城',
+      kicker: '三大帝国 · 一座古城',
       title: '历史遗产专长路线',
       stops: [
         {
@@ -345,7 +345,7 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       s3Bottom: 'TÜRSAB BELGESİ',
     },
     route: {
-      kicker: 'İki İmparatorluk · Tek Yarımada',
+      kicker: 'Üç İmparatorluk · Tek Yarımada',
       title: 'Uzmanlık Alanları ve Tarihi Rota',
       stops: [
         {

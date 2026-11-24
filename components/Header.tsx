@@ -73,9 +73,8 @@ export default function Header({
             }}
           >
             <summary className="lang-btn" aria-label="Currency">
-              <span>
-                {DISP_CURS.find((c) => c.code === currency)?.symbol} {currency}
-              </span>
+              <span>{DISP_CURS.find((c) => c.code === currency)?.symbol}</span>
+              <span className="cur-code">{currency}</span>
               <svg className="lang-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M6 9l6 6 6-6" />
               </svg>
@@ -112,11 +111,7 @@ export default function Header({
             }}
           >
             <summary className="lang-btn" aria-label="Language">
-              <svg className="lang-globe" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M3 12h18" />
-                <path d="M12 3c2.5 2.6 3.9 5.7 3.9 9s-1.4 6.4-3.9 9c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3z" />
-              </svg>
+              <span className="lang-flag" aria-hidden="true">{LANG_FLAG[locale]}</span>
               <span className="lang-cur-full">{LANG_NAME[locale]}</span>
               <span className="lang-cur-short">{LANG_LABEL[locale]}</span>
               <svg className="lang-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

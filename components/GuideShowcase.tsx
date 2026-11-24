@@ -484,21 +484,22 @@ export default function GuideShowcase({
             aria-hidden="true"
           >
             <path
-              d="M 150 18 Q 300 4 450 18 T 750 18"
+              d="M 112.5 18 Q 225 4 337.5 18 T 562.5 18 T 787.5 18"
               stroke="#E3E8EF"
               strokeWidth="2"
               strokeLinecap="round"
             />
             <path
               ref={routePathRef}
-              d="M 150 18 Q 300 4 450 18 T 750 18"
+              d="M 112.5 18 Q 225 4 337.5 18 T 562.5 18 T 787.5 18"
               stroke="#FF5533"
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            <circle cx="150" cy="18" r="5" fill="#1A2B49" />
-            <circle cx="450" cy="18" r="5" fill="#1A2B49" />
-            <circle cx="750" cy="18" r="5" fill="#1A2B49" />
+            <circle cx="112.5" cy="18" r="5" fill="#1A2B49" />
+            <circle cx="337.5" cy="18" r="5" fill="#1A2B49" />
+            <circle cx="562.5" cy="18" r="5" fill="#1A2B49" />
+            <circle cx="787.5" cy="18" r="5" fill="#1A2B49" />
           </svg>
 
           <div className="gs-stops">
