@@ -5,10 +5,11 @@ import { useCart } from './CartProvider';
 import { MEETING_DEFAULT, type Locale } from '@/data/tours';
 
 // Fixed bottom bar, Lucky Sushi style (Ergin, 2026-11-20: "Menü cart
-// WhatsApp meerting point — en alttaki bu süper oturmuş"): Menu · Booking
+// WhatsApp meerting point — en alttaki bu süper oturmuş"): Booking
 // (cart, with count badge) · Discover Istanbul (the guide's own page,
-// added 2026-11-21) · WhatsApp · Meeting Point. Mobile only — on desktop
-// the header already carries the same entries.
+// added 2026-11-21) · WhatsApp · Meeting Point. The Menu item was
+// removed on 2026-11-24 at the owner's request. Mobile only — on
+// desktop the header already carries the same entries.
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { count } = useCart();
   const navRef = useRef<HTMLElement>(null);
@@ -23,7 +24,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
     const apply = () => {
       if (window.innerWidth <= 900) {
         el.style.setProperty('display', 'grid', 'important');
-        el.style.setProperty('grid-template-columns', 'repeat(5,minmax(0,1fr))', 'important');
+        el.style.setProperty('grid-template-columns', 'repeat(4,minmax(0,1fr))', 'important');
         el.style.setProperty('position', 'fixed', 'important');
         el.style.setProperty('bottom', '0', 'important');
         el.style.setProperty('left', '0', 'important');
@@ -51,7 +52,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
     <style>{`
 .otqnav{display:none}
 @media(max-width:900px){
-.otqnav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important;visibility:visible!important;background:#fff;border-top:1px solid #E3E8EF;box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
+.otqnav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important;visibility:visible!important;background:#fff;border-top:1px solid #E3E8EF;box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
 .otq-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:#1A2B49;font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent}
 .otq-item>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
 .otq-item:active{color:#C93A1B}
@@ -61,12 +62,6 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
 }
 `}</style>
     <nav className="otqnav" aria-label="Quick actions" ref={navRef}>
-      <Link className="otq-item" href={`/${locale}#tours`}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" aria-hidden="true">
-          <path d="M4 6h16M4 12h16M4 18h10" />
-        </svg>
-        <span>{u.menu_word || 'Menu'}</span>
-      </Link>
       <Link className="otq-item" href={`/${locale}/booking`}>
         <span className="otq-ic">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
