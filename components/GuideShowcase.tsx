@@ -66,6 +66,7 @@ export default function GuideShowcase({
   );
   const [activeStop, setActiveStop] = useState(0);
   const [videoOn, setVideoOn] = useState(false);
+  const [natgeoOn, setNatgeoOn] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const routePathRef = useRef<SVGPathElement>(null);
@@ -466,6 +467,42 @@ export default function GuideShowcase({
             )}
           </div>
           <p className="gs-video-caption">{copy.video.caption}</p>
+        </div>
+
+        {/* National Geographic, 1996: Ergin's own archive clip of the
+            channel broadcast — self-hosted file behind the same kind of
+            click-to-play facade, so nothing heavy loads until clicked. */}
+        <div className="gs-video">
+          <div className="gs-video-head">
+            <span className="gs-route-kicker">{copy.natgeo.kicker}</span>
+            <h3 className="gs-route-title">{copy.natgeo.title}</h3>
+          </div>
+          <div className="gs-video-frame natgeo">
+            {natgeoOn ? (
+              <video
+                src="/img/natgeo-1996.mp4"
+                poster="/img/natgeo-1996-poster.jpg"
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : (
+              <button
+                type="button"
+                className="gs-video-facade"
+                onClick={() => setNatgeoOn(true)}
+                aria-label={copy.natgeo.play}
+              >
+                <img src="/img/natgeo-1996-poster.jpg" alt="" loading="lazy" />
+                <span className="gs-video-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="30" height="30">
+                    <path d="M8 5v14l11-7z" fill="currentColor" />
+                  </svg>
+                </span>
+              </button>
+            )}
+          </div>
+          <p className="gs-video-caption">{copy.natgeo.caption}</p>
         </div>
 
         {/* Bottom full-width Heritage Route with GSAP DrawSVG */}

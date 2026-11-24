@@ -1,5 +1,6 @@
 import { profileMetaFor } from '@/data/links';
 import MenuBoard from './MenuBoard';
+import TabiiCard from './TabiiCard';
 import HeroVideo from './HeroVideo';
 import GuideTeaser from './GuideTeaser';
 import WhyBookDirect from './WhyBookDirect';
@@ -102,20 +103,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
         <div className="wrap">
           <h2 className="sec">{u.tabii_title}</h2>
           <p className="sec-sub">{u.tabii_text}</p>
-          <a
-            className="tabii-card"
-            href="https://www.tabii.com/tr/watch/182973"
-            target="_blank"
-            rel="noopener"
-          >
-            <img
-              className="tabii-scene"
-              src="/img/tabii-scene-v2.jpg"
-              alt="Like a Dream: Istanbul — TRT tabii"
-              loading="lazy"
-            />
-            <img className="tabii-badge" src="/img/tabii-badge.jpg" alt="" aria-hidden="true" />
-          </a>
+          <TabiiCard locale={locale} />
           <p className="tabii-bts-label">{u.tabii_bts}</p>
           <div className="tabii-bts" aria-label={u.tabii_bts}>
             {[1, 2, 3, 4, 5].map((n) => (

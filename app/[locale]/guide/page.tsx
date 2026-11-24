@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import GuideShowcase from '@/components/GuideShowcase';
 import ContactForm from '@/components/ContactForm';
 import { PROFILE_LINKS } from '@/data/links';
+import { GUIDE_BIO } from '@/data/guide';
 import { LOCALES, TOUR_ORDER, TOURS, UI, type Locale } from '@/data/tours';
 
 export const dynamic = 'force-dynamic';
@@ -91,6 +92,7 @@ export default async function GuidePage({
   const loc = locale as Locale;
   const u = UI[loc];
   const copy = PAGE_COPY[loc] ?? PAGE_COPY.en;
+  const bio = GUIDE_BIO[loc];
   const tourNames = Object.fromEntries(
     TOUR_ORDER.map((id) => [id, TOURS[id].content[loc].name]),
   );
@@ -141,6 +143,21 @@ export default async function GuidePage({
         tourNames={tourNames}
         headingAs="h1"
       />
+
+      <section className="gp-bio-sec">
+        <div className="wrap">
+          <p className="gp-bio-kicker">{bio.kicker}</p>
+          <h2 className="gp-bio-name">{bio.name}</h2>
+          <p className="gp-bio-role">{bio.role}</p>
+          {bio.paras.map((p) => (
+            <p className="gp-bio-p" key={p.slice(0, 24)}>
+              {p}
+            </p>
+          ))}
+          <p className="gp-bio-langs">{bio.langs}</p>
+          <p className="gp-bio-tag">{bio.tagline}</p>
+        </div>
+      </section>
 
       <section className="gp-cta-sec">
         <div className="wrap">

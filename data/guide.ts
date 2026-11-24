@@ -52,6 +52,12 @@ export interface GuideCopy {
     caption: string;
     play: string;
   };
+  natgeo: {
+    kicker: string;
+    title: string;
+    caption: string;
+    play: string;
+  };
 }
 
 export const PERSONAL_GREETINGS: Record<
@@ -85,6 +91,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       kicker: 'As seen on YouTube',
       title: 'Your guide on screen — the Topkapi Night Museum film',
       caption: 'Filmed as Ergin led the first night museum tour at Topkapi Palace — produced in cooperation with the Ministry of Culture and Tourism and SICPA. Ergin appears from 0:25, so playback starts there.',
+      play: 'Play the video',
+    },
+    natgeo: {
+      kicker: 'National Geographic · 1996',
+      title: 'A young Ergin on National Geographic',
+      caption: 'Broadcast on the National Geographic Channel in 1996 — Ergin guiding at Topkapi Palace.',
       play: 'Play the video',
     },
     coordPlace: 'Sultanahmet, Old City',
@@ -161,6 +173,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       caption: 'Gedreht, als Ergin die erste Nachtmuseum-Tour im Topkapi-Palast führte — entstanden in Zusammenarbeit mit dem Ministerium für Kultur und Tourismus und SICPA. Ergin ist ab 0:25 zu sehen, daher startet die Wiedergabe dort.',
       play: 'Video abspielen',
     },
+    natgeo: {
+      kicker: 'National Geographic · 1996',
+      title: 'Der junge Ergin auf National Geographic',
+      caption: '1996 im National Geographic Channel ausgestrahlt — Ergin als Guide im Topkapi-Palast.',
+      play: 'Video abspielen',
+    },
     coordPlace: 'Sultanahmet, Altstadt',
     metrics: {
       yearsLabel: 'Jahre in der Altstadt',
@@ -233,6 +251,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       kicker: 'YouTube 影片',
       title: '屏幕上的向导——托普卡帕宫夜间博物馆影片',
       caption: '本片拍摄于 Ergin 带领托普卡帕宫首个夜间博物馆之旅之时，由土耳其文化和旅游部与 SICPA 合作制作。Ergin 从 0:25 开始出现，因此将从那里开始播放。',
+      play: '播放视频',
+    },
+    natgeo: {
+      kicker: '国家地理 · 1996',
+      title: '年轻的 Ergin 登上国家地理频道',
+      caption: '1996 年在国家地理频道播出——Ergin 在托普卡帕宫担任导游。',
       play: '播放视频',
     },
     coordPlace: '苏丹艾哈迈德 · 老城区',
@@ -309,6 +333,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
       caption: "Ergin'in Topkapı Sarayı'ndaki ilk gece müze turunu yaparken çekildi; Kültür ve Turizm Bakanlığı ile SICPA iş birliğiyle hazırlandı. Ergin 0:25'ten itibaren görünüyor, oynatma oradan başlıyor.",
       play: 'Videoyu oynat',
     },
+    natgeo: {
+      kicker: 'National Geographic · 1996',
+      title: "Genç Ergin National Geographic'te",
+      caption: "1996'da National Geographic Kanalı'nda yayınlandı — Ergin, Topkapı Sarayı'nda rehberlik yaparken.",
+      play: 'Videoyu oynat',
+    },
     coordPlace: 'Sultanahmet, Tarihi Yarımada',
     metrics: {
       yearsLabel: 'Yıl Tarihi Yarımada Deneyimi',
@@ -374,5 +404,71 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
         },
       ],
     },
+  },
+};
+
+export interface GuideBio {
+  kicker: string;
+  name: string;
+  role: string;
+  paras: string[];
+  langs: string;
+  tagline: string;
+}
+
+// Ergin's own bio text, sent and approved by him on 2026-11-24 (EN is his
+// wording verbatim; DE/ZH/TR are faithful translations of the same text).
+export const GUIDE_BIO: Record<Locale, GuideBio> = {
+  en: {
+    kicker: 'Your Guide',
+    name: 'Ergin Karakoyun',
+    role: 'Licensed Tourist Guide | Istanbul Heritage Specialist',
+    paras: [
+      "With over 30 years of experience, specialized in Byzantine and Ottoman history, bringing Istanbul's extraordinary cultural heritage to life.",
+      'A graduate of Marmara University, with an international background shaped in Germany, I combine academic knowledge with extensive field experience.',
+      "In 2010, I produced 9 documentaries on Türkiye's historical and cultural heritage, each approximately 45 minutes long and available in 16 languages, covering destinations from Istanbul and Cappadocia to Hagia Sophia, Topkapı Palace and Ephesus.",
+      'Coming from a family with roots in Istanbul dating back to 1887, I offer a unique perspective shaped by generations of local heritage.',
+    ],
+    langs: 'Professional Guiding & Cultural Experiences in English, German, Russian and Chinese.',
+    tagline: 'Beyond guiding. Discovering heritage — More than a tour. A journey through history.',
+  },
+  de: {
+    kicker: 'Ihr Guide',
+    name: 'Ergin Karakoyun',
+    role: 'Lizenzierter Fremdenführer | Istanbul-Kulturerbe-Spezialist',
+    paras: [
+      'Mit über 30 Jahren Erfahrung, spezialisiert auf byzantinische und osmanische Geschichte, erwecke ich Istanbuls außergewöhnliches kulturelles Erbe zum Leben.',
+      'Als Absolvent der Marmara-Universität, mit einem in Deutschland geprägten internationalen Hintergrund, verbinde ich akademisches Wissen mit umfangreicher Praxiserfahrung.',
+      '2010 produzierte ich 9 Dokumentationen über das historische und kulturelle Erbe der Türkei, jede etwa 45 Minuten lang und in 16 Sprachen verfügbar — von Istanbul und Kappadokien bis zur Hagia Sophia, dem Topkapi-Palast und Ephesus.',
+      'Aus einer Familie stammend, deren Wurzeln in Istanbul bis 1887 zurückreichen, biete ich eine einzigartige Perspektive, geprägt von Generationen lokaler Tradition.',
+    ],
+    langs: 'Professionelle Führungen & kulturelle Erlebnisse auf Englisch, Deutsch, Russisch und Chinesisch.',
+    tagline: 'Mehr als Führung. Erbe entdecken — Mehr als eine Tour. Eine Reise durch die Geschichte.',
+  },
+  zh: {
+    kicker: '您的导游',
+    name: 'Ergin Karakoyun',
+    role: '持证导游 | 伊斯坦布尔文化遗产专家',
+    paras: [
+      '拥有 30 多年经验，专攻拜占庭与奥斯曼历史，致力于让伊斯坦布尔非凡的文化遗产鲜活呈现。',
+      '毕业于马尔马拉大学，拥有在德国塑造的国际背景，我将学术知识与丰富的实地经验相结合。',
+      '2010 年，我制作了 9 部关于土耳其历史文化遗产的纪录片，每部约 45 分钟，译有 16 种语言，涵盖伊斯坦布尔、卡帕多奇亚、圣索菲亚大教堂、托普卡帕宫和以弗所等地。',
+      '我的家族自 1887 年起便扎根于伊斯坦布尔，这赋予我由几代本地传承塑造的独特视角。',
+    ],
+    langs: '提供英语、德语、俄语和中文的专业导览与文化体验。',
+    tagline: '超越导览，探索遗产——不止是一次旅行，更是一段穿越历史的旅程。',
+  },
+  tr: {
+    kicker: 'Rehberiniz',
+    name: 'Ergin Karakoyun',
+    role: 'Lisanslı Turist Rehberi | İstanbul Kültürel Miras Uzmanı',
+    paras: [
+      "30 yılı aşkın deneyimimle, Bizans ve Osmanlı tarihi uzmanı olarak İstanbul'un olağanüstü kültürel mirasını hayata taşıyorum.",
+      "Marmara Üniversitesi mezunuyum; Almanya'da şekillenen uluslararası geçmişimle akademik bilgiyi kapsamlı saha deneyimiyle birleştiriyorum.",
+      "2010 yılında, Türkiye'nin tarihi ve kültürel mirasına dair, her biri yaklaşık 45 dakika ve 16 dilde mevcut 9 belgesel hazırladım; İstanbul ve Kapadokya'dan Ayasofya, Topkapı Sarayı ve Efes'e uzanan destinasyonları kapsıyordu.",
+      "Kökleri İstanbul'da 1887'ye uzanan bir aileden geldiğim için, nesillerin yerel mirasıyla şekillenmiş benzersiz bir bakış açısı sunuyorum.",
+    ],
+    langs: 'İngilizce, Almanca, Rusça ve Çince profesyonel rehberlik ve kültürel deneyimler.',
+    tagline: 'Rehberliğin ötesinde. Mirası keşfetmek — Bir turdan fazlası. Tarih içinde bir yolculuk.',
   },
 };
