@@ -14,7 +14,7 @@ export default function TrustTicker({ items }: { items: [string, string][] }) {
 
     const mm = gsap.matchMedia();
 
-    mm.add('(max-width: 640px) and (prefers-reduced-motion: no-preference)', () => {
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
       const tween = gsap.fromTo(
         trackWrap,
         { xPercent: 0 },

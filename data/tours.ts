@@ -1455,11 +1455,11 @@ export const TOUR_GALLERY: Record<string, string[]> = {
   'full-day-istanbul': ['tour-istanbul-day.webp', 'tour-hs-private.webp', 'tour-topkapi-private.webp', 'tour-bluemosque.webp'],
 };
 export const TOUR_GROUPS: { key: string; ids: string[] }[] = [
+  { key: 'grp_fullday', ids: ['full-day-istanbul', 'half-day-istanbul'] },
   { key: 'grp_byzantine', ids: ['hagia-sophia', 'basilica-cistern', 'sultanahmet-hippodrome'] },
   { key: 'grp_ottoman', ids: ['topkapi-palace', 'topkapi-night'] },
   { key: 'grp_shopping', ids: ['bazaars-tour', 'traditional-handicrafts'] },
   { key: 'grp_bosphorus', ids: ['bosphorus-yacht'] },
-  { key: 'grp_fullday', ids: ['full-day-istanbul'] },
 ];
 export function meetingPoint(locale: Locale, tourId: string): string {
   const own = TOURS[tourId]?.meeting?.[locale];
