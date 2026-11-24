@@ -6,6 +6,7 @@ import ContactForm from '@/components/ContactForm';
 import { PROFILE_LINKS } from '@/data/links';
 import { GUIDE_BIO } from '@/data/guide';
 import { LOCALES, TOUR_ORDER, TOURS, UI, type Locale } from '@/data/tours';
+import { altFor } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
@@ -94,6 +95,7 @@ export async function generateMetadata({
   return {
     title: `Ergin Karakoyun — ${u.nav_about} | BYZIST`,
     description: u.about_paras[0],
+    alternates: altFor('/guide', loc),
     openGraph: {
       title: u.about_title,
       description: u.about_paras[0],

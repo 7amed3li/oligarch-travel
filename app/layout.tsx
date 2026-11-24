@@ -21,6 +21,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata = {
+  metadataBase: new URL('https://www.byzist.com'),
+  verification: { google: 'hiAtP_AN7NeIWdt1nfNcLse_kD8yQHfoVcF9j_-Vdqw' },
   title: 'Istanbul Tours — BYZIST',
   description:
     'Skip-the-line tickets and private guided tours of Hagia Sophia, Topkapi Palace, Grand Bazaar, and Bosphorus yacht cruises with licensed guide Ergin Karakoyun. Book direct — 25% deposit, confirmed on WhatsApp.',

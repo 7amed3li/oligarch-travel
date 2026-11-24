@@ -13,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!LOCALES.includes(locale as Locale)) return {};
-  return { title: `${UI[locale as Locale].your_booking} — BYZIST` };
+  return { title: `${UI[locale as Locale].your_booking} — BYZIST`, robots: { index: false, follow: true } };
 }
 
 export default async function BookingPage({ params }: { params: Promise<{ locale: string }> }) {

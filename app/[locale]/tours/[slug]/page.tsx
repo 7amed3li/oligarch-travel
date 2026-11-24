@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { altFor } from '@/lib/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
@@ -115,6 +116,7 @@ export async function generateMetadata({
   return {
     title: `${c.name} — BYZIST`,
     description,
+    alternates: altFor(`/tours/${slug}`, locale as Locale),
     openGraph: { title: c.name, description, images: [`/img/${TOURS[slug].img}`] },
   };
 }
