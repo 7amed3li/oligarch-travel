@@ -1622,6 +1622,7 @@ a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
 /* ===== 2026-11-24 late: channel copy (Ergin's text) + device-audit header fixes ===== */
 /* Channel band: Ergin's own promotion text — headline, contents list, tag line */
 .ft-chan-band{margin:0 0 28px;color:var(--ink)}
+footer.site a.gp-chan-btn{color:#fff}
 .chan-headline{margin:8px 0 0;font-size:19px;font-weight:800;line-height:1.25;color:var(--ink)}
 .chan-intro{margin:12px 0 6px;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
 .chan-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;max-width:540px}
