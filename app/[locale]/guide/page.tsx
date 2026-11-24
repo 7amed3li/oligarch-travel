@@ -139,25 +139,10 @@ export default async function GuidePage({
       <GuideShowcase
         locale={loc}
         title={u.about_title}
-        paras={u.about_paras}
+        paras={bio.paras}
         tourNames={tourNames}
         headingAs="h1"
       />
-
-      <section className="gp-bio-sec">
-        <div className="wrap">
-          <p className="gp-bio-kicker">{bio.kicker}</p>
-          <h2 className="gp-bio-name">{bio.name}</h2>
-          <p className="gp-bio-role">{bio.role}</p>
-          {bio.paras.map((p) => (
-            <p className="gp-bio-p" key={p.slice(0, 24)}>
-              {p}
-            </p>
-          ))}
-          <p className="gp-bio-langs">{bio.langs}</p>
-          <p className="gp-bio-tag">{bio.tagline}</p>
-        </div>
-      </section>
 
       <section className="gp-cta-sec">
         <div className="wrap">

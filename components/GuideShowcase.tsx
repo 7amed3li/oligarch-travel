@@ -5,7 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
-import { GUIDE_COPY, PERSONAL_GREETINGS, type PersonalLang } from '@/data/guide';
+import { GUIDE_BIO, GUIDE_COPY, PERSONAL_GREETINGS, type PersonalLang } from '@/data/guide';
 import type { Locale } from '@/data/tours';
 
 interface GuideShowcaseProps {
@@ -309,6 +309,10 @@ export default function GuideShowcase({
                   {p}
                 </p>
               ))}
+              {/* Ergin (2026-11-24): his bio text belongs here, beside his
+                  photo — written once, not repeated in a section below. */}
+              <p className="gp-bio-langs">{GUIDE_BIO[locale].langs}</p>
+              <p className="gp-bio-tag">{GUIDE_BIO[locale].tagline}</p>
             </div>
 
             {/* Live language switcher */}
