@@ -8,8 +8,9 @@ export default function Logo({ withText = true }: { withText?: boolean }) {
     <span className="logo">
       <svg
         className="logo-mark"
-        viewBox="0 0 120 74"
-        width="47"
+        viewBox="2 8 116 59"
+        preserveAspectRatio="xMinYMid meet"
+        width="57"
         height="29"
         aria-hidden="true"
       >

@@ -34,6 +34,7 @@ export default function Footer({ locale, u }: { locale: Locale; u: any }) {
         <div className="ft-grid">
           <div className="ft-brand">
             <Logo />
+            <p className="ft-tagline">{u.hero_kicker}</p>
             <p>{u.footer_line}</p>
           </div>
 

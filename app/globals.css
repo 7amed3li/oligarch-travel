@@ -1050,7 +1050,7 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .wrap{padding:0 16px}
   .header-in{gap:5px;padding:10px 0}
   .logo{gap:7px}
-  .logo-mark{width:40px;height:25px}
+  .logo-mark{width:44px;height:22px}
   .logo-text{font-size:13px;letter-spacing:.1em}
   .logo-text small{font-size:7.5px;letter-spacing:.22em}
   .header-actions{gap:5px;flex:none}
@@ -1060,7 +1060,7 @@ footer.site a.ft-btn-maps:active,.ft-btn-copy:active{transform:scale(.98)}
   .mobile-toggle{width:38px;height:38px;padding:0;flex:none}
 }
 @media(max-width:360px){
-  .logo-mark{width:36px;height:23px}
+  .logo-mark{width:40px;height:20px}
   .logo-text small{font-size:7px;letter-spacing:.16em}
 }
 
@@ -1292,7 +1292,7 @@ html.splash-done .ss-root{display:none!important}
   .header-in{gap:10px;padding:14px 0}
   .header-actions{gap:7px;margin-left:auto}
   .logo{gap:8px}
-  .logo-mark{width:44px;height:27px}
+  .logo-mark{width:48px;height:24px}
   .logo-text{font-size:15px;letter-spacing:.12em}
   .logo-text small{font-size:8.5px;letter-spacing:.26em}
   .lang-btn{min-height:42px;padding:9px 10px;gap:6px;font-size:13px;border-radius:10px}
@@ -1441,7 +1441,7 @@ html.splash-done .ss-root{display:none!important}
   .hero .hero-wrap{padding-top:52px;padding-bottom:60px}
   .hero{min-height:calc(100vh - 75px);min-height:calc(100svh - 75px)}
   header.site .header-in{padding-top:16px;padding-bottom:16px}
-  header.site .logo-mark{width:46px;height:28px}
+  header.site .logo-mark{width:50px;height:25px}
   header.site .logo-text{font-size:15.5px}
 }
 
@@ -1526,3 +1526,19 @@ html.splash-done .ss-root{display:none!important}
 .tabii-scene{display:block;width:100%;height:auto}
 .tabii-badge{position:absolute;left:14px;bottom:14px;height:52px;width:auto;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
 @media(max-width:640px){.tabii-badge{height:40px;left:10px;bottom:10px}}
+
+/* ---- Language flags (inline SVG, identical on every platform) ---- */
+.flag-ic{display:inline-flex;width:20px;height:15px;border-radius:3px;overflow:hidden;flex:none;box-shadow:inset 0 0 0 1px rgba(26,43,73,.14)}
+.flag-ic svg{width:100%;height:100%;display:block}
+.lang-panel .flag-ic{width:22px;height:16.5px}
+
+/* ---- Footer soul: soft gradient ground, gold-ruled headings, navy
+   icon tiles, the brand tagline and a gold hairline over the legal
+   row — the footer was plain white text (owner, 2026-11-24). ---- */
+footer.site{background:linear-gradient(180deg,#F7F9FC 0%,#EBEFF5 100%)}
+.ft-tagline{margin:12px 0 0;font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#9A7B2D}
+.ft-col h4{position:relative;padding-bottom:9px}
+.ft-col h4::after{content:'';position:absolute;left:0;bottom:0;width:26px;height:2.5px;border-radius:2px;background:#C6A15B}
+.ft-icon{background:#1A2B49;border-color:#1A2B49;color:#fff}
+a.ft-row:hover .ft-icon{background:#C93A1B;border-color:#C93A1B;color:#fff}
+.ft-bottom{border-top:none;background:linear-gradient(90deg,transparent,rgba(198,161,91,.75),transparent) top/100% 2px no-repeat;padding-top:22px}

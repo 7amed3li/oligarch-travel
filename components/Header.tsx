@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
+import Flag from './Flag';
 import { useCart } from './CartProvider';
 import { LOCALES, type Locale } from '@/data/tours';
 import { DISP_CURS } from '@/lib/cart';
 
 const LANG_LABEL: Record<Locale, string> = { en: 'EN', de: 'DE', zh: '中文', tr: 'TR' };
 const LANG_NAME: Record<Locale, string> = { en: 'English', de: 'Deutsch', zh: '中文', tr: 'Türkçe' };
-const LANG_FLAG: Record<Locale, string> = { en: '🇬🇧', de: '🇩🇪', zh: '🇨🇳', tr: '🇹🇷' };
 
 export default function Header({
   locale,
@@ -111,7 +111,7 @@ export default function Header({
             }}
           >
             <summary className="lang-btn" aria-label="Language">
-              <span className="lang-flag" aria-hidden="true">{LANG_FLAG[locale]}</span>
+              <Flag code={locale} />
               <span className="lang-cur-full">{LANG_NAME[locale]}</span>
               <span className="lang-cur-short">{LANG_LABEL[locale]}</span>
               <svg className="lang-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -130,7 +130,7 @@ export default function Header({
                     setMobileMenuOpen(false);
                   }}
                 >
-                  <span className="lang-flag" aria-hidden="true">{LANG_FLAG[l]}</span>
+                  <Flag code={l} />
                   <span className="lang-opt-name">{LANG_NAME[l]}</span>
                   {l === locale && (
                     <svg className="lang-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

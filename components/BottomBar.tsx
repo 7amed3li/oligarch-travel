@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useCart } from './CartProvider';
 import { MEETING_DEFAULT, type Locale } from '@/data/tours';
@@ -15,6 +16,9 @@ import type { TourPrice } from '@/lib/prices';
 export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
   const { items, count, currency } = useCart();
   void currency; // re-render on currency change; amounts format via fmtMoneyD
+  const pathname = usePathname() || '';
+  const activeBooking = pathname === `/${locale}/booking`;
+  const activeGuide = pathname === `/${locale}/guide`;
   const navRef = useRef<HTMLElement>(null);
   const [priceMap, setPriceMap] = useState<{ byId: Record<string, TourPrice>; dep: number } | null>(null);
 
@@ -82,9 +86,11 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
 .otqnav{display:none}
 @media(max-width:900px){
 .otqnav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:200!important;visibility:visible!important;background:#fff;border-top:1px solid #E3E8EF;box-shadow:0 -4px 18px rgba(26,43,73,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
-.otq-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:#1A2B49;font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent}
+.otq-item{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:56px;padding:7px 2px 6px;text-decoration:none;color:#1A2B49;font-size:10.5px;font-weight:600;line-height:1.15;-webkit-tap-highlight-color:transparent;transition:transform .12s ease,color .15s ease}
 .otq-item>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
-.otq-item:active{color:#C93A1B}
+.otq-item:active{color:#C93A1B;transform:scale(.95)}
+.otq-item.is-active{color:#C93A1B}
+.otq-item.is-active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:3px;border-radius:0 0 4px 4px;background:#C6A15B}
 .otq-item svg{width:20px;height:20px;flex:none}
 .otq-ic{position:relative;display:inline-flex}
 .otq-badge{position:absolute;top:-6px;right:-10px;background:#C93A1B;color:#fff;font-size:10.5px;font-weight:800;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
@@ -92,7 +98,7 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
 }
 `}</style>
     <nav className="otqnav" aria-label="Quick actions" ref={navRef}>
-      <Link className="otq-item" href={`/${locale}/booking`}>
+      <Link className={`otq-item${activeBooking ? ' is-active' : ''}`} href={`/${locale}/booking`}>
         <span className="otq-ic">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -106,15 +112,15 @@ export default function BottomBar({ locale, u }: { locale: Locale; u: any }) {
           {total > 0 ? <span className="otq-total">{fmtMoneyD('EUR', total)}</span> : null}
         </span>
       </Link>
-      <Link className="otq-item" href={`/${locale}/guide`}>
+      <Link className={`otq-item${activeGuide ? ' is-active' : ''}`} href={`/${locale}/guide`}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="9" />
           <polygon points="16.2 7.8 13.8 13.8 7.8 16.2 10.2 10.2" />
         </svg>
-        <span>{u.discover_title || 'Meet your guide'}</span>
+        <span>{u.guide_short || 'Your Guide'}</span>
       </Link>
       <a className="otq-item" href="https://wa.me/905553255565" target="_blank" rel="noopener">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
           <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.03a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.2-.31a8.08 8.08 0 0 1-1.24-4.28c0-4.47 3.64-8.11 8.16-8.11 4.47 0 8.11 3.64 8.11 8.11 0 4.47-3.64 8.12-8.11 8.12zm4.45-6.08c-.24-.12-1.44-.71-1.69-.79-.25-.09-.43-.13-.61.12-.18.25-.7.86-.86 1.03-.16.18-.32.2-.59.07-.27-.13-1.15-.42-2.19-1.35-.81-.72-1.35-1.61-1.51-1.89-.16-.27-.02-.42.12-.55.12-.13.27-.32.41-.48.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.48-.07-.13-.61-1.51-.84-2.06-.22-.53-.44-.46-.61-.47h-.52c-.18 0-.48.07-.79.34-.32.27-1.2 1.17-1.2 2.86s1.23 3.32 1.4 3.55c.18.23 2.42 3.7 5.87 5.18.82.35 1.46.56 1.96.72.82.26 1.57.22 2.16.13.66-.1 2.02-.83 2.35-1.64.33-.81.33-1.51.23-1.65-.1-.14-.22-.23-.47-.35z" />
         </svg>
         <span>WhatsApp</span>
