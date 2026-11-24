@@ -101,7 +101,7 @@ export default function HomePage({ locale, prices }: { locale: Locale; prices: P
           <p className="sec-sub">{u.tabii_text}</p>
           <a
             className="tabii-card"
-            href="https://www.tabii.com/ar/watch/182973"
+            href="https://www.tabii.com/tr/watch/182973"
             target="_blank"
             rel="noopener"
           >
