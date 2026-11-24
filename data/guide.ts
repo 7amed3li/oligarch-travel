@@ -46,6 +46,12 @@ export interface GuideCopy {
     title: string;
     stops: HeritageStop[];
   };
+  video: {
+    kicker: string;
+    title: string;
+    caption: string;
+    play: string;
+  };
 }
 
 export const PERSONAL_GREETINGS: Record<
@@ -75,6 +81,12 @@ export const PERSONAL_GREETINGS: Record<
 export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   en: {
     overline: 'Licensed Heritage Specialist · Est. 1994',
+    video: {
+      kicker: 'As seen on TV',
+      title: 'Your guide on screen — the Topkapi Night Museum film',
+      caption: 'A television feature on Topkapi Palace’s night museum programme. Ergin appears from 0:25, so playback starts there.',
+      play: 'Play the video',
+    },
     coordPlace: 'Sultanahmet, Old City',
     metrics: {
       yearsLabel: 'Years in Istanbul’s Old City',
@@ -143,6 +155,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   },
   de: {
     overline: 'Lizenzierter Kulturerbe-Spezialist · Seit 1994',
+    video: {
+      kicker: 'Im Fernsehen',
+      title: 'Ihr Guide auf dem Bildschirm — der Topkapi-Nachtmuseum-Film',
+      caption: 'Ein Fernsehbeitrag über das Nachtmuseum-Programm des Topkapi-Palasts. Ergin ist ab 0:25 zu sehen, daher startet die Wiedergabe dort.',
+      play: 'Video abspielen',
+    },
     coordPlace: 'Sultanahmet, Altstadt',
     metrics: {
       yearsLabel: 'Jahre in der Altstadt',
@@ -211,6 +229,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   },
   zh: {
     overline: '持证历史遗产专家 · 始于 1994',
+    video: {
+      kicker: '电视专题',
+      title: '屏幕上的向导——托普卡帕宫夜间博物馆影片',
+      caption: '关于托普卡帕宫夜间博物馆的电视专题片。Ergin 从 0:25 开始出现，因此将从那里开始播放。',
+      play: '播放视频',
+    },
     coordPlace: '苏丹艾哈迈德 · 老城区',
     metrics: {
       yearsLabel: '年伊斯坦布尔古城导览',
@@ -279,6 +303,12 @@ export const GUIDE_COPY: Record<Locale, GuideCopy> = {
   },
   tr: {
     overline: 'Lisanslı Kültürel Miras Uzmanı · 1994’ten Beri',
+    video: {
+      kicker: 'Televizyonda',
+      title: 'Rehberiniz ekranda — Topkapı Gece Müzeciliği filmi',
+      caption: 'Topkapı Sarayı gece müzeciliği üzerine bir televizyon programı. Ergin 0:25’ten itibaren görünüyor, oynatma oradan başlıyor.',
+      play: 'Videoyu oynat',
+    },
     coordPlace: 'Sultanahmet, Tarihi Yarımada',
     metrics: {
       yearsLabel: 'Yıl Tarihi Yarımada Deneyimi',

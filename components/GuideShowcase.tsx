@@ -65,6 +65,7 @@ export default function GuideShowcase({
     locale === 'de' || locale === 'zh' ? locale : 'en',
   );
   const [activeStop, setActiveStop] = useState(0);
+  const [videoOn, setVideoOn] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const routePathRef = useRef<SVGPathElement>(null);
@@ -419,19 +420,52 @@ export default function GuideShowcase({
           </div>
         </div>
 
-        {/* TV feature: Ergin appearing in the Topkapi Palace Night Museum
-            programme (Milli Saraylar), embedded from 0:25 where he appears.
-            Responsive 16:9 frame so it fits every platform. */}
+        {/* TV feature, designed as its own section in the page flow:
+            section head in the route-head pattern, then a click-to-play
+            facade (the video's own thumbnail + play button) so no YouTube
+            iframe loads until the visitor chooses to watch — faster page,
+            cleaner first paint. Playback starts at 0:25, where Ergin
+            appears in the Topkapi Palace Night Museum programme. */}
         <div className="gs-video">
-          <div className="gs-video-frame">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/F_U0Zlypl54?start=25&rel=0"
-              title="Topkapi Palace Night Museum — TV feature with Ergin Karakoyun"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+          <div className="gs-video-head">
+            <span className="gs-route-kicker">{copy.video.kicker}</span>
+            <h3 className="gs-route-title">{copy.video.title}</h3>
           </div>
+          <div className="gs-video-frame">
+            {videoOn ? (
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/F_U0Zlypl54?start=25&autoplay=1&rel=0"
+                title="Topkapi Palace Night Museum — TV feature with Ergin Karakoyun"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            ) : (
+              <button
+                type="button"
+                className="gs-video-facade"
+                onClick={() => setVideoOn(true)}
+                aria-label={copy.video.play}
+              >
+                <img
+                  src="https://i.ytimg.com/vi/F_U0Zlypl54/maxresdefault.jpg"
+                  alt=""
+                  loading="lazy"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (!img.src.includes('hqdefault')) {
+                      img.src = 'https://i.ytimg.com/vi/F_U0Zlypl54/hqdefault.jpg';
+                    }
+                  }}
+                />
+                <span className="gs-video-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="30" height="30">
+                    <path d="M8 5v14l11-7z" fill="currentColor" />
+                  </svg>
+                </span>
+              </button>
+            )}
+          </div>
+          <p className="gs-video-caption">{copy.video.caption}</p>
         </div>
 
         {/* Bottom full-width Heritage Route with GSAP DrawSVG */}
